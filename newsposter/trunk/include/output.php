@@ -8,6 +8,7 @@ require_once('misc.php');
 require_once('constants.php');
 require_once('date.php');
 require_once($np_dir . '/config.php');
+require_once(create_theme_path('topics/_control.php'));
 
 /**
  * This class defines functions which handle the dynamic part
@@ -157,9 +158,8 @@ class NP_Output {
      */
     function get_selection_topic($selected = '')
     {
-	// include the topics control file
-	require_once(create_theme_path('topics/_control.php'));
-
+	global $topic;
+	
 	if ($selected === $topic[0]['name'] || empty($selected))
 	    $select_opts = "<option value=\"{$topic[0]['name']}\" "
 			 . "selected=\"true\">"
@@ -225,17 +225,14 @@ class NP_Output {
      */
     function render_posting($int_post)
     {
-	global $cfg, $lang;
-    
-	// include topics control file
-	require_once(create_theme_path('topics/_control.php'));
+	global $cfg, $lang, $topic;
 	
 	// initialize filename variable with default topic
 	$filename  = $topic[0]['filename'];
 	$emoticon  = create_theme_path('images/smile/' .
 			$int_post['emoticon'] . '.png');
 	$read_more = $comment = '';
-	
+
 	foreach($topic as $key => $entry)
 	{
 	    if ($entry['name'] === $int_post['topic'])
@@ -244,7 +241,7 @@ class NP_Output {
 		break;
 	    }
 	}
-	
+
 	$filename = create_theme_path('topics/' . $filename);
 	if (!file_exists($filename))
 	{
@@ -252,12 +249,12 @@ class NP_Output {
 	                 ."Check your _control.php file");
 	    return FALSE;
 	}
-	
+
 	$fp = fopen($filename, 'r');
 	// tc = topic content
 	$tc = fread($fp, filesize($filename));
 	fclose($fp);
-	
+
 	if ($pos = strpos($int_post['body'], ' CUT '))
 	{
 	    $int_post['body'] = substr($int_post['body'], 0, $pos);
@@ -277,6 +274,18 @@ class NP_Output {
 	    $int_post['body'] = $_SESSION['NP']['ubb_inst']->replace(
 						    $int_post['body']);
 	
+	$mark  = '';
+	// difference of current time and posting time
+	$diff  = time() - $int_post['stamp'];
+	$fresh = create_theme_path('images/misc/fresh.png');
+	$old   = create_theme_path('images/misc/old.png');
+	
+	if ($cfg['MarkFresh'] !== 0 && $diff <= $cfg['MarkFresh'])
+	    $mark = "<img src=\"$fresh\" />";
+	    
+	if ($cfg['MarkOld'] !== 0 && $diff >= $cfg['MarkOld'])
+	    $mark = "<img src=\"$old\" />";
+	
 	$search  = array(
 	    0  => 'NAME',
 	    1  => 'MAIL',
@@ -289,7 +298,8 @@ class NP_Output {
 	    9  => 'EMOTICON',
 	    10 => 'READ_MORE',
 	    11 => 'COMMENTS',
-	    12 => 'BODY'
+	    12 => 'MARK',
+	    13 => 'BODY'
 	);
 	
 	$replace = array(
@@ -304,7 +314,8 @@ class NP_Output {
 	    9  => $emoticon,
 	    10 => $read_more,
 	    11 => $comment,
-	    12 => $int_post['body']
+	    12 => $mark,
+	    13 => $int_post['body']
 	);
     
 	$tc = str_replace($search, $replace, $tc);

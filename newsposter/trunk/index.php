@@ -64,6 +64,10 @@ switch($action)
     case 'write':
 	$inc = 'write.php';
 	break;
+    
+    case 'output_all':
+	$inc = 'output_all.php';
+	break;
 
     default:
 	$inc = 'login.php';

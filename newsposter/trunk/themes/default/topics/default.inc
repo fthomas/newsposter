@@ -5,8 +5,8 @@
 	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
 		<tr>
 		    <td valign="center"><img src="EMOTICON" /></td>
-		    <td width="60%">&nbsp;SUBJECT</td>
-		    <td width="40%" align="right">
+		    <td width="50%">&nbsp;SUBJECT</td>
+		    <td width="50%" align="right">
 			<a href="mailto:MAIL">NAME</a>&nbsp;DATE	
 		    <td>
 		</tr>
@@ -20,6 +20,7 @@
 	<td>
 	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
 		<tr>
+		    <td width="10%">MARK</td>
 		    <td align="right">READ_MORE &nbsp; COMMENTS</td>
 		</tr>
 	    </table>

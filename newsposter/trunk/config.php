@@ -41,7 +41,7 @@ $cfg['CutOffAge']   = 0;
 $cfg['MarkFresh']   = 60 * 60 * 12;
 
 // (int)
-$cfg['MarkOld']     = 60 * 60 * 24 * 14;
+$cfg['MarkOld']     = 60 * 60 * 24;
 
 // (bool)
 $cfg['ParseUBB']         = TRUE;
@@ -62,7 +62,8 @@ $cfg['NameVar']          = '';
 $cfg['StoreTypeFile']    = 'store_fs.php';
 
 // (string)
-$cfg['RemoteNPDir']      = '';
+$cfg['RemoteSpoolDir']   = '';
+
 
 /**
  * Authentication
@@ -151,10 +152,10 @@ $cfg['RDFCreation']        = TRUE;
 $cfg['RDFIncludeComments'] = TRUE;
 
 // (string)
-$cfg['RDFDescription']  = 'Blue Dwarf - Frank Thomas personal homepage';
+$cfg['RDFDescription']     = 'Blue Dwarf - Frank Thomas personal homepage';
 
 // (int)
-$cfg['RDFMaxItems']     = 20;
+$cfg['RDFMaxItems']        = 20;
 
 
 /**

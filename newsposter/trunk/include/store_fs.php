@@ -18,6 +18,7 @@ class NP_Storing {
 
     var $mbox_file  = '';
     var $mbox_bak   = '';
+    var $mbox_cont  = '';
     var $oview_file = '';
     var $oview_bak  = '';
     var $post_inst  = 0;
@@ -37,8 +38,8 @@ class NP_Storing {
 	// use a remote dir? so we don't need to touch our files
 	if (!empty($cfg['RemoteSpoolDir']))
 	{
-	    $this->mbox_file  = $cfg['RemoteNPDir'] . '/spool/mbox';
-	    $this->oview_file = $cfg['RemoteNPDir'] . '/spool/overview_fs';
+	    $this->mbox_file  = $cfg['RemoteSpoolDir'] . 'mbox';
+	    $this->oview_file = $cfg['RemoteSpoolDir'] . 'overview_fs';
 	    
 	    return TRUE;
 	}
@@ -224,7 +225,7 @@ class NP_Storing {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
 	
-	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return $posts;
 	
 	foreach($oview as $entry)
@@ -250,9 +251,9 @@ class NP_Storing {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
 	
-	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return $posts;
-	    
+		
 	foreach($oview as $entry)
 	{
 	    if(empty($entry['refs']))
@@ -277,9 +278,9 @@ class NP_Storing {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
 	
-	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return $posts;
-	    
+		    
 	foreach($oview as $entry_1st)
 	{
 	    foreach($oview as $entry_2nd)
@@ -324,9 +325,9 @@ class NP_Storing {
     {
 	$oview = $this->_parse_oview_file();
 	
-	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return FALSE;
-	    
+		    
 	foreach($oview as $entry)
 	{
 	    if ($msgid == $entry['msgid'])
@@ -354,9 +355,9 @@ class NP_Storing {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
     
-	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return $posts;
-    
+	    
 	foreach($oview as $entry)
 	{
 	    $is_parent = ($msgid == $entry['msgid']);
@@ -468,7 +469,15 @@ class NP_Storing {
      * @return	string
      */
     function _get_file_selection($fp, $start, $end)
-    {
+    {	
+	global $cfg;
+	
+	if (!empty($cfg['RemoteSpoolDir']))
+	{
+	    $selection = substr($this->mbox_cont, $start, ($end - $start));    
+	    return $selection;
+	}
+    
 	rewind($fp);
 	fseek($fp, $start, SEEK_SET);
 	$selection = fread($fp, ($end - $start));
@@ -618,7 +627,25 @@ class NP_Storing {
 	    
 	else if ($offset !== NULL && $length !== NULL)
 	    return array_slice($posts, $offset, $length);
-    }    
+    }
+    
+    /**
+     * @access	private
+     * @return	mixed
+     */
+    function _open_for_reading()
+    {
+	global $cfg;
+	
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return FALSE;
+	
+	if (!empty($cfg['RemoteSpoolDir']))
+	    $this->mbox_cont = fread($fp, 1024 * 1024 * 2);
+	
+	return $fp;
+    }
+        
 }
 
 ?>

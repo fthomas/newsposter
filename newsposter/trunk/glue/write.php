@@ -32,6 +32,6 @@ if (isset($_SESSION['NP']['internal_posting']))
 }
 
 // send back to default page
-header("Location: {$cfg['IndexURL']}");
+header("Location: {$cfg['IndexURL']}?np_act=output_all");
 
 ?>

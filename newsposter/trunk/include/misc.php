@@ -12,7 +12,7 @@ if (substr($np_dir, -7) == 'include')
     $np_dir = substr($np_dir, 0, -7);
 }
 
-ini_set('error_log'      , $np_dir . '/error.log');
+ini_set('error_log'      , $np_dir . '/spool/error.log');
 ini_set('log_errors'     , 1);
 ini_set('error_reporting', E_ALL);
 

@@ -72,6 +72,12 @@ class NP_Posting {
 	global $cfg, $lang;
     
 	session_start();
+	
+	$new_msgid = (isset($_SESSION['NP']['msgid']))
+		? ($_SESSION['NP']['msgid']) : ($this->_create_msgid());
+	
+	$new_stamp = (isset($_SESSION['NP']['stamp']))
+		? ($_SESSION['NP']['stamp']) : (my_date(10));
     
 	// for anonymous posting set name/mail/subject to
 	// unknown
@@ -95,10 +101,10 @@ class NP_Posting {
 	    $int_post['subject'] = $lang['misc_unknown'];
 	
 	$int_post['user']     = $_SESSION['NP']['username'];
-	$int_post['msgid']    = $this->_create_msgid();
+	$int_post['msgid']    = $new_msgid;
 	$int_post['ngs']      = $cfg['Newsgroup'];
-	$int_post['date']     = my_date($cfg['DateFormat']);
-	$int_post['stamp']    = my_date(10);
+	$int_post['date']     = stamp2string($new_stamp, $cfg['DateFormat']);
+	$int_post['stamp']    = $new_stamp;
 	$int_post['c_to']     = $cfg['Complaints'];
 	$int_post['topic']    = $_SESSION['NP']['topic'];
 	$int_post['emoticon'] = $_SESSION['NP']['emoticon'];
@@ -335,12 +341,12 @@ class NP_Posting {
 	global $cfg;
 	
 	$message = $this->_to_array($message);
-	$msgid   = htmlentities($message['msgid']);
+	$msgid   = urlencode($message['msgid']);
     
 	if (isset($message['refs']) && !empty($message['refs']))
 	{
 	    $parents = explode(' ', $message['refs']);
-	    $parent  = htmlentities($parents[0]);
+	    $parent  = urlencode($parents[0]);
 	    
 	    return sprintf("%s?=%s&=%s", $cfg['IndexURL'], $parent, $msgid);
 	}
