@@ -1,5 +1,7 @@
 <?php
 /* $Id$ */
-    require('../include/constants.php');
+
+    // call this from newsposter's root
+    require('include/constants.php');
     print VERSION;
 ?>

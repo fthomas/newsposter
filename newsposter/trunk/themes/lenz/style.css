@@ -1,0 +1,80 @@
+/* Style Sheet for Lenz Grimmer's home page */
+
+body {
+	font-family: verdana, vera, lucidagrande, arial, helvetica, sans-serif;
+	color: black;
+	background: lightgray;
+	background-attachment: fixed;
+	margin: 5%
+}
+
+p {
+	color: black;
+	margin: 2%;
+}
+
+.lastchanged {
+	font-size: smaller;
+	text-align: right;
+	padding: 3px;
+	border-top: black solid 2px;
+}
+
+hr {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+}
+
+h1 {
+	color: white;
+	background: #336699;
+	padding: 3px;
+	border-color: white;
+	border-width: 1px;
+	border-right: 2px black;
+	border-bottom: 2px black;
+	border-style: solid;
+}
+
+h2 {
+	color: black;
+	background: #5098e6;
+	padding: 2px;
+	border-color: navy;
+	border-width: 1px;
+	border-right: 2px black;
+	border-bottom: 2px black;
+	border-style: solid;
+}
+
+h3 {
+	color: black;
+	background: white;
+	padding: 2px;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+}
+
+th {
+	color: black;
+	background: darkgrey;
+}
+
+ul {
+	list-style: square;
+	font-size: 0.9em;
+}
+
+pre, code {
+	background: silver;
+	padding: 1ex;
+	margin-left: 1em;
+	margin-right: 1em
+}
+
+a:link { color: blue; text-decoration: none }
+a:visited { color: navy; text-decoration: none }
+a:hover { background: #336699; color:#99CCFF; text-decoration: none }
+a:active { background: #336699; color: white; text-decoration: none }

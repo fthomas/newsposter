@@ -35,7 +35,7 @@ function my_trigger_error($error_msg)
     fclose($fp);
 }
 
-/// prints file before newsposter's output
+/// includes file before newsposter's output
 function print_header()
 {
     global $cfg;
@@ -43,7 +43,7 @@ function print_header()
         include_once($cfg['IncludeHeader']);
 }
 
-/// prints file after newsposter's output
+/// includes file after newsposter's output
 function print_footer()
 {
     global $cfg;

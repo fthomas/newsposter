@@ -31,7 +31,7 @@ $cfg['PageURL']     = 'http://localhost/';
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
+$cfg['IndexURL']    = 'http://localhost:2080/~mrfrost/newsposter/index.php';
 
 // This affects the date strings created by Newsposter. Weekday or month
 // names will be translated according to this locale.
@@ -217,13 +217,13 @@ $cfg['AllowedTags']  = '<p><a><i><b>';
 // Specify your theme here. This name is equal to the directory
 // name of the theme.
 // (string)
-$cfg['Theme']         = 'default';
+$cfg['Theme']         = 'lenz';
 
 // Specify here the files used for the content printed above and
 // beneath Newsposter's output.
 // (string)
-$cfg['IncludeHeader'] = 'themes/default/_header.inc';
-$cfg['IncludeFooter'] = 'themes/default/_footer.inc';
+$cfg['IncludeHeader'] = 'themes/lenz/_header.inc';
+$cfg['IncludeFooter'] = 'themes/lenz/_footer.inc';
 
 // These are used for the depth indicator.
 // (string)
