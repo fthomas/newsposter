@@ -128,11 +128,8 @@ class NP_Posting {
      * @param	array	$int_post
      * @return	string
      */
-    function create_supersede($int_post)
+    function create_supersede($int_post, $msgid)
     {
-	$msgid = $int_post['msgid'];
-	$int_post['msgid'] = $this->_create_msgid();
-    
 	$ext_post  = $this->int2ext($int_post);
 	$ext_post = "Supersedes: $msgid\n" . $ext_post;
     

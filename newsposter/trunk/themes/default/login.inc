@@ -11,14 +11,14 @@
     <tr>
 	<td width="30%"><?php echo $lang['login_user']; ?></td>
 	<td>
-	    <input type="text" name="login_name"
+	    <input type="text" name="login_name" size="20"
 	    <?php echo $login_add['user'] . " "; echo $login_add['block']; ?> />
 	</td>
     </tr>
     <tr>
 	<td width="30%"><?php echo $lang['login_pass']; ?></td>
 	<td>
-	    <input type="password" name="login_pass"
+	    <input type="password" name="login_pass" size="20"
 	    <?php echo $login_add['block'] ?> />
 	</td>
     </tr>

@@ -53,6 +53,9 @@ PHP code, so be careful not to corrupt the code while
 editing this file. Go now through the entire file and
 customize the configuration to your needs.
 
+There is only one configuration value you have to change
+if you want Newsposter to work correctly: 'IndexURL'
+
 To integrate all of Newsposter's HTML output into your
 page, look at the 'IncludeHeader' and 'IncludeFooter'
 options.

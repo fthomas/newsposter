@@ -5,7 +5,7 @@
 	<td bgcolor="#dfdfdf">
 	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
 		<tr>
-		    <td valign="center"><img src="EMOTICON.png" border="0" alt=""/></td>
+		    <td valign="middle"><img src="EMOTICON.png" border="0" alt=""/></td>
 		    <td width="50%">&nbsp;SUBJECT</td>
 		    <td width="50%" align="right">
 			<a href="mailto:MAIL">NAME</a>&nbsp;DATE

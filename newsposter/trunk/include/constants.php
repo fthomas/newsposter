@@ -8,7 +8,7 @@
  */
 
 // misc
-define('VERSION'   , '0.5.0-beta2');
+define('VERSION'   , '0.5.0-rc1');
 define('CODENAME'  , 'Odyssee');
 define('USER_AGENT', 'User-Agent: Newsposter/'.VERSION.' ("'.CODENAME.'")');
 

@@ -10,16 +10,30 @@
     </tr>
     <tr>
 	<td align="center">
-	    <?php echo $lang['search_text']; ?>&nbsp;
-	    <input type="text" />
-	    <?php echo $lang['search_in']; ?>
-	    <select name="search_val">
-		<option><?php echo $lang['search_all']; ?></option>
-		<option><?php echo $lang['search_news']; ?></option>
-		<option><?php echo $lang['search_comment']; ?></option>
-	    </select>
+	    <br />    
+	    <table border="0">
+		<tr>
+		    <td><?php echo $lang['search_text']; ?></td>
+		    <td><input type="text" name="search_str" size="15" /></td>
+		    <td><?php echo $lang['search_in']; ?></td>
+		    <td>
+			<select name="search_index">
+			    <option value="all">
+				<?php echo $lang['search_all']; ?>
+			    </option>
+			    <option value="news">
+				<?php echo $lang['search_news']; ?>
+			    </option>
+			    <option value="comments">
+				<?php echo $lang['search_comment']; ?>
+			    </option>
+			</select>
+		    </td>
+		</tr>
+	    </table>
+	    <br />
 	</td>
     </tr>
 </table>
 </form>
-
+<br /><br />

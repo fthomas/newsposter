@@ -10,25 +10,46 @@ require_once('include/constants.php');
 $_SESSION['NP']['auth_inst']->check_auth();
 $_SESSION['NP']['auth_inst']->check_perm(P_WRITE);
 
-// If internal_posting exists, store, send, post it!
+// if internal_posting exists, store, send, post it!
 if (isset($_SESSION['NP']['internal_posting']))
 {
     $int_post = $_SESSION['NP']['internal_posting'];
     $ext_post = $_SESSION['NP']['post_inst']->int2ext($int_post);
+    
+    if (isset($_SESSION['NP']['replace_msgid']))
+    {
+	$supersede = $_SESSION['NP']['post_inst']->create_supersede(
+		$int_post, $_SESSION['NP']['replace_msgid']);
+	
+	$_SESSION['NP']['store_inst']->replace_posting(
+		$int_post, $_SESSION['NP']['replace_msgid']);
+	
+	if ($cfg['RDFCreation'])
+	    $_SESSION['NP']['rdf_inst']->create_rdf_file();
 
-    $_SESSION['NP']['store_inst']->store_posting($int_post);
+	if ($cfg['PostNNTP'])
+	    $_SESSION['NP']['nntp_inst']->post($supersede);
 
-    if ($cfg['RDFCreation'])
-	$_SESSION['NP']['rdf_inst']->create_rdf_file();
+	if ($cfg['SendMailOnSuccess'])
+    	    $_SESSION['NP']['mail_inst']->send_mail_success($int_post);
+    }
+    
+    else
+    {
+	$_SESSION['NP']['store_inst']->store_posting($int_post);
 
-    if ($cfg['PostNNTP'])
-	$_SESSION['NP']['nntp_inst']->post($ext_post);
+	if ($cfg['RDFCreation'])
+	    $_SESSION['NP']['rdf_inst']->create_rdf_file();
 
-    if ($cfg['SendMailOnSuccess'])
-    	$_SESSION['NP']['mail_inst']->send_mail_success($int_post);
+	if ($cfg['PostNNTP'])
+	    $_SESSION['NP']['nntp_inst']->post($ext_post);
 
-    if ($cfg['SendNewsletter'])
-    	$_SESSION['NP']['mail_inst']->send_newsletter($int_post);
+	if ($cfg['SendMailOnSuccess'])
+    	    $_SESSION['NP']['mail_inst']->send_mail_success($int_post);
+
+	if ($cfg['SendNewsletter'])
+    	    $_SESSION['NP']['mail_inst']->send_newsletter($int_post);
+    }
 }
 
 // send back to default page

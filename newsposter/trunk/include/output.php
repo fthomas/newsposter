@@ -33,7 +33,7 @@ class NP_Output {
 	if ($cfg['UseBuiltInAuth'] === FALSE)
 	{
 	    $retval['user']  = 'value="' . $lang['login_anonym'] . '"';
-	    $retval['block'] = 'disabled="true"';
+	    $retval['block'] = 'disabled="disabled"';
 	}
 
 	return $retval;
@@ -81,17 +81,17 @@ class NP_Output {
 	if ($lookup[P_WRITE] == TRUE)
 	    $retval['write'] = '<input type="radio" name="action" value="write" />';
 	else
-	    $retval['write'] = '<input type="radio" name="action" value="write" disabled="true" />';
+	    $retval['write'] = '<input type="radio" name="action" value="write" disabled="disabled" />';
 	    
 	if ($lookup[P_EDIT] == TRUE || $lookup[P_EDIT_NEWS] == TRUE)
 	    $retval['edit'] = '<input type="radio" name="action" value="edit" />';
 	else
-	    $retval['edit'] = '<input type="radio" name="action" value="edit" disabled="true" />';
+	    $retval['edit'] = '<input type="radio" name="action" value="edit" disabled="disabled" />';
 	    
 	if ($lookup[P_DEL] == TRUE || $lookup[P_DEL_NEWS] == TRUE)
 	    $retval['delete'] = '<input type="radio" name="action" value="delete" />';
 	else
-	    $retval['delete'] = '<input type="radio" name="action" value="delete" disabled="true" />';
+	    $retval['delete'] = '<input type="radio" name="action" value="delete" disabled="disabled" />';
 	    
 	return $retval;
     }
@@ -208,7 +208,7 @@ class NP_Output {
 	
 	    $opt_add = '';
 	    if ($entry['name'] === $selected)
-		$opt_add = ' selected="true"';
+		$opt_add = ' selected="selected"';
 		
 	    $select_opts .= "\t\t<option value=\"{$entry['name']}\"$opt_add>"
 	                  . "{$entry['name']}</option>\n";
@@ -227,7 +227,7 @@ class NP_Output {
 	global $lang;
 	
 	if ($selected === 'none')
-	    $opts = '<option value="none" selected="true"></option>'."\n";
+	    $opts = '<option value="none" selected="selected"></option>'."\n";
 	else
 	    $opts = '<option value="none"></option>'."\n"; 
 	
@@ -241,7 +241,7 @@ class NP_Output {
 	{
 	    $opt_add = '';
 	    if ($selected === $entry)
-		$opt_add = ' selected="true"';
+		$opt_add = ' selected="selected"';
 	    
 	    $index = 'emot_' . $entry;
 	    $opts .= "\t\t<option value=\"$entry\"$opt_add>{$lang[$index]}</option>\n";
@@ -255,7 +255,7 @@ class NP_Output {
      * @param	array	$int_post
      * @return	string
      */
-    function render_posting($int_post, $can_cut = TRUE)
+    function render_posting($int_post, $can_cut = TRUE, $search_str = NULL)
     {
 	global $cfg, $lang;
 
@@ -328,6 +328,16 @@ class NP_Output {
 	// strip all slashes?
 	$int_post = $this->_my_stripslashes($int_post);
 	
+	if ($search_str !== NULL)
+	{
+	    $int_post['name']    = $this->_mark_string($int_post['name'],
+							$search_str); 
+	    $int_post['subject'] = $this->_mark_string($int_post['subject'],
+							$search_str);
+	    $int_post['body']    = $this->_mark_string($int_post['body'],
+							$search_str);
+	}
+	
 	$search  = array(
 	     0 => 'NAME',       1 => 'MAIL',
 	     2 => 'SUBJECT',    3 => 'MSG_ID',
@@ -358,10 +368,16 @@ class NP_Output {
      * @param	string	$parent_msgid
      * @return	string
      */
-    function render_comment($comment, $parent_msgid)
+    function render_comment($comment, $parent_msgid, $search_str = NULL)
     {
 	global $cfg, $lang;
     
+	if ($parent_msgid === NULL)
+	{
+	    $parent_msgid = explode(' ', $comment['refs']);
+	    $parent_msgid = $parent_msgid[0];
+	}
+	
 	$topic_cont = $this->_get_topic_content($comment['topic']);
 	
 	// create path for emoticon. edit image extension here
@@ -395,6 +411,16 @@ class NP_Output {
 	
 	// strip all slashes?
 	$comment = $this->_my_stripslashes($comment);
+	
+	if ($search_str !== NULL)
+	{
+	    $comment['name']    = $this->_mark_string($comment['name'],
+							$search_str); 
+	    $comment['subject'] = $this->_mark_string($comment['subject'],
+							$search_str);
+	    $comment['body']    = $this->_mark_string($comment['body'],
+							$search_str);
+	}
 	
 	$search  = array(
 	    0 => 'EMOTICON', 1 => 'NAME',  2 => 'MAIL',
@@ -456,10 +482,10 @@ class NP_Output {
 	
 	    if (isset($posting['refs']))
 	    {
-		$refs = explode(' ', $posting['refs']);
+		$refs = explode(' ', $posting['refs']);		
 		$deep = count($refs);
 		$link = sprintf('index.php?np_act=expanded&amp;msg_id=%s#%s',
-			    $refs[0], $msgid);
+			    urlencode($refs[0]), $msgid);
 		
 		// compose depth indicator
 		$deep_add     .= $cfg['DepthStart'];
@@ -476,8 +502,8 @@ class NP_Output {
 	    // create checkbox
 	    $checkbox = '';
 	    if ($with_boxes === TRUE)
-		$checkbox = sprintf('<input type="checkbox" name="cb[\'%s\']"'
-				  . ' value="OFF" />', $posting['msgid']);
+		$checkbox = sprintf('<input type="checkbox" name="cb[]"'
+				  . ' value="%s" />', $posting['msgid']);
 	    
 	    $replace = array(
 		1 => $posting['name'],    2 => $posting['mail'],
@@ -563,6 +589,40 @@ class NP_Output {
 	}
 	
 	return $posting;
+    }
+    
+    /**
+     * @access	private
+     * @param	string	$haystack
+     * @param	string	$needle
+     * @return	string
+     */
+    function _mark_string($haystack, $needle)
+    {
+	global $cfg;
+	
+	// if $needle is not in $haystack, return $haystack
+	if (stristr($haystack, $needle) === FALSE)
+	    return $haystack;
+	
+	$needle_len  = strlen($needle);
+    
+	$start = 0;
+	while (($pos = strpos(strtolower($haystack),
+		    strtolower($needle), $start)) !== FALSE)
+	{
+	    // create replacement string. we do not touch case of
+	    // the found string
+	    $match_repl = sprintf('<b style="background: %s">%s</b>',
+		    $cfg['MatchColor'], substr($haystack, $pos, $needle_len));
+
+	    $start    = $pos + strlen($match_repl);
+	    
+	    $haystack = substr_replace($haystack, $match_repl,
+		    $pos, $needle_len);
+	}
+	
+	return $haystack;
     }
     
 }

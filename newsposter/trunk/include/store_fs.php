@@ -129,6 +129,10 @@ class NP_Storing {
 	// we will save the posting
 	foreach($oview as $entry)
 	{
+	    // maybe this can cause errors...
+	    if (!isset($entry['refs']))
+		$entry['refs'] = array();
+	
 	    if ($is_string)
 	    {
 		if ($rm_childs == TRUE)
@@ -252,7 +256,7 @@ class NP_Storing {
 	
 	if (($fp = $this->_open_for_reading()) == FALSE)
 	    return $posts;
-		
+	    
 	foreach($oview as $entry)
 	{
 	    if(empty($entry['refs']))
@@ -264,9 +268,38 @@ class NP_Storing {
 	}
 	
 	fclose($fp);
-	return $this->_my_array_slice($posts, $offset, $length);	
+	return $this->_my_array_slice($posts, $offset, $length);		
     }
 
+    /**
+     * @access	public
+     * @param	mixed	$offset
+     * @param	mixed	$length
+     * @return	array	Returns array (or a slice) of all postings,
+     *			which have no references.
+     */
+    function get_all_comments($offset = NULL, $length = NULL)
+    {
+	$oview = $this->_parse_oview_file();
+	$posts = array();
+	
+	if (($fp = $this->_open_for_reading()) == FALSE)
+	    return $posts;
+
+	foreach($oview as $entry)
+	{
+	    if(!empty($entry['refs']))
+	    {
+		$ext_post = $this->_get_file_selection($fp,
+			$entry['start'], $entry['stop']);
+		$posts[] = $this->post_inst->ext2int($ext_post);
+	    }
+	}
+	
+	fclose($fp);
+	return $this->_my_array_slice($posts, $offset, $length);		
+    }
+    
     /**
      * @access	public
      * @return	array	Returns array of all posting whose first reference
@@ -342,7 +375,28 @@ class NP_Storing {
 	fclose($fp);
 	return FALSE;
     }
-
+    
+    /**
+     * @access	public
+     * @param	string	$username
+     * @param	mixed	$offset
+     * @param	mixed	$length
+     * @return	array
+     */
+    function get_postings_from($username, $offset = NULL, $length = NULL)
+    {
+	$posts     = $this->get_all_postings($offset, $length);
+	$new_posts = array();
+	
+	foreach($posts as $posting)
+	{
+	    if ($username === $posting['user'])
+		$new_posts[] = $posting;
+	}
+	
+	return $new_posts;
+    }
+    
     /**
      * @access	public
      * @param	string	$msgid

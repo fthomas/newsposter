@@ -81,6 +81,14 @@ switch($action)
     case 'search':
 	$inc = 'search.php';
 	break;
+
+    case 'posting_sel':
+	$inc = 'posting_sel.php';
+	break;
+    
+    case 'delete':
+	$inc = 'delete.php';
+	break;
 	
     default:
 	$inc = 'output_news.php';

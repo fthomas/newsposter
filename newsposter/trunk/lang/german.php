@@ -47,6 +47,8 @@ $lang = array (
     'misc_body'     => 'Body',
     'misc_emoticon' => 'Emoticon',
     'misc_more'     => 'Weiterlesen...',
+    'misc_edit'     => 'Editieren',
+    'misc_delete'   => 'Löschen',
 
     /**
      * perform
@@ -102,10 +104,10 @@ $lang = array (
     /**
      * search
      */
-    'search_head'    => 'Suche',
+    'search_head'    => 'Newsposters Postings durchforsten',
     'search_text'    => 'Suche nach',
     'search_in'      => 'in',
-    'search_all'     => 'News und Kommentaren',
+    'search_all'     => 'allen Postings',
     'search_comment' => 'Kommentaren',
     'search_news'    => 'News'
     

@@ -11,7 +11,7 @@
     <tr>
 	<td align="right" width="25%"><?php echo $lang['misc_name']; ?></td>
 	<td><input type="text" name="name" value="<?php echo $form['name']; ?>" <?php echo $form['name_add']; ?> size="30" /></td>
-    <tr>
+    </tr>
     <tr>
 	<td align="right" width="25%"><?php echo $lang['misc_mail']; ?></td>
 	<td><input type="text" name="mail" value="<?php echo $form['mail']; ?>" size="30" /></td>

@@ -78,7 +78,7 @@ $cfg['permission'][0]   = SLAVE + P_EDIT_NEWS;
 
 $cfg['username'][1]     = 'admin';
 $cfg['password'][1]     = '{SSHA}i2J32p9b+99AVO9MkAoQWz6eBDc0ZTBjMGNjNQ==';
-$cfg['permission'][1]   = ADMIN & ~P_WRITE;
+$cfg['permission'][1]   = ADMIN & ~P_EDIT_NEWS;
 
 
 /**
@@ -141,13 +141,16 @@ $cfg['IncludeHeader']   = 'themes/default/_header.inc';
 $cfg['IncludeFooter']   = 'themes/default/_footer.inc';
 
 // (string)
-$cfg['DepthStart']  = '<img src="themes/default/images/misc/depth_start.png"  border="0" />';
+$cfg['DepthStart']  = '<img src="themes/default/images/misc/depth_start.png" alt="" border="0" />';
 
 // (string)
-$cfg['DepthLength'] = '<img src="themes/default/images/misc/depth_length.png" border="0" />';
+$cfg['DepthLength'] = '<img src="themes/default/images/misc/depth_length.png" alt="" border="0" />';
 
 // (string)
-$cfg['DepthStop']   = '<img src="themes/default/images/misc/depth_stop.png"   border="0" />';
+$cfg['DepthStop']   = '<img src="themes/default/images/misc/depth_stop.png" alt="" border="0" />';
+
+// (string)
+$cfg['MatchColor']  = '#ffe100';
 
 
 /**

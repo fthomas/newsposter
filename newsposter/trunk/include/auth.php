@@ -151,12 +151,24 @@ class NP_Auth {
 
         if ($cfg['UseLDAPAuth'] == FALSE)
             return FALSE;
-            
+        
+	if (!function_exists('ldap_connect'))
+	{
+	    trigger_error('LDAP extension not available in this PHP version');
+	    return FALSE;
+	}
+	    
         if (!$ldap_rs = ldap_connect($cfg['LDAPServer'], $cfg['LDAPPort']))
-            return FALSE;
+        {
+	    trigger_error('Could not connect to LDAP server');
+	    return FALSE;
+	}
 
         if (!ldap_bind($ldap_rs, $cfg['BindDN'], $cfg['BindPassword']))
-            return FALSE;
+        {
+	    trigger_error('Could not bind to LDAP server');
+	    return FALSE;
+	}
 
         // search for username
         $filter = sprintf('(%s=%s)', $cfg['UsernameAttr'], $username);
@@ -256,7 +268,7 @@ class NP_Auth {
      * @param	mixed	$action
      * @return	bool
      */
-    function check_perm($action)
+    function check_perm($action, $redirect = TRUE)
     {
 	$lookup = $this->perm_lookup();
     
@@ -271,6 +283,9 @@ class NP_Auth {
 	
 	else if (is_int($action) && $lookup[$action])
 	    return TRUE;
+	
+	if ($redirect !== TRUE)
+	    return FALSE;
 	    
 	else
 	{
