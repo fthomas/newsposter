@@ -1,5 +1,5 @@
 <?php
-/* $Id:$ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
