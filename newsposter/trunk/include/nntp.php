@@ -11,6 +11,8 @@ require_once($np_dir . '/config.php');
  * According to RFC 977 (http://www.faqs.org/rfcs/rfc977.html)
  * this class communicates with a news server. It can post, cancel
  * and supersede newsposter's postings.
+ * This class was tested with following news servers:
+ * 	- leafnode version > 1.9.34 
  * @brief	NNTP communication class (one way)
  */
 class NP_NNTP {
