@@ -5,7 +5,7 @@ DIRNAME=newsposter-$(VERSION)
 misc:
 	@echo Newsposter Version: $(VERSION)
 	@echo Last Changed Revision: $(REVISION)
-	svn log -v > ChangeLog
+	-svn log -v > ChangeLog
 
 dist:
 	make misc

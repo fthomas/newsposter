@@ -44,16 +44,10 @@ $cfg['MarkFresh']   = 60 * 60 * 12;
 $cfg['MarkOld']     = 60 * 60 * 24 * 14;
 
 // (bool)
-$cfg['PostAnonymous']    = FALSE;
-
-// (bool)
 $cfg['ParseUBB']         = TRUE;
 
 // (int)
 $cfg['TimeVariance']     = 0;
-
-// (bool)
-$cfg['GenStaticHTML']    = FALSE;
 
 // (bool)
 $cfg['StripSlashes']     = FALSE;
@@ -68,7 +62,7 @@ $cfg['NameVar']          = '';
 $cfg['StoreTypeFile']    = 'store_fs.php';
 
 // (string)
-$cfg['RemoteNPDir']   = '';
+$cfg['RemoteNPDir']      = '';
 
 /**
  * Authentication

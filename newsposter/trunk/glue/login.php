@@ -8,7 +8,7 @@ require_once('include/misc.php');
 require_once('config.php');
 
 // retrieve additional informations for login page
-$login_add = $_SESSION['NP']['output_inst']->login();
+$login_add = $_SESSION['NP']['output_inst']->get_values_login();
 
 print_header();
 require_once(create_theme_path('login.inc'));

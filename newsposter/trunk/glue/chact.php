@@ -19,7 +19,7 @@ if ($_SESSION['NP']['auth_inst']->check_post() == FALSE)
     exit(0);
 }
 
-$radio_buttons = $_SESSION['NP']['output_inst']->chact(
+$radio_buttons = $_SESSION['NP']['output_inst']->get_radio_buttons(
     $_SESSION['NP']['auth_inst']);
 
 print_header();

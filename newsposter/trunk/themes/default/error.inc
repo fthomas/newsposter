@@ -6,14 +6,14 @@
 	<td align="center">
 	    <font color="red"><b><?php echo $lang['error']; ?></b></font>
 	    <br /><br />
-	    <?php echo $error_text; ?>
+	    <?php echo $val['text_error']; ?>
 	</td>
     </tr>
     <tr>
 	<td align="center">
-	    <?php echo $error_link; ?>
+	    <?php echo $val['text_link']; ?>
 	    <br /><br />
-	    <?php echo $link; ?>
+	    <?php echo $val['link']; ?>
 	</td>
     </tr>
 </table>
