@@ -107,8 +107,24 @@ class NP_Storing_String extends NP_Storing {
         if (!$fp)
             return FALSE;
             
-        $this->db["{$posting->msgid}"] = $posting;
+        $this->db[$posting->msgid] = $posting;
 
+        return $this->_dump_db($fp);
+    }
+    
+    function replace_posting($posting, $msgid)
+    {
+        $fp = $this->_open_db();
+        
+        if (!$fp)
+            return FALSE;
+            
+        if (!array_key_exists($msgid, $this->db))
+            return FALSE;
+            
+        $posting->msgid = $msgid;
+        $this->db[$msgid] = $posting;
+        
         return $this->_dump_db($fp);
     }
     
@@ -129,6 +145,8 @@ class NP_Storing_String extends NP_Storing {
     
     function _open_db()
     {
+        clearstatcache();
+    
         $fp = fopen($this->db_filename, 'r+');
 
         if (!$fp)
@@ -167,7 +185,13 @@ class NP_Storing_String extends NP_Storing {
         return fclose($fp);
     }
     
-    function _backup_db(){}
+    function _backup_db()
+    {
+        if (filesize($this->db_filename) == 0)
+            return FALSE;
+            
+        return copy($this->db_filename, $this->db_filename.'.bak');
+    }
 }
 
 ?>

@@ -24,7 +24,7 @@
  * Various constants
  *
  * Here is a list of former codenames:
- *  - 0.5.3 ?
+ *  - 1.0.0 ?
  *  - 0.5.2 Resurrection
  *  - 0.5.1 Falling leaves
  *  - 0.5.0 Odyssee
