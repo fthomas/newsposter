@@ -9,9 +9,7 @@ misc:
 	@echo "Last Changed Revision: $(REVISION)"
 	@-svn log -v > ChangeLog
 
-dist:
-	make misc
-	make doxygen
+dist: misc phpdoc
 	svn  export . $(DIRNAME)
 	cp   ChangeLog $(DIRNAME)
 	cp   -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
@@ -29,8 +27,13 @@ clean:
 	-rm spool/news.rss
 	-rm spool/overview_fs
 	-rm spool/overview_fs.bak
-	-rm -r doc/doxygen/html
+	-rm -r spool/feeds
 
-doxygen:
-	-rm     -r doc/doxygen/html
-	doxygen doc/doxygen/Doxyfile
+phpdoc:
+	-rm -r doc/phpdoc
+	phpdoc --directory include\
+	 --target doc/phpdoc \
+	 --title 'Newsposter API Documentation'\
+	 --parseprivate on\
+	 --output HTML:frames:earthli\
+	 --sourcecode on

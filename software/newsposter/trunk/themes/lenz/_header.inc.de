@@ -42,8 +42,8 @@
     </tr>
   </table>
   <div style="margin:7px;margin-left:auto;margin-right:auto;text-align:center">
-    <a href="spool/rss10.xml" type="application/rss+xml"><img src="themes/lenz/images/misc/rss10.png" alt="RSS 1.0" class="img" /></a>&nbsp;
-    <a href="spool/rss20.xml" type="application/rss+xml"><img src="themes/lenz/images/misc/rss20.png" alt="RSS 2.0" class="img" /></a>&nbsp;
-    <a href="spool/atom03.xml" type="application/atom+xml"><img src="themes/lenz/images/misc/atom.png" alt="Atom 3.0" class="img" /></a>
+    <a href="spool/feeds/rss10.xml" type="application/rss+xml"><img src="themes/lenz/images/misc/rss10.png" alt="RSS 1.0" class="img" /></a>&nbsp;
+    <a href="spool/feeds/rss20.xml" type="application/rss+xml"><img src="themes/lenz/images/misc/rss20.png" alt="RSS 2.0" class="img" /></a>&nbsp;
+    <a href="spool/feeds/atom03.xml" type="application/atom+xml"><img src="themes/lenz/images/misc/atom.png" alt="Atom 3.0" class="img" /></a>
   </div>
   <br />

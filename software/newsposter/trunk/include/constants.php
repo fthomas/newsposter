@@ -4,7 +4,9 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 /**
- * This file defines various constants.
+ * Various constants
+ *
+ * @package Newsposter
  */
 
 // misc
@@ -19,13 +21,17 @@ define('USER_AGENT', 'User-Agent: '.COMB_NAME);
 // 0.5.0    Odyssee
 
 
-// hashes used by Newsposter's authentication
+
+/**#@+
+ * hash used by Newsposter's authentication
+ */
 define('CRYPT', 1);
 define('SHA'  , 2);
 define('SSHA' , 3);
 define('MD5'  , 4);
 define('SMD5' , 5);
 define('PLAIN', 6);
+/**#@-*/
 
 // permission bits
 define('P_WRITE'          , 1);   // write      articles and comments
@@ -45,11 +51,11 @@ define('JOURNALIST', P_WRITE + P_EDIT + P_COMMENTS_EDIT);
 define('EDITOR'    , P_WRITE + P_DELETE + P_ALL_EDIT);
 define('ADMIN'     , P_WRITE + P_ALL_EDIT + P_ALL_DELETE);
 
-// NP_I18N::include_frame()
+// used for comparison in NP_I18N::include_frame()
 define('HEADER', 1);
 define('FOOTER', 2);
 
-// NP_Posting::get_posting_url()
+// used for comparison in NP_Posting::get_posting_url()
 define('VIEW', 1);
 define('FORM', 2);
 

@@ -12,6 +12,7 @@ require_once('date.php');
  * The NP_Storing class handles all save/load/delete actions for
  * Newsposter's postings. This store_fs.php file uses a mbox like
  * spool and it directly operates with the filesystem.
+ * @package    Newsposter
  * @brief	Database backend (using native FS)
  */
 class NP_Storing {

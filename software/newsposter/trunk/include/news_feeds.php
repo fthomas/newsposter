@@ -3,22 +3,24 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
-require_once('misc.php');
+require_once('../config.php');
 require_once('constants.php');
 require_once('date.php');
+require_once('misc.php');
+require_once('store_fs.php');
 require_once('ubb_code.php');
-require_once($np_dir . '/config.php');
-require_once($cfg['StoreTypeFile']);
 require_once('external/str_word_count.php');
 
 /**
+ * News feeds creation class
+ *
  * This class creates news feeds for aggregation. Currently the
  * following feed standards are supported:
- *     RSS 1.0  ( http://web.resource.org/rss/1.0/ )
- *     RSS 2.0  ( http://blogs.law.harvard.edu/tech/rss )
- *     Atom 0.3 ( http://www.mnot.net/drafts/draft-nottingham-atom-format-02.html )
- * @brief   News feeds creation class
+ * - RSS 1.0  ({@link http://web.resource.org/rss/1.0/})
+ * - RSS 2.0  ({@link http://blogs.law.harvard.edu/tech/rss})
+ * - Atom 0.3 ({@link http://www.mnot.net/drafts/draft-nottingham-atom-format-02.html})
+ *
+ * @package    Newsposter
  */
 class NP_NewsFeeds {
 
@@ -40,11 +42,14 @@ class NP_NewsFeeds {
         if ($cfg['ParseUBB'])
             $this->ubb_inst = &new NP_UBB;
 
-        $this->feed_file['rss10']  = $np_dir . '/spool/rss10.xml';
-        $this->feed_file['rss20']  = $np_dir . '/spool/rss20.xml';
-        $this->feed_file['atom03'] = $np_dir . '/spool/atom03.xml';
+        $this->feed_file['rss10']  = $np_dir . '/spool/feeds/rss10.xml';
+        $this->feed_file['rss20']  = $np_dir . '/spool/feeds/rss20.xml';
+        $this->feed_file['atom03'] = $np_dir . '/spool/feeds/atom03.xml';
         
         // create all feed files
+        if (! file_exists($np_dir . '/spool/feeds/'))
+            mkdir($np_dir . '/spool/feeds/');
+                
         foreach ($this->feed_file as $file)
         {
             if (! file_exists($file))

@@ -6,8 +6,6 @@
 
 - make it slim and fast
 
-- rename glue to event
-
 - redo LDAP authentication (or complete authentication module)
 
 - write full documentation

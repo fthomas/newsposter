@@ -11,7 +11,7 @@
         <a href="tools/test_conf.php">Check settings</a>
       </td>
       <td style="width:25%">
-        <a href="tools/pass_web.php">Generate password</a>
+        <a href="tools/passwd_web.php">Generate password</a>
       </td>
     </tr>
   </table>

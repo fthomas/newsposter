@@ -4,43 +4,40 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 /**
- * Functions to handle/create date strings and unix time stamps
- * can be found in this file. The config vars $cfg['DateFormat']
- * and $cfg['Locale'] influences the behavior of these.
+ * Date handling functions
  *
+ * Functions in this file handle or create date strings and UNIX
+ * time stamps. Date strings are localized according to $cfg['Locale'].
  * Following date formats are supported:
+ *  - 1 => 24.12.1984 13:43
+ *  - 2 => 24.12.1984
+ *  - 3 => 1984/12/24 13:43
+ *  - 4 => 1984/12/24
+ *  - 5 => Dezember 1984
+ *  - 6 => Dezember 24 1984
+ *  - 7 => Montag, Dezember 24 @ 13:43:00 UTC
+ *  - 8 => Mon, 24 Dec 1984 13:43:00 +0200  // RFC 822 date format
+ *  - 9 => 11000.1100.11111000000 // binary notation
+ *  - 10 => // seconds since the epoch (01.01.1970)
+ *  - 11 => 19841224134300
+ *  - 12 => Mon Dec 24 13:43:00 1984 // mbox date format
+ *  - 13 => 1984-12-24T13:34:00Z // ISO 8601 date format
+ * If a string is used as format, it will directly passed to strftime as
+ * format string. See {@link http://www.php.net/strftime}.
  *
- *    1 => 24.12.1984 13:43
- *
- *    2 => 24.12.1984
- *
- *    3 => 1984/12/24 13:43
- *
- *    4 => 1984/12/24
- *
- *    5 => Dezember 1984
- *
- *    6 => Dezember 24 1984
- *
- *    7 => Montag, Dezember 24 @ 13:43:00 UTC
- *
- *    8 => Mon, 24 Dec 1984 13:43:00 +0200  // RFC 822 date format
- *
- *    9 => 11000.1100.11111000000 // binary notation
- *
- *   10 => // seconds since the epoch (01.01.1970)
- *
- *   11 => 19841224134300
- *
- *   12 => Mon Dec 24 13:43:00 1984 // mbox date format
- *
- *   13 => 1984-12-24T13:34:00Z // ISO 8601 date format
+ * @package Newsposter
  */
 
+require_once('../config.php');
+require_once('misc.php');
+
 /**
- * @param     $time_stamp
- * @param     $format
- * @return    string
+ * @access    public
+ * @param     int      $time_stamp    UNIX time stamp
+ * @param     mixed    $format        An integer to choose one of Newsposter's
+ *                         date format, or a format string, which is passed
+ *                         directly to strftime.
+ * @return    string   date, formatted according to $format
  */
 function stamp2string($time_stamp = -1, $format = 0)
 {
@@ -120,15 +117,19 @@ function stamp2string($time_stamp = -1, $format = 0)
             return $time_string;
                 
         default:
-            my_trigger_error("Invalid date format ($format)");
-            return "01.01.1970";
+            my_trigger_error("Unrecognized date format: " . $format);
+            $time_string = date('r', $time_stamp);
+            return $time_string;
     }
 }
 
 /**
  * @access    public
- * @param     int    $format
- * @return     
+ * @param     mixed     $format    An integer to choose one of Newsposter's
+ *                          date format, or a format string, which is passed
+ *                          directly to strftime.
+ * @return    string    current date, formatted according to $format
+ * @see       stamp2string
  */
 function my_date($format = 1)
 {

@@ -100,6 +100,6 @@ switch($action)
 }
 
 // now include selected file
-require_once($np_dir . '/glue/' . $inc);
+require_once($np_dir . '/event/' . $inc);
 
 ?>
