@@ -330,10 +330,12 @@ class NP_Posting {
     }
     
     /**
-     * 
+     * Returns an URL pointing to the article or comment. If $type
+     * is VIEW the URL points directly to the item, if it is FORM
+     * the URL points to a page where users can leave comments.
      * @access    public
      * @param     mixed     $message
-     * @param     int       $type        
+     * @param     int       $type     one of VIEW or FORM
      * @return    string    An URL pointing to the news article or comment. 
      */
     function get_posting_url($message, $type)
@@ -374,17 +376,7 @@ class NP_Posting {
         
         return $cfg['IndexURL'];
     }
-    
-    /**
-     *
-     *
-     */
-    function get_comments_form_url($message)
-    {
-        $message = $this->_to_array($message);
-        $msgid   = urlencode(prep_msgid($message['msgid']));
-    }
-    
+     
     /**
      * @access	private
      * @return	string

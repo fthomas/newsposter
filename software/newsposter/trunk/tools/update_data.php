@@ -19,20 +19,33 @@ function old2new($line)
     $separator = '<-separator->';
     
     $emots = array (
-	'angry',    'dead',   'discuss',  'evil',    'happy', 'insane',
-	'laughing', 'mean',   'none',     'pissed',  'sad',   'satisfied',
-	'shocked',  'sleepy', 'suprised', 'uplooking'
+        'angry',
+        'dead',
+        'discuss',
+        'evil',
+        'happy',
+        'insane',
+        'laughing',
+        'mean',
+        'none',
+        'pissed',
+        'sad',
+        'satisfied',
+        'shocked',
+        'sleepy',
+        'suprised',
+        'uplooking'
     );
     
-    $values = explode($separator, $line);
-    $msgid  = "<" . $values[0] . "@{$cfg['FQDN']}>";    
+    $values1 = explode($separator, $line);
+    $msgid   = "<" . $values1[0] . "@{$cfg['FQDN']}>";    
     
     $_SESSION['NP']['msgid']    = $msgid;
-    $_SESSION['NP']['subject']  = $values[1];
-    $_SESSION['NP']['name']     = $values[2];
-    $_SESSION['NP']['mail']     = $values[3];
-    $_SESSION['NP']['stamp']    = $values[4];
-    $_SESSION['NP']['body']     = $values[5];
+    $_SESSION['NP']['subject']  = utf8_encode($values1[1]);
+    $_SESSION['NP']['name']     = utf8_encode($values1[2]);
+    $_SESSION['NP']['mail']     = $values1[3];
+    $_SESSION['NP']['stamp']    = $values1[4];
+    $_SESSION['NP']['body']     = utf8_encode($values1[5]);
     $_SESSION['NP']['username'] = 'update';
     $_SESSION['NP']['topic']    = 'default';
     $_SESSION['NP']['emoticon'] = 'none';
@@ -40,37 +53,45 @@ function old2new($line)
     $posting = $post_inst->create_post();
     $store_inst->store_posting($posting);
     
-    $filename = 'comments/' . $values[0];
+    $filename = 'comments/' . $values1[0];
     
     if (file_exists($filename) && filesize($filename) != 0)
     {
-	$lines = file($filename);
-	
-	foreach ($lines as $line)
-	{
-	    $values = explode($separator, $line);
-    	    $msgid  = "<" . $values[0] . "@{$cfg['FQDN']}>";    
-    	    
-	    $_SESSION['NP']['msgid']    = $msgid;
-    	    $_SESSION['NP']['subject']  = 'Re: ' . $posting['subject'];
-	    $_SESSION['NP']['name']     = $values[1];
-	    $_SESSION['NP']['mail']     = $values[2];
-	    $_SESSION['NP']['stamp']    = $values[4];
-	    $_SESSION['NP']['body']     = $values[3];
-	    $_SESSION['NP']['username'] = 'update';
-	    $_SESSION['NP']['topic']    = 'comment';
-	    $_SESSION['NP']['emoticon'] = 'none';
-	
-	    foreach ($emots as $emot)
-	    {
-		if (isset($values[5]) && stristr($values[5], $emot))
-	    	    $_SESSION['NP']['emoticon'] = $emot;
-	    }
-	
-	    $store_inst->store_posting($post_inst->create_post($posting));
-	}
-    }
+        // reads $filename into array
+        $lines = file($filename);
 
+        foreach ($lines as $line)
+        {
+            $values2 = explode($separator, $line);
+            $msgid   = "<" . $values2[0] . "@{$cfg['FQDN']}>";    
+
+            $_SESSION['NP']['msgid']    = $msgid;
+            $_SESSION['NP']['subject']  = 'Re: ' . $posting['subject'];
+            $_SESSION['NP']['name']     = utf8_encode($values2[1]);
+            $_SESSION['NP']['mail']     = $values2[2];
+            $_SESSION['NP']['stamp']    = $values2[4];
+            $_SESSION['NP']['body']     = utf8_encode($values2[3]);
+            $_SESSION['NP']['username'] = 'update';
+            $_SESSION['NP']['topic']    = 'comment';
+            $_SESSION['NP']['emoticon'] = 'none';
+
+            foreach ($emots as $emot)
+            {
+                if (isset($values2[5]) && stristr($values2[5], $emot))
+                    $_SESSION['NP']['emoticon'] = $emot;
+            }
+
+            $comment = $post_inst->create_post($posting);
+            $comment['stamp'] = trim($values2[4]);
+
+            $store_inst->store_posting($comment);
+        }
+        
+        $out_comments = " and ". count($lines) ." comments";
+    }
+    
+    $out_posting = "Transferred posting (".strip_tags($posting['subject']).") ";
+    print $out_posting . $out_comments . " <br />\n";
 }
 
 // change to Newsposter's main dir for including some files 
