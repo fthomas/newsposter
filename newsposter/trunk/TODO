@@ -1,0 +1,6 @@
+- LDAP authentication needs admin rights
+  -> every LDAP user should use it
+  
+- tools/pass_shell.php needs /usr/bin/php. Some distributions
+  might call the php binary "php4".
+  -> make a note in the documentation
