@@ -52,7 +52,7 @@ class NP_RDF {
         if (($fp = fopen($this->rdf_file, 'w')) == FALSE)
             return FALSE;
     
-        if ($cfg['RDFIncludeComments'] == TRUE)
+        if ($cfg['RDFIncludeComments'])
             $posts = $this->store_inst->get_all_postings(0, $cfg['RDFMaxItems']);
         else
             $posts = $this->store_inst->get_all_news(0, $cfg['RDFMaxItems']);
@@ -63,6 +63,14 @@ class NP_RDF {
         // compose items
         foreach($posts as $posting)
         {
+            if ($cfg['StripSlashes'])
+            {
+                $posting['name']    = stripslashes($posting['name']); 
+                $posting['mail']    = stripslashes($posting['mail']); 
+                $posting['subject'] = stripslashes($posting['subject']);
+                $posting['body']    = stripslashes($posting['body']);
+            }
+        
             // link to posting
             $link = $this->post_inst->get_sp_url($posting);
             
@@ -79,6 +87,7 @@ class NP_RDF {
                         . "    <content:encoded>\n"
                         . "      <![CDATA[{$posting['body']}]]>\n"
                         . "    </content:encoded>\n"
+                        . "    <dc:creator>{$posting['name']} (mailto:{$posting['mail']})</dc:creator>\n"
                         . "    <dc:date>{$date}</dc:date>\n"
                         . "  </item>\n\n";
         }
