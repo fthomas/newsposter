@@ -7,7 +7,6 @@ the doc/handbook/ directory of Newsposter. Please read
 this, before sending emails to me. Thank you.
 
 Frank Thomas <frank@thomas-alfeld.de>
-January 2003, Schongau (Germany)
 
 
 Table of Contents
@@ -54,7 +53,7 @@ Now you have to configure your Newsposter. For this open
 the config.php file in the Newsposter directory with an
 ordinary text editor. The config.php file contains valid
 PHP code, so be careful not to corrupt the code while
-editing this file. Go now through the entire file and
+editing this file. Now go through the entire file and
 customize the configuration to your needs.
 
 There is only one configuration value you have to change

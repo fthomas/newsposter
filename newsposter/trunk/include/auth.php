@@ -216,7 +216,8 @@ class NP_Auth {
      */
     function _make_session()
     {
-        session_start();
+        if (!isset($_SESSION))
+            session_start();
 
         $_SESSION['NP']['auth']     = TRUE;
         $_SESSION['NP']['username'] = $this->username;
@@ -229,8 +230,9 @@ class NP_Auth {
      */
     function check_auth()
     {
-        session_start();
-        
+        if (!isset($_SESSION))
+            session_start();
+
         if (isset($_SESSION['NP']['auth']) && $_SESSION['NP']['auth'] == TRUE)
             return TRUE;
         else {
@@ -245,7 +247,8 @@ class NP_Auth {
      */
     function perm_lookup()
     {
-	session_start();
+        if (!isset($_SESSION))
+            session_start();
 		
 	$perms_array = array(P_WRITE, P_EDIT, P_DEL,
 			P_EDIT_NEWS, P_DEL_NEWS, P_DEL_COMMENTS);

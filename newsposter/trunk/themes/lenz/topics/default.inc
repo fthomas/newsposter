@@ -7,7 +7,7 @@
 		<tr>
 		    <td valign="middle"><img src="EMOTICON.png" border="0" alt="" /></td>
 		    <td width="50%">&nbsp;SUBJECT</td>
-		    <td width="50%" align="right"><b>NAME</b>&nbsp;DATE	
+		    <td width="50%" align="right"><a href="mailto:MAIL"><b>NAME</a></b>&nbsp;DATE	
 		    </td>
 		</tr>
 	    </table>

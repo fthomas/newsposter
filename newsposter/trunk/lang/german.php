@@ -18,44 +18,45 @@ $lang = array (
     /**
      * chact
      */
-    'radio_text'   => 'Wähle eine der folgenden Aktionen...',
+    'radio_text'   => 'Aktion auswählen',
     'radio_write'  => 'Posting <b>schreiben</b>',
     'radio_edit'   => 'Posting <b>editieren</b>',
-    'radio_delete' => 'Postings <b>löschen</b>',
+    'radio_delete' => 'Posting(s) <b>löschen</b>',
     'radio_submit' => 'weiter',
 
     /**
      * error
      */
-    'error'           => 'F E H L E R',
-    'error_perm_text' => 'Du hast zu wenig Rechte!',
-    'error_perm_link' => 'Versuche eine andere Aktion auszuführen:',
-    'error_auth_text' => 'Authentifizierung war nicht erfolgreich!',
-    'error_auth_link' => 'Versuche dich erneut einzuloggen:',
-    
+    'error'           => 'FEHLER',
+    'error_perm_text' => 'Ungenügend Rechte',
+    'error_perm_link' => 'Andere Aktion auswählen',
+    'error_auth_text' => 'Authentifizierung fehlgeschlagen',
+    'error_auth_link' => 'Loginvorgang wiederholen',
+
     /**
      * misc
      */
-    'misc_name'     => 'Name',
-    'misc_mail'     => 'E-Mail',
-    'misc_subject'  => 'Überschrift',
-    'misc_article'  => 'Artikel',
-    'misc_comment'  => 'Kommentar',
-    'misc_comments' => 'Kommentare',
-    'misc_unknown'  => 'unbekannt',
-    'misc_topic'    => 'Topic',
-    'misc_body'     => 'Body',
-    'misc_emoticon' => 'Emoticon',
-    'misc_more'     => 'Weiterlesen...',
-    'misc_edit'     => 'Editieren',
-    'misc_delete'   => 'Löschen',
+    'misc_name'      => 'Name',
+    'misc_mail'      => 'E-Mail',
+    'misc_subject'   => 'Überschrift',
+    'misc_article'   => 'Artikel',
+    'misc_comment'   => 'Kommentar',
+    'misc_comments'  => 'Kommentare',
+    'misc_unknown'   => 'unbekannt',
+    'misc_topic'     => 'Topic',
+    'misc_body'      => 'Body',
+    'misc_emoticon'  => 'Emoticon',
+    'misc_more'      => 'Weiterlesen...',
+    'misc_selection' => 'Auswahl editieren/löschen',
+    'misc_edit'      => 'Editieren',
+    'misc_delete'    => 'Löschen',
 
     /**
      * perform
      */
     'perform_head'    => 'Artikel verfassen',
     'perform_preview' => 'Vorschau',
-    'perform_nl2br'   => 'LF Zeichen (ASCII 10) in &lt;br /&gt; umwandeln',
+    'perform_nl2br'   => '<i>Return</i> (ASCII 10) in &lt;br /&gt; umwandeln',
     
     /**
      * preview
@@ -104,7 +105,7 @@ $lang = array (
     /**
      * search
      */
-    'search_head'    => 'Newsposters Postings durchforsten',
+    'search_head'    => 'Postings durchforsten',
     'search_text'    => 'Suche nach',
     'search_in'      => 'in',
     'search_all'     => 'allen Postings',

@@ -1,20 +1,19 @@
 
 <!-- $Id: preview.inc 56 2003-02-11 19:43:43Z mrfrost $ -->
-<table align="center" style="border: solid 1px black" cellspacing="0" cellpadding="5">
+<table align="center" width="60%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
     <tr>
-	<td colspan="2">
+	<td bgcolor="#DFDFDF" colspan="2">
 	    <b><?php echo $lang['preview_head']; ?></b>
-	    <p align="right"><?php echo 'Newsposter ' . VERSION; ?></p>
 	</td>
     </tr>
     <tr>
-	<td align="center">
+	<td width="50%" align="right">
 	    <form action="index.php?np_act=posting_form" method="post">
 		<?php echo create_sess_post(); ?>
 		<input type="submit" value="<?php echo $lang['preview_edit']; ?>" />
 	    </form>
 	</td>
-	<td align="center">
+	<td width="50%" align="left">
 	    <form action="index.php?np_act=write" method="post">
 		<?php echo create_sess_post(); ?>
 		<input type="submit" value="<?php echo $lang['preview_save']; ?>" />

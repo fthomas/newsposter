@@ -137,9 +137,9 @@ $cfg['password'][1]     = '{SSHA}i2J32p9b+99AVO9MkAoQWz6eBDc0ZTBjMGNjNQ==';
 $cfg['permission'][1]   = ADMIN & ~P_EDIT_NEWS;
 
 // To specify new users:
-//	$cfg['username'][2]   = '';
-//	$cfg['password'][2]   = '';
-//	$cfg['permission'][2] =   ;
+//  $cfg['username'][2]   = '';
+//  $cfg['password'][2]   = '';
+//  $cfg['permission'][2] =   ;
 // and so on ...
 
 

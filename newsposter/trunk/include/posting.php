@@ -70,8 +70,9 @@ class NP_Posting {
     function create_post($reference = NULL)
     {
 	global $cfg, $lang;
-    
-	session_start();
+
+        if (!isset($_SESSION))
+            session_start();
 	
 	$new_msgid = (isset($_SESSION['NP']['msgid']))
 		? ($_SESSION['NP']['msgid']) : ($this->_create_msgid());

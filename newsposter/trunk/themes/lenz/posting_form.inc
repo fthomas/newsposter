@@ -2,11 +2,10 @@
 <!-- $Id: posting_form.inc 56 2003-02-11 19:43:43Z mrfrost $ -->
 <form action="index.php?np_act=preview" method="post">
 <?php echo create_sess_post(); ?>
-<table align="center" style="border: solid 1px black" width="90%" cellspacing="0" cellpadding="5">
+<table align="center" width="60%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
     <tr>
-	<td colspan="2">
+	<td colspan="2" bgcolor="#DFDFDF">
 	    <b><?php echo $lang['perform_head']; ?></b>
-	    <p align="right"><?php echo 'Newsposter ' . VERSION; ?></p>
 	</td>
     </tr>
     <tr>
@@ -55,3 +54,4 @@
     </tr>
 </table>
 </form>
+<br /><br />

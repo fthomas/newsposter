@@ -6,7 +6,7 @@
     "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Lenz Grimmers blog</title>
+    <title>Newsposter Weblog (http://newsposter.webhop.org/)</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" title="Default" href="themes/lenz/style.css">
 </head>

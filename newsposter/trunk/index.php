@@ -15,7 +15,8 @@ require_once('include/rdf.php');
 require_once('include/blacklist.php');
 require_once('include/' . $cfg['StoreTypeFile']);
 
-session_start();
+if (!isset($_SESSION))
+    session_start();
 
 // create global instances of some classes
 $_SESSION['NP']['output_inst'] = &new NP_Output;

@@ -27,7 +27,7 @@ $lang = array (
     /**
      * error
      */
-    'error'           => 'E R R O R',
+    'error'           => 'ERROR',
     'error_perm_text' => 'No permission',
     'error_perm_link' => 'Try another action',
     'error_auth_text' => 'Authentication failed',
@@ -36,19 +36,20 @@ $lang = array (
     /**
      * misc
      */
-    'misc_name'     => 'Name',
-    'misc_mail'     => 'Email',
-    'misc_subject'  => 'Subject',
-    'misc_article'  => 'Posting',
-    'misc_comment'  => 'Comment',
-    'misc_comments' => 'Comments',
-    'misc_unknown'  => 'unknown',
-    'misc_topic'    => 'Topic',
-    'misc_body'     => 'Body',
-    'misc_emoticon' => 'Emoticon',
-    'misc_more'     => 'Read more...',
-    'misc_edit'     => 'Edit',
-    'misc_delete'   => 'Delete',
+    'misc_name'      => 'Name',
+    'misc_mail'      => 'Email',
+    'misc_subject'   => 'Subject',
+    'misc_article'   => 'Posting',
+    'misc_comment'   => 'Comment',
+    'misc_comments'  => 'Comments',
+    'misc_unknown'   => 'unknown',
+    'misc_topic'     => 'Topic',
+    'misc_body'      => 'Body',
+    'misc_emoticon'  => 'Emoticon',
+    'misc_more'      => 'Read more...',
+    'misc_selection' => 'Edit/delete selection',
+    'misc_edit'      => 'Edit',
+    'misc_delete'    => 'Delete',
 
     /**
      * perform

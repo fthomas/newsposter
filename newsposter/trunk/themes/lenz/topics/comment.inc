@@ -1,6 +1,6 @@
 
 <a name="MSG_ID"></a>
-<table style="border: solid 1px black" width="90%" align="center" cellspacing="1" cellpadding="3">
+<table style="border: solid 1px black" width="100%" align="center" cellspacing="1" cellpadding="3">
     <tr>
 	<td bgcolor="#dfdfdf">
 	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
@@ -15,9 +15,11 @@
 	</td>
     </tr>
     <tr>
-	<td>
-	    BODY
-	    <p align="right">ANSWER</p>
+        <td>
+            BODY
+            <div align="right">
+                <a href="ANSW_URL"><img src="themes/lenz/images/misc/reply.png" border="0" alt="reply" /></a>
+            </div>
 	</td>
     </tr>
 </table>

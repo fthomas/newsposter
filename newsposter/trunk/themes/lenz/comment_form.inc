@@ -3,11 +3,10 @@
 <br /><a name="form"></a>
 <form action="<?php echo $val['index']; ?>" method="post">
 <input type="hidden" name="ref" value="<?php echo $val['msgid']; ?>" />
-<table align="center" width="90%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
+<table align="center" width="60%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
     <tr>
-	<td colspan="2">
+	<td colspan="2" bgcolor="#DFDFDF">
 	    <b><?php echo $lang['comment_head']; ?></b>
-	    <p align="right"><?php echo 'Newsposter ' . VERSION; ?></p>
 	</td>
     </tr>
     <tr>
@@ -35,11 +34,12 @@
 	<td><textarea name="body" cols="40" rows="10"></textarea></td>
     </tr>
     <tr>
-	<td colspan="2" align="right">
+	<td colspan="2" align="center">
 	    <input type="submit" value="<?php echo $lang['comment_send']; ?>" />
-	    &nbsp;
+        &nbsp;
 	    <input type="reset"  value="<?php echo $lang['login_reset']; ?>" />
 	</td>
     </tr>
 </table>
 </form>
+<br /><br />

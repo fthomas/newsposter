@@ -45,28 +45,30 @@ class NP_Output {
      */
     function get_error_text()
     {
-	global $cfg, $lang;
-	
-	if (isset($_GET['auth']))
-	{
-	    $url = $cfg['IndexURL'] . '?np_act=login';     
-	    
-	    $val['text_error'] = $lang['error_auth_text'];
-	    $val['text_link']  = $lang['error_auth_link'];
-	    $val['link']       = sprintf('<a href="%s">%s</a>', $url, $url);
-	}
-	else if (isset($_GET['perm']))
-	{
-	    $sess_id = create_sess_param(); 
-	    $url     = $cfg['IndexURL'] .'?np_act=chact';
-	    
-	    $val['text_error'] = $lang['error_perm_text'];
-	    $val['text_link']  = $lang['error_perm_link'];
-	    $val['link']       = sprintf('<a href="%s&%s">%s</a>', $url,
-					$sess_id, $url);
-	}
-	
-	return $val;
+        global $cfg, $lang;
+
+        if (isset($_GET['auth']))
+        {
+            $url = $cfg['IndexURL'] . '?np_act=login';
+
+            $val['text_error'] = $lang['error_auth_text'];
+            $val['text_link']  = $lang['error_auth_link'];
+            $val['link_url']   = $url;
+            $val['link']       = sprintf('<a href="%s">%s</a>', $url, $url);
+        }
+        else if (isset($_GET['perm']))
+        {
+            $sess_id = create_sess_param();
+            $url     = $cfg['IndexURL'] .'?np_act=chact';
+
+            $val['text_error'] = $lang['error_perm_text'];
+            $val['text_link']  = $lang['error_perm_link'];
+            $val['link_url']   = $url;
+            $val['link']       = sprintf('<a href="%s&%s">%s</a>', $url,
+                                 $sess_id, $url);
+        }
+        
+        return $val;
     }
     
     /**
@@ -384,11 +386,14 @@ class NP_Output {
 	
 	$parent_msgid = urlencode(prep_msgid($parent_msgid));
 	$msgid        = urlencode(prep_msgid($comment['msgid']));
-	
-	$date   = $this->_calc_date($comment['stamp']);			
-	$answer = sprintf('<a href="index.php?np_act=expanded&amp;'.
-	                  'msg_id=%s&amp;child_of=%s#form">%s</a>',
-			  $parent_msgid, $msgid, $lang['comment_answer']);
+
+	$date   = $this->_calc_date($comment['stamp']);
+
+        $answ_url = sprintf('index.php?np_act=expanded&amp;msg_id=%s&amp;'.
+                            'child_of=%s#form', $parent_msgid, $msgid);
+
+        $answer   = sprintf('<a href="%s">%s</a>',
+                            $answ_url, $lang['comment_answer']);
 	
 	// HTML is not allowed, but maybe the user uses UBB code
 	if (!$cfg['AllowHTML'])
@@ -422,16 +427,17 @@ class NP_Output {
 	}
 	
 	$search  = array(
-	    0 => 'EMOTICON', 1 => 'NAME',  2 => 'MAIL',
-	    3 => 'SUBJECT',  4 => 'DATE',  5 => 'MSG_ID',
-	    6 => 'BODY',     7 => 'ANSWER'
+	    0 => 'EMOTICON', 1 => 'NAME',   2 => 'MAIL',
+	    3 => 'SUBJECT',  4 => 'DATE',   5 => 'MSG_ID',
+	    6 => 'BODY',     7 => 'ANSWER', 8 => 'ANSW_URL'
 	);
 	
 	$replace = array(
 	    0 => $emoticon,        1 => $comment['name'],
 	    2 => $comment['mail'], 3 => $comment['subject'],
 	    4 => $date,            5 => $msgid,
-	    6 => $comment['body'], 7 => $answer
+	    6 => $comment['body'], 7 => $answer,
+            8 => $answ_url
 	);
 	
 	$topic_cont = str_replace($search, $replace, $topic_cont);
