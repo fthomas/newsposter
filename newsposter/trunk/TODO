@@ -11,3 +11,10 @@
 
 - if users reload after they posted a comment, it may be posted twice
   -> prevent this
+
+- search strings in hrefs are marked too
+  -> prevent it or mark the descriptional text of the hyperlink
+     (what to do if this is an image?)
+
+- if comments and the referral posting are send/edited at the same
+  time, the comment do not have a reference 
