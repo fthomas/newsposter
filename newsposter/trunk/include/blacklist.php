@@ -45,6 +45,9 @@ class NP_Blacklist {
 	$bool     = TRUE;
 	foreach ($cont as $line)
 	{
+	    if (empty($line))
+		continue;
+		
 	    $values = explode(' ', $line);
 	    $diff   = time() - (int) $values[1];
 	    

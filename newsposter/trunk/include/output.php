@@ -165,8 +165,9 @@ class NP_Output {
 	$val['msgid']	= (isset($_GET['child_of'])) ? ($_GET['child_of']) :
 			($_GET['msg_id']);
 	
-	$ref = $_SESSION['NP']['store_inst']->get_posting($val['msgid']); 
-	$val['subject'] = (substr($ref['subject'], 0, 4) == 'Re: ') ?
+	$ref = $_SESSION['NP']['store_inst']->get_posting(
+			prep_msgid($val['msgid'])); 
+	$val['subject'] = (substr($ref['subject'], 0, 3) == 'Re:') ?
 			  ($ref['subject']) : ('Re: ' . $ref['subject']);
 	
 	// remove all double quotes

@@ -76,7 +76,7 @@ class NP_Posting {
 	$new_msgid = (isset($_SESSION['NP']['msgid']))
 		? ($_SESSION['NP']['msgid']) : ($this->_create_msgid());
 	
-	$new_stamp = (isset($_SESSION['NP']['stamp']))
+	$new_stamp = (isset($_SESSION['NP']['stamp']) && $reference == NULL)
 		? ($_SESSION['NP']['stamp']) : (my_date(10));
     
 	// for anonymous posting set name/mail/subject to
