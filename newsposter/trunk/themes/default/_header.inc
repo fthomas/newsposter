@@ -8,6 +8,7 @@
 <head>
     <title>Newsposter Demo</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/news.rss" />
     <style type="text/css">
 	a {
 	    color: #4278c9;

@@ -50,6 +50,8 @@ $lang = array (
     'misc_selection' => 'Edit/delete selection',
     'misc_edit'      => 'Edit',
     'misc_delete'    => 'Delete',
+    'misc_fresh'     => 'fresh posting',
+    'misc_old'       => 'old posting',
 
     /**
      * perform

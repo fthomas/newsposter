@@ -321,10 +321,12 @@ class NP_Output {
 	
 	if ($cfg['MarkFresh'] !== 0 && 
 		    ($diff <= $cfg['MarkFresh'] || $fresh_bool))
-	    $mark = sprintf('<img src="%s" alt="" border="0" />', $fresh);
-	    
+	    $mark = sprintf('<img src="%s" alt="%s" border="0" />', $fresh,
+            $lang['misc_fresh']);
+
 	if ($cfg['MarkOld'] !== 0 && $diff >= $cfg['MarkOld'] && !$fresh_bool)
-	    $mark = sprintf('<img src="%s" alt="" border="0" />', $old);
+	    $mark = sprintf('<img src="%s" alt="%s" border="0" />', $old,
+            $lang['misc_old']);
 	
 	// strip all slashes?
 	$int_post = $this->_my_stripslashes($int_post);

@@ -8,7 +8,8 @@
 <head>
     <title>Newsposter Weblog (http://newsposter.webhop.org/)</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" title="Default" href="themes/lenz/style.css">
+    <link rel="stylesheet" title="Default" href="themes/lenz/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/news.rss" />
 </head>
 
 <body>

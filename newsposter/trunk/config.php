@@ -252,7 +252,7 @@ $cfg['RDFCreation']        = TRUE;
 
 // All Comments are included into the RSS file.
 // (bool)
-$cfg['RDFIncludeComments'] = TRUE;
+$cfg['RDFIncludeComments'] = FALSE;
 
 // This is the description of your site used in the RSS file.
 // (string)
