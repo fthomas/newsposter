@@ -11,24 +11,23 @@
     
     Newsposter has the following features and functions: comments,
     themes and topics, RDF/RSS 1.0, one-way NNTP gateway, multi-user,
-    multilingual, search function, hashed passwords, login per LDAP
-    directory, different user rights, mail protocols, marking of new
-    and old postings, UBB code, data storage in "mbox" format, UTF-8
-    support, etc.  
+    multilingual, content negotiation, search function, hashed passwords,
+    login per LDAP directory, different user rights, mail protocols,
+    marking of new and old postings, UBB code, data storage in "mbox"
+    format, UTF-8 support, etc.  
     
 
 >> Where to get it?
 
     The latest version of Newsposter is available at
     http://newsposter.webhop.org/ or
-    http://www.thomas-alfeld.de/frank/nw.org/.
+    http://www.thomas-alfeld.de/frank/software/newsposter/
     
     
 >> What now?
     
     Downloaded Newsposter for the first time? Read the
-    "Quick Installation Guide" in the INSTALL file or Newsposter's
-    handbook located in doc/handbook/.
+    "Quick Installation Guide" in the INSTALL file.
     
     If there are any questions or suggestions or if you have found
     bugs, send mail to frank@thomas-alfeld.de. 
@@ -41,31 +40,31 @@
 
     
     chicco
-	- Drawed all smile emoticons, the fresh/old images (used in
-	  "lenz" and "np_home") and is maintainer of the chn theme.
+        - Drawed all smile emoticons and the fresh/old images (used in
+          "lenz" and "np_home").
 
     Lenz Grimmer
-	- Contributed the "lenz" theme for Newsposter 0.5.x.
-	 
+        - Contributed the "lenz" theme for Newsposter 0.5.x.
+ 
     PiXeLpApst
-	- Co-programmer of Newsposter version 0.4.0. 
-	
+        - Co-programmer of Newsposter version 0.4.0. 
+
     Martin Vasilev
-	- Wrote bulgarian translation for Newsposter 0.4.x.
+        - Wrote bulgarian translation for Newsposter 0.4.x.
 
 
     ...and others, who contributed suggestions for improvement or new
     features or reported bugs.
     
-	Thanks,
-	    Frank
-	    
+    Thanks,
+            Frank
+    
     
     ----------------------------------------------------------------
     
     Frank Thomas <frank@thomas-alfeld.de>
     
-    Newsposter is (C) 2001-2003 Frank Thomas
+    Newsposter is (C) 2001-2004 Frank Thomas
                       2001      PiXeLpApst
     All Rights Reserved. For information on distribution consult the
     file COPYING in this directory.

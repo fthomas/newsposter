@@ -1,22 +1,11 @@
-- LDAP authentication needs admin rights
-  -> every LDAP user should use it
+- redo LDAP authentication (or complete authentication module)
 
-- if the mhash extension of the installed PHP version is buggy
-  the passwords scripts end with "server not found" (PHP then
-  segfaults).
-  -> document this behaviour
+- write full documentation
 
-- no handbook yet
-  -> guess what!
+- prevent double posts after reloading the comments page
 
-- if users reload after they posted a comment, it may be posted twice
-  -> prevent this
+- prevent marking of search strings in URLs (think about images and links)
 
-- search strings in hrefs are marked too
-  -> prevent it or mark the descriptional text of the hyperlink
-     (what to do if this is an image?)
+- extend test_conf to check for IndexURL
 
-- if comments and the referral posting are send/edited at the same
-  time, the comment do not have a reference 
-
-- test_conf don't check whether IndexURL was set correctly
+- do human readable URLs (eg. http://host/script.php/var1/var2/var3/)

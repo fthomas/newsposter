@@ -3,9 +3,8 @@
 require_once('include/constants.php');
 
 /**
- * Newsposter Configuration File
- *
- * All directives are explained in the documentation.
+ *  Newsposter Configuration File
+ * ===============================
  */
 
 
@@ -18,12 +17,6 @@ require_once('include/constants.php');
 // (string)
 $cfg['PageTitle']   = 'www.example.com';
 
-// Newsposter is multilingual. Here you can include the language file of
-// your choice. Look into the lang/ directory for all available languages.
-// If you write your own language file please contribute it.
-// (filename)
-include_once('lang/german.php');
-
 // This should be the URL of your homepage.
 // (string)
 $cfg['PageURL']     = 'http://localhost/';
@@ -31,12 +24,7 @@ $cfg['PageURL']     = 'http://localhost/';
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://localhost:2080/~mrfrost/newsposter/index.php';
-
-// This affects the date strings created by Newsposter. Weekday or month
-// names will be translated according to this locale.
-// (string)
-$cfg['Locale']      = 'de_DE';
+$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
 //  1)  24.12.1984 13:43	 2)  24.12.1984
@@ -115,6 +103,35 @@ $cfg['RemoteSpoolDir']   = '';
 
 
 /**
+ * Internationalization (i18n)
+ */
+
+// According to the 'Accept-Language' HTTP header Newsposter tries
+// to determine the preferred language of your visitor and sets the
+// $cfg['Language'] / $cfg['Locale'] variables accordingly. If
+// Newsposter and your visitor have no language in common
+// your $cfg['Language'] setting is used as default language.
+// (bool)
+$cfg['ContentNegotiation'] = TRUE;
+
+// Specify the language of Newsposter's visible output. Available
+// languages are:
+//     'de'    German
+//     'en'    English
+// Take a look into the lang directory if you want to translate Newsposter.
+// When you are finished, please contribute your translation! :-)
+// NOTE: This is a fallback if $cfg['ContentNegotiation'] is enabled.
+// (string)
+$cfg['Language'] = 'de';
+ 
+// This affects the date strings created by Newsposter. Weekday or month
+// names will be translated according to this locale.
+// NOTE: This is a fallback if $cfg['ContentNegotiation'] is enabled.
+// (string)
+$cfg['Locale']   = 'de_DE';
+
+
+/**
  * Authentication
  */
 
@@ -170,7 +187,7 @@ $cfg['BindDN']       = 'cn=admin,o=avalon';
 
 // LDAP bind password.
 // (string)
-$cfg['BindPassword'] = 'anja';
+$cfg['BindPassword'] = 'geheim';
 
 // The username is compared with this attribute.
 // (string)

@@ -2,9 +2,8 @@ Quick Installation Guide
 ------------------------
 
 This is a the quick installation guide for Newsposter
-version 0.5.x. A detailed documentation can be found in
-the doc/handbook/ directory of Newsposter. Please read
-this, before sending emails to me. Thank you.
+version 0.5.x. There is no detailed documentation yet,
+sorry for this inconvenience.
 
 Frank Thomas <frank@thomas-alfeld.de>
 
@@ -94,7 +93,5 @@ Newsposter:
 	Newsposter to surf to singel postings quickly.
 
 If you don't specify the "np_act" parameter, you will redirected
-to index.php?np_act=show_news. For a total overview of all features
-and options of Newsposter I recommend to read Newsposter's handbook
-located in the doc/handbook/ directoy.
+to index.php?np_act=show_news.
 

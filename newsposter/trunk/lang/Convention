@@ -9,3 +9,6 @@ Convention and notes for translation contributors:
 
  - %s in $lang elements is a conversion specification for sprintf
    functions (http://www.php.net/sprintf)
+
+ - to use your translation you have to add the two letter code of your
+   language to the $avail_lang array in include/i18n.php

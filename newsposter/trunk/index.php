@@ -13,12 +13,14 @@ require_once('include/mail.php');
 require_once('include/ubb_code.php');
 require_once('include/rdf.php');
 require_once('include/blacklist.php');
+require_once('include/i18n.php');
 require_once('include/' . $cfg['StoreTypeFile']);
 
 if (!isset($_SESSION))
     session_start();
 
 // create global instances of some classes
+$_SESSION['NP']['i18n_inst']   = &new NP_I18N;
 $_SESSION['NP']['output_inst'] = &new NP_Output;
 $_SESSION['NP']['auth_inst']   = &new NP_Auth;
 $_SESSION['NP']['post_inst']   = &new NP_Posting;
