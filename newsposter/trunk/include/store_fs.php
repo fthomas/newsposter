@@ -3,17 +3,17 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-/**
- * The NP_Storing class handles all save/load/delete actions for
- * Newsposter's postings. This store_fs.php file uses a mbox like
- * spool and it directly operates with the filesystem.
- */
-
 // include all required files
 require_once('misc.php');
 require_once('posting.php');
 require_once('date.php');
 
+/**
+ * The NP_Storing class handles all save/load/delete actions for
+ * Newsposter's postings. This store_fs.php file uses a mbox like
+ * spool and it directly operates with the filesystem.
+ * @brief	Database backend (using native FS)
+ */
 class NP_Storing {
 
     var $mbox_file  = '';
@@ -37,8 +37,8 @@ class NP_Storing {
 	$this->mbox_file  = $np_dir . '/spool/mbox';
 	$this->mbox_bak   = $np_dir . '/spool/mbox.bak';
 	
-	$this->oview_file = $np_dir . '/spool/.overview_fs';
-	$this->oview_bak  = $np_dir . '/spool/.overview_fs.bak';
+	$this->oview_file = $np_dir . '/spool/overview_fs';
+	$this->oview_bak  = $np_dir . '/spool/overview_fs.bak';
     
 	if (! file_exists($this->mbox_file))
 	    touch($this->mbox_file);
@@ -197,7 +197,7 @@ class NP_Storing {
 	$this->remove_posting($rep_msgid, TRUE);
     
 	// add now $new_messages
-	// TODO: store_posting could accept an array of postings
+	/// @todo store_posting could accept an array of postings
 	foreach($new_messages as $entry)
 	{
 	    $this->store_posting($entry);

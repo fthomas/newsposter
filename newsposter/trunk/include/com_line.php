@@ -3,14 +3,14 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-/**
- * A small class for commandline interaction. Can read and write
- * from/to std streams. 
- */
-
 // include all required files 
 require_once('misc.php');
 
+/**
+ * A small class for commandline interaction. Can read and write
+ * from/to std streams. 
+ * @brief	Command line interaction class
+ */
 class NP_ComLine {
 
     var $stream_in;

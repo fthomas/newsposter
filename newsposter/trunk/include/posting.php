@@ -3,6 +3,13 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+// include all required files
+require_once('date.php');
+require_once('misc.php');
+require_once('constants.php');
+require_once($np_dir . '/config.php');
+require_once($cfg['StoreTypeFile']);
+
 /**
  * The NP_Posting class can create postings and comments.
  * It also transforms the internal to the external posting
@@ -48,16 +55,8 @@
  *	X-NP-Emoticon: happy
  *	
  *	hello.<br /> this is the content of the posting
- *
+ * @brief	Internal/external format handling of postings
  */
-
-// include all required files
-require_once('date.php');
-require_once('misc.php');
-require_once('constants.php');
-require_once($np_dir . '/config.php');
-require_once($cfg['StoreTypeFile']);
-
 class NP_Posting {
 
     /**

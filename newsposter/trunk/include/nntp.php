@@ -3,16 +3,17 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+// include all required files
+require_once('misc.php');
+require_once($np_dir . '/config.php');
+
 /**
  * According to RFC 977 (http://www.faqs.org/rfcs/rfc977.html)
  * this class communicates with a news server. It can post, cancel
  * and supersede newsposter's postings.
+ * @brief	NNTP communication class (one way)
  */
-
-require_once('misc.php');
-require_once($np_dir . '/config.php');
-
-class NP_Nntp {
+class NP_NNTP {
 
     var $news_socket = '';
 

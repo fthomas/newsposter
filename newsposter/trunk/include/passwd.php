@@ -3,16 +3,16 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-/**
- * This file defines functions to create and compare hashed passwords.
- * Except for CRYPT the mhash extension for PHP is needed to create
- * the hashes. (http://mhash.sourceforge.net/)
- */
-
 // include all required files
 require_once('constants.php');
 require_once('misc.php'); 
 
+/**
+ * This file defines functions to create and compare hashed passwords.
+ * Except for CRYPT the mhash extension for PHP is needed to create
+ * the hashes. (http://mhash.sourceforge.net/)
+ * @brief	Hashed passwords creation/comparison class
+ */
 class NP_Passwords {
 
     /**

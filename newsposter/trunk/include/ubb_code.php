@@ -3,6 +3,9 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+// include all required files
+require_once('misc.php');
+
 /**
  * This file defines functions to handle UBB Code. This class has a poor
  * error handling for invalid ubb code.
@@ -41,12 +44,9 @@
  *
  *   [img]http://host/picture.jpg[/img]
  *          => <img src="http://host/picture.jpg" title="http://host/picture.jpg" alt="" border="0" />
+ * @brief	UBB Code replacement class
  */
-
-// include all required files
-require_once('misc.php');
-
-class NP_Ubb {
+class NP_UBB {
 
     var $text = '';
 
