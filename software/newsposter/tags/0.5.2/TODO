@@ -1,0 +1,9 @@
+- redo LDAP authentication (or complete authentication module)
+
+- write full documentation
+
+- prevent double posts after reloading the comments page
+
+- extend test_conf to check for IndexURL
+
+- do human readable URLs (eg. http://host/script.php/var1/var2/var3/)

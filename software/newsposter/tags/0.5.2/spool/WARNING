@@ -1,0 +1,14 @@
+DO NOT edit the mbox file manually, this can cause
+fatal errors! Use Newsposter instead.
+
+If you still want to edit it manually, notice this:
+    
+    - remove overview file after changing mbox file
+      (a new one will be created automaticly the next time
+      invoking NP_Storing)
+    
+    - adjust the lines-header, if you change the number of
+      newlines in a message body. If you don't, the mbox file
+      is corrupted and Newsposter won't be able to read it!
+
+If something goes wrong, I have warned you!

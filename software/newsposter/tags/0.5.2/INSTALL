@@ -1,0 +1,109 @@
+
+ Quick Installation Guide
+ ========================
+
+ This is a the quick installation guide for Newsposter
+ version 0.5.x. There is no detailed documentation yet,
+ sorry for this inconvenience.
+
+
+ Table of Contents
+ -----------------
+    
+     1. Prerequisite
+     2. Installation
+     3. Configuration
+     4. First Steps
+
+
+ 1. Prerequisite
+ ---------------
+
+ There are two software packages needed by Newsposter.
+   - Web Server which interprets PHP
+   - PHP >= 4.2.0 (developed with PHP >= 4.2.3)
+     - compiled with session support
+     - for hashed passwords PHP's mhash extension is needed
+
+
+ 2. Installation
+ ---------------
+
+ Unpack the Newsposter archive to your web directory and
+ make sure the spool directory inside the Newsposter
+ directory is writeable for the webserver.
+ 
+ For the Gzip archive under a UNIX environment this should
+ look like this:
+
+     tar -zxf newsposter-0.5.x.tar.gz
+     cp -r newsposter-0.5.x /var/www/homepage/newsposter
+     chown www-data /var/www/homepage/newsposter/spool
+    
+ You can check if your system is ready to run Newsposter with
+ the 'test_conf.php' script in the tools/ directory.
+
+
+ 3. Configuration
+ ----------------
+
+ Now you have to configure your Newsposter. For this open
+ the config.php file in the Newsposter directory with an
+ ordinary text editor. The config.php file contains valid
+ PHP code, so be careful not to corrupt the code while
+ editing this file. Now go through the entire file and
+ customize the configuration to your needs.
+
+ There is only one configuration value you have to change
+ if you want Newsposter to work correctly: 'IndexURL'
+
+ To integrate all of Newsposter's HTML output into your
+ page, look at the 'IncludeHeader' and 'IncludeFooter'
+ options.
+ 
+
+ 4. First Steps
+ --------------
+
+ Now you can begin to use Newsposter. Surf to Newsposter's
+ index.php file with your web browser. With the Get parameter
+ "np_act" you can reach for the different functions of
+ Newsposter:
+
+     index.php?np_act=login
+ 	 You can login here. After the login you are redirected
+	 to pages where you can post, edit and delete postings.
+
+     index.php?np_act=output_news
+	 This shows all of Newsposter's postings. According to
+	 the number of postings, loading of this page may take
+	 a while.
+    	
+     index.php?np_act=output_all
+	 Here are up to $cfg['MaxItems'] postings showed. This
+	 should be used for daily use.
+
+     index.php?np_act=search
+	 If you want to search for a string in all of your postings,
+	 news or comments, this is for you.
+		
+     index.php?np_act=oview
+	 This is an overview of all news and comments of your
+	 Newsposter to surf quickly to single postings.
+
+ If you don't specify the "np_act" parameter, you will redirected
+ to index.php?np_act=show_news.
+
+
+--------------------------------------------------------------------------
+|    Frank Thomas <frank@thomas-alfeld.de>                               |
+|                                                                        |
+|    Newsposter is (C) 2001-2004 Frank Thomas                            |
+|                      2001      PiXeLpApst                              |
+|    All Rights Reserved. For information on distribution consult the    |
+|    file COPYING in this directory.                                     |
+|                                                                        |
+|    Newsposter includes PHP, freely available from                      |
+|    <http://www.php.net/>.                                              |
+--------------------------------------------------------------------------
+$Id$
