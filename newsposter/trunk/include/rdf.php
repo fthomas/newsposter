@@ -40,6 +40,7 @@ class NP_RDF {
      */
     function create_rdf_file()
     {
+
 	$this->rdf_header  = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 	                   . "<rdf:RDF\n"
 	                   . " xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
