@@ -208,7 +208,7 @@ $cfg['PermAttr']     = 'note';
 // If 'PermAttr' is no valid user permission use this permission
 // instead. 
 // (int)
-$cfg['DefaultPerm']  = USER;
+$cfg['DefaultPerm']  = WRITER;
 
 
 /**

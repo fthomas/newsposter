@@ -5,9 +5,28 @@
     <title>Newsposter Home</title>
     <link>http://newsposter.webhop.org/</link>
     <description>Newsposter - The versatile weblog</description>
-    <lastBuildDate>Fri,  1 Oct 2004 14:02:27 +0200</lastBuildDate>
-    <generator>Newsposter/0.5.3 ("?")</generator>
+    <lastBuildDate>Wed, 16 Feb 2005 23:27:00 +0100</lastBuildDate>
+    <generator>Newsposter/0.5.3 ("The End")</generator>
     <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+
+    <item>
+      <title>Re: efwefwe</title>
+      <link>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E</link>
+      <description>
+        <![CDATA[Das ist alles nur ein schlechter scherz,
+oder ?
+was sagts du dazu ?
+
+
+-Frank]]>
+      </description>
+      <author>frank@thomas-alfeld.de (Frank S. Thomas)</author>
+      <comments>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E</comments>
+      <pubDate>Wed, 16 Feb 2005 23:27:00 +0100</pubDate>
+      <dcterms:created>2005-02-16T22:27:00Z</dcterms:created>
+      <dcterms:modified>2005-02-16T22:27:00Z</dcterms:modified>
+      <guid isPermaLink="true">http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E</guid>
+    </item>
 
     <item>
       <title>Re: efwefwe</title>
@@ -17,9 +36,9 @@
       </description>
       <author>gsdfg (sfd)</author>
       <comments>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E</comments>
-      <pubDate>Fri,  1 Oct 2004 14:00:31 +0200</pubDate>
-      <dcterms:created>2004-10-01T12:00:31Z</dcterms:created>
-      <dcterms:modified>2004-10-01T12:02:26Z</dcterms:modified>
+      <pubDate>Fri, 01 Oct 2004 14:00:31 +0200</pubDate>
+      <dcterms:created>2004-10-01T13:00:31Z</dcterms:created>
+      <dcterms:modified>2004-10-01T13:02:26Z</dcterms:modified>
       <guid isPermaLink="true">http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E</guid>
     </item>
 
@@ -31,9 +50,9 @@
       </description>
       <author>fdgsd (edfg)</author>
       <comments>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E</comments>
-      <pubDate>Fri,  1 Oct 2004 14:00:27 +0200</pubDate>
-      <dcterms:created>2004-10-01T12:00:27Z</dcterms:created>
-      <dcterms:modified>2004-10-01T12:00:27Z</dcterms:modified>
+      <pubDate>Fri, 01 Oct 2004 14:00:27 +0200</pubDate>
+      <dcterms:created>2004-10-01T13:00:27Z</dcterms:created>
+      <dcterms:modified>2004-10-01T13:00:27Z</dcterms:modified>
       <guid isPermaLink="true">http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E</guid>
     </item>
 
@@ -45,9 +64,9 @@
       </description>
       <author>wefw (wer)</author>
       <comments>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=%3Ce94b.20041001135853%40localhost%3E</comments>
-      <pubDate>Fri,  1 Oct 2004 13:58:53 +0200</pubDate>
-      <dcterms:created>2004-10-01T11:58:53Z</dcterms:created>
-      <dcterms:modified>2004-10-01T11:58:53Z</dcterms:modified>
+      <pubDate>Fri, 01 Oct 2004 13:58:53 +0200</pubDate>
+      <dcterms:created>2004-10-01T12:58:53Z</dcterms:created>
+      <dcterms:modified>2004-10-01T12:58:53Z</dcterms:modified>
       <guid isPermaLink="true">http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E</guid>
     </item>
 

@@ -12,21 +12,40 @@
     <title>Newsposter Home</title>
     <link>http://newsposter.webhop.org/</link>
     <description>Newsposter - The versatile weblog</description>
-    <dc:date>2004-10-01T12:02:27Z</dc:date>
-    <dcterms:issued>2004-10-01T12:02:27Z</dcterms:issued>
-    <dcterms:modified>2004-10-01T12:02:27Z</dcterms:modified>
+    <dc:date>2005-02-16T22:27:00Z</dc:date>
+    <dcterms:issued>2005-02-16T22:27:00Z</dcterms:issued>
+    <dcterms:modified>2005-02-16T22:27:00Z</dcterms:modified>
 
     <!-- name="generator" content="Newsposter/0.5.3" -->
     <admin:generatorAgent rdf:resource="http://newsposter.webhop.org/" />
 
     <items>
       <rdf:Seq>
+        <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E" />
         <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E" />
         <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E" />
         <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E" />
       </rdf:Seq>
     </items>
   </channel>
+
+  <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E">
+    <title>Re: efwefwe</title>
+    <link>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E</link>
+    <annotate:reference rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3C8b47.20050216232700%40localhost%3E" />
+    <content:encoded>
+      <![CDATA[Das ist alles nur ein schlechter scherz,
+oder ?
+was sagts du dazu ?
+
+
+-Frank]]>
+    </content:encoded>
+    <dc:creator>frank@thomas-alfeld.de (Frank S. Thomas)</dc:creator>
+    <dc:date>2005-02-16T22:27:00Z</dc:date>
+    <dcterms:created>2005-02-16T22:27:00Z</dcterms:created>
+    <dcterms:modified>2005-02-16T22:27:00Z</dcterms:modified>
+  </item>
 
   <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E">
     <title>Re: efwefwe</title>
@@ -36,9 +55,9 @@
       <![CDATA[sfdgxvcxcvxcv]]>
     </content:encoded>
     <dc:creator>gsdfg (sfd)</dc:creator>
-    <dc:date>2004-10-01T12:00:31Z</dc:date>
-    <dcterms:created>2004-10-01T12:00:31Z</dcterms:created>
-    <dcterms:modified>2004-10-01T12:02:26Z</dcterms:modified>
+    <dc:date>2004-10-01T13:00:31Z</dc:date>
+    <dcterms:created>2004-10-01T13:00:31Z</dcterms:created>
+    <dcterms:modified>2004-10-01T13:02:26Z</dcterms:modified>
   </item>
 
   <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E">
@@ -49,9 +68,9 @@
       <![CDATA[fgsfdgsdfg]]>
     </content:encoded>
     <dc:creator>fdgsd (edfg)</dc:creator>
-    <dc:date>2004-10-01T12:00:27Z</dc:date>
-    <dcterms:created>2004-10-01T12:00:27Z</dcterms:created>
-    <dcterms:modified>2004-10-01T12:00:27Z</dcterms:modified>
+    <dc:date>2004-10-01T13:00:27Z</dc:date>
+    <dcterms:created>2004-10-01T13:00:27Z</dcterms:created>
+    <dcterms:modified>2004-10-01T13:00:27Z</dcterms:modified>
   </item>
 
   <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E">
@@ -62,9 +81,9 @@
       <![CDATA[fwefwefwef]]>
     </content:encoded>
     <dc:creator>wefw (wer)</dc:creator>
-    <dc:date>2004-10-01T11:58:53Z</dc:date>
-    <dcterms:created>2004-10-01T11:58:53Z</dcterms:created>
-    <dcterms:modified>2004-10-01T11:58:53Z</dcterms:modified>
+    <dc:date>2004-10-01T12:58:53Z</dc:date>
+    <dcterms:created>2004-10-01T12:58:53Z</dcterms:created>
+    <dcterms:modified>2004-10-01T12:58:53Z</dcterms:modified>
   </item>
 
 </rdf:RDF>
