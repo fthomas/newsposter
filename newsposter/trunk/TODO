@@ -4,6 +4,3 @@
 - tools/pass_shell.php needs /usr/bin/php. Some distributions
   might call the php binary "php4".
   -> make a note in the documentation
-
-- register a FQDN for default domain name value in class
-  NP_Posting

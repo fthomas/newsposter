@@ -126,7 +126,7 @@ class NP_Posting {
 	$int_post['msgid'] = $this->_create_msgid();
     
 	$ext_post  = $this->int2ext($int_post);
-	$ext_post = "Supersedes: $msgid\r\n" . $ext_post;
+	$ext_post = "Supersedes: $msgid\n" . $ext_post;
     
 	return $ext_post;
     }
@@ -139,7 +139,7 @@ class NP_Posting {
     function create_cancel($int_post)
     {
 	$msgid = $int_post['msgid'];
-	$body  = "cancel by original author\r\n";
+	$body  = "cancel by original author\n";
 	
 	$int_post['subject'] = "cancel of " . $int_post['msgid']; 
 	// this is necessary for counting lines
@@ -149,13 +149,13 @@ class NP_Posting {
 	unset($int_post['refs']);
     
 	$ext_post  = $this->int2ext($int_post);
-	$ext_post  = "Control: cancel $msgid\r\n" . $ext_post;
+	$ext_post  = "Control: cancel $msgid\n" . $ext_post;
 	
 	// remove all X-NP-* header; the position of
 	// these should be fixed 
-	$ext_post  = explode("\r\n", $ext_post);
-	$ext_post  = implode("\r\n", array_slice($ext_post, 0, 10));	
-	$ext_post .= "\r\n\r\n" . $body;
+	$ext_post  = explode("\n", $ext_post);
+	$ext_post  = implode("\n", array_slice($ext_post, 0, 10));	
+	$ext_post .= "\n\n" . $body;
 	
 	return $ext_post;
     }
@@ -237,7 +237,7 @@ class NP_Posting {
 	}
 	
 	$int_array['date'] = stamp2string($int_array['stamp'], $cfg['DateFormat']);
-	$int_array['body'] = implode("\r\n", array_slice($lines, $body_line + 1));
+	$int_array['body'] = implode("\n", array_slice($lines, $body_line + 1));
 	
 	return $int_array;
     }
@@ -256,37 +256,37 @@ class NP_Posting {
 	$subject = remove_cchars($int_post['subject']);
     
 	// now we fill up $ext
-        $ext  = "From: \"$name\" <$mail>\r\n";
-	$ext .= "Newsgroups: {$int_post['ngs']}\r\n";
-	$ext .= "Subject: $subject\r\n";
-	$ext .= "Message-ID: {$int_post['msgid']}\r\n";
+        $ext  = "From: \"$name\" <$mail>\n";
+	$ext .= "Newsgroups: {$int_post['ngs']}\n";
+	$ext .= "Subject: $subject\n";
+	$ext .= "Message-ID: {$int_post['msgid']}\n";
 	
 	if(!empty($int_post['refs']))
 	{
 	    $refs = explode(" ",$int_post['refs']);
-	    $ext .= "References: $refs[0]\r\n";
+	    $ext .= "References: $refs[0]\n";
 	    
 	    $n = count($refs);
 	    for($i=1; $i < $n; $i++)
-		$ext .= " $refs[$i]\r\n";
+		$ext .= " $refs[$i]\n";
 	}
 	
-	$ext .= 'Date: ' .stamp2string($int_post['stamp'], 8)."\r\n"; 
+	$ext .= 'Date: ' .stamp2string($int_post['stamp'], 8)."\n"; 
 	
 	$lines = substr_count($int_post['body'], "\n") + 1;
-	$ext  .= "Lines: $lines\r\n";
+	$ext  .= "Lines: $lines\n";
 	
-	$ext .= sprintf('User-Agent: Newsposter/%s ("%s")%s', VERSION, CODENAME, "\r\n");
-	$ext .= "Content-Type: text/plain; encoding=utf-8\r\n";
-	$ext .= "Content-Transfer-Encoding: 8bit\r\n";
-	$ext .= "X-Complaints-To: {$int_post['c_to']}\r\n";
-	$ext .= "X-NP-Name: $name\r\n";
-	$ext .= "X-NP-Mail: $mail\r\n";
-	$ext .= "X-NP-User: {$int_post['user']}\r\n";
-	$ext .= "X-NP-Stamp: {$int_post['stamp']}\r\n";
-	$ext .= "X-NP-Topic: {$int_post['topic']}\r\n";
-	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\r\n";
-	$ext .= "\r\n";
+	$ext .= sprintf('User-Agent: Newsposter/%s ("%s")%s', VERSION, CODENAME, "\n");
+	$ext .= "Content-Type: text/plain; charset=utf-8\n";
+	$ext .= "Content-Transfer-Encoding: 8bit\n";
+	$ext .= "X-Complaints-To: {$int_post['c_to']}\n";
+	$ext .= "X-NP-Name: $name\n";
+	$ext .= "X-NP-Mail: $mail\n";
+	$ext .= "X-NP-User: {$int_post['user']}\n";
+	$ext .= "X-NP-Stamp: {$int_post['stamp']}\n";
+	$ext .= "X-NP-Topic: {$int_post['topic']}\n";
+	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\n";
+	$ext .= "\n";
 
 	// get internal encoding and encode $body to utf-8
 	$int_enc = iconv_get_encoding('internal_encoding');	
