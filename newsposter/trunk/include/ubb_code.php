@@ -40,7 +40,7 @@
  *          => <font size="+1"></font>
  *
  *   [img]http://host/picture.jpg[/img]
- *          => <img src="http://host/picture.jpg" />
+ *          => <img src="http://host/picture.jpg" title="http://host/picture.jpg" alt="" border="0" />
  */
 
 // include all required files
@@ -135,8 +135,8 @@ class NP_Ubb {
                 return $repl;
 
             case 'img':
-                $repl = sprintf('<img src="%s" title="%s" border="0" />', $matches[3],
-                        $matches[3]);
+                $repl = sprintf('<img src="%s" title="%s" alt="" border="0" />',
+			$matches[3], $matches[3]);
                 return $repl;
         }
 

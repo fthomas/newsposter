@@ -13,7 +13,7 @@ class NP_Storing {
 
     function get_posting($msgid){}
 
-    function get_thread($msgid)
+    function get_thread($msgid){}
 
     function validate_msgid($msgid){}
 

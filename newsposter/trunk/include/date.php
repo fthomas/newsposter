@@ -43,8 +43,9 @@ function stamp2string($time_stamp = -1, $format = 1)
 
 	if ($time_stamp == -1)
 		$time_stamp = time();
-		
-	if (isset($cfg['DateFormat']))
+	
+	// if $format is 1 use format number from config.php 
+	if (isset($cfg['DateFormat']) && $format == 1)
 		$format = $cfg['DateFormat'];
 
 	setlocale(LC_TIME, $cfg['Locale']);

@@ -17,7 +17,9 @@ class NP_Nntp {
     var $news_socket = '';
 
     /**
-     *
+     * @param	array	Can be a posting, cancel or supersede.
+     * @access	public
+     * @returns	bool
      */
     function post($mesg)
     {
@@ -26,22 +28,9 @@ class NP_Nntp {
 
         $this->_sendline('post');
         $this->_sendtext($mesg);
+	$this->_sendtext("\n.\n");
 
         return $this->_close();
-    }
-
-    /**
-     *
-     */
-    function cancel($mesg, $msgid)
-    {
-    }
-
-    /**
-     *
-     */
-    function supersede($mesg, $msgid)
-    {
     }
 
     /**

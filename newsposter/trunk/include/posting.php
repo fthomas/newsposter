@@ -74,20 +74,24 @@ class NP_Posting {
     
 	// for anonymous posting set name/mail/subject to
 	// unknown
-	if (!empty(trim($_SESSION['name']))) 
+	$_SESSION['name']    = trim($_SESSION['name']);
+	$_SESSION['mail']    = trim($_SESSION['mail']);
+	$_SESSION['subject'] = trim($_SESSION['subject']);
+	
+	if (!empty($_SESSION['name'])) 
 	    $int_post['name'] = $_SESSION['name'];
 	else
 	    $int_post['name'] = 'unknown';
 	
-	if (!empty(trim($_SESSION['mail'])))
+	if (!empty($_SESSION['mail']))
 	    $int_post['mail'] = $_SESSION['mail'];
 	else
 	    $int_post['mail'] = 'unknown';
     
-	if (!empty(trim($_SESSION['subject'])))
+	if (!empty($_SESSION['subject']))
 	    $int_post['subject'] = $_SESSION['subject'];
 	else
-	    $int_post['subject'] = 'unknown'
+	    $int_post['subject'] = 'unknown';
 	
 	$int_post['user']     = $_SESSION['username'];
 	$int_post['msgid']    = $this->_create_msgid();
@@ -110,6 +114,42 @@ class NP_Posting {
 	}
 	
 	return $int_post;
+    }
+
+    /**
+     *
+     */
+    function create_supersede($int_post)
+    {
+    }
+    
+    /**
+     * @param	array	$int_post
+     * @access	public
+     * @returns	string
+     */
+    function create_cancel($int_post)
+    {
+	$msgid = $int_post['msgid'];
+	$body  = "cancel by original author\r\n";
+	
+	$int_post['subject'] = "cancel of " . $int_post['msgid']; 
+	// this is necessary for counting lines
+	$int_post['body']    = $body;
+	$int_post['msgid']   = $this->_suggest_msgid();
+
+	unset($int_post['refs']);
+    
+	$ext_post  = $this->int2ext($int_post);
+	$ext_post  = "Control: cancel $msgid\r\n" . $ext_post;
+	
+	// remove all X-NP-* header; the position of
+	// these should be fixed 
+	$ext_post  = explode("\r\n", $ext_post);
+	$ext_post  = implode("\r\n", array_slice($ext_post, 0, 10));	
+	$ext_post .= "\r\n\r\n" . $body;
+	
+	return $ext_post;
     }
 
     /**
@@ -225,7 +265,7 @@ class NP_Posting {
 	
 	$ext .= 'Date: ' .stamp2string($int_post['stamp'], 8)."\r\n"; 
 	
-	$lines = substr_count("\n", $int_post['body']) + 1; 
+	$lines = substr_count($int_post['body'], "\n") + 1;
 	$ext  .= "Lines: $lines\r\n";
 	
 	$ext .= 'User-Agent: Newsposter/'.VERSION."\r\n";
@@ -293,7 +333,7 @@ class NP_Posting {
 	else
 	    $dn = $cfg['FQDN']; 
 	
-	$uniqid = md5(uniqid(rand(), TRUE));
+	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 16);
 
 	// date component
 	$dc = my_date(11);
