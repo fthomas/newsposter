@@ -19,6 +19,7 @@ class NP_RDF {
 
     var $rdf_file   = '';
     var $store_inst = 0;
+    var $post_inst  = 0;
 
     function NP_RDF()
     {
@@ -29,8 +30,10 @@ class NP_RDF {
     {
 	global $np_dir;	
     
-	// create global NP_Storing instance
+	// create global NP_Storing / NP_Posting instance
 	$this->store_inst = &new NP_Storing;
+	$this->post_inst  = &new NP_Posting;
+	
 	$this->rdf_file   = $np_dir . '/spool/news.rss';
 	
 	if (! file_exists($this->rdf_file))
@@ -40,7 +43,6 @@ class NP_RDF {
     /**
      * @access	public
      * @return	bool
-     * @todo	Change $rdf_link to a valid URL.
      */
     function create_rdf_file()
     {
@@ -61,13 +63,13 @@ class NP_RDF {
 	// fill $items array and $rdf_items
 	foreach($posts as $entry)
 	{
-	    $rdf_link   = $cfg['IndexURL'] . $entry['msgid'];
+	    $rdf_link   = $this->post_inst->get_sp_url($entry);
 	    $rdf_items .= "\t\t\t\t<rdf:li resource=\"$rdf_link\" />\n";
 
 	    // if body is longer than 400 chars, cut it after 400
-	    // and append " ..."
+	    // and append "..."
 	    if (strlen($entry['body']) > 400)
-		$desc = substr($entry['body'], 0, 400) . " ...";
+		$desc = substr($entry['body'], 0, 400) . "...";
 	    else
 		$desc = $entry['body'];
 	

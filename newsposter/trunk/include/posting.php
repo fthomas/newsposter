@@ -13,7 +13,8 @@ require_once($cfg['StoreTypeFile']);
 /**
  * The NP_Posting class can create postings and comments.
  * It also transforms the internal to the external posting
- * format and the other way round.
+ * format and the other way round and there are functions
+ * to retrive some meta informations of postings.
  *
  * <pre>
  * The internal posting format (associative array):
@@ -21,14 +22,14 @@ require_once($cfg['StoreTypeFile']);
  *	array (
  *		'user'    => 'mrfrost {login username}',
  *		'name'    => 'Frank Thomas',
- *		'mail'    => 'frank@thomas-alfeld.de',
+ *		'mail'    => 'frank\@thomas-alfeld.de',
  *		'subject' => 'Announcing Newsposter 0.5.0!',
  *		'msgid'   => '<{unique ID}@{FQDN}>',
  *		'refs'    => '<{msgid}> <{msgid}>',
  *		'ngs'     => 'de.alt.test',
  *		'date'    => '17.11.2002 14:34',
  *		'stamp'   => '{unix time stamp}',
- *		'c_to'    => 'postmaster@thomas-alfeld.de',
+ *		'c_to'    => 'postmaster\@thomas-alfeld.de',
  *		'topic'   => 'default',
  *		'emoticon'=> 'happy',
  *		'body'    => 'hello.<br /> this is the content of the posting'
@@ -323,6 +324,28 @@ class NP_Posting {
     }
     
     /**
+     * 'sp' is show_posting 
+     * @access	public
+     * @param	mixed	$message
+     * @return	string	An URL pointing to the news article or comment. 
+     */
+    function get_sp_url($message)
+    {
+	global $cfg;
+	
+	$message = $this->_to_array($message);
+    
+	if (isset($message['refs']) && !empty($message['refs']))
+	{
+	    $parents = explode(' ', $message['refs']);
+	    return sprintf("%s?=%s&=%s", $cfg['IndexURL'], $parents[0],
+			    $message['msgid']);
+	}
+	else
+	    return sprintf("%s?=%s", $cfg['IndexURL'], $message['msgid']);
+    }
+    
+    /**
      * @access	private
      * @return	string
      */
@@ -350,7 +373,7 @@ class NP_Posting {
 	else
 	    $dn = $cfg['FQDN']; 
 	
-	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 12);
+	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 10);
 
 	// date component
 	$dc = my_date(11);

@@ -29,6 +29,7 @@ define('P_DEL_NEWS'    , 16); // delete all postings
 define('P_DEL_COMMENTS', 32); // delete comments 
 
 // default user classes
+define('PEON' , 0);
 define('SLAVE', P_WRITE);
 define('USER' , P_WRITE | P_EDIT | P_DEL);
 define('DUKE' , P_WRITE | P_EDIT | P_DEL | P_EDIT_NEWS | P_DEL_NEWS);

@@ -75,6 +75,17 @@ function remove_cchars($text)
     return $text;
 }
 
+/**
+ * Creates a path for theme files.
+ * @param	string	$filename
+ * @return	string
+ */
+function c_theme_path($filename)
+{
+    global $cfg;
+    
+    return 'themes/' . $cfg['Theme'] . "/$filename";
+}
 
 /// only for debug purposes
 function v_output($var)

@@ -14,16 +14,16 @@ require_once('include/constants.php');
  */
 
 // (string)
-$cfg['PageTitle']   = 'My personal homepage!';
+$cfg['PageTitle']   = 'Blue Dwarf';
 
 // (filename)
 include_once('lang/german.php');
 
 // (string)
-$cfg['PageURL']     = 'http://newsposter.webhop.org/';
+$cfg['PageURL']     = 'http://localhost/';
 
 // (string)
-$cfg['IndexURL']    = 'http://newsposter.webhop.org/news/index.php';
+$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // (string)
 $cfg['Locale']      = 'de_DE';
@@ -67,6 +67,8 @@ $cfg['NameVar']          = '';
 // (string)
 $cfg['StoreTypeFile']    = 'store_fs.php';
 
+// (string)
+$cfg['RemoteNPDir']   = '';
 
 /**
  * Authentication

@@ -15,7 +15,6 @@ require_once($np_dir . '/config.php');
  * text files etc. Look at auth_user and the _search_* functions for
  * more details.
  * @brief	Authentication and permission validation class
- * @todo	Set new permission, when reading from http stream.
  */
 class NP_Auth {
 
@@ -33,7 +32,7 @@ class NP_Auth {
     {
 	global $cfg;
 	
-        $this->error_page = $cfg['IndexURL'];
+        $this->error_page = $cfg['IndexURL'] . "?np_act=auth_err";
     }
 
     /**
@@ -45,10 +44,21 @@ class NP_Auth {
     {
         global $cfg;
 
+	// if we use a remote spool dir we can login, but have
+	// no permissions to do anything (except reading of course)
+	if (!empty($cfg['RemoteNPDir']))
+	{
+	    $this->username = $username;
+	    $this->perm     = PEON;
+	    
+	    $this->_make_session();
+	    return TRUE;
+	}
+
         if ($cfg['UseBuiltInAuth'] == FALSE)
         {
             $this->username = 'anonymous';
-            $this->perm = ADMIN;
+            $this->perm     = ADMIN;
 
             $this->_make_session();
             return TRUE;
@@ -85,6 +95,9 @@ class NP_Auth {
      */
     function check_post()
     {
+	if (!isset($_POST['login_name']) || !isset($_POST['login_pass']))
+	    return $this->check_auth();
+    
         return $this->auth_user($_POST['login_name'], $_POST['login_pass']);
     }
 
@@ -103,7 +116,7 @@ class NP_Auth {
             if (!strcmp($value, $username))
             {
                 $pass = &new NP_Passwords;
-                if ($pass->cmpHashes($password, $cfg['password'][$key]))
+                if ($pass->cmp_hashes($password, $cfg['password'][$key]))
                 {
                     $this->username = $username;
                     $this->password = $password;

@@ -29,11 +29,20 @@ class NP_Storing {
 
     function __construct()
     {
-	global $np_dir;
-	
+	global $np_dir, $cfg;
+
 	// create global instance of NP_Posting for this class
 	$this->post_inst  = &new NP_Posting;
-    
+	
+	// use a remote dir? so we don't need to touch our files
+	if (!empty($cfg['RemoteSpoolDir']))
+	{
+	    $this->mbox_file  = $cfg['RemoteNPDir'] . '/spool/mbox';
+	    $this->oview_file = $cfg['RemoteNPDir'] . '/spool/overview_fs';
+	    
+	    return TRUE;
+	}
+	    
 	$this->mbox_file  = $np_dir . '/spool/mbox';
 	$this->mbox_bak   = $np_dir . '/spool/mbox.bak';
 	

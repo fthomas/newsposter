@@ -86,7 +86,6 @@ class NP_Mail {
      * @access	public
      * @param	array	$posting
      * @return	bool
-     * @todo	Add an URI which links to the posting.
      */
     function send_newsletter($posting)
     {
@@ -94,11 +93,13 @@ class NP_Mail {
 
 	// get type of posting
 	$type = $this->post_inst->get_type($posting);
+	$link = $this->post_inst->get_sp_url($posting);
 	
 	// compose mail body
 	$body = sprintf("{$lang['mail_intro_success']}:\n", $type)
 	      . "\t{$lang['misc_name']}: {$posting['name']}\n"
-	      . "\t{$lang['misc_subject']}: {$posting['subject']}\n\n";
+	      . "\t{$lang['misc_subject']}: {$posting['subject']}\n\n"
+	      . "\t$link";
 	
 	return $this->_my_mail($cfg['NewsletterTo'],
 				$lang['mail_subj_new'], $body, TRUE);

@@ -6,6 +6,15 @@
 $lang = array (
 
     /**
+     * login.php
+     */
+    'login_user'   => 'Username',
+    'login_pass'   => 'Passwort',
+    'login_submit' => 'Login',
+    'login_reset'  => 'Reset',
+    'login_anonym' => 'anonym',
+
+    /**
      * misc
      */
     'misc_name'    => 'Name',
