@@ -4,18 +4,20 @@
 <a name="form" />
 
 <form action="<?php echo $val['index']; ?>" method="post">
-<input type="hidden" name="ref" value="<?php echo $val['msgid']; ?>" />
+<p style="display:none">
+  <input type="hidden" name="ref" value="<?php echo $val['msgid']; ?>" />
+</p>
 <table class="comment_form" border="0" cellspacing="0" cellpadding="4">
   <tr style="background-color:#fafafa">
     <td colspan="2"><b><?php echo $lang['comment_head']; ?></b></td>
   </tr>
   <tr>
     <td style="text-align:right;width:25%"><?php echo $lang['misc_name']; ?></td>
-    <td><input type="text" name="name" value="<?php echo $val['name']; ?>" <?php echo $val['name_add']; ?> size="30"></td>
+    <td><input type="text" name="name" value="<?php echo $val['name']; ?>" <?php echo $val['name_add']; ?> size="30" /></td>
   </tr>
   <tr>
     <td style="text-align:right;width:25%"><?php echo $lang['misc_mail']; ?></td>
-    <td><input type="text" name="mail" value="<?php echo $val['name']; ?>" size="30"></td>
+    <td><input type="text" name="mail" value="<?php echo $val['name']; ?>" size="30" /></td>
   </tr>
   <tr>
     <td style="text-align:right;width:25%"><?php echo $lang['misc_subject']; ?></td>

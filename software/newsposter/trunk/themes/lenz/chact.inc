@@ -9,19 +9,19 @@
     </td>
   </tr>
   <tr>
-    <td style="text-align:center;width:25%">
+    <td style="text-align:right;width:25%">
       <?php echo $radio_buttons['write']; ?>
     </td>
     <td><?php echo $lang['radio_write']; ?></td>
   </tr>
   <tr>
-    <td style="text-align:center;width:25%">
+    <td style="text-align:right;width:25%">
      <?php echo $radio_buttons['edit']; ?>
     </td>
     <td><?php echo $lang['radio_edit']; ?></td>
   </tr>
   <tr>
-    <td style="text-align:center;width:25%">
+    <td style="text-align:right;width:25%">
       <?php echo $radio_buttons['delete']; ?>
     </td>
     <td><?php echo $lang['radio_delete']; ?></td>

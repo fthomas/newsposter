@@ -15,16 +15,16 @@ require_once('include/constants.php');
 // Set this to the name of your homepage. It is used in the login head
 // and in the RSS file.
 // (string)
-$cfg['PageTitle']   = 'Blue Dwarf 2';
+$cfg['PageTitle']   = 'Newsposter Home';
 
 // This should be the URL of your homepage.
 // (string)
-$cfg['PageURL']     = 'http://www.thomas-alfeld.de/frank/';
+$cfg['PageURL']     = 'http://newsposter.webhop.org/';
 
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://localhost/~mrfrost/homepages/blue_dwarf2/weblog/index.php';
+$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
 //    1 =>    24.12.1984 13:43
@@ -145,7 +145,7 @@ $cfg['Locale']   = 'de_DE';
 
 // If FALSE no authentication mechanism is used.
 // (bool)
-$cfg['UseBuiltInAuth']  = FALSE;
+$cfg['UseBuiltInAuth']  = TRUE;
 
 // This user has the login name 'newsposter' and the plain password
 // 'insecure'. He's got SLAVE rights plus the permission to edit all
@@ -222,7 +222,7 @@ $cfg['UseComments']  = TRUE;
 // If TRUE on the index.php?np_act=expanded sites an overview of
 // the current thread is shown.
 // (bool)
-$cfg['ShowOverview'] = FALSE; 
+$cfg['ShowOverview'] = TRUE; 
 
 // Allow HTML in comments here. This is very insecure, visitors
 // can screw up your design or can place meta refresh tags in
@@ -242,7 +242,7 @@ $cfg['AllowedTags']  = '<p><a><i><b>';
 // Specify your theme here. This name is equal to the directory
 // name of the theme.
 // (string)
-$cfg['Theme'] = 'blue_dwarf2';
+$cfg['Theme'] = 'lenz';
 
 // Specify here the files used for the content printed above and
 // beneath Newsposter's output.
@@ -264,8 +264,8 @@ $cfg['Theme'] = 'blue_dwarf2';
 //     Newsposter translation, you have to add it to the $avail_lang
 //     array in include/i18n.php.
 // (string)
-$cfg['IncludeHeader'] = '/home/mrfrost/radix/forum/homepages/blue_dwarf2/include/h+f/header.html.de';
-$cfg['IncludeFooter'] = '/home/mrfrost/radix/forum/homepages/blue_dwarf2/include/h+f/footer.html.de';
+$cfg['IncludeHeader'] = 'themes/lenz/_header.inc.de';
+$cfg['IncludeFooter'] = 'themes/lenz/_footer.inc.de';
 
 // These are used for the depth indicator.
 // (string)
@@ -297,7 +297,7 @@ $cfg['IncludeComments'] = TRUE;
 
 // This is the description of your site used in the news feeds.
 // (string)
-$cfg['Description']     = 'Blue Dwarf 2 - Personal Website of Frank Thomas';
+$cfg['Description']     = 'Newsposter - The versatile weblog';
 
 // The maximum of postings in your news feeds. 0 disables the
 // limitation.
