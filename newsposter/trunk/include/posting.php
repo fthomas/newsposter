@@ -189,7 +189,7 @@ class NP_Posting {
 	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\r\n";
 	$ext .= "\r\n";
 
-	// get internal encding and encode $body to utf-8
+	// get internal encoding and encode $body to utf-8
 	$int_enc = iconv_get_encoding('internal_encoding');	
 	$body    = iconv($int_enc, 'UTF-8', $int_post['body']);
 	$ext    .= $body;
@@ -231,6 +231,8 @@ class NP_Posting {
 	$dc = my_date(11);
 
 	$msgid = sprintf('%s_%s@%s', $uniqid, $dc, $dn);
+	$msgid = str_replace(array('<', '>'), '', $msgid);
+	
 	return $msgid;
     }
     
