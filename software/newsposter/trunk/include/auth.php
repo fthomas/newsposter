@@ -249,12 +249,18 @@ class NP_Auth {
     {
         if (!isset($_SESSION))
             session_start();
-		
-	$perms_array = array(P_WRITE, P_EDIT, P_DEL,
-			P_EDIT_NEWS, P_DEL_NEWS, P_DEL_COMMENTS);
-	
-	// creates an array with a bool
-	// value for each permission bit
+
+        $perms_array = array(
+            P_WRITE,
+            P_EDIT,
+            P_DELETE,
+            P_ARTICLES_EDIT,
+            P_ARTICLES_DELETE,
+            P_COMMENTS_EDIT,
+            P_COMMENTS_DELETE);
+
+        // creates an array with a bool
+        // value for each permission bit
 	foreach($perms_array as $perm_bit)
 	{
 	    if (($_SESSION['NP']['perm'] & $perm_bit) != 0)

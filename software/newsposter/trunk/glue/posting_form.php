@@ -13,7 +13,8 @@ $_SESSION['NP']['auth_inst']->check_post();
 
 // check auth
 $_SESSION['NP']['auth_inst']->check_auth();
-$_SESSION['NP']['auth_inst']->check_perm(array(P_WRITE, P_EDIT, P_EDIT_NEWS));
+$_SESSION['NP']['auth_inst']->check_perm(
+    array(P_WRITE, P_EDIT, P_ARTICLES_EDIT, P_COMMENTS_EDIT));
 
 if (isset($_POST['edit']) && isset($_POST['cb'][0]))
 {
@@ -27,6 +28,11 @@ if (isset($_POST['edit']) && isset($_POST['cb'][0]))
     $_SESSION['NP']['emoticon'] = $old_post['emoticon'];
     $_SESSION['NP']['body']     = $old_post['body'];
     $_SESSION['NP']['stamp']    = $old_post['stamp'];
+    
+    if (isset($old_post['refs']))
+        $_SESSION['NP']['refs'] = $old_post['refs'];
+    else
+        unset($_SESSION['NP']['refs']);
 }
 
 $form       = $_SESSION['NP']['output_inst']->get_values_perform();

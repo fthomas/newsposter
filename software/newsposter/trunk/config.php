@@ -41,7 +41,7 @@ $cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 //   12 =>    Mon Dec 24 13:43:00 1984 // mbox date format
 //   13 =>    1984-12-24T13:34:00Z // ISO 8601 date format
 // (int)
-$cfg['DateFormat']  = 1;
+$cfg['DateFormat']  = 7;
 
 // index.php?n_act=output_news will show up to 'MaxPostings'
 // news postings. These are always the latest. 'output_all'
@@ -148,18 +148,18 @@ $cfg['Locale']   = 'de_DE';
 $cfg['UseBuiltInAuth']  = TRUE;
 
 // This user has the login name 'newsposter' and the plain password
-// 'insecure'. He's got SLAVE rights plus the permission to edit all
+// 'insecure'. He's got WRITER rights plus the right to delete his own
 // postings.
 $cfg['username'][0]     = 'newsposter';
 $cfg['password'][0]     = 'insecure';
-$cfg['permission'][0]   = SLAVE + P_EDIT_NEWS;
+$cfg['permission'][0]   = WRITER + P_DELETE;
 
 // This user has the login name 'admin' and a SSHA hashed password
 // which is also 'insecure'. He's got ADMIN rights minus the permission
 // to edit all postings.
 $cfg['username'][1]     = 'admin';
 $cfg['password'][1]     = '{SSHA}i2J32p9b+99AVO9MkAoQWz6eBDc0ZTBjMGNjNQ==';
-$cfg['permission'][1]   = ADMIN & ~P_EDIT_NEWS;
+$cfg['permission'][1]   = ADMIN & ~P_ARTICLES_EDIT;
 
 // To specify new users:
 //  $cfg['username'][2]   = '';

@@ -8,7 +8,7 @@ require_once('include/constants.php');
 
 // check auth
 $_SESSION['NP']['auth_inst']->check_auth();
-$_SESSION['NP']['auth_inst']->check_perm(P_WRITE);
+$_SESSION['NP']['auth_inst']->check_perm(P_WRITE, P_ARTICLES_EDIT, P_COMMENTS_EDIT);
 
 // if internal_posting exists, store, send, post it!
 if (isset($_SESSION['NP']['internal_posting']))

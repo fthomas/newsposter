@@ -1,3 +1,13 @@
+- content negotiation alters the language of the mail/newsletter
+
+- preview and posting form should really be on the same page
+
+- add "hide posting" to the posting form
+
+- make it slim and fast
+
+- rename glue to event
+
 - redo LDAP authentication (or complete authentication module)
 
 - write full documentation

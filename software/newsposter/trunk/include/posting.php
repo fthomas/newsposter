@@ -100,7 +100,10 @@ class NP_Posting {
 	    $int_post['subject'] = $_SESSION['NP']['subject'];
 	else
 	    $int_post['subject'] = $lang['misc_unknown'];
-	
+
+        if (!empty($_SESSION['NP']['refs']))
+            $int_post['refs'] = $_SESSION['NP']['refs'];
+            
 	$int_post['user']     = $_SESSION['NP']['username'];
 	$int_post['msgid']    = $new_msgid;
 	$int_post['ngs']      = $cfg['Newsgroup'];

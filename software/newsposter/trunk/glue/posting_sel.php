@@ -15,7 +15,8 @@ $posts = array();
 if (isset($_GET['edit']))
 {
     // check permission for edit
-    $_SESSION['NP']['auth_inst']->check_perm(array(P_EDIT, P_EDIT_NEWS));
+    $_SESSION['NP']['auth_inst']->check_perm(
+        array(P_EDIT, P_ARTICLES_EDIT, P_COMMENTS_EDIT));
 
     // create the form head
     $form_start  = "\n" . '<form action="index.php?np_act=posting_form" '
@@ -25,18 +26,27 @@ if (isset($_GET['edit']))
     $submit_text = $lang['misc_edit'];
 
     if ($_SESSION['NP']['auth_inst']->check_perm(P_EDIT, FALSE))
-	$posts = $_SESSION['NP']['store_inst']->get_postings_from(
-					    $_SESSION['NP']['username']);
+        $posts = $_SESSION['NP']['store_inst']->get_postings_from(
+            $_SESSION['NP']['username']);
      
-    if ($_SESSION['NP']['auth_inst']->check_perm(P_EDIT_NEWS, FALSE))
-	$posts = $_SESSION['NP']['store_inst']->get_all_news();
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_ARTICLES_EDIT, FALSE))
+        $posts = $_SESSION['NP']['store_inst']->get_all_news();
+    
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_COMMENTS_EDIT, FALSE))
+        $posts = $_SESSION['NP']['store_inst']->get_all_comments();
+        
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_ARTICLES_EDIT, FALSE) &&
+        $_SESSION['NP']['auth_inst']->check_perm(P_COMMENTS_EDIT, FALSE))
+    {
+        $posts = $_SESSION['NP']['store_inst']->get_all_postings();
+    }
 }
 
 if (isset($_GET['del']))
 {
     // check permission for deletion
-    $_SESSION['NP']['auth_inst']->check_perm(array(P_DEL, P_DEL_NEWS,
-					    P_DEL_COMMENTS));
+    $_SESSION['NP']['auth_inst']->check_perm(
+        array(P_DELETE, P_ARTICLES_DELETE, P_COMMENTS_DELETE));
     
     // create the form head
     $form_start  = "\n" . '<form action="index.php?np_act=delete" '
@@ -45,20 +55,20 @@ if (isset($_GET['del']))
 
     $submit_text = $lang['misc_delete'];
     
-    if ($_SESSION['NP']['auth_inst']->check_perm(P_DEL, FALSE)) 
-	$posts = $_SESSION['NP']['store_inst']->get_postings_from(
-					    $_SESSION['NP']['username']);
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_DELETE, FALSE)) 
+        $posts = $_SESSION['NP']['store_inst']->get_postings_from(
+            $_SESSION['NP']['username']);
 
-    if ($_SESSION['NP']['auth_inst']->check_perm(P_DEL_NEWS, FALSE))
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_ARTICLES_DELETE, FALSE))
 	$posts = $_SESSION['NP']['store_inst']->get_all_news();
     
-    if ($_SESSION['NP']['auth_inst']->check_perm(P_DEL_COMMENTS, FALSE))
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_COMMENTS_DELETE, FALSE))
 	$posts = $_SESSION['NP']['store_inst']->get_all_comments();
     
-    if ($_SESSION['NP']['auth_inst']->check_perm(P_DEL_NEWS, FALSE) &&
-	$_SESSION['NP']['auth_inst']->check_perm(P_DEL_COMMENTS, FALSE))
+    if ($_SESSION['NP']['auth_inst']->check_perm(P_ARTICLES_DELETE, FALSE) &&
+	$_SESSION['NP']['auth_inst']->check_perm(P_COMMENTS_DELETE, FALSE))
     {
-    	$posts = $_SESSION['NP']['store_inst']->get_all_postings();
+        $posts = $_SESSION['NP']['store_inst']->get_all_postings();
     } 
 }
 

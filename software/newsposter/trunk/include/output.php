@@ -86,12 +86,14 @@ class NP_Output {
 	else
 	    $retval['write'] = '<input type="radio" name="action" value="write" disabled="disabled" />';
 	    
-	if ($lookup[P_EDIT] == TRUE || $lookup[P_EDIT_NEWS] == TRUE)
+	if ($lookup[P_EDIT] == TRUE || $lookup[P_ARTICLES_EDIT] == TRUE
+            || $lookup[P_COMMENTS_EDIT] == TRUE)
 	    $retval['edit'] = '<input type="radio" name="action" value="edit" />';
 	else
 	    $retval['edit'] = '<input type="radio" name="action" value="edit" disabled="disabled" />';
 	    
-	if ($lookup[P_DEL] == TRUE || $lookup[P_DEL_NEWS] == TRUE)
+	if ($lookup[P_DELETE] == TRUE || $lookup[P_ARTICLES_DELETE] == TRUE
+            || $lookup[P_COMMENTS_DELETE])
 	    $retval['delete'] = '<input type="radio" name="action" value="delete" />';
 	else
 	    $retval['delete'] = '<input type="radio" name="action" value="delete" disabled="disabled" />';
