@@ -5,8 +5,8 @@
 <table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
     <tr>
 	<td colspan="2">
-	    <b><?php echo 'Newsposter ' . VERSION; ?></b>
-	    <p align="right"><?php echo $cfg['PageTitle'] ?></p>
+	    <b><?php echo $lang['login_head'] ." - ". $cfg['PageTitle'] ?></b>    
+	    <p align="right"><?php echo 'Newsposter ' . VERSION; ?></p>
 	</td>
     </tr>
     <tr>
@@ -26,6 +26,7 @@
     <tr>
 	<td align="right" colspan="2">
 	    <input type="submit" value="<?php echo $lang['login_submit']; ?>" />
+	    &nbsp;
 	    <input type="reset"  value="<?php echo $lang['login_reset']; ?>" />
 	</td>
     </tr>

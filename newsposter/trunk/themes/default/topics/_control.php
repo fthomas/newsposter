@@ -3,6 +3,8 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+// The first topic is the default.
+
 $topic[0]['name']     = 'default';
 $topic[0]['filename'] = 'default.inc';
 

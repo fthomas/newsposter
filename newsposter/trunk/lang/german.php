@@ -8,6 +8,7 @@ $lang = array (
     /**
      * login.php
      */
+    'login_head'   => 'Login',
     'login_user'   => 'Username',
     'login_pass'   => 'Passwort',
     'login_submit' => 'Login',
@@ -48,8 +49,16 @@ $lang = array (
     /**
      * perform
      */
+    'perform_head'    => 'Artikel verfassen',
     'perform_preview' => 'Vorschau',
     'perform_nl2br'   => 'LF Zeichen (ASCII 10) in &lt;br /&gt; umwandeln',
+    
+    /**
+     * preview
+     */
+    'preview_head' => 'Vorschau',
+    'preview_save' => 'Speichern',
+    'preview_edit' => 'Bearbeiten', 
      
     /**
      * NP_Mail

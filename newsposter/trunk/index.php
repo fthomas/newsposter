@@ -7,12 +7,14 @@
 require_once('include/misc.php');
 require_once('include/output.php');
 require_once('include/auth.php');
+require_once('include/posting.php');
 
 session_start();
 
 // create global instances of some classes
 $_SESSION['NP']['output_inst'] = &new NP_Output;
 $_SESSION['NP']['auth_inst']   = &new NP_Auth;
+$_SESSION['NP']['post_inst']   = &new NP_Posting;
 
 // if no np_action is specified we want to show
 // postings
@@ -43,6 +45,10 @@ switch($action)
 
     case 'posting_form':
 	$inc = 'posting_form.php';
+	break;
+
+    case 'preview':
+	$inc = 'preview.php';
 	break;
 
     default:

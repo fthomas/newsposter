@@ -4,7 +4,9 @@
 <form action="index.php?np_act=chact_dispatch" method="post">
 <table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
     <tr>
-	<td colspan="2"><?php echo $lang['radio_text']; ?><br /><br /></td>
+	<td colspan="2">
+	    <b><?php echo $lang['radio_text']; ?></b>
+	    <p align="right"><?php echo 'Newsposter ' . VERSION; ?></p></td>
     </tr>
     <tr>
 	<td width="20%" align="right">

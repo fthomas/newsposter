@@ -253,15 +253,25 @@ class NP_Auth {
     
     /**
      * @access	public
-     * @param	int	$action
+     * @param	mixed	$action
      * @return	bool
      */
     function check_perm($action)
     {
 	$lookup = $this->perm_lookup();
     
-	if ($lookup[$action] == TRUE)
+	if (is_array($action))
+	{
+	    foreach($action as $perm_bit)
+	    {
+		if ($lookup[$perm_bit])
+		    return TRUE;
+	    }
+	}
+	
+	else if (is_int($action) && $lookup[$action])
 	    return TRUE;
+	    
 	else
 	{
 	    $sess_id = create_sess_param();

@@ -69,7 +69,7 @@ class NP_Posting {
      */
     function create_post($reference = NULL)
     {
-	global $cfg;
+	global $cfg, $lang;
     
 	session_start();
     
@@ -328,6 +328,7 @@ class NP_Posting {
      * @access	public
      * @param	mixed	$message
      * @return	string	An URL pointing to the news article or comment. 
+     * @todo	Fix link
      */
     function get_sp_url($message)
     {
@@ -368,6 +369,8 @@ class NP_Posting {
      */
     function _suggest_msgid()
     {
+	global $cfg;
+    
 	if (empty($cfg['FQDN']))
 	    $dn = 'newsposter.org';
 	else
