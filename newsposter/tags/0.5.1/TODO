@@ -1,0 +1,13 @@
+- LDAP authentication needs admin rights
+  -> every LDAP user should use it
+
+- if the mhash extension of the installed PHP version is buggy
+  the passwords scripts end with "server not found" (PHP then
+  segfaults).
+  -> document this behaviour
+
+- no handbook yet
+  -> guess what!
+
+- if users reload after they posted a comment, it may be posted twice
+  -> prevent this

@@ -1,0 +1,14 @@
+
+Convention and notes for translation contributors:
+
+ - copy the german.php file (this should be the latest) and rename it
+   (e.g. greek.php)
+
+ - replace all the german values, the translator note and save your file
+   utf-8 encoded
+
+ - incomplete/deprecated files will begin with an underscored
+   (e.g. _french.php)
+
+ - %s in $lang elements is a conversion specification for sprintf
+   functions (http://www.php.net/sprintf)
