@@ -33,7 +33,7 @@
  make sure the spool directory inside the Newsposter
  directory is writeable for the webserver.
  
- For the Gzip archive under a unix environment this should
+ For the Gzip archive under a UNIX environment this should
  look like this:
 
      tar -zxf newsposter-0.5.x.tar.gz
@@ -76,8 +76,8 @@
 
      index.php?np_act=output_news
 	 This shows all of Newsposter's postings. According to
-	 the number of postings loading of this page my take
-	 some time.
+	 the number of postings, loading of this page may take
+	 a while.
     	
      index.php?np_act=output_all
 	 Here are up to $cfg['MaxItems'] postings showed. This
@@ -89,7 +89,7 @@
 		
      index.php?np_act=oview
 	 This is an overview of all news and comments of your
-	 Newsposter to surf to singel postings quickly.
+	 Newsposter to surf quickly to single postings.
 
  If you don't specify the "np_act" parameter, you will redirected
  to index.php?np_act=show_news.

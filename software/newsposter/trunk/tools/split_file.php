@@ -18,7 +18,7 @@ if ($argc < 3 or $argc > 4)
     exit(1);
 }
 
-// input file does not exists
+// input file does not exists or is not readable
 if (!is_readable($argv[1]))
 {
     print($help_text);
