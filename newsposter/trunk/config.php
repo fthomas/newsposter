@@ -16,8 +16,14 @@ require_once('include/constants.php');
 // (string)
 $cfg['PageTitle']   = 'My personal homepage!';
 
+// (filename)
+include_once('lang/german.php');
+
 // (string)
-$cfg['Language']    = 'german';
+$cfg['PageURL']     = 'http://newsposter.webhop.org/';
+
+// (string)
+$cfg['IndexURL']    = 'http://newsposter.webhop.org/news/index.php';
 
 // (string)
 $cfg['Locale']      = 'de_DE';
@@ -41,7 +47,7 @@ $cfg['MarkOld']     = 60 * 60 * 24 * 14;
 $cfg['PostAnonymous']    = FALSE;
 
 // (bool)
-$cfg['ParseUBB']    = TRUE;
+$cfg['ParseUBB']         = TRUE;
 
 // (int)
 $cfg['TimeVariance']     = 0;
@@ -148,12 +154,6 @@ $cfg['RDFIncludeComments'] = TRUE;
 // (string)
 $cfg['RDFDescription']  = 'Blue Dwarf - Frank Thomas personal homepage';
 
-// (string)
-$cfg['RDFPageURL']      = 'http://www.thomas-alfeld.de/frank/';
-
-// (string)
-$cfg['RDFLink']         = 'http://www.thomas-alfed.de/frank/news/output_news.php';
-
 // (int)
 $cfg['RDFMaxItems']     = 20;
 
@@ -163,28 +163,28 @@ $cfg['RDFMaxItems']     = 20;
  */
 
 // (bool)
-$cfg['PostNNTP']    = TRUE;
+$cfg['PostNNTP']     = TRUE;
 
 // (string)
-$cfg['NNTPServer']  = 'localhost';
+$cfg['NNTPServer']   = 'localhost';
 
 // (int)
-$cfg['NNTPPort']    = 119;
+$cfg['NNTPPort']     = 119;
 
 // (string)
-$cfg['NNTPUser']    = '';
+$cfg['NNTPUser']     = '';
 
 // (string)
-$cfg['NNTPPassword']    = '';
+$cfg['NNTPPassword'] = '';
 
 // (string)
-$cfg['Newsgroup']   = 'de.alt.test';
+$cfg['Newsgroup']    = 'de.alt.test';
 
 // (string)
-$cfg['FQDN']        = '';
+$cfg['FQDN']         = '';
 
 // (string)
-$cfg['Complaints']  = 'postmaster@newsposter.org';
+$cfg['Complaints']   = 'postmaster@newsposter.org';
 
 
 /**

@@ -15,7 +15,6 @@ if (substr($np_dir, -7) == 'include')
 ini_set('error_log'      , $np_dir . '/error.log');
 ini_set('log_errors'     , 1);
 ini_set('error_reporting', E_ALL);
-//ini_set('track_errors'   , 1);
 
 ini_set('session.use_trans_sid', 1);
 ini_set('session.use_cookies'  , 0);
@@ -42,6 +41,8 @@ function print_footer()
 /** 
  * makes an absolute uri
  * @return	string
+ * @deprecated	We use now $cfg['PageURL'], so users can
+ *		cloak the page url.
  */
 function abs_uri()
 {

@@ -19,10 +19,10 @@ require_once($np_dir . '/config.php');
  */
 class NP_Auth {
 
-    var $username = '';
-    var $password = '';
-    var $perm = 0;
-    var $error_page = 'index.php?page=error';
+    var $username   = '';
+    var $password   = '';
+    var $perm       = 0;
+    var $error_page = '';
 
     function NP_Auth()
     {
@@ -31,7 +31,9 @@ class NP_Auth {
 
     function __construct()
     {
-        $this->error_page = abs_uri() . $this->error_page;
+	global $cfg;
+	
+        $this->error_page = $cfg['IndexURL'];
     }
 
     /**

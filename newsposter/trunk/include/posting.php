@@ -304,14 +304,22 @@ class NP_Posting {
      */
     function get_msgid($message)
     {
-	if (is_array($message) && isset($message['msgid']))
-	    return $message['msgid'];
+	$message = $this->_to_array($message);
+	return $message['msgid'];	
+    }
+    
+    /**
+     * @access	public
+     * @param	mixed	$message
+     * @return	string
+     */
+    function get_type($message)
+    {
+	global $lang;
 	
-	else if(is_string($message))
-	{
-	    $message = $this->ext2int($message);
-	    return $message['msgid'];
-	}
+	$message = $this->_to_array($message);
+	return (isset($message['refs'])) ? ($lang['misc_comment'])
+		: ($lang['misc_article']);
     }
     
     /**
@@ -353,6 +361,22 @@ class NP_Posting {
 	return sprintf('<%s>', $msgid);
     }
     
+    /**
+     * @access	private
+     * @param	mixed	$message
+     * @return	array
+     */
+    function _to_array($message)
+    {
+	if (is_array($message))
+	    return $message;
+	
+	else if (is_string($message))
+	{
+	    $message = $this->ext2int($message);
+	    return $message;
+	}
+    }
 }
 
 ?>

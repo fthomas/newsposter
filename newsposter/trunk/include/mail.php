@@ -4,7 +4,9 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 // include all required files
+require_once('constants.php');
 require_once('misc.php');
+require_once('posting.php');
 require_once($np_dir . '/config.php');
 
 /**
@@ -16,58 +18,142 @@ require_once($np_dir . '/config.php');
  */
 class NP_Mail {
 
+    var $post_inst = 0;
+
+    function NP_Mail()
+    {
+	$this->__construct();
+    }
+    
+    function __construct()
+    {
+	// create global instance of NP_Posting
+	$this->post_inst = &new NP_Posting;
+    }
+
     /**
      * @access	public
+     * @return	bool
      */
     function send_mail_error()
     {
 	global $cfg, $lang;
 	
-	$addr      = $this->_get_host_addr();
-	$sess_vars = var_export($_SESSION['NP'], TRUE);
+	$addr = $this->_get_host_addr();
+	
+	if (isset($_SESSION['NP']))
+	    $sess_vars = var_export($_SESSION['NP'], TRUE);
+	else
+	    $sess_vars = '';
     
-	$body =
+	// compose body of error mail
+	$body = $lang['mail_intro_error'] . ":\n"
+	      . "\t{$lang['mail_ip']}: {$addr['ip']}\n"
+	      . "\t{$lang['mail_hostname']}: {$addr['hostname']}\n\n"
+	      . $sess_vars;
+
+	return $this->_my_mail($cfg['EmailTo'],
+				$lang['mail_subj_error'], $body);
     }
     
     /**
      * @access	public
      * @param	array	$posting
+     * @return	bool
      */
     function send_mail_success($posting)
     {
 	global $cfg, $lang;
 	
 	$addr = $this->_get_host_addr();
-	$type = (isset($posting['refs'])) ? ($lang['']) : ($lang['']);
+	// get type of posting
+	$type = $this->post_inst->get_type($posting);
 	
-	$body = ""
-	      . "\t{$lang['']}: {$posting['name']}\n"
-	      . "\t{$lang['']}: {$posting['mail']}\n"
-	      . "\t{$lang['']}: {$posting['subject']}\n\n"
+	// compose mail body
+	$body = sprintf("{$lang['mail_intro_success']}:\n", $type)
+	      . "\t{$lang['mail_ip']}: {$addr['ip']}\n"
+	      . "\t{$lang['mail_hostname']}: {$addr['hostname']}\n\n"
+	      . "\t{$lang['misc_name']}: {$posting['name']}\n"
+	      . "\t{$lang['misc_mail']}: {$posting['mail']}\n"
+	      . "\t{$lang['misc_subject']}: {$posting['subject']}\n\n"
 	      . $posting['body'];
+	
+	return $this->_my_mail($cfg['EmailTo'],
+				$lang['mail_subj_new'], $body);
     }
     
     /**
      * @access	public
      * @param	array	$posting
+     * @return	bool
+     * @todo	Add an URI which links to the posting.
      */
     function send_newsletter($posting)
     {
-	global $cfg;
+	global $cfg, $lang;
+
+	// get type of posting
+	$type = $this->post_inst->get_type($posting);
+	
+	// compose mail body
+	$body = sprintf("{$lang['mail_intro_success']}:\n", $type)
+	      . "\t{$lang['misc_name']}: {$posting['name']}\n"
+	      . "\t{$lang['misc_subject']}: {$posting['subject']}\n\n";
+	
+	return $this->_my_mail($cfg['NewsletterTo'],
+				$lang['mail_subj_new'], $body, TRUE);
     }
 
+    /**
+     * @access	private
+     * @param	string	$to	Comma seperated list of all recipients.
+     * @param	string	$subject
+     * @param	string	$body
+     * @param	bool	$bcc	If it's true, we use BCC instead of To.
+     *				To is $cfg['EmailFrom']. 
+     * @return	bool
+     */
+    function _my_mail($to, $subject, $body, $bcc = FALSE)
+    {
+	global $cfg;
+	
+	if (empty($to))
+	    return TRUE;
+	
+	$bcc_header = '';
+	if ($bcc == TRUE)
+	{
+	    $bcc_header = "Bcc: $to\n";
+	    $to         = $cfg['EmailFrom'];
+	}
+	
+	$headers = "From: " . $cfg['EmailFrom'] . "\n"
+		 . "Content-Type: text/plain; charset=utf-8\n"
+		 . "Content-Transfer-Encoding: 8bit\n"
+		 . USER_AGENT . "\n"
+		 . $bcc_header;
+    
+	return mail($to, $subject, $body, $headers);
+    }
+     
     /**
      * @access	private
      * @return	array
      */
     function _get_host_addr()
     {
-	global $_SERVER;
+	global $_SERVER, $lang;
 	
 	// get ip address and hostname
-	$addr['ip']       = $_SERVER['REMOTE_ADDR'];
-	$addr['hostname'] = gethostbyaddr($addr['ip']);
-    
+	if (isset($_SERVER['REMOTE_ADDR']))
+	{
+	    $addr['ip']       = $_SERVER['REMOTE_ADDR'];
+	    $addr['hostname'] = gethostbyaddr($addr['ip']);
+	} else {
+	    $addr['ip']       = $lang['misc_unknown'];
+	    $addr['hostname'] = $lang['misc_unknown'];
+	}
+	
 	return $addr;
     }
     

@@ -53,6 +53,7 @@ class NP_UBB {
     /**
      * @access	public
      * @param	string	$orig_text
+     * @return	string
      */
     function replace($orig_text)
     {
@@ -68,8 +69,8 @@ class NP_UBB {
 
         while( preg_match($pattern, $this->text) && $depth-- )
         {
-            $this->text = preg_replace_callback($pattern, array($this, 'replace_match'),
-                          $this->text);
+            $this->text = preg_replace_callback($pattern,
+			    array($this, '_replace_match'), $this->text);
         }
         return $this->text;
     }
@@ -79,7 +80,7 @@ class NP_UBB {
      * @param	string	$matches
      * @return	string	The replacement for the current match.
      */
-    function replace_match($matches)
+    function _replace_match($matches)
     {
         // remove preceding =
         if (!empty($matches[2]))

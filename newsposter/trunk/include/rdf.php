@@ -58,10 +58,10 @@ class NP_RDF {
 	else if ($cfg['RDFIncludeComments'])
 	    $posts = $this->store_inst->get_all_postings(0, $cfg['RDFMaxItems']);
 		
-	// fill $itmes array and $rdf_items
+	// fill $items array and $rdf_items
 	foreach($posts as $entry)
 	{
-	    $rdf_link   = $cfg['RDFLink'] . $entry['msgid'];
+	    $rdf_link   = $cfg['IndexURL'] . $entry['msgid'];
 	    $rdf_items .= "\t\t\t\t<rdf:li resource=\"$rdf_link\" />\n";
 
 	    // if body is longer than 400 chars, cut it after 400
@@ -86,9 +86,9 @@ class NP_RDF {
 	            . " xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
 	            . " xmlns=\"http://purl.org/rss/1.0/\"\n"
 	            . ">\n\n"
-		    . "\t<channel rdf:about=\"{$cfg['RDFPageURL']}\">\n"
+		    . "\t<channel rdf:about=\"{$cfg['PageURL']}\">\n"
 		    . "\t\t<title>{$cfg['PageTitle']}</title>\n"
-		    . "\t\t<link>{$cfg['RDFPageURL']}</link>\n"
+		    . "\t\t<link>{$cfg['PageURL']}</link>\n"
 		    . "\t\t<description>{$cfg['RDFDescription']}</description>\n"
 		    . "\t\t<items>\n"
 		    . "\t\t\t<rdf:Seq>\n";
