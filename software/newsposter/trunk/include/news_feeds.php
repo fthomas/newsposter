@@ -133,6 +133,10 @@ class NP_NewsFeeds {
                 }
             }
             
+            $posting['name']    = strip_tags($posting['name']); 
+            $posting['mail']    = strip_tags($posting['mail']); 
+            $posting['subject'] = strip_tags($posting['subject']);
+                
             $posting['msgid'] = prep_msgid($posting['msgid']);
             
             $link_view = $this->post_inst->get_posting_url($posting, VIEW);

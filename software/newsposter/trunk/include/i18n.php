@@ -66,7 +66,8 @@ class NP_I18N {
      */
     function include_translation()
     {
-        global $np_dir;
+        // $cfg is needed for some translations
+        global $cfg, $np_dir;
         
         $filename = $np_dir . '/lang/' . $this->pref_lang . '.php';
 
@@ -101,12 +102,9 @@ class NP_I18N {
                 break;
             
             default:
-                $frame = '';
+                return TRUE;
         }
-        
-        if (empty($frame))
-            return TRUE;
-    
+   
         if (!$cfg['ContentNegotiation'])
         {
             if (is_readable($frame))
