@@ -230,7 +230,7 @@ class NP_Posting {
 	}
 	
 	// now collect all unfolded references
-	while( $lines[++$refs_line]['0'] == ' ')
+	while(isset($refs_line) && ($lines[++$refs_line]['0'] == ' '))
 	{
 	    $msgid = trim($lines[$refs_line]);
 	    $int_array['refs'] .= " " . $msgid;

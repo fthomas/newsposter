@@ -97,12 +97,12 @@ class NP_Storing {
      */
     function remove_posting($msgid, $rm_childs = TRUE)
     {
-    	if (($fp = $this->_open_files()) == FALSE)
-	    return FALSE;
-	
 	$oview = $this->_parse_oview_file();
 	$posts = array();
     
+    	if (($fp = $this->_open_files()) == FALSE)
+	    return FALSE;
+	
 	if (is_string($msgid))
 	{
 	    $is_string = TRUE;
@@ -117,7 +117,7 @@ class NP_Storing {
 	
 	// if msgid is not in msgid or refs,
 	// we will save the posting
-	foreach($oview as $key => $entry)
+	foreach($oview as $entry)
 	{
 	    if ($is_string)
 	    {
@@ -182,17 +182,188 @@ class NP_Storing {
      */
     function replace_posting($posting, $rep_msgid)
     {
+	$old_messages = $this->get_thread($rep_msgid, FALSE);
+	$new_messages = array($posting);
+	
+	foreach($old_messages as $entry)
+	{
+	    // replace the old msgid
+	    $entry['refs']  = str_replace($rep_msgid, $posting['msgid'],
+				    $entry['refs']);
+	    $new_messages[] = $entry;
+	}
+
+	// delete the replaced posting and $old_messages
+	$this->remove_posting($rep_msgid, TRUE);
+    
+	// add now $new_messages
+	// TODO: store_posting could accept an array of postings
+	foreach($new_messages as $entry)
+	{
+	    $this->store_posting($entry);
+	}
     }
 
-    function get_all_postings(){}
+    /**
+     * @access	public
+     * @return	array	Array of all postings, internal formatted.
+     */
+    function get_all_postings()
+    {
+	$oview = $this->_parse_oview_file();
+	$posts = array();
+	
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return $posts;
+	
+	foreach($oview as $entry)
+	{
+	    $ext_post = $this->_get_file_selection($fp,
+		    $entry['start'], $entry['stop']);
+	    $posts[] = $this->post_inst->ext2int($ext_post);
+	}
+	
+	fclose($fp);
+	return $posts;
+    }
 
-    function get_all_news(){}
+    /**
+     * @access	public
+     * @return	array	Returns array of all postings, which
+     *			have no references.
+     */
+    function get_all_news()
+    {
+	$oview = $this->_parse_oview_file();
+	$posts = array();
+	
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return $posts;
+	    
+	foreach($oview as $entry)
+	{
+	    if(empty($entry['refs']))
+	    {
+		$ext_post = $this->_get_file_selection($fp,
+			$entry['start'], $entry['stop']);
+		$posts[] = $this->post_inst->ext2int($ext_post);
+	    }
+	}
+	
+	fclose($fp);
+	return $posts;
+    }
 
-    function get_orphan_postings(){}
+    /**
+     * @access	public
+     * @return	array	Returns array of all posting whose first reference
+     *			does not exist. They lost their parents.
+     */
+    function get_orphan_postings()
+    {
+	$oview = $this->_parse_oview_file();
+	$posts = array();
+	
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return $posts;
+	    
+	foreach($oview as $entry_1st)
+	{
+	    foreach($oview as $entry_2nd)
+	    {
+		// if there are no references, it's a news posting
+		if (!isset($entry_1st['refs'][0]))
+		{
+		    $is_orphan = FALSE;
+		    break;
+		}
+		
+		// we've got references, but also it's parent	
+		else if ($entry_1st['refs'][0] == $entry_2nd['msgid'])
+		{
+		    $is_orphan = FALSE;
+		    break;
+		}
+		
+		else
+		    $is_orphan = TRUE;
+	    }
+	    
+	    if ($is_orphan)
+	    {
+		$ext_post = $this->_get_file_selection($fp,
+			$entry_1st['start'], $entry_1st['stop']);
+		$posts[] = $this->post_inst->ext2int($ext_post);
+	    }
+	}
+	
+	fclose($fp);
+	return $posts;
+    }
 
-    function get_posting($msgid){}
+    /**
+     * @access	public
+     * @param	string	$msgid
+     * @return	mixed	Returns an internal formatted posting or bool
+     *			if posting was not found.
+     */
+    function get_posting($msgid)
+    {
+	$oview = $this->_parse_oview_file();
+	
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return FALSE;
+	    
+	foreach($oview as $entry)
+	{
+	    if ($msgid == $entry['msgid'])
+	    {
+		$ext_post = $this->_get_file_selection($fp,
+			$entry['start'], $entry['stop']);
+		
+		fclose($fp);	
+		return $this->post_inst->ext2int($ext_post);
+	    }
+	}
+	
+	fclose($fp);
+	return FALSE;
+    }
 
-    function get_thread($msgid){}
+    /**
+     * @access	public
+     * @param	string	$msgid
+     * @param	bool	$with_parent
+     * @return	array	Returns array of internal formatted postings.
+     */
+    function get_thread($msgid, $with_parent = TRUE)
+    {
+	$oview = $this->_parse_oview_file();
+	$posts = array();
+    
+	if (($fp = fopen($this->mbox_file, 'r')) == FALSE)
+	    return $posts;
+    
+	foreach($oview as $entry)
+	{
+	    $is_parent = ($msgid == $entry['msgid']);
+	    if ($is_parent)
+		$parent_key = count($posts);
+	    
+	    if ($is_parent ||
+		(isset($entry['refs']) && in_array($msgid, $entry['refs']) ))
+	    {
+		$ext_post = $this->_get_file_selection($fp, $entry['start'], $entry['stop']);
+		$posts[] = $this->post_inst->ext2int($ext_post);
+	    }
+	}
+	
+	if ($with_parent == FALSE)
+	    unset($posts[$parent_key]);
+	
+	fclose($fp);
+	return $posts;
+    }
     
     /**
      * @access	public
