@@ -67,6 +67,9 @@ $cfg['AllowChangeNames'] = TRUE;
 // (string)
 $cfg['NameVar']          = '';
 
+// (string)
+$cfg['StoreTypeFile']    = 'store_fs.php';
+
 
 /**
  * Authentication

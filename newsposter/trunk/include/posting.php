@@ -52,9 +52,11 @@
  */
 
 // include all required files
+require_once('../config.php');
 require_once('date.php');
 require_once('misc.php');
 require_once('constants.php');
+require_once($cfg['StoreTypeFile']);
 
 class NP_Posting {
 
@@ -125,7 +127,24 @@ class NP_Posting {
      * @access	private
      * @returns	string
      */
-    function _create_msgid()
+     function _createMsgid()
+     {
+        $store_inst = new NP_Storing;
+     
+        do
+	{
+	    $msgid    = $this->_suggestMsgid();
+	    $is_valid = $store_inst->validateMsgid($msgid);
+	} while ($is_valid == FALSE)
+	
+	return $msgid;
+     }
+     
+    /**
+     * @access	private
+     * @returns	string
+     */
+    function _suggestMsgid()
     {
 	if (empty($cfg['FQDN']))
 	    $dn = 'newsposter';
@@ -138,11 +157,9 @@ class NP_Posting {
 	$dc = my_date(11);
 
 	$msgid = sprintf('%s_%s@%s', $uniqid, $dc, $dn);
-	
 	return $msgid;
     }
     
-
 }
 
 ?>
