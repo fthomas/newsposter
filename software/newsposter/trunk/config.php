@@ -24,7 +24,7 @@ $cfg['PageURL']     = 'http://newsposter.webhop.org/';
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://www.thomas-alfeld.de/frank/newsposter/index.php';
+$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
 //    1 =>    24.12.1984 13:43
@@ -261,7 +261,7 @@ $cfg['Theme'] = 'lenz';
 //     $cfg['IncludeHeader'] = 'header.inc.de';
 //     $cfg['IncludeFooter'] = 'footer.inc.de';
 // Notice: If the language of your header/footer is not available as
-//     Newsposter translation you have to add it to the $avail_lang
+//     Newsposter translation, you have to add it to the $avail_lang
 //     array in include/i18n.php.
 // (string)
 $cfg['IncludeHeader'] = 'themes/'. $cfg['Theme'] .'/_header.inc.en';
@@ -269,8 +269,8 @@ $cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc.en';
 
 // These are used for the depth indicator.
 // (string)
-$cfg['DepthStart']    = '&nbsp;';
-$cfg['DepthLength']   = '&nbsp;&nbsp;&nbsp;';
+$cfg['DepthStart']    = '';
+$cfg['DepthLength']   = '&nbsp;&nbsp;';
 $cfg['DepthStop']     = '»';
 
 // This color is used for the search matches.
@@ -297,7 +297,7 @@ $cfg['IncludeComments'] = TRUE;
 
 // This is the description of your site used in the news feeds.
 // (string)
-$cfg['Description']     = 'Example Homepage - www.example.com';
+$cfg['Description']     = 'http://newsposter.webhop.org - Home of Newsposter, the versatile weblog';
 
 // The maximum of postings in your news feeds. 0 disables the
 // limitation.
@@ -342,7 +342,7 @@ $cfg['FQDN']         = 'newsposter.webhop.org';
 // This value is used for the additional X-Complaints-To header
 // used in all postings.
 // (string)
-$cfg['Complaints']   = 'frank@thomas-alfeld.de';
+$cfg['Complaints']   = 'postmaster@your-domain.com';
 
 
 /**

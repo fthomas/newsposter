@@ -18,9 +18,9 @@ if (isset($_GET['edit']))
     $_SESSION['NP']['auth_inst']->check_perm(array(P_EDIT, P_EDIT_NEWS));
 
     // create the form head
-    $form_start  = "\n" . '<form action="index.php?np_act=posting_form"'
-		 . 'method="post">' ."\n"
-		 . '<input type="hidden" name="edit" />' . "\n";
+    $form_start  = "\n" . '<form action="index.php?np_act=posting_form" '
+                 . 'method="post">' ."\n"
+                 . '<p style="display:none"><input type="hidden" name="edit" /></p>' . "\n";
     
     $submit_text = $lang['misc_edit'];
 
@@ -39,9 +39,9 @@ if (isset($_GET['del']))
 					    P_DEL_COMMENTS));
     
     // create the form head
-    $form_start  = "\n" . '<form action="index.php?np_act=delete"'
-		 . 'method="post">' . "\n"
-		 . '<input type="hidden" name="delete" />' . "\n";
+    $form_start  = "\n" . '<form action="index.php?np_act=delete" '
+                 . 'method="post">' . "\n"
+                 . '<p style="display:none"><input type="hidden" name="delete" /></p>' . "\n";
 
     $submit_text = $lang['misc_delete'];
     

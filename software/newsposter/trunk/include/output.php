@@ -333,11 +333,11 @@ class NP_Output {
 	
 	if ($search_str !== NULL)
 	{
-	    $int_post['name']    = $this->_mark_string($int_post['name'],
+	    $int_post['name']    = $this->_str_highlight($int_post['name'],
 							$search_str); 
-	    $int_post['subject'] = $this->_mark_string($int_post['subject'],
+	    $int_post['subject'] = $this->_str_highlight($int_post['subject'],
 							$search_str);
-	    $int_post['body']    = $this->_mark_string($int_post['body'],
+	    $int_post['body']    = $this->_str_highlight($int_post['body'],
 							$search_str);
 	}
 	
@@ -420,11 +420,11 @@ class NP_Output {
 	
 	if ($search_str !== NULL)
 	{
-	    $comment['name']    = $this->_mark_string($comment['name'],
+	    $comment['name']    = $this->_str_highlight($comment['name'],
 							$search_str); 
-	    $comment['subject'] = $this->_mark_string($comment['subject'],
+	    $comment['subject'] = $this->_str_highlight($comment['subject'],
 							$search_str);
-	    $comment['body']    = $this->_mark_string($comment['body'],
+	    $comment['body']    = $this->_str_highlight($comment['body'],
 							$search_str);
 	}
 	
@@ -602,39 +602,40 @@ class NP_Output {
     }
     
     /**
-     * @access	private
-     * @param	string	$haystack
-     * @param	string	$needle
-     * @return	string
+     * Highlight a string in text without corrupting HTML tags.
+     * http://aidan.dotgeek.org/lib/?file=function.str_highlight.php
+     * @author      Aidan Lister <aidan@php.net>
+     * @version     2.0
+     * @access      private
+     * @param       string          $text        The text to search
+     * @param       array|string    $needle      The string to highlight
+     * @param       bool            $simple      Set to true to replace text disregarding HTML tags
+     * @return      The text with the needle highlighted
      */
-    function _mark_string($haystack, $needle)
+    function _str_highlight($text, $needle, $simple = FALSE)
     {
-	global $cfg;
-	
-	// if $needle is not in $haystack, return $haystack
-	if (stristr($haystack, $needle) === FALSE)
-	    return $haystack;
-	
-	$needle_len  = strlen($needle);
-    
-	$start = 0;
-	while (($pos = strpos(strtolower($haystack),
-		    strtolower($needle), $start)) !== FALSE)
-	{
-	    // create replacement string. we do not touch case of
-	    // the found string
-	    $match_repl = sprintf('<b style="background: %s">%s</b>',
-		    $cfg['MatchColor'], substr($haystack, $pos, $needle_len));
+        global $cfg;
 
-	    $start    = $pos + strlen($match_repl);
-	    
-	    $haystack = substr_replace($haystack, $match_repl,
-		    $pos, $needle_len);
-	}
-	
-	return $haystack;
+        // Select pattern to use
+        if ($simple === TRUE) {
+            // If there are no HTML tags to be worried about, use this
+            $regex = '#(%s)#i';
+        } else {
+            // If there are HTML tags, we need to make sure we don't break them
+            $regex = '#(?!<.*?)(%s)(?![^<>]*?>)#si';
+        }
+        
+        $start = "<strong style=\"background:{$cfg['MatchColor']}\">";
+        $end   = "</strong>";
+
+        $needle = (array) $needle;
+        foreach ($needle as $needle_single) {
+            $text = preg_replace(sprintf($regex, preg_quote($needle_single)),
+                $start . '\1' . $end, $text);
+        }
+
+        return $text;
     }
-    
 }
 
 ?>

@@ -4,8 +4,6 @@
 
 - prevent double posts after reloading the comments page
 
-- prevent marking of search strings in URLs (think about images and links)
-
 - extend test_conf to check for IndexURL
 
 - do human readable URLs (eg. http://host/script.php/var1/var2/var3/)
