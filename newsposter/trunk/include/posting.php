@@ -15,7 +15,7 @@
  *		'name'     => 'Frank Thomas',
  *		'mail'     => 'frank@thomas-alfeld.de',
  *		'subject'  => 'Announcing Newsposter 0.5.0!',
- *		'msgid'    => '<{unique ID}@newsposter>',
+ *		'msgid'    => '<{unique ID}@{FQDN}>',
  *		'date'     => '17.11.2002 14:34',
  *		'stamp'    => '{unix time stamp}',
  *		'topic'    => 'default',
@@ -27,7 +27,7 @@
  *
  *	From: Frank Thomas <frank@thomas-alfeld.de>
  *	Subject: Announcing Newsposter 0.5.0!
- *	Message-ID: <{unique ID}@newsposter>
+ *	Message-ID: <{unique ID}@{FQDN}>
  *	Date: Sun, 17 Nov 2002 14:34:23 +0100
  *	User-Agent: Newsposter/{version}
  *	X-NP-Name: Frank Thomas
