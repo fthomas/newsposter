@@ -196,7 +196,7 @@ class NP_Output {
 
 	if ($selected === $topics[0]['name'] || empty($selected))
 	    $select_opts = "<option value=\"{$topics[0]['name']}\" "
-			 . "selected=\"true\">"
+			 . "selected=\"selected\">"
 			 . "{$topics[0]['name']}</option>\n";
 	else
 	    $select_opts = "<option value=\"{$topics[0]['name']}\">"
@@ -256,7 +256,9 @@ class NP_Output {
     function render_posting($int_post, $can_cut = TRUE, $search_str = NULL)
     {
 	global $cfg, $lang;
-
+	
+	$msg_id     = urlencode(prep_msgid($int_post['msgid']));
+	
 	$topic_cont = $this->_get_topic_content($int_post['topic']);
 	
 	// if submitter want to cut a part of the article
@@ -300,7 +302,6 @@ class NP_Output {
 	    
 	    $url = '<a href="index.php?np_act=expanded&amp;msg_id=%s">'
 	         . '%s [ %s ]</a>';
-	    $msg_id  = urlencode(prep_msgid($int_post['msgid']));
 	    $comment = sprintf($url, $msg_id,
 			    $lang['misc_comments'], $children);
 	}
@@ -348,7 +349,7 @@ class NP_Output {
 	
 	$replace = array(
 	     0 => $int_post['name'],     1 => $int_post['mail'],
-	     2 => $int_post['subject'],  3 => prep_msgid($int_post['msgid']),
+	     2 => $int_post['subject'],  3 => $msg_id,
 	     4 => $int_post['ngs'],      5 => $int_post['date'],
 	     6 => $int_post['stamp'],    7 => $int_post['topic'],
 	     8 => $emoticon,             9 => $read_more,
@@ -429,7 +430,7 @@ class NP_Output {
 	$replace = array(
 	    0 => $emoticon,        1 => $comment['name'],
 	    2 => $comment['mail'], 3 => $comment['subject'],
-	    4 => $date,            5 => prep_msgid($comment['msgid']),
+	    4 => $date,            5 => $msgid,
 	    6 => $comment['body'], 7 => $answer
 	);
 	

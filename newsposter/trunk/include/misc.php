@@ -110,10 +110,16 @@ function prep_msgid($msgid)
     $last  = substr($msgid, -1, 1);
 
     if ($first === '<' && $last === '>')
+    {
+	$msgid = str_replace('@', '_AT_', $msgid);
 	return substr($msgid, 1, -1);
-	
+    }
+    	
     if ($first !== '<' && $last !== '>')
+    {
+	$msgid = str_replace('_AT_', '@', $msgid);
 	return '<' . $msgid . '>';
+    }
 
     return $msgid;
 }
