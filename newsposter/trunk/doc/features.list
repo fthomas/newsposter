@@ -5,6 +5,7 @@
 - (builtin) articles/comments can be edited
 - (builtin) overview page for all articles
 - (builtin) topics and themes 
+
 - (optional) RDF/RSS news feeds
 - (optional) read more function
 - (optional) LDAP authentication

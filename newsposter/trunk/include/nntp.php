@@ -10,12 +10,15 @@
  */
 
 require_once('misc.php');
-require_once('../config.php');
+require_once($np_dir . '/config.php');
 
 class NP_Nntp {
 
     var $news_socket = '';
 
+    /**
+     *
+     */
     function post($mesg)
     {
         if ($this->_connect() == FALSE)
@@ -27,10 +30,16 @@ class NP_Nntp {
         return $this->_close();
     }
 
+    /**
+     *
+     */
     function cancel($mesg, $msgid)
     {
     }
 
+    /**
+     *
+     */
     function supersede($mesg, $msgid)
     {
     }

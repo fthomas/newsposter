@@ -39,7 +39,8 @@
  *	User-Agent: Newsposter/{version}
  *	Content-Type: text/plain; charset=utf-8
  *	Content-Transfer-Encoding: 8bit
- *	X-Complaints-To: postmaster@thomas-alfeld.de *	X-NP-Name: Frank Thomas
+ *	X-Complaints-To: postmaster@thomas-alfeld.de 
+ *	X-NP-Name: Frank Thomas
  *	X-NP-Mail: frank@thomas-alfeld.de
  *	X-NP-User: mrfrost {login username}	
  *	X-NP-Stamp: {unix time stamp}
@@ -61,7 +62,7 @@ require_once($cfg['StoreTypeFile']);
 class NP_Posting {
 
     /**
-     * @param	array	$reference	An internal posting object. 
+     * @param	array	$reference	An internal formatted  posting. 
      * @access	public
      * @returns	array	The returned array is an internal formatted posting.
      */
@@ -71,8 +72,8 @@ class NP_Posting {
     
 	session_start();
     
-	$int_post['user']     = $_SESSION['username'];
-	
+	// for anonymous posting set name/mail/subject to
+	// unknown
 	if (!empty(trim($_SESSION['name']))) 
 	    $int_post['name'] = $_SESSION['name'];
 	else
@@ -88,6 +89,7 @@ class NP_Posting {
 	else
 	    $int_post['subject'] = 'unknown'
 	
+	$int_post['user']     = $_SESSION['username'];
 	$int_post['msgid']    = $this->_create_msgid();
 	$int_post['ngs']      = $cfg['Newsgroup'];
 	$int_post['date']     = my_date();
@@ -97,14 +99,14 @@ class NP_Posting {
 	$int_post['emoticon'] = $_SESSION['emoticon'];
 	$int_post['body']     = $_SESSION['body'];
 	
+	// determine weather $int_post is a posting or
+	// a comment and has references
 	if ($reference != NULL && is_array($reference))
 	{
 	    if (!isset($reference['refs']))
 		$int_post['refs'] = $reference['msgid'];
 	    else
-	    {
-		
-	    }
+		$int_post['refs'] = $reference['refs']." ".$reference['msgid'];
 	}
 	
 	return $int_post;
