@@ -100,6 +100,31 @@ class NP_Storing_String extends NP_Storing {
         return FALSE;
     }
     
+    function get_thread($msgid, $with_ancestors = TRUE)
+    {
+        $fp = $this->_open_db();
+    
+        $postings = array();
+        
+        $node = $this->db[$msgid];
+        $postings[$msgid] = $node;
+        
+        foreach ($this->db as $key_msgid => $posting)
+        {
+            // $posting is child of $node
+            if (in_array($msgid, $posting->refs))
+                $postings[$key_msgid] = $posting;
+            
+            // $posting is parent of $node
+            if ($with_ancestors && in_array($key_msgid, $node->refs))
+                $postings[$key_msgid] = $posting;
+        }
+        
+        $this->_close_db($fp);
+        
+        return $postings;
+    }
+    
     function store_posting($posting)
     {
         $fp = $this->_open_db();
@@ -151,7 +176,7 @@ class NP_Storing_String extends NP_Storing {
 
         if (!$fp)
             return FALSE;
-    
+        
         flock($fp, LOCK_EX);
 
         $db_file_age = time() - filectime($this->db_filename);
@@ -163,6 +188,9 @@ class NP_Storing_String extends NP_Storing {
         {
             $db_string = fread($fp, $db_filesize);
             $this->db = unserialize($db_string);
+            
+            if ($this->db == FALSE)
+                return FALSE;
         }
         
         return $fp;

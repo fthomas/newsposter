@@ -52,6 +52,18 @@ function test_NP_Posting_get_author()
     println($posting->get_author());
 }
 
+function test_NP_Storing_String_set_database($name = 'test')
+{
+    $posting = &new NP_Posting;
+    
+    $posting->name = 'Frank S. Thomas';
+    $posting->created = time();
+    
+    $store = &new NP_Storing_String;
+    $store->set_database($name);
+    $store->store_posting($posting);
+}
+
 function test_NP_Storing_String_get_posting()
 {
     $posting = &new NP_Posting;
@@ -65,16 +77,34 @@ function test_NP_Storing_String_get_posting()
     var_dump($store->get_posting('23'));
 }
 
-function test_NP_Storing_String_set_database($name = 'test')
+function test_NP_Storing_String_get_thread()
 {
-    $posting = &new NP_Posting;
+    $posting1 = &new NP_Posting;
+    $posting1->name = 'Frank';
+    $posting1->msgid = '1';
     
-    $posting->name = 'Frank S. Thomas';
-    $posting->created = time();
+    $posting2 = &new NP_Posting;
+    $posting2->name = 'mrfrost';
+    $posting2->msgid = '2';
+    $posting2->refs = array('1');
     
+    $posting3 = &new NP_Posting;
+    $posting3->name = 'Herr Thomas';
+    $posting3->msgid = '3';    
+    $posting3->refs = array('2', '1');
+    
+    $posting4 = &new NP_Posting;
+    $posting4->name = 'Frank Stefan';
+    $posting4->msgid = '4';    
+    $posting4->refs = array('3', '2', '1');
+        
     $store = &new NP_Storing_String;
-    $store->set_database($name);
-    $store->store_posting($posting);
+    $store->store_posting($posting1);
+    $store->store_posting($posting2);
+    $store->store_posting($posting3);
+    $store->store_posting($posting4);
+    
+    var_dump($store->get_thread('2'));
 }
 
 function test_NP_Storing_String_store_posting()
@@ -125,6 +155,7 @@ function println($var)
 //test_NP_Storing_String_store_posting();
 //test_NP_Storing_String_set_database();
 //test_NP_Storing_String_msgid_exists();
-test_NP_Storing_String_replace_posting();
+//test_NP_Storing_String_replace_posting();
+test_NP_Storing_String_get_thread();
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-/* $Id: misc.php 239 2004-09-30 17:47:03Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
@@ -22,7 +22,7 @@ ini_set('arg_separator.output', '&amp;');
 /**
  * write error message to file
  */
-function my_trigger_error($error_msg)
+function np_trigger_error($error_msg)
 {
     $error_log = $GLOBALS['np_dir'] . '/var/error.log';
 
@@ -72,23 +72,6 @@ function abs_uri()
     return $prot . $server . $dir . '/';
 }
 
-/**
- * This function removes all ASCII control characters
- * in $text and replaces them with an ordinary space.
- * @param	string	$text
- * @return	string
- */
-function remove_cchars($text)
-{
-    $chars = array();
-    for($i = 0; $i < 32; $i++)
-        $chars[$i] = chr($i);
-
-    // v_output($chars);
-
-    $text = str_replace($chars, " ", $text);
-    return $text;
-}
 
 /**
  * Creates a path for theme files.
@@ -99,31 +82,6 @@ function create_theme_path($filename)
 {
     global $cfg;
     return 'themes/' . $cfg['Theme'] . "/$filename";
-}
-
-/**
- * This function adds/removes '<' and '>' to/from message-id strings.
- * @param	string	$msgid
- * @return	string
- */
-function prep_msgid($msgid)
-{
-    $first = $msgid[0];
-    $last  = substr($msgid, -1, 1);
-
-    if ($first === '<' && $last === '>')
-    {
-        $msgid = str_replace('@', '_AT_', $msgid);
-        return substr($msgid, 1, -1);
-    }
-
-    if ($first !== '<' && $last !== '>')
-    {
-        $msgid = str_replace('_AT_', '@', $msgid);
-        return '<' . $msgid . '>';
-    }
-
-    return $msgid;
 }
 
 /**
