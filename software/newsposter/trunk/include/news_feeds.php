@@ -204,6 +204,8 @@ class NP_NewsFeeds {
     function create_rss10()
     {
         global $cfg;
+        
+        $now_iso8601 = my_date(13);
 
         $content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                  . "<rdf:RDF\n"
@@ -216,6 +218,7 @@ class NP_NewsFeeds {
                  . "    <title>{$cfg['PageTitle']}</title>\n"
                  . "    <link>{$cfg['PageURL']}</link>\n"
                  . "    <description>{$cfg['Description']}</description>\n"
+                 . "    <dc:date>{$now_iso8601}</dc:date>\n"
                  . "\n"
                  . "    <items>\n"
                  . "      <rdf:Seq>\n"
