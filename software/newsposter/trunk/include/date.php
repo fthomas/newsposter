@@ -10,35 +10,36 @@
  *
  * Following date formats are supported:
  *
- *    1 =>    24.12.1984 13:43
+ *    1 => 24.12.1984 13:43
  *
- *    2 =>    24.12.1984
+ *    2 => 24.12.1984
  *
- *    3 =>    1984/12/24 13:43
+ *    3 => 1984/12/24 13:43
  *
- *    4 =>    1984/12/24
+ *    4 => 1984/12/24
  *
- *    5 =>    Dezember 1984
+ *    5 => Dezember 1984
  *
- *    6 =>    Dezember 24 1984
+ *    6 => Dezember 24 1984
  *
- *    7 =>    Montag, Dezember 24 @ 13:43:00 UTC
+ *    7 => Montag, Dezember 24 @ 13:43:00 UTC
  *
- *    8 =>    Mon, 24 Dec 1984 13:43:00 +0200  // RFC 822 date format
+ *    8 => Mon, 24 Dec 1984 13:43:00 +0200  // RFC 822 date format
  *
- *    9 =>    11000.1100.11111000000 // binary notation
+ *    9 => 11000.1100.11111000000 // binary notation
  *
- *   10 =>    // seconds since the epoch (01.01.1970)
+ *   10 => // seconds since the epoch (01.01.1970)
  *
- *   11 =>    19841224134300
+ *   11 => 19841224134300
  *
- *   12 =>    Mon Dec 24 13:43:00 1984 // mbox date format
+ *   12 => Mon Dec 24 13:43:00 1984 // mbox date format
  *
- *   13 =>    1984-12-24T13:34:00Z // ISO 8601 date format
+ *   13 => 1984-12-24T13:34:00Z // ISO 8601 date format
  */
 
 /**
- * @param     int    $time_stamp
+ * @param     $time_stamp
+ * @param     $format
  * @return    string
  */
 function stamp2string($time_stamp = -1, $format = 0)
@@ -48,12 +49,17 @@ function stamp2string($time_stamp = -1, $format = 0)
     if ($time_stamp == -1)
         $time_stamp = time();
     
-    // if $format is 0 use format number from config.php 
     if (isset($cfg['DateFormat']) && $format == 0)
         $format = $cfg['DateFormat'];
-
+        
     setlocale(LC_TIME, $cfg['Locale']);
 
+    if (is_string($format))
+    {
+        $time_string = strftime($format, $time_stamp);
+        return $time_string;
+    }
+    
     switch($format)
     {
         case 1:
@@ -102,7 +108,7 @@ function stamp2string($time_stamp = -1, $format = 0)
 
         case 11:
             $time_string = date('YmdHis', $time_stamp);
-            return $time_string;				
+            return $time_string;
 
         case 12:
             $time_string = date('D M d H:i:s O Y', $time_stamp);
@@ -120,8 +126,9 @@ function stamp2string($time_stamp = -1, $format = 0)
 }
 
 /**
+ * @access    public
  * @param     int    $format
- * @return    string 
+ * @return     
  */
 function my_date($format = 1)
 {

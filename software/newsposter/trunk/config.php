@@ -40,8 +40,11 @@ $cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 //   11 =>    19841224134300
 //   12 =>    Mon Dec 24 13:43:00 1984 // mbox date format
 //   13 =>    1984-12-24T13:34:00Z // ISO 8601 date format
-// (int)
-$cfg['DateFormat']  = 7;
+// If you 
+//http://www.php.net/strftime
+// (int or string)
+//$cfg['DateFormat']  = 1;
+$cfg['DateFormat']  = 'am %x um %X';
 
 // index.php?n_act=output_news will show up to 'MaxPostings'
 // news postings. These are always the latest. 'output_all'
