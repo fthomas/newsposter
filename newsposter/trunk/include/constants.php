@@ -8,9 +8,14 @@
  */
 
 // misc
-define('VERSION'   , '0.5.0');
-define('CODENAME'  , 'Odyssee');
-define('USER_AGENT', 'User-Agent: Newsposter/'.VERSION.' ("'.CODENAME.'")');
+define('VERSION'   , '0.5.1');
+define('CODENAME'  , 'Falling leaves');
+define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
+define('USER_AGENT', 'User-Agent: '.COMB_NAME);
+
+// version codename history
+// 0.5.0	Odyssee
+// 0.5.1	Falling leaves
 
 // hashes used by Newsposter's authentication
 define('CRYPT', 1);

@@ -16,7 +16,7 @@ require_once('include/constants.php');
 // Set this to the name of your homepage. It is used in the login head
 // and in the RSS file.
 // (string)
-$cfg['PageTitle']   = 'Blue Dwarf';
+$cfg['PageTitle']   = 'www.example.com';
 
 // Newsposter is multilingual. Here you can include the language file of
 // your choice. Look into the lang/ directory for all available languages.
@@ -222,8 +222,8 @@ $cfg['Theme']         = 'lenz';
 // Specify here the files used for the content printed above and
 // beneath Newsposter's output.
 // (string)
-$cfg['IncludeHeader'] = 'themes/lenz/_header.inc';
-$cfg['IncludeFooter'] = 'themes/lenz/_footer.inc';
+$cfg['IncludeHeader'] = 'themes/'. $cfg['Theme'] .'/_header.inc';
+$cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc';
 
 // These are used for the depth indicator.
 // (string)
@@ -251,7 +251,7 @@ $cfg['RDFIncludeComments'] = TRUE;
 
 // This is the description of your site used in the RSS file.
 // (string)
-$cfg['RDFDescription']     = 'Blue Dwarf - Frank Thomas personal homepage';
+$cfg['RDFDescription']     = 'Example Homepage - www.example.com';
 
 // The maximum of postings in your RSS file.
 // (int)

@@ -3,7 +3,7 @@
 <table width="100%" align="center" style="border: solid 1px black" cellspacing="0" cellpadding="5">
     <tr>
 	<td>
-	    <table width="100%" style="border: solid 1px black" bgcolor="white" cellspacing="0" cellpadding="4">
+	    <table width="100%" style="border: solid 1px black" bgcolor="lightgray" cellspacing="0" cellpadding="4">
 		<tr>
 		    <td valign="middle"><img src="EMOTICON.png" border="0" alt="" /></td>
 		    <td width="50%">&nbsp;SUBJECT</td>

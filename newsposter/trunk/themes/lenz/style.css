@@ -1,9 +1,11 @@
 /* Style Sheet for Lenz Grimmer's home page */
+/* edited by Frank Thomas for Newsposter    */
 
 body {
 	font-family: verdana, vera, lucidagrande, arial, helvetica, sans-serif;
 	color: black;
-	background: lightgray;
+	<!-- background: lightgray; -->
+	background: white
 	background-attachment: fixed;
 	margin: 5%
 }
@@ -30,8 +32,8 @@ h1 {
 	color: white;
 	background: #336699;
 	padding: 3px;
-	border-color: white;
-	border-width: 1px;
+	border-color: lightgray;
+	border-width: 2px;
 	border-right: 2px black;
 	border-bottom: 2px black;
 	border-style: solid;
