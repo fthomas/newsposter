@@ -42,7 +42,7 @@
  *	X-Complaints-To: postmaster@thomas-alfeld.de
  *	X-NP-Name: Frank Thomas
  *	X-NP-Mail: frank@thomas-alfeld.de
- *	X-NP-User: mrfrost (login username)	
+ *	X-NP-User: mrfrost {login username}	
  *	X-NP-Stamp: {unix time stamp}
  *	X-NP-Topic: default
  *	X-NP-Emoticon: happy
@@ -52,11 +52,12 @@
  */
 
 // include all required files
-require_once('../config.php');
 require_once('date.php');
 require_once('misc.php');
 require_once('constants.php');
+require_once($np_dir . '/config.php');
 require_once($cfg['StoreTypeFile']);
+
 
 class NP_Posting {
 
@@ -67,6 +68,79 @@ class NP_Posting {
      */    
     function ext2int($ext_post)
     {
+	global $cfg;
+	
+	$ext_post  = str_replace("\r", '', $ext_post);
+	$lines     = explode("\n", $ext_post);
+	$int_array = array();
+	
+	foreach($lines as $key => $line)
+	{
+	    // make sure that we only get header fields,
+	    // no unfolded lines or the message itself 
+	    if (empty($line))
+	    {
+		$body_line = $key;
+		break;
+	    }
+	    
+	    $header_len = strpos($line, ':');
+	    
+	    if ($header_len == FALSE || $line[0] == ' ')
+		continue;
+		
+	    $header_field = substr($line, 0, $header_len); 
+	    $header_value = trim( substr($line, $header_len + 1) );
+	    
+	    // fill up the array 
+	    if ($header_field == 'X-NP-User')
+		$int_array['user'] = $header_value;
+	
+	    else if ($header_field == 'X-NP-Name')
+		$int_array['name'] = $header_value;
+	
+	    else if ($header_field == 'X-NP-Mail')
+		$int_array['mail'] = $header_value;
+		
+	    else if ($header_field == 'Subject')
+		$int_array['subject'] = $header_value;
+	
+	    else if ($header_field == 'Message-ID')
+		$int_array['msgid'] = $header_value;
+
+	    else if ($header_field == 'Newsgroups')
+		$int_array['ngs'] = $header_value;
+	
+	    else if ($header_field == 'X-NP-Stamp')
+		$int_array['stamp'] = $header_value;
+	
+	    else if ($header_field == 'X-Complaints-To')
+		$int_array['c_to'] = $header_value;
+		
+	    else if ($header_field == 'X-NP-Topic')
+		$int_array['topic'] = $header_value;
+	
+	    else if ($header_field == 'X-NP-Emoticon')
+		$int_array['emoticon'] = $header_value;	
+	    
+	    else if ($header_field == 'References')
+	    {
+		$int_array['refs'] = $header_value;
+		$refs_line = $key;
+	    }
+	}
+	
+	// now collect all unfolded references
+	while( $lines[++$refs_line]['0'] == ' ')
+	{
+	    $msgid = trim($lines[$refs_line]);
+	    $int_array['refs'] .= " " . $msgid;
+	}
+	
+	$int_array['date'] = stamp2string($int_array['stamp'], $cfg['DateFormat']);
+	$int_array['body'] = implode("\r\n", array_slice($lines, $body_line + 1));
+	
+	return $int_array;
     }
 
     /**
@@ -118,7 +192,7 @@ class NP_Posting {
 	// get internal encding and encode $body to utf-8
 	$int_enc = iconv_get_encoding('internal_encoding');	
 	$body    = iconv($int_enc, 'UTF-8', $int_post['body']);
-	$ext    .= "$body\r\n\r\n";
+	$ext    .= $body;
 	
 	return $ext;
     }
@@ -135,7 +209,7 @@ class NP_Posting {
 	{
 	    $msgid    = $this->_suggestMsgid();
 	    $is_valid = $store_inst->validateMsgid($msgid);
-	} while ($is_valid == FALSE)
+	} while ($is_valid == FALSE);
 	
 	return $msgid;
      }

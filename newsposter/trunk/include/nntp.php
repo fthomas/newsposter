@@ -27,11 +27,11 @@ class NP_Nntp {
         return $this->_close();
     }
 
-    function cancel($mesg, $mesg_id)
+    function cancel($mesg, $msgid)
     {
     }
 
-    function supersede($mesg, $mesg_id)
+    function supersede($mesg, $msgid)
     {
     }
 

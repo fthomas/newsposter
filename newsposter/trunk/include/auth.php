@@ -14,7 +14,7 @@
 require_once('misc.php');
 require_once('passwd.php');
 require_once('constants.php');
-require_once('../config.php');
+require_once($np_dir . '/config.php');
 
 class NP_Auth {
 
