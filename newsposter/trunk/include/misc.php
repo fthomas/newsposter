@@ -53,13 +53,13 @@ function abs_uri()
     return $prot . $server . $dir . '/';
 }
 
-// this function removes all ASCII control characters
-// in $text and replaces them with an ordinary space
+// This function removes all ASCII control characters
+// in $text and replaces them with an ordinary space. 
 /**
  * @params  string $text
  * @returns string
  */
-function clean_cchars($text)
+function remove_cchars($text)
 {
     $chars = array();    
     for($i = 0; $i < 32; $i++)
