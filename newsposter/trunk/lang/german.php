@@ -63,11 +63,11 @@ $lang = array (
     'preview_edit' => 'Bearbeiten', 
      
     /**
-     * NP_Mail
+     * mail
      */
-    'mail_intro_error'   => 'Ein Zugangsversuch wurde aufgezeichnet',
     // %s = $lang['misc_article'] or $lang['misc_comment']
     'mail_intro_success' => 'Folgender %s wurde soeben gepostet',
+    'mail_intro_error'   => 'Ein Zugangsversuch wurde aufgezeichnet',
     'mail_subj_error'    => 'Fehler Protokoll - ' . $cfg['PageTitle'],
     'mail_subj_new'      => 'Neues Posting auf '  . $cfg['PageTitle'],
     'mail_ip'            => 'IP Adresse',
@@ -95,8 +95,9 @@ $lang = array (
     /**
      * expanded
      */
-    'comment_head' => 'News kommentieren',
-    'comment_send' => 'Kommentieren'
+    'comment_head'   => 'News kommentieren',
+    'comment_send'   => 'Kommentieren',
+    'comment_answer' => 'antworten'
         
 );
 

@@ -10,7 +10,13 @@ require_once('config.php');
 $output = '';
 $posts  = $_SESSION['NP']['store_inst']->get_all_news(0, $cfg['MaxPostings']);
 foreach($posts as $posting)
+{
+    $diff = time() - $posting['stamp'];
+    if ($cfg['CutOffAge'] != 0 && $diff > $cfg['CutOffAge'])
+	break;
+	
     $output .= $_SESSION['NP']['output_inst']->render_posting($posting);
+}
 
 print_header();
 print($output);

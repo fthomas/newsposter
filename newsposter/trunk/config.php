@@ -41,7 +41,7 @@ $cfg['CutOffAge']   = 0;
 $cfg['MarkFresh']   = 60 * 60 * 12;
 
 // (int)
-$cfg['MarkOld']     = 60 * 60 * 24 * 2;
+$cfg['MarkOld']     = 60 * 60 * 24 * 7;
 
 // (bool)
 $cfg['ParseUBB']         = TRUE;
@@ -139,6 +139,15 @@ $cfg['IncludeHeader']   = 'themes/default/_header.inc';
 
 // (string)
 $cfg['IncludeFooter']   = 'themes/default/_footer.inc';
+
+// (string)
+$cfg['DepthStart']  = '<img src="themes/default/images/misc/depth_start.png"  border="0" />';
+
+// (string)
+$cfg['DepthLength'] = '<img src="themes/default/images/misc/depth_length.png" border="0" />';
+
+// (string)
+$cfg['DepthStop']   = '<img src="themes/default/images/misc/depth_stop.png"   border="0" />';
 
 
 /**

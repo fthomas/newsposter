@@ -80,6 +80,10 @@ switch($action)
     case 'oview':
 	$inc = 'oview.php';
 	break;
+
+    case 'search':
+	$inc = 'search.php';
+	break;
 	
     default:
 	$inc = 'output_news.php';

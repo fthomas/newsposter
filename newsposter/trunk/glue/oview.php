@@ -6,13 +6,16 @@
 // include all required files
 require_once('include/misc.php');
 
-$entries = '';
-$posts   = $_SESSION['NP']['store_inst']->get_all_news();
+$threaded_posts = array();
+$posts = $_SESSION['NP']['store_inst']->get_all_news();
 foreach($posts as $posting)
-    $entries .= $_SESSION['NP']['output_inst']->render_oview($posting);
+    $threaded_posts = array_merge($threaded_posts,
+	    $_SESSION['NP']['store_inst']->get_thread($posting['msgid'])); 
+
+$oview = $_SESSION['NP']['output_inst']->render_oview($threaded_posts);
 
 print_header();
-require_once(create_theme_path('oview.inc'));
+print($oview);
 print_footer();
 
 ?>

@@ -7,7 +7,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 </head>
 
-<body>
+<body bgcolor="white">
     <table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
 	<tr>
 	    <td align="center"><a href="index.php?np_act=login"><b>Login</b></a></td>
@@ -19,8 +19,8 @@
 	</tr>
 	<tr>
 	    <td align="center" colspan="2"><a href="INSTALL">Installation</a></td>
-	    <td align="center" colspan="2"><a href="">XML</a></td>
-	    <td align="center" colspan="2"><a href="">Valid XHTML</a></td>
+	    <td align="center" colspan="2"><a href="spool/news.rss"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
+	    <td align="center" colspan="2"><a href=""><img src="themes/default/images/misc/valid_xhtml.png" alt="Valid XHTML" border="0" /></a></td>
 	</tr>
     </table>
     <br />

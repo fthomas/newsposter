@@ -349,8 +349,8 @@ class NP_Posting {
 	    $parents = explode(' ', $message['refs']);
 	    $parent  = urlencode($parents[0]);
 	    
-	    return sprintf("%s?np_act=expanded&msg_id=%s#%s", $cfg['IndexURL'],
-			    $parent, $msgid);
+	    return sprintf("%s?np_act=expanded&amp;msg_id=%s#%s",
+			$cfg['IndexURL'], $parent, $msgid);
 	}
 	else
 	    return sprintf("%s?np_act=output_all#%s", $cfg['IndexURL'], $msgid);

@@ -1,11 +1,11 @@
-VERSION=`php -q tools/print_version.php`
-REVISION=`svn info | grep "Last Changed Rev" | sed s/"Last Changed Rev: "//`
-DIRNAME=newsposter-$(VERSION)
+VERSION	 = `php -q tools/print_version.php`
+REVISION = `svn info | grep "Last Changed Rev" | sed s/"Last Changed Rev: "//`
+DIRNAME  = newsposter-$(VERSION)
 
 misc:
-	@echo Newsposter Version: $(VERSION)
-	@echo Last Changed Revision: $(REVISION)
-	-svn log -v > ChangeLog
+	@echo "Newsposter Version: $(VERSION)"
+	@echo "Last Changed Revision: $(REVISION)"
+	@-svn log -v > ChangeLog
 
 dist:
 	make misc
@@ -15,9 +15,9 @@ dist:
 	cp -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
 	rm $(DIRNAME)/Makefile
 	rm $(DIRNAME)/doc/doxygen/Doxyfile
-	tar -zcf $(DIRNAME).tar.gz $(DIRNAME)
+	tar -zcf $(DIRNAME).tar.gz  $(DIRNAME)
 	tar -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
-	zip -9 -r $(DIRNAME).zip $(DIRNAME)
+	zip -9 -r $(DIRNAME).zip    $(DIRNAME)
 	rm -r $(DIRNAME)
 
 clean:

@@ -207,7 +207,6 @@ class NP_Storing {
 	$this->remove_posting($rep_msgid, TRUE);
     
 	// add now $new_messages
-	/// @todo store_posting could accept an array of postings
 	foreach($new_messages as $entry)
 	{
 	    $this->store_posting($entry);
@@ -372,10 +371,11 @@ class NP_Storing {
 	    }
 	}
 	
-	if ($with_parent == FALSE)
+	if ($with_parent == FALSE && isset($parent_key))
 	    unset($posts[$parent_key]);
 	
 	fclose($fp);
+	$posts = array_reverse($posts);
 	return $posts;
     }
     
@@ -492,7 +492,8 @@ class NP_Storing {
      */
     function _create_postmark($int_post)
     {
-	$postmark = sprintf("From %s %s\n", $int_post['mail'],
+	$postmark = sprintf("From %s %s\n",
+	    str_replace(' ', '', $int_post['mail']),
 	    stamp2string($int_post['stamp'], 12));
     
 	return $postmark;

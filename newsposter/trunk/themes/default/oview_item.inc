@@ -1,6 +1,10 @@
 
     <tr>
-	<td align="center"><a href="index.php?np_act=output_all#MSG_ID">SUBJECT</a></td>
-	<td align="center"><a href="mailto:MAIL">NAME</a></td>
-	<td align="center">DATE</td>
+	<td width="50%" align="left">
+	    BOX
+	    DEEP&nbsp
+	    <a href="LINK">SUBJECT</a>
+	</td>
+	<td width="25%" align="left"><a href="mailto:MAIL">NAME</a></td>
+	<td width="25%" align="center">DATE</td>
     </tr>

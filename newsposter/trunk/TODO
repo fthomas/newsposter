@@ -4,14 +4,10 @@
 - np_act=auth_err sends email on every hit
   -> write blacklist class like in Newsposter 0.4.x
 
-- tools/pass_shell.php needs /usr/bin/php. Some distributions
-  might call the php binary "php4".
-  -> make a note in the documentation
-
 - if the mhash extension of the installed PHP version is buggy
   the passwords scripts end with "server not found" (PHP then
   segfaults).
   -> document this behaviour
 
-- update_data.php incomplete
+- update_data.php is incomplete
   -> guess what!

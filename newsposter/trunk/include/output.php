@@ -153,6 +153,39 @@ class NP_Output {
     
     /**
      * @access	public
+     * @return	array
+     */
+    function get_values_comment()
+    {
+	global $cfg;
+    
+	$val['index'] 	= 'index.php?np_act=expanded&amp;msg_id='
+	    		. urlencode($_GET['msg_id']);
+	
+	$val['msgid']	= (isset($_GET['child_of'])) ? ($_GET['child_of']) :
+			($_GET['msg_id']);
+	
+	$ref = $_SESSION['NP']['store_inst']->get_posting($val['msgid']); 
+	$val['subject'] = (substr($ref['subject'], 0, 4) == 'Re: ') ?
+			  ($ref['subject']) : ('Re: ' . $ref['subject']);
+	
+	// remove all double quotes
+	$val['subject'] = str_replace('"', "'", stripslashes($val['subject']));
+    
+	$val['name'] = $val['name_add'] = '';
+	if ($cfg['AllowChangeNames'] == FALSE)
+	{
+	    $val['name']     = eval(" return {$cfg['NameVar']}; ");
+	    $val['name_add'] = 'readonly="true"';
+	}
+	
+	$val['emots_opts']   = $this->get_selection_emots();
+	
+	return $val;
+    }
+    
+    /**
+     * @access	public
      * @param	string
      * @return	string
      */
@@ -170,7 +203,7 @@ class NP_Output {
 
 	foreach($topics as $key => $entry)
 	{
-	    if ($key == 0)
+	    if ($key == 0 || $entry['name'] === 'comment')
 		continue;
 	
 	    $opt_add = '';
@@ -221,35 +254,13 @@ class NP_Output {
      * @access	public
      * @param	array	$int_post
      * @return	string
-     * @todo	Change the read_more and comment URL
      */
     function render_posting($int_post, $can_cut = TRUE)
     {
-	global $cfg, $lang, $topics;
+	global $cfg, $lang;
 
-	// initialize filename variable with default topic
-	$filename  = $topics[0]['filename'];
+	$topic_cont = $this->_get_topic_content($int_post['topic']);
 	
-	foreach($topics as $key => $entry)
-	{
-	    if ($entry['name'] === $int_post['topic'])
-	    {
-		$filename = $entry['filename'];
-		break;
-	    }
-	}
-
-	$filename = create_theme_path('topics/' . $filename);
-	if (!file_exists($filename))
-	{
-	    trigger_error("File $filename does not exists in _control.php.");
-	    return FALSE;
-	}
-
-	$fp = fopen($filename, 'r');
-	$topic_cont = fread($fp, filesize($filename));
-	fclose($fp);
-
 	// if submitter want to cut a part of the article
 	$read_more = '';
 	if ($pos = strpos($int_post['body'], ' CUT '))
@@ -257,7 +268,10 @@ class NP_Output {
 	    if ($can_cut)
 	    {
 		$int_post['body'] = substr($int_post['body'], 0, $pos);
-	        $read_more        = $lang['misc_more']; 
+	    	$msg_id           = urlencode($int_post['msgid']); 
+		$read_more = sprintf('<a href="index.php?np_act=expanded&amp;'.
+				     'msg_id=%s">%s</a>',$msg_id,
+				     $lang['misc_more']); 
 	    }
 	    else
 		$int_post['body'] = str_replace(' CUT ', '',
@@ -265,19 +279,32 @@ class NP_Output {
 	}
 	
 	// create path for emoticon. edit image extension here
-	$emoticon = create_theme_path('images/smile/'
-				. $int_post['emoticon'] . '.png');
+	$emoticon = create_theme_path('images/smile/' . $int_post['emoticon']);
 
 	// calculate the date string
 	$int_post['date'] = $this->_calc_date($int_post['stamp']);	
 	
 	// are comments used?
-	$comment = '';
+	$comment    = '';
+	$fresh_bool = FALSE;
 	if ($cfg['UseComments'])
 	{
-	    $url = '<a href="index.php?np_act=expanded&amp;msg_id=%s">%s</a>';
+	    $references = $_SESSION['NP']['store_inst']->get_thread(
+			    $int_post['msgid'], FALSE);
+	    $children   = count($references);
+	    
+	    if (isset($references[$children-1]))
+	    {
+		$latest     = $references[$children-1];
+		$diff       = time() - $latest['stamp'];
+		$fresh_bool = ($diff <= $cfg['MarkFresh']);
+	    }
+	    
+	    $url = '<a href="index.php?np_act=expanded&amp;msg_id=%s">'
+	         . '%s [ %s ]</a>';
 	    $msg_id  = urlencode($int_post['msgid']);
-	    $comment = sprintf($url, $msg_id, $lang['misc_comments']);
+	    $comment = sprintf($url, $msg_id,
+			    $lang['misc_comments'], $children);
 	}
 	
 	// replace UBB code?
@@ -287,24 +314,19 @@ class NP_Output {
 	
 	// should this posting marked as fresh or old?
 	$diff  = time() - $int_post['stamp'];
-	$fresh = create_theme_path('images/misc/fresh.png');
-	$old   = create_theme_path('images/misc/old.png');
+	$fresh = create_theme_path('images/misc/mark_fresh.png');
+	$old   = create_theme_path('images/misc/mark_old.png');
 	$mark  = '';
 	
-	if ($cfg['MarkFresh'] !== 0 && $diff <= $cfg['MarkFresh'])
+	if ($cfg['MarkFresh'] !== 0 && 
+		    ($diff <= $cfg['MarkFresh'] || $fresh_bool))
 	    $mark = sprintf('<img src="%s" alt="" border="0" />', $fresh);
 	    
-	if ($cfg['MarkOld'] !== 0 && $diff >= $cfg['MarkOld'])
+	if ($cfg['MarkOld'] !== 0 && $diff >= $cfg['MarkOld'] && !$fresh_bool)
 	    $mark = sprintf('<img src="%s" alt="" border="0" />', $old);
 	
 	// strip all slashes?
-	if ($cfg['StripSlashes'])
-	{
-	    $int_post['name']    = stripslashes($int_post['name']); 
-	    $int_post['mail']    = stripslashes($int_post['mail']); 
-	    $int_post['subject'] = stripslashes($int_post['subject']);
-	    $int_post['body']    = stripslashes($int_post['body']);
-	}
+	$int_post = $this->_my_stripslashes($int_post);
 	
 	$search  = array(
 	     0 => 'NAME',       1 => 'MAIL',
@@ -329,14 +351,78 @@ class NP_Output {
 	$topic_cont = str_replace($search, $replace, $topic_cont);
 	return $topic_cont;
     }
-
+    
+    /**
+     * @access	public
+     * @param	array	$comment
+     * @param	string	$parent_msgid
+     * @return	string
+     */
+    function render_comment($comment, $parent_msgid)
+    {
+	global $cfg, $lang;
+    
+	$topic_cont = $this->_get_topic_content($comment['topic']);
+	
+	// create path for emoticon. edit image extension here
+	$emoticon = create_theme_path('images/smile/' . $comment['emoticon']);
+	
+	$parent_msgid = urlencode($parent_msgid);
+	$msgid        = urlencode($comment['msgid']);
+	
+	$date   = $this->_calc_date($comment['stamp']);			
+	$answer = sprintf('<a href="index.php?np_act=expanded&amp;'.
+	                  'msg_id=%s&amp;child_of=%s#form">%s</a>',
+			  $parent_msgid, $msgid, $lang['comment_answer']);
+	
+	// HTML is not allowed, but maybe the user uses UBB code
+	if (!$cfg['AllowHTML'])
+	{
+	    $comment['name']    = strip_tags($comment['name']);
+	    $comment['mail']    = strip_tags($comment['mail']);
+	    $comment['subject'] = strip_tags($comment['subject']);
+	    $comment['body']    = strip_tags($comment['body'],
+				    $cfg['AllowedTags']);
+	}
+	
+	// convert newlines to break
+	$comment['body'] = str_replace("\n", "<br />\n", $comment['body']);
+	
+	// replace UBB code?
+	if ($cfg['ParseUBB'])
+	    $comment['body'] = $_SESSION['NP']['ubb_inst']->replace(
+				$comment['body']);
+	
+	// strip all slashes?
+	$comment = $this->_my_stripslashes($comment);
+	
+	$search  = array(
+	    0 => 'EMOTICON', 1 => 'NAME',  2 => 'MAIL',
+	    3 => 'SUBJECT',  4 => 'DATE',  5 => 'MSG_ID',
+	    6 => 'BODY',     7 => 'ANSWER'
+	);
+	
+	$replace = array(
+	    0 => $emoticon,        1 => $comment['name'],
+	    2 => $comment['mail'], 3 => $comment['subject'],
+	    4 => $date,            5 => $comment['msgid'],
+	    6 => $comment['body'], 7 => $answer
+	);
+	
+	$topic_cont = str_replace($search, $replace, $topic_cont);
+	return $topic_cont;
+    }
+    
     /**
      * @access	public
      * @param	array	$int_post
+     * @param	bool	$with_boxes
      * @return	string
      */
-    function render_oview($int_post)
+    function render_oview($posts, $with_boxes = FALSE)
     {
+	global $cfg;
+	
 	// filename of oview entry template
 	$file  = create_theme_path('oview_item.inc');	    
 	
@@ -345,20 +431,70 @@ class NP_Output {
 	    
 	$item = fread($fp, filesize($file));
 	fclose($fp);
+
+	// read skeleton 
+	$file  = create_theme_path('oview.inc');	    
+	
+	if (($fp = fopen($file, 'r')) == FALSE)
+	    return FALSE;
+	    
+	$skeleton = fread($fp, filesize($file));
+	fclose($fp);
 	
 	$search = array(
 	    1 => 'NAME',   2 => 'MAIL', 3 => 'SUBJECT',
-	    4 => 'MSG_ID', 5 => 'DATE'
+	    4 => 'MSG_ID', 5 => 'DATE', 6 => 'LINK',
+	    7 => 'DEEP',   8 => 'BOX'
 	);
 	
-	$replace = array(
-	    1 => $int_post['name'],    2 => $int_post['mail'],
-	    3 => $int_post['subject'], 4 => $int_post['msgid'],
-	    5 => $this->_calc_date($int_post['stamp'])
-	);
+	$oview_entries = '';
+	foreach($posts as $posting)
+	{
+	    $msgid    = urlencode($posting['msgid']);
+	    $link     = sprintf('index.php?np_act=output_all#%s', $msgid);
+	    $deep_add = '';
 	
-	$item = str_replace($search, $replace, $item);
-	return $item;
+	    if (isset($posting['refs']))
+	    {
+		$refs = explode(' ', $posting['refs']);
+		$deep = count($refs);
+		$link = sprintf('index.php?np_act=expanded&amp;msg_id=%s#%s',
+			    $refs[0], $msgid);
+		
+		// compose depth indicator
+		$deep_add     .= $cfg['DepthStart'];
+		
+		for($i = 1; $i < $deep; $i++)
+		    $deep_add .= $cfg['DepthLength'];
+		
+		$deep_add     .= $cfg['DepthStop'];
+	    }
+	    
+	    // strip all slashes?
+	    $posting = $this->_my_stripslashes($posting);
+
+	    // create checkbox
+	    $checkbox = '';
+	    if ($with_boxes === TRUE)
+		$checkbox = sprintf('<input type="checkbox" name="cb[\'%s\']"'
+				  . ' value="OFF" />', $posting['msgid']);
+	    
+	    $replace = array(
+		1 => $posting['name'],    2 => $posting['mail'],
+		3 => $posting['subject'], 4 => $posting['msgid'],
+		5 => $this->_calc_date($posting['stamp']),
+		6 => $link,               7 => $deep_add,
+		8 => $checkbox
+	    );
+	
+	    $oview_entries .= str_replace($search, $replace, $item);
+	}
+	
+	$oview = '';
+	if (!empty($oview_entries))
+	    $oview = str_replace('ENTRIES', $oview_entries, $skeleton);
+	
+	return $oview;
     }
     
     /**
@@ -373,7 +509,62 @@ class NP_Output {
 	$stamp = $cfg['TimeVariance'] + $stamp; 
 	return stamp2string($stamp, $cfg['DateFormat']);
     }
+    
+    /**
+     * @access	private
+     * @param	string	$topic
+     * @return	string	
+     */
+    function _get_topic_content($topic)
+    {
+	global $topics;
+    
+	// initialize filename variable with default topic
+	$filename  = $topics[0]['filename'];
+	
+	foreach($topics as $key => $entry)
+	{
+	    if ($entry['name'] === $topic)
+	    {
+		$filename = $entry['filename'];
+		break;
+	    }
+	}
 
+	$filename = create_theme_path('topics/' . $filename);
+	if (!file_exists($filename))
+	{
+	    trigger_error("File $filename does not exists in _control.php.");
+	    return FALSE;
+	}
+
+	$fp = fopen($filename, 'r');
+	$topic_cont = fread($fp, filesize($filename));
+	fclose($fp);
+    
+	return $topic_cont;
+    }
+    
+    /**
+     * @access	private
+     * @param	array	$posting
+     * @return	array
+     */
+    function _my_stripslashes($posting)
+    {
+	global $cfg;
+	
+	if ($cfg['StripSlashes'])
+	{
+	    $posting['name']    = stripslashes($posting['name']);
+	    $posting['mail']    = stripslashes($posting['mail']);
+	    $posting['subject'] = stripslashes($posting['subject']);
+	    $posting['body']    = stripslashes($posting['body']);
+	}
+	
+	return $posting;
+    }
+    
 }
 
 ?>
