@@ -1,6 +1,6 @@
 
-   Newsposter - versatile weblog
-   -----------------------------
+ Newsposter - A versatile weblog
+ ===============================
    
 >> What is it?
 
@@ -74,11 +74,12 @@
             Frank
     
     
-    ----------------------------------------------------------------
-    
-    Frank Thomas <frank@thomas-alfeld.de>
-    
-    Newsposter is (C) 2001-2004 Frank Thomas
-                      2001      PiXeLpApst
-    All Rights Reserved. For information on distribution consult the
-    file COPYING in this directory.
+--------------------------------------------------------------------------
+|    Frank Thomas <frank@thomas-alfeld.de>                               |
+|                                                                        |
+|    Newsposter is (C) 2001-2004 Frank Thomas                            |
+|                      2001      PiXeLpApst                              |
+|    All Rights Reserved. For information on distribution consult the    |
+|    file COPYING in this directory.                                     |
+--------------------------------------------------------------------------
+$Id$

@@ -1,11 +1,10 @@
-Quick Installation Guide
-------------------------
+
+ Quick Installation Guide
+ ========================
 
 This is a the quick installation guide for Newsposter
 version 0.5.x. There is no detailed documentation yet,
 sorry for this inconvenience.
-
-Frank Thomas <frank@thomas-alfeld.de>
 
 
 Table of Contents
@@ -95,3 +94,13 @@ Newsposter:
 If you don't specify the "np_act" parameter, you will redirected
 to index.php?np_act=show_news.
 
+
+--------------------------------------------------------------------------
+|    Frank Thomas <frank@thomas-alfeld.de>                               |
+|                                                                        |
+|    Newsposter is (C) 2001-2004 Frank Thomas                            |
+|                      2001      PiXeLpApst                              |
+|    All Rights Reserved. For information on distribution consult the    |
+|    file COPYING in this directory.                                     |
+--------------------------------------------------------------------------
+$Id$

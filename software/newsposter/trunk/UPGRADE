@@ -1,4 +1,7 @@
 
+ Newsposter Upgrade HOWTO
+ ========================
+
 Upgrade from 0.5.1 to 0.5.2:
 ----------------------------
   Just copy your spool directory into the new Newsposter
@@ -23,3 +26,14 @@ Upgrade from 0.5.1 to 0.5.2:
   have to rename your language file to xx.php where xx is a
   ISO-639 two-letter language code. Then open the include/i18n.php
   file and add xx to the $avail_lang array.
+
+  
+--------------------------------------------------------------------------
+|    Frank Thomas <frank@thomas-alfeld.de>                               |
+|                                                                        |
+|    Newsposter is (C) 2001-2004 Frank Thomas                            |
+|                      2001      PiXeLpApst                              |
+|    All Rights Reserved. For information on distribution consult the    |
+|    file COPYING in this directory.                                     |
+--------------------------------------------------------------------------
+$Id$
