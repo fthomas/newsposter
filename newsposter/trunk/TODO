@@ -11,3 +11,9 @@
 
 - update_data.php is incomplete
   -> guess what!
+
+- PHP must be compiled with --enable-trans-sid
+
+- config var für ovie expanded
+
+- umlaute funzen bei UBB nicht

@@ -32,7 +32,8 @@
 	</tr>
 	<tr>
 	    <td align="center" colspan="2"><a href="INSTALL">Installation</a></td>
-	    <td align="center" colspan="2"><a href="spool/news.rss"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
+	    <td align="center"><a href="tools/test_conf.php">Check<br />Settings</a></td>
+	    <td align="center"><a href="spool/news.rss"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
 	    <td align="center" colspan="2"><a href="http://validator.w3.org/check/referer"><img src="themes/default/images/misc/valid_xhtml.png" alt="Valid XHTML" border="0" /></a></td>
 	</tr>
     </table>

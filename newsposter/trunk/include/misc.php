@@ -3,7 +3,6 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-
 /// this should be the newsposter's main dir, not the include dir
 $np_dir = getcwd();
 
