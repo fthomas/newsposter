@@ -1,21 +1,67 @@
 <?php
-/* $Id$ */
-//
-// Authors: Frank Thomas <frank@thomas-alfeld.de>
+/* $Id$
+ *
+ * This file is part of Newsposter
+ * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
-/// this should be the newsposter's main dir, not the include dir
-$np_dir = getcwd();
 
-if (substr($np_dir, -7) == 'include')
+/**
+ *
+ */
+function np_get_dir()
 {
-    $np_dir = substr($np_dir, 0, -7);
+    $cwd = getcwd();
+
+   // """""" $seven = 
+    // oder plugins
+    if (substr($cwd, -7) == 'include')
+    {
+        $np_dir = substr($np_dir, 0, -7);
+    }
+    return $dir;
 }
+ 
+$NP['dir'] = np_get_dir();
+
+
+/**
+ *
+ */
+function np_get_url()
+{
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+        $prot = 'https://';
+    else
+        $prot = 'http://';
+
+    $server = $_SERVER['HTTP_HOST'];
+    $dir    = dirname($_SERVER['PHP_SELF']);
+
+    return $prot . $server . $dir . '/';
+}
+
 
 // make XHTML compatible
 ini_set('arg_separator.output', '&amp;');
 
 // uncomment this for debugging
-//ini_set('error_log'      , $np_dir . '/var/php_error.log');
+//ini_set('error_log'      , $np_dir . '/var/error_php.log');
 //ini_set('error_reporting', E_ALL);
 //ini_set('log_errors'     , 1);
 
@@ -24,7 +70,7 @@ ini_set('arg_separator.output', '&amp;');
  */
 function np_trigger_error($error_msg)
 {
-    $error_log = $GLOBALS['np_dir'] . '/var/error.log';
+    $error_log = $GLOBALS['np_dir'] . '/var/error_np.log';
 
     if (!file_exists($error_log))
         touch($error_log);
@@ -52,26 +98,6 @@ function print_footer()
 {
     $_SESSION['NP']['i18n_inst']->include_frame(FOOTER);
 }
-
-/**
- * makes an absolute uri
- * @return	string
- * @deprecated	We use now $cfg['PageURL'], so users can
- *		cloak the page url.
- */
-function abs_uri()
-{
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-        $prot = 'https://';
-    else
-        $prot = 'http://';
-
-    $server = $_SERVER['HTTP_HOST'];
-    $dir    = dirname($_SERVER['PHP_SELF']);
-
-    return $prot . $server . $dir . '/';
-}
-
 
 /**
  * Creates a path for theme files.

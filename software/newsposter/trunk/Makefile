@@ -32,4 +32,4 @@ phpdoc:
 	 --parseprivate on\
 	 --output HTML:frames:earthli\
 	 --sourcecode on\
-	 --ignore testing.php
+	 --ignore testbench.php

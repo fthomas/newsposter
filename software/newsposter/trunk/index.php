@@ -1,5 +1,5 @@
 <?php
-/* $Id: index.php 241 2004-09-30 20:27:25Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
@@ -20,5 +20,9 @@ $_SESSION['NP']['output_inst'] = &new NP_Output;
 $_SESSION['NP']['auth_inst']   = &new NP_Auth;
 $_SESSION['NP']['post_inst']   = &new NP_Posting;
 $_SESSION['NP']['store_inst']  = &new NP_Storing;
+
+print "<pre>";
+print_r($GLOBALS);
+print "</pre>";
 
 ?>

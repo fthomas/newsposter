@@ -22,7 +22,7 @@
 
 require_once('constants.php');
 require_once('misc.php');
-require_once($np_dir . '/conf/config.php');
+require_once($NP['dir'] . '/conf/config.php');
 
 /**
  *
@@ -70,15 +70,15 @@ class NP_Storing_String extends NP_Storing {
     
     function set_database($name = 'default')
     {
-        global $cfg, $np_dir;
+        global $NP;
         
-        $this->db_filename = "{$np_dir}/var/{$name}.db.txt";
+        $this->db_filename = "{$NP['dir']}/var/{$name}.db.txt";
         
         if (file_exists($this->db_filename))
             return TRUE;
         else
         {
-            $this->db_filename = "{$np_dir}/var/default.db.txt";
+            $this->db_filename = "{$NP['dir']}/var/default.db.txt";
             touch($this->db_filename);
         }
         
@@ -213,6 +213,18 @@ class NP_Storing_String extends NP_Storing {
         return fclose($fp);
     }
     
+    /**
+     * Backups the current database to {db_filename}.bak.
+     *
+     * Checks whether the {db_filename} file is empty or not. If it is not
+     * empty, the file is copied to {db_filename}.bak. If the file is empty or
+     * the copy failed, this function returns FALSE, otherwise TRUE is
+     * returned.
+     *
+     * @access  private
+     * @return  bool    FALSE, if {db_filename} is empty, otherwise the return
+     *                  value of copy().
+     */
     function _backup_db()
     {
         if (filesize($this->db_filename) == 0)

@@ -22,7 +22,7 @@
  * Replace str_word_count()
  *
  * @category    PHP
- * @package     PHP_Compat
+ * @package     external
  * @link        http://php.net/function.str_word_count
  * @author      Aidan Lister <aidan@php.net>
  * @version     $Revision: 1.6 $

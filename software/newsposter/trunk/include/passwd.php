@@ -1,5 +1,5 @@
 <?php
-/* $Id: passwd.php 240 2004-09-30 17:59:03Z mrfrost $
+/* $Id$
  *
  * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
@@ -26,7 +26,7 @@ require_once('constants.php');
  * Hashed passwords creation/comparison class
  *
  * This file defines functions to create and compare hashed passwords.
- * Except for CRYPT the mhash extension for PHP is needed to create
+ * Except for CRYPT and MD5 the mhash extension for PHP is needed to create
  * the hashes. ({@link http://mhash.sourceforge.net/})
  *
  * @package Newsposter
@@ -76,8 +76,6 @@ class NP_Passwords {
                 $hashed_password = '{SHA}' . base64_encode(mhash(MHASH_SHA1, $password));
                 return $hashed_password;
 
-            // You need an explanation for the construction of SSHA hashes?
-            // http://developer.netscape.com/docs/technote/ldap/pass_sha.html
             case SSHA:
                 $salt = $this->_gen_salt();
                 $hash = mhash(MHASH_SHA1, $password . $salt);
@@ -86,7 +84,7 @@ class NP_Passwords {
                 return $hashed_password;
 
             case MD5:
-                $hashed_password = '{MD5}' . base64_encode(mhash(MHASH_MD5, $password));
+                $hashed_password = '{MD5}' . base64_encode(pack('H*', md5($password)));
                 return $hashed_password;
 
             case SMD5:
@@ -132,7 +130,6 @@ class NP_Passwords {
 
             case SSHA:
                 $hash = base64_decode(substr($hash, 6));
-                // SHA-1 hashes are 160 bits long
                 $orig_hash = substr($hash, 0, 20);
                 $salt = substr($hash, 20);
 
@@ -147,14 +144,13 @@ class NP_Passwords {
 
             case SMD5:
                 $hash = base64_decode(substr($hash, 6));
-                // SMD5 hashes are 16 bytes long
                 $orig_hash = substr($hash, 0, 16);
                 $salt = substr($hash, 16);
 
                 $new_hash = mhash(MHASH_MD5, $password . $salt);
                 return _cmp_strings($orig_hash, $new_hash);
 
-             case PLAIN:
+            case PLAIN:
                 return $this->_cmp_strings($password, $hash);
 
             default:

@@ -35,7 +35,8 @@ class NP_Posting {
 
     var $user = '';
     var $name = '';
-    var $uri = '';
+    var $email = '';
+    var $url = '';
     var $title = '';
     var $msgid = '';
     var $refs = array();

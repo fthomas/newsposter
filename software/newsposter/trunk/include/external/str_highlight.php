@@ -4,6 +4,7 @@
  *
  * @author      Aidan Lister <aidan@php.net>
  * @version     2.0
+ * @package     external
  * @param       string          $text        The text to search
  * @param       array|string    $needle      The string to highlight
  * @param       string          $start       Text to add to start highlighting

@@ -1,7 +1,8 @@
 <?php
 
 
-$cfg['PageTitle']   = 'Newsposter Home';
+$NP['cfg']['PageTitle'] = 'NewsposterHome';
+//$cfg['PageTitle']   = 'Newsposter Home';
 
 
 $cfg['PageURL']     = 'http://newsposter.webhop.org/';
@@ -24,12 +25,9 @@ $cfg['MarkFresh']   = 60 * 60 * 24;
 $cfg['MarkOld']     = 60 * 60 * 24 * 7;
 
 
-$cfg['ParseUBB']         = TRUE;
-
 $cfg['TimeVariance']     = 0;
 
 $cfg['BlacklistTime']    = 15;
-
 
 $cfg['StripSlashes']     = TRUE;
 
@@ -96,9 +94,6 @@ $cfg['IncludeFooter'] = 'themes/lenz/Footer.inc.de';
 $cfg['DepthStart']    = '';
 $cfg['DepthLength']   = '&nbsp;&nbsp;';
 $cfg['DepthStop']     = '»';
-
-
-$cfg['MatchColor']    = 'yellow';
 
 
 $cfg['EvenLineColor'] = '#ebf9fe';

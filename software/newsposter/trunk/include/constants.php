@@ -33,43 +33,43 @@
  */
 
 // misc
-define('VERSION'   , '0.9.0');
-define('CODENAME'  , '?');
-define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
-define('USER_AGENT', 'User-Agent: '.COMB_NAME);
+define('NP_VERSION'   , '0.9.0');
+define('NP_CODENAME'  , '');
+define('NP_COMB_NAME' , 'Newsposter/'.NP_VERSION.' ("'.NP_CODENAME.'")');
+define('NP_USER_AGENT', 'User-Agent: '.NP_COMB_NAME);
 
 // hashes used by Newsposter's authentication
-define('CRYPT', 1);
-define('SHA'  , 2);
-define('SSHA' , 3);
-define('MD5'  , 4);
-define('SMD5' , 5);
-define('PLAIN', 6);
+define('NP_CRYPT', 1);
+define('NP_SHA'  , 2);
+define('NP_SSHA' , 3);
+define('NP_MD5'  , 4);
+define('NP_SMD5' , 5);
+define('NP_PLAIN', 6);
 
 // permission bits
-define('P_WRITE'          , 1);   // write      articles and comments
-define('P_EDIT'           , 2);   // edit   own articles and comments
-define('P_DELETE'         , 4);   // delete own articles and comments
-define('P_ARTICLES_EDIT'  , 8);   // edit   all articles
-define('P_ARTICLES_DELETE', 16);  // delete all articles
-define('P_COMMENTS_EDIT'  , 32);  // edit   all comments
-define('P_COMMENTS_DELETE', 64);  // delete all comments
+define('NP_P_WRITE'          , 1);   // write      articles and comments
+define('NP_P_EDIT'           , 2);   // edit   own articles and comments
+define('NP_P_DELETE'         , 4);   // delete own articles and comments
+define('NP_P_ARTICLES_EDIT'  , 8);   // edit   all articles
+define('NP_P_ARTICLES_DELETE', 16);  // delete all articles
+define('NP_P_COMMENTS_EDIT'  , 32);  // edit   all comments
+define('NP_P_COMMENTS_DELETE', 64);  // delete all comments
 // compounded permissions
-define('P_ALL_EDIT'       , P_ARTICLES_EDIT   + P_COMMENTS_EDIT);   // edit   all postings
-define('P_ALL_DELETE'     , P_ARTICLES_DELETE + P_COMMENTS_DELETE); // delete all postings
+define('NP_P_ALL_EDIT'       , NP_P_ARTICLES_EDIT   + NP_P_COMMENTS_EDIT);   // edit   all postings
+define('NP_P_ALL_DELETE'     , NP_P_ARTICLES_DELETE + NP_P_COMMENTS_DELETE); // delete all postings
 
 // default user classes
-define('WRITER'    , P_WRITE + P_EDIT);
-define('JOURNALIST', P_WRITE + P_EDIT + P_COMMENTS_EDIT);
-define('EDITOR'    , P_WRITE + P_DELETE + P_ALL_EDIT);
-define('ADMIN'     , P_WRITE + P_ALL_EDIT + P_ALL_DELETE);
+define('NP_WRITER'    , NP_P_WRITE + NP_P_EDIT);
+define('NP_JOURNALIST', NP_P_WRITE + NP_P_EDIT + NP_P_COMMENTS_EDIT);
+define('NP_EDITOR'    , NP_P_WRITE + NP_P_DELETE + NP_P_ALL_EDIT);
+define('NP_ADMIN'     , NP_P_WRITE + NP_P_ALL_EDIT + NP_P_ALL_DELETE);
 
 // used for comparison in NP_I18N::include_frame()
-define('HEADER', 1);
-define('FOOTER', 2);
+define('NP_HEADER', 1);
+define('NP_FOOTER', 2);
 
 // used for comparison in NP_Posting::get_posting_url()
-define('VIEW', 1);
-define('FORM', 2);
+define('NP_VIEW', 1);
+define('NP_FORM', 2);
 
 ?>

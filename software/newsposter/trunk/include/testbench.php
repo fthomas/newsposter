@@ -146,6 +146,25 @@ function test_NP_Storing_String_msgid_exists()
     var_dump($store->msgid_exists('24'));
 }
 
+function test_crypt()
+{
+    // STD_DES
+    println( CRYPT_STD_DES );
+    println( crypt('test', '12') );
+    
+    // EXT_DES
+    println( CRYPT_EXT_DES );
+    println( crypt('test', '123456789') );
+    
+    // MD5
+    println( CRYPT_MD5 );
+    println( crypt('test', '$1$456789012') );
+    
+    // BLOWFISH
+    println( CRYPT_BLOWFISH );
+    println( crypt('test', '$2$4567890123456') );
+}
+
 function println($var)
 {
     print $var . " <br />\n";
@@ -156,6 +175,7 @@ function println($var)
 //test_NP_Storing_String_set_database();
 //test_NP_Storing_String_msgid_exists();
 //test_NP_Storing_String_replace_posting();
-test_NP_Storing_String_get_thread();
+//test_NP_Storing_String_get_thread();
+test_crypt();
 
 ?>

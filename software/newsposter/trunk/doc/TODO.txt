@@ -20,4 +20,8 @@
 
 - parsed DATE im subject
 
-- Keyworss neu setzen!
+- trigger_error in NP_Storing!
+
+- all constants functions variables classes suffix with NP
+
+- PEAR HTML_BBCodeParser existier!
