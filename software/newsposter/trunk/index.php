@@ -28,7 +28,7 @@ $_SESSION['NP']['store_inst']  = &new NP_Storing;
 $_SESSION['NP']['nntp_inst']   = &new NP_NNTP;
 $_SESSION['NP']['mail_inst']   = &new NP_Mail;
 $_SESSION['NP']['ubb_inst']    = &new NP_UBB;
-$_SESSION['NP']['rdf_inst']    = &new NP_RDF;
+$_SESSION['NP']['feeds_inst']  = &new NP_NewsFeeds;
 $_SESSION['NP']['bl_inst']     = &new NP_Blacklist;
 
 // if no np_action is specified we want to show

@@ -259,25 +259,24 @@ $cfg['EvenLineColor']   = '#ebf9fe';
 
 
 /**
- * RDF Site Summary (RSS)
+ * News Feeds (RSS 1.0/2.0)
  */
 
-// Turn RSS 1.0 creation on/off. Search the web for more information
-// about RSS.
+// Turn RSS 1.0 and RSS 2.0 creation on/off.
 // (bool)
-$cfg['RDFCreation']        = TRUE;
+$cfg['CreateFeeds']     = TRUE;
 
-// All Comments are included into the RSS file.
+// All Comments are included into the news feeds.
 // (bool)
-$cfg['RDFIncludeComments'] = TRUE;
+$cfg['IncludeComments'] = TRUE;
 
-// This is the description of your site used in the RSS file.
+// This is the description of your site used in the news feeds.
 // (string)
-$cfg['RDFDescription']     = 'Example Homepage - www.example.com';
+$cfg['Description']     = 'Example Homepage - www.example.com';
 
-// The maximum of postings in your RSS file.
+// The maximum of postings in your news feeds.
 // (int)
-$cfg['RDFMaxItems']        = 10;
+$cfg['MaxFeedItems']    = 10;
 
 
 /**

@@ -24,8 +24,8 @@ if (isset($_SESSION['NP']['internal_posting']))
 	$_SESSION['NP']['store_inst']->replace_posting(
 		$int_post, $_SESSION['NP']['replace_msgid']);
 	
-	if ($cfg['RDFCreation'])
-	    $_SESSION['NP']['rdf_inst']->create_rdf_file();
+	if ($cfg['CreateFeeds'])
+	    $_SESSION['NP']['feeds_inst']->create_all();
 
 	if ($cfg['PostNNTP'])
 	    $_SESSION['NP']['nntp_inst']->post($supersede);
@@ -38,8 +38,8 @@ if (isset($_SESSION['NP']['internal_posting']))
     {
 	$_SESSION['NP']['store_inst']->store_posting($int_post);
 
-	if ($cfg['RDFCreation'])
-	    $_SESSION['NP']['rdf_inst']->create_rdf_file();
+	if ($cfg['CreateFeeds'])
+	    $_SESSION['NP']['feeds_inst']->create_all();
 
 	if ($cfg['PostNNTP'])
 	    $_SESSION['NP']['nntp_inst']->post($ext_post);

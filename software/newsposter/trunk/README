@@ -10,7 +10,7 @@
     various environments.
     
     Newsposter has the following features and functions: comments,
-    themes and topics, RDF/RSS 1.0, one-way NNTP gateway, multi-user,
+    themes and topics, RSS 1.0/2.0, one-way NNTP gateway, multi-user,
     multilingual, content negotiation, search function, hashed passwords,
     login per LDAP directory, different user rights, mail protocols,
     marking of new and old postings, UBB code, data storage in "mbox"

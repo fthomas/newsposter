@@ -30,8 +30,8 @@ if (isset($_POST['cb']))
 	$_SESSION['NP']['store_inst']->remove_posting($msgid, TRUE);
     }
     
-    if ($cfg['RDFCreation'])
-	$_SESSION['NP']['rdf_inst']->create_rdf_file();
+    if ($cfg['CreateFeeds'])
+	$_SESSION['NP']['feeds_inst']->create_all();
 }
 
 // send back to default page
