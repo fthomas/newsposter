@@ -233,7 +233,12 @@ $cfg['DepthStop']   = '>';
 
 // This color is used for the search matches.
 // (string)
-$cfg['MatchColor']  = '#ffe100';
+$cfg['MatchColor']      = '#ffe100';
+
+// Each even line in the Overview output has this background color.
+// This is only available in the "lenz" theme.
+// (string)
+$cfg['EvenLineColor']   = '#ebf9fe';
 
 
 /**

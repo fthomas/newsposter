@@ -452,80 +452,83 @@ class NP_Output {
      */
     function render_oview($posts, $with_boxes = FALSE)
     {
-	global $cfg;
-	
-	// filename of oview entry template
-	$file  = create_theme_path('oview_item.inc');	    
-	
-	if (($fp = fopen($file, 'r')) == FALSE)
-	    return FALSE;
-	    
-	$item = fread($fp, filesize($file));
-	fclose($fp);
+        global $cfg;
 
-	// read skeleton 
-	$file  = create_theme_path('oview.inc');	    
-	
-	if (($fp = fopen($file, 'r')) == FALSE)
-	    return FALSE;
-	    
-	$skeleton = fread($fp, filesize($file));
-	fclose($fp);
-	
-	$search = array(
-	    1 => 'NAME',   2 => 'MAIL', 3 => 'SUBJECT',
-	    4 => 'MSG_ID', 5 => 'DATE', 6 => 'LINK',
-	    7 => 'DEEP',   8 => 'BOX'
-	);
-	
-	$oview_entries = '';
-	foreach($posts as $posting)
-	{
-	    $msgid    = urlencode(prep_msgid($posting['msgid']));
-	    $link     = sprintf('index.php?np_act=output_all#%s', $msgid);
-	    $deep_add = '';
-	
-	    if (isset($posting['refs']))
-	    {
-		$refs = explode(' ', $posting['refs']);		
-		$deep = count($refs);
-		$link = sprintf('index.php?np_act=expanded&amp;msg_id=%s#%s',
-			    urlencode(prep_msgid($refs[0])), $msgid);
-		
-		// compose depth indicator
-		$deep_add     .= $cfg['DepthStart'];
-		
-		for($i = 1; $i < $deep; $i++)
-		    $deep_add .= $cfg['DepthLength'];
-		
-		$deep_add     .= $cfg['DepthStop'];
-	    }
-	    
-	    // strip all slashes?
-	    $posting = $this->_my_stripslashes($posting);
+        // filename of oview entry template
+        $file  = create_theme_path('oview_item.inc');
 
-	    // create checkbox
-	    $checkbox = '';
-	    if ($with_boxes === TRUE)
-		$checkbox = sprintf('<input type="checkbox" name="cb[]"'
-				  . ' value="%s" />', prep_msgid($posting['msgid']));
-	    
-	    $replace = array(
-		1 => $posting['name'],    2 => $posting['mail'],
-		3 => $posting['subject'], 4 => prep_msgid($posting['msgid']),
-		5 => $this->_calc_date($posting['stamp']),
-		6 => $link,               7 => $deep_add,
-		8 => $checkbox
-	    );
-	
-	    $oview_entries .= str_replace($search, $replace, $item);
-	}
-	
-	$oview = '';
-	if (!empty($oview_entries))
-	    $oview = str_replace('ENTRIES', $oview_entries, $skeleton);
-	
-	return $oview;
+        if (($fp = fopen($file, 'r')) == FALSE)
+            return FALSE;
+
+        $item = fread($fp, filesize($file));
+        fclose($fp);
+
+        // read skeleton
+        $file  = create_theme_path('oview.inc');
+
+        if (($fp = fopen($file, 'r')) == FALSE)
+            return FALSE;
+
+        $skeleton = fread($fp, filesize($file));
+        fclose($fp);
+
+        $search = array(
+            1 => 'NAME',   2 => 'MAIL', 3 => 'SUBJECT',
+            4 => 'MSG_ID', 5 => 'DATE', 6 => 'LINK',
+            7 => 'DEEP',   8 => 'BOX',  9 => 'TR_COLOR'
+        );
+
+        $oview_entries = '';
+        foreach($posts as $key => $posting)
+        {
+            $msgid    = urlencode(prep_msgid($posting['msgid']));
+            $link     = sprintf('index.php?np_act=output_all#%s', $msgid);
+            $deep_add = '';
+
+            if (isset($posting['refs']))
+            {
+                $refs = explode(' ', $posting['refs']);
+                $deep = count($refs);
+                $link = sprintf('index.php?np_act=expanded&amp;msg_id=%s#%s',
+                    urlencode(prep_msgid($refs[0])), $msgid);
+
+                // compose depth indicator
+                $deep_add     .= $cfg['DepthStart'];
+
+                for($i = 1; $i < $deep; $i++)
+                    $deep_add .= $cfg['DepthLength'];
+
+                    $deep_add .= $cfg['DepthStop'];
+            }
+
+            // strip all slashes?
+            $posting = $this->_my_stripslashes($posting);
+
+            // create checkbox
+            $checkbox = '';
+            if ($with_boxes === TRUE)
+                $checkbox = sprintf('<input type="checkbox" name="cb[]"'
+                    . ' value="%s" />', prep_msgid($posting['msgid']));
+
+            // set tr_color
+            $tr_color = ($key % 2 == 0) ? '' : $cfg['EvenLineColor'];
+
+            $replace = array(
+                1 => $posting['name'],    2 => $posting['mail'],
+                3 => $posting['subject'], 4 => prep_msgid($posting['msgid']),
+                5 => $this->_calc_date($posting['stamp']),
+                6 => $link,               7 => $deep_add,
+                8 => $checkbox,           9 => $tr_color
+            );
+
+            $oview_entries .= str_replace($search, $replace, $item);
+        }
+
+        $oview = '';
+        if (!empty($oview_entries))
+            $oview = str_replace('ENTRIES', $oview_entries, $skeleton);
+
+        return $oview;
     }
     
     /**
