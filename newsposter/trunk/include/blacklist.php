@@ -24,7 +24,7 @@ class NP_Blacklist {
 	if ($cfg['BlacklistTime'] == 0)
 	    return TRUE;
 	
-	$bl_file = $np_dir . '/spool/blacklist';
+	$bl_file = $np_dir . '/spool/blacklist.txt';
     
 	if (!file_exists($bl_file))
 	    touch($bl_file);
