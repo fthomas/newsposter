@@ -30,22 +30,22 @@
  *
  *	10 =>	(seconds since the epoch (01.01.1970))
  *
- *	11 =>	19841224
+ *	11 =>	19841224134300
  */
 
 /**
  * @param	int	$time_stamp
  * @returns	string
  */
-function stamp2string($time_stamp = -1, $format = 1)
+function stamp2string($time_stamp = -1, $format = 0)
 {
 	global $cfg;
 
 	if ($time_stamp == -1)
 		$time_stamp = time();
 	
-	// if $format is 1 use format number from config.php 
-	if (isset($cfg['DateFormat']) && $format == 1)
+	// if $format is 0 use format number from config.php 
+	if (isset($cfg['DateFormat']) && $format == 0)
 		$format = $cfg['DateFormat'];
 
 	setlocale(LC_TIME, $cfg['Locale']);
@@ -97,7 +97,7 @@ function stamp2string($time_stamp = -1, $format = 1)
 			return $time_string;
 		
 		case 11:
-			$time_string = date('Ymd', $time_stamp);
+			$time_string = date('YmdHis', $time_stamp);
 			return $time_string;				
 		
 		default:

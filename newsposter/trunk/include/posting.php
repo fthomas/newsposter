@@ -117,10 +117,19 @@ class NP_Posting {
     }
 
     /**
-     *
+     * @param	array	$int_post
+     * @access	public
+     * @returns	string
      */
     function create_supersede($int_post)
     {
+	$msgid = $int_post['msgid'];
+	$int_post['msgid'] = $this->_create_msgid();
+    
+	$ext_post  = $this->int2ext($int_post);
+	$ext_post = "Supersedes: $msgid\r\n" . $ext_post;
+    
+	return $ext_post;
     }
     
     /**
@@ -333,12 +342,12 @@ class NP_Posting {
 	else
 	    $dn = $cfg['FQDN']; 
 	
-	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 16);
+	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 12);
 
 	// date component
 	$dc = my_date(11);
 
-	$msgid = sprintf('%s_%s@%s', $uniqid, $dc, $dn);
+	$msgid = sprintf('%s.%s@%s', $uniqid, $dc, $dn);
 	$msgid = str_replace(array('<', '>'), '', $msgid);
 	
 	return sprintf('<%s>', $msgid);

@@ -5,6 +5,13 @@
 
 class NP_Storing {
 
+    function NP_Storing()
+    {
+	$this->__construct();
+    }
+
+    function __construct(){}
+
     function store_posting($posting){}
 
     function remove_posting($msgid){}
@@ -15,7 +22,10 @@ class NP_Storing {
 
     function get_thread($msgid){}
 
-    function validate_msgid($msgid){}
+    function validate_msgid($msgid)
+    {
+	return TRUE;
+    }
 
     function get_latest_date(){}
 }

@@ -17,7 +17,7 @@ class NP_Nntp {
     var $news_socket = '';
 
     /**
-     * @param	array	Can be a posting, cancel or supersede.
+     * @param	string	Can be a posting, cancel or supersede.
      * @access	public
      * @returns	bool
      */
