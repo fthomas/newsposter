@@ -1,0 +1,1734 @@
+------------------------------------------------------------------------
+r246 | mrfrost | 2004-10-01 00:00:42 +0200 (Fri, 01 Oct 2004) | 1 line
+Changed paths:
+   A /software/newsposter/branch-0.6/trunk (from /software/newsposter/branch-0.5/trunk:245)
+
+
+------------------------------------------------------------------------
+r245 | mrfrost | 2004-09-30 23:58:55 +0200 (Thu, 30 Sep 2004) | 1 line
+Changed paths:
+   A /software/newsposter/branch-0.5/trunk (from /software/newsposter/trunk:244)
+   D /software/newsposter/trunk
+
+
+------------------------------------------------------------------------
+r241 | mrfrost | 2004-09-30 22:27:25 +0200 (Thu, 30 Sep 2004) | 3 lines
+Changed paths:
+   M /software/newsposter/trunk/conf/config.php
+   M /software/newsposter/trunk/doc/INSTALL.txt
+   M /software/newsposter/trunk/doc/TODO.txt
+   M /software/newsposter/trunk/event/delete.php
+   M /software/newsposter/trunk/event/write.php
+   M /software/newsposter/trunk/include/blacklist.php
+   M /software/newsposter/trunk/include/constants.php
+   M /software/newsposter/trunk/include/date.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   D /software/newsposter/trunk/include/nntp.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/include/store_fs.php
+   M /software/newsposter/trunk/index.php
+   M /software/newsposter/trunk/var/WARNING.txt
+
+- Removed nntp.php, maybe I reimplement the NNTP gateway as plugin
+- store_fs.php does not change the msgid, if a posting is replaced
+
+------------------------------------------------------------------------
+r240 | mrfrost | 2004-09-30 19:59:03 +0200 (Thu, 30 Sep 2004) | 2 lines
+Changed paths:
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/passwd.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/include/store_fs.php
+   M /software/newsposter/trunk/include/storing.php
+   M /software/newsposter/trunk/include/ubb_code.php
+   A /software/newsposter/trunk/language/All.php
+   M /software/newsposter/trunk/language/de.php
+   M /software/newsposter/trunk/language/en.php
+
+- Only cosmetic changes
+
+------------------------------------------------------------------------
+r239 | mrfrost | 2004-09-30 19:47:03 +0200 (Thu, 30 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/conf/config.php
+   M /software/newsposter/trunk/doc/TODO.txt
+   M /software/newsposter/trunk/event/chact_dispatch.php
+   M /software/newsposter/trunk/include/auth.php
+   M /software/newsposter/trunk/include/blacklist.php
+   M /software/newsposter/trunk/include/date.php
+   M /software/newsposter/trunk/include/i18n.php
+   M /software/newsposter/trunk/include/mail.php
+   M /software/newsposter/trunk/include/misc.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/nntp.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/include/passwd.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/include/ubb_code.php
+   M /software/newsposter/trunk/index.php
+   M /software/newsposter/trunk/language/de.php
+   M /software/newsposter/trunk/language/en.php
+   M /software/newsposter/trunk/themes/lenz/AUTHOR
+   D /software/newsposter/trunk/themes/lenz/_footer.inc.de
+   D /software/newsposter/trunk/themes/lenz/_footer.inc.en
+   D /software/newsposter/trunk/themes/lenz/_header.inc.de
+   D /software/newsposter/trunk/themes/lenz/_header.inc.en
+   M /software/newsposter/trunk/themes/lenz/images/smile/COPYRIGHT
+   D /software/newsposter/trunk/themes/lenz/style
+   M /software/newsposter/trunk/tools/passwd_web.php
+   M /software/newsposter/trunk/tools/test_conf.php
+
+- Added X-NP-Modified to postings
+- NP_NewsFeeds / Atom 0.3 uses atom:modified now properly
+- More cosmetic changes
+
+------------------------------------------------------------------------
+r238 | mrfrost | 2004-09-27 19:00:52 +0200 (Mon, 27 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/Makefile
+   M /software/newsposter/trunk/conf/config.php
+   A /software/newsposter/trunk/doc/COPYING.txt (from /software/newsposter/trunk/doc/copying.txt:237)
+   A /software/newsposter/trunk/doc/INSTALL.txt (from /software/newsposter/trunk/doc/install.txt:237)
+   A /software/newsposter/trunk/doc/README.txt (from /software/newsposter/trunk/doc/readme.txt:237)
+   A /software/newsposter/trunk/doc/TODO.txt (from /software/newsposter/trunk/doc/todo.txt:237)
+   A /software/newsposter/trunk/doc/UPGRADE.txt (from /software/newsposter/trunk/doc/upgrade.txt:237)
+   D /software/newsposter/trunk/doc/copying.txt
+   D /software/newsposter/trunk/doc/install.txt
+   A /software/newsposter/trunk/doc/misc/np_sample.xml (from /software/newsposter/trunk/doc/misc/sample_db.xml:237)
+   A /software/newsposter/trunk/doc/misc/np_schema.rng
+   D /software/newsposter/trunk/doc/misc/sample_db.xml
+   A /software/newsposter/trunk/doc/misc/url_schema.txt (from /software/newsposter/trunk/doc/misc/url_scheme.txt:237)
+   D /software/newsposter/trunk/doc/misc/url_scheme.txt
+   D /software/newsposter/trunk/doc/readme.txt
+   D /software/newsposter/trunk/doc/todo.txt
+   D /software/newsposter/trunk/doc/upgrade.txt
+   M /software/newsposter/trunk/event/chact.php
+   M /software/newsposter/trunk/event/chact_dispatch.php
+   M /software/newsposter/trunk/event/error.php
+   M /software/newsposter/trunk/event/login.php
+   M /software/newsposter/trunk/event/output_news.php
+   M /software/newsposter/trunk/event/posting_form.php
+   M /software/newsposter/trunk/include/auth.php
+   M /software/newsposter/trunk/include/blacklist.php
+   M /software/newsposter/trunk/include/i18n.php
+   M /software/newsposter/trunk/include/mail.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/nntp.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/include/passwd.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/include/store_fs.php
+   M /software/newsposter/trunk/include/storing.php
+   M /software/newsposter/trunk/include/ubb_code.php
+   D /software/newsposter/trunk/language/Convention
+
+- More reorganization
+- Added fancy 'licensed under GPL' header to source files
+- Added RELAX NG schema for np:database
+
+------------------------------------------------------------------------
+r237 | mrfrost | 2004-09-26 18:56:39 +0200 (Sun, 26 Sep 2004) | 3 lines
+Changed paths:
+   D /software/newsposter/trunk/COPYING
+   D /software/newsposter/trunk/INSTALL
+   M /software/newsposter/trunk/Makefile
+   D /software/newsposter/trunk/README
+   D /software/newsposter/trunk/TODO
+   D /software/newsposter/trunk/UPGRADE
+   A /software/newsposter/trunk/conf
+   A /software/newsposter/trunk/conf/.htaccess
+   A /software/newsposter/trunk/conf/config.php (from /software/newsposter/trunk/config.php:230)
+   D /software/newsposter/trunk/config.php
+   A /software/newsposter/trunk/doc/copying.txt (from /software/newsposter/trunk/COPYING:229)
+   A /software/newsposter/trunk/doc/install.txt (from /software/newsposter/trunk/INSTALL:229)
+   A /software/newsposter/trunk/doc/misc
+   A /software/newsposter/trunk/doc/misc/sample_db.xml
+   A /software/newsposter/trunk/doc/misc/url_scheme.txt
+   A /software/newsposter/trunk/doc/readme.txt (from /software/newsposter/trunk/README:229)
+   D /software/newsposter/trunk/doc/sample_db.xml
+   A /software/newsposter/trunk/doc/todo.txt (from /software/newsposter/trunk/TODO:229)
+   A /software/newsposter/trunk/doc/upgrade.txt (from /software/newsposter/trunk/UPGRADE:229)
+   M /software/newsposter/trunk/event/chact_dispatch.php
+   M /software/newsposter/trunk/include/auth.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/posting.php
+   A /software/newsposter/trunk/include/storing.php
+   D /software/newsposter/trunk/lang
+   A /software/newsposter/trunk/language (from /software/newsposter/trunk/lang:229)
+   D /software/newsposter/trunk/spool
+   M /software/newsposter/trunk/tools/test_conf.php
+   A /software/newsposter/trunk/var
+   A /software/newsposter/trunk/var/WARNING.txt (from /software/newsposter/trunk/spool/WARNING:229)
+
+- Reorganized some files
+- chact_dispatch.php now removes old session vars, if you write a new posting
+
+------------------------------------------------------------------------
+r230 | mrfrost | 2004-09-23 19:58:34 +0200 (Thu, 23 Sep 2004) | 5 lines
+Changed paths:
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/include/auth.php
+   M /software/newsposter/trunk/include/blacklist.php
+   M /software/newsposter/trunk/include/constants.php
+   M /software/newsposter/trunk/include/date.php
+   M /software/newsposter/trunk/include/i18n.php
+   M /software/newsposter/trunk/include/mail.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/nntp.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/include/passwd.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/include/store_fs.php
+   M /software/newsposter/trunk/include/ubb_code.php
+   M /software/newsposter/trunk/index.php
+
+- Removed $cfg['StoreType'] and $cfg['RemoteSpoolDir']
+- Tidied includes
+- Added NP_Posting2 to posting.php
+- Added _trim_text() function in NP_NewsFeeds
+
+------------------------------------------------------------------------
+r229 | mrfrost | 2004-09-22 15:34:17 +0200 (Wed, 22 Sep 2004) | 6 lines
+Changed paths:
+   M /software/newsposter/trunk/Makefile
+   M /software/newsposter/trunk/TODO
+   D /software/newsposter/trunk/doc/doxygen
+   M /software/newsposter/trunk/include/constants.php
+   M /software/newsposter/trunk/include/date.php
+   A /software/newsposter/trunk/include/external/LICENSE (from /software/newsposter/trunk/include/external/License_PHP_3.0.txt:228)
+   D /software/newsposter/trunk/include/external/License_PHP_3.0.txt
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/store_fs.php
+   M /software/newsposter/trunk/index.php
+   M /software/newsposter/trunk/themes/lenz/_footer.inc.de
+   M /software/newsposter/trunk/themes/lenz/_footer.inc.en
+   M /software/newsposter/trunk/themes/lenz/_header.inc.de
+   M /software/newsposter/trunk/themes/lenz/_header.inc.en
+
+- Renamed License_PHP_3.0.txt to LICENSE
+- Changed constants.php date.php news_feeds.php for PHPDocumentator
+- Removed doxygen config file
+- Updated TODO Makefile and index.php
+- changed paths in 'lenz', because feeds are now in spool/feeds/
+
+------------------------------------------------------------------------
+r228 | mrfrost | 2004-09-22 11:17:10 +0200 (Wed, 22 Sep 2004) | 6 lines
+Changed paths:
+   M /software/newsposter/trunk/config.php
+   A /software/newsposter/trunk/event (from /software/newsposter/trunk/glue:223)
+   R /software/newsposter/trunk/event/chact.php (from /software/newsposter/trunk/glue/chact.php:227)
+   R /software/newsposter/trunk/event/chact_dispatch.php (from /software/newsposter/trunk/glue/chact_dispatch.php:227)
+   R /software/newsposter/trunk/event/delete.php (from /software/newsposter/trunk/glue/delete.php:227)
+   R /software/newsposter/trunk/event/error.php (from /software/newsposter/trunk/glue/error.php:227)
+   R /software/newsposter/trunk/event/expanded.php (from /software/newsposter/trunk/glue/expanded.php:227)
+   R /software/newsposter/trunk/event/login.php (from /software/newsposter/trunk/glue/login.php:227)
+   R /software/newsposter/trunk/event/output_all.php (from /software/newsposter/trunk/glue/output_all.php:227)
+   R /software/newsposter/trunk/event/output_news.php (from /software/newsposter/trunk/glue/output_news.php:227)
+   R /software/newsposter/trunk/event/oview.php (from /software/newsposter/trunk/glue/oview.php:227)
+   R /software/newsposter/trunk/event/posting_form.php (from /software/newsposter/trunk/glue/posting_form.php:227)
+   R /software/newsposter/trunk/event/posting_sel.php (from /software/newsposter/trunk/glue/posting_sel.php:227)
+   R /software/newsposter/trunk/event/preview.php (from /software/newsposter/trunk/glue/preview.php:227)
+   R /software/newsposter/trunk/event/search.php (from /software/newsposter/trunk/glue/search.php:227)
+   R /software/newsposter/trunk/event/write.php (from /software/newsposter/trunk/glue/write.php:227)
+   D /software/newsposter/trunk/glue
+   D /software/newsposter/trunk/include/com_line.php
+   M /software/newsposter/trunk/include/date.php
+   D /software/newsposter/trunk/themes/blue_dwarf2
+   D /software/newsposter/trunk/themes/default
+   D /software/newsposter/trunk/themes/np_home
+   D /software/newsposter/trunk/tools/pass_shell.php
+   D /software/newsposter/trunk/tools/pass_web.php
+   A /software/newsposter/trunk/tools/passwd_web.php (from /software/newsposter/trunk/tools/pass_web.php:223)
+
+- Removed np_home, default, blue_dwarf2 theme
+- Renamed glue to event
+- Removed NP_ComLine and pass_shell.php
+- stamp2date accepts a strftime format string in $format
+- Renamed pass_web.php to passwd_web.php
+
+------------------------------------------------------------------------
+r225 | mrfrost | 2004-09-21 19:26:42 +0200 (Tue, 21 Sep 2004) | 3 lines
+Changed paths:
+   M /software/newsposter/trunk/TODO
+   M /software/newsposter/trunk/config.php
+   A /software/newsposter/trunk/doc/sample_db.xml
+   M /software/newsposter/trunk/glue/delete.php
+   M /software/newsposter/trunk/glue/posting_form.php
+   M /software/newsposter/trunk/glue/posting_sel.php
+   M /software/newsposter/trunk/glue/preview.php
+   M /software/newsposter/trunk/glue/write.php
+   M /software/newsposter/trunk/include/auth.php
+   M /software/newsposter/trunk/include/constants.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/include/posting.php
+
+- Newsposter can now edit comments
+- new permission bits and user classes
+
+------------------------------------------------------------------------
+r224 | mrfrost | 2004-09-18 12:06:07 +0200 (Sat, 18 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/include/i18n.php
+   M /software/newsposter/trunk/include/mail.php
+   M /software/newsposter/trunk/include/news_feeds.php
+
+- NP_I18N: include language needed $cfg in global scope
+- NP_NewsFeeds: markup is not allowed in title, etc. elements
+- NP_Mail: polished class
+
+------------------------------------------------------------------------
+r221 | mrfrost | 2004-09-15 23:35:23 +0200 (Wed, 15 Sep 2004) | 3 lines
+Changed paths:
+   M /software/newsposter/trunk/INSTALL
+   A /software/newsposter/trunk/themes/blue_dwarf2
+   A /software/newsposter/trunk/themes/blue_dwarf2/AUTHOR
+   A /software/newsposter/trunk/themes/blue_dwarf2/chact.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/comment_form.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/error.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/images
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/misc
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/misc/mark_fresh.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/misc/mark_old.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/misc/reply.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/COPYRIGHT
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/angry.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/dead.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/discuss.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/evil.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/happy.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/insane.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/laughing.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/mean.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/none.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/pissed.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/sad.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/satisfied.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/shocked.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/sleepy.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/suprised.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/images/smile/uplooking.png
+   A /software/newsposter/trunk/themes/blue_dwarf2/login.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/oview.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/oview_item.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/posting_form.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/posting_sel.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/preview.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/search.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/style
+   A /software/newsposter/trunk/themes/blue_dwarf2/style/weblog.css
+   A /software/newsposter/trunk/themes/blue_dwarf2/topics
+   A /software/newsposter/trunk/themes/blue_dwarf2/topics/_control.php
+   A /software/newsposter/trunk/themes/blue_dwarf2/topics/comment.inc
+   A /software/newsposter/trunk/themes/blue_dwarf2/topics/default.inc
+   M /software/newsposter/trunk/tools/split_file.php
+
+- Added 'blue_dwarf2' theme
+- Fixed typos in INSTALL
+
+------------------------------------------------------------------------
+r220 | mrfrost | 2004-09-15 23:16:12 +0200 (Wed, 15 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/config.php
+   D /software/newsposter/trunk/include/external/License_PHP_3.0
+   A /software/newsposter/trunk/include/external/License_PHP_3.0.txt (from /software/newsposter/trunk/include/external/License_PHP_3.0:219)
+   M /software/newsposter/trunk/themes/lenz/chact.inc
+   M /software/newsposter/trunk/themes/lenz/comment_form.inc
+
+- Modified config.php for distribution
+- Removed the last flaws in the HTML of 'lenz'
+- Renamed the PHP License
+
+------------------------------------------------------------------------
+r219 | mrfrost | 2004-09-15 20:28:00 +0200 (Wed, 15 Sep 2004) | 2 lines
+Changed paths:
+   M /software/newsposter/trunk/include/news_feeds.php
+
+- dc:date dem channel element für RSS 1.0 hinzugefügt
+
+------------------------------------------------------------------------
+r218 | mrfrost | 2004-09-15 01:10:00 +0200 (Wed, 15 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/tools/update_data.php
+
+- Cleaned up posting.php
+- update_data.php converts now from iso-8859-1 to utf8 and sets the
+  timestamp of the comments correctly
+
+------------------------------------------------------------------------
+r217 | mrfrost | 2004-09-14 19:46:20 +0200 (Tue, 14 Sep 2004) | 9 lines
+Changed paths:
+   M /software/newsposter/trunk/INSTALL
+   M /software/newsposter/trunk/README
+   M /software/newsposter/trunk/UPGRADE
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/include/blacklist.php
+   A /software/newsposter/trunk/include/external
+   A /software/newsposter/trunk/include/external/License_PHP_3.0
+   A /software/newsposter/trunk/include/external/str_highlight.php
+   A /software/newsposter/trunk/include/external/str_word_count.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/include/ubb_code.php
+   M /software/newsposter/trunk/themes/lenz/chact.inc
+   M /software/newsposter/trunk/themes/lenz/error.inc
+   M /software/newsposter/trunk/themes/lenz/login.inc
+   M /software/newsposter/trunk/themes/lenz/oview.inc
+   M /software/newsposter/trunk/themes/lenz/oview_item.inc
+   M /software/newsposter/trunk/themes/lenz/posting_form.inc
+   M /software/newsposter/trunk/themes/lenz/search.inc
+   M /software/newsposter/trunk/themes/lenz/style/weblog.css
+   M /software/newsposter/trunk/themes/lenz/topics/comment.inc
+   M /software/newsposter/trunk/themes/lenz/topics/default.inc
+
+- Added external functions (include/external/)
+- NP_Output::_str_highlight() calls now the external str_highlight()
+- Small fix in NP_UBB (thanks to Lenz Grimmer)
+- fread() bugfix in blacklist.php
+- NP_NewsFeeds now uses str_word_count() to limit the size of the
+  feed items
+- Added a PHP notice to README etc, since Newsposter now includes PHP code
+  licensed under the PHP License version 3.0
+
+------------------------------------------------------------------------
+r214 | mrfrost | 2004-09-13 14:17:36 +0200 (Mon, 13 Sep 2004) | 5 lines
+Changed paths:
+   M /software/newsposter/trunk/TODO
+   M /software/newsposter/trunk/UPGRADE
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/glue/posting_sel.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/themes/lenz/oview.inc
+   M /software/newsposter/trunk/themes/lenz/posting_sel.inc
+
+- Incorporated the str_highlight() function from Aidan Lister <aidan@php.net> to
+  replace the old and buggy _mark_str()
+- Updated TODO because _mark_str() had been replaced
+- Made 'lenz' theme finally valid XHTML 1.0 Strict
+
+------------------------------------------------------------------------
+r213 | mrfrost | 2004-09-13 05:28:24 +0200 (Mon, 13 Sep 2004) | 4 lines
+Changed paths:
+   M /software/newsposter/trunk/INSTALL
+   M /software/newsposter/trunk/Makefile
+   M /software/newsposter/trunk/README
+   M /software/newsposter/trunk/UPGRADE
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/include/output.php
+   M /software/newsposter/trunk/themes/lenz/AUTHOR
+   M /software/newsposter/trunk/themes/lenz/_footer.inc.de
+   M /software/newsposter/trunk/themes/lenz/_footer.inc.en
+   M /software/newsposter/trunk/themes/lenz/_header.inc.de
+   M /software/newsposter/trunk/themes/lenz/_header.inc.en
+   M /software/newsposter/trunk/themes/lenz/chact.inc
+   M /software/newsposter/trunk/themes/lenz/comment_form.inc
+   M /software/newsposter/trunk/themes/lenz/error.inc
+   A /software/newsposter/trunk/themes/lenz/images/misc/atom.png
+   M /software/newsposter/trunk/themes/lenz/images/misc/reply.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/rss10.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/rss20.png
+   D /software/newsposter/trunk/themes/lenz/images/misc/rss_xml.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/valid-atom.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/valid-css2.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/valid-rss.png
+   A /software/newsposter/trunk/themes/lenz/images/misc/valid-xhtml.png
+   D /software/newsposter/trunk/themes/lenz/images/misc/valid_xhtml.png
+   M /software/newsposter/trunk/themes/lenz/login.inc
+   M /software/newsposter/trunk/themes/lenz/oview.inc
+   M /software/newsposter/trunk/themes/lenz/oview_item.inc
+   M /software/newsposter/trunk/themes/lenz/posting_form.inc
+   M /software/newsposter/trunk/themes/lenz/posting_sel.inc
+   M /software/newsposter/trunk/themes/lenz/preview.inc
+   M /software/newsposter/trunk/themes/lenz/search.inc
+   A /software/newsposter/trunk/themes/lenz/style
+   A /software/newsposter/trunk/themes/lenz/style/lenz.css
+   A /software/newsposter/trunk/themes/lenz/style/weblog.css
+   D /software/newsposter/trunk/themes/lenz/style.css
+   M /software/newsposter/trunk/themes/lenz/topics/_control.php
+   M /software/newsposter/trunk/themes/lenz/topics/comment.inc
+   M /software/newsposter/trunk/themes/lenz/topics/default.inc
+
+- Modified the lenz theme 
+- Fixed a small bug in output.php which produced invalid xhtml
+- Some cosmetic changes
+
+------------------------------------------------------------------------
+r212 | mrfrost | 2004-09-12 22:20:42 +0200 (Sun, 12 Sep 2004) | 2 lines
+Changed paths:
+   M /software/newsposter/trunk/INSTALL
+   M /software/newsposter/trunk/README
+   M /software/newsposter/trunk/UPGRADE
+
+- Added fancy copyright note all INSTALL and UPGRADE
+
+------------------------------------------------------------------------
+r211 | mrfrost | 2004-09-12 22:09:48 +0200 (Sun, 12 Sep 2004) | 8 lines
+Changed paths:
+   M /software/newsposter/trunk/README
+   A /software/newsposter/trunk/UPGRADE
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/include/constants.php
+   M /software/newsposter/trunk/include/date.php
+   M /software/newsposter/trunk/include/i18n.php
+   M /software/newsposter/trunk/include/mail.php
+   M /software/newsposter/trunk/include/misc.php
+   M /software/newsposter/trunk/include/news_feeds.php
+   M /software/newsposter/trunk/include/posting.php
+   M /software/newsposter/trunk/index.php
+   M /software/newsposter/trunk/lang/Convention
+   D /software/newsposter/trunk/themes/lenz/_footer.inc
+   A /software/newsposter/trunk/themes/lenz/_footer.inc.de
+   A /software/newsposter/trunk/themes/lenz/_footer.inc.en
+   D /software/newsposter/trunk/themes/lenz/_header.inc
+   A /software/newsposter/trunk/themes/lenz/_header.inc.de
+   A /software/newsposter/trunk/themes/lenz/_header.inc.en
+
+- Added Atom 0.3 to news_feeds.php
+- ISO8601 date is now always UTC 
+- Extended NP_Posting::get_sp_url() and renamed to get_posting_url()
+- Added functions in I18N to include localized header/footer 
+- Added localized header and footer to "lenz"
+- Small changes in the README
+- Added UPGRADE file with informations how to upgrade Newsposter
+
+------------------------------------------------------------------------
+r210 | mrfrost | 2004-09-11 13:18:07 +0200 (Sat, 11 Sep 2004) | 2 lines
+Changed paths:
+   A /software/newsposter/trunk/include/news_feeds.php (from /software/newsposter/trunk/include/rdf.php:209)
+   D /software/newsposter/trunk/include/rdf.php
+
+- Renamed rdf.php to news_feeds.php
+
+------------------------------------------------------------------------
+r209 | mrfrost | 2004-09-11 13:14:20 +0200 (Sat, 11 Sep 2004) | 5 lines
+Changed paths:
+   M /software/newsposter/trunk/README
+   M /software/newsposter/trunk/config.php
+   M /software/newsposter/trunk/glue/delete.php
+   M /software/newsposter/trunk/glue/expanded.php
+   M /software/newsposter/trunk/glue/write.php
+   M /software/newsposter/trunk/include/date.php
+   M /software/newsposter/trunk/include/rdf.php
+   M /software/newsposter/trunk/index.php
+
+- Added RSS 2.0 to rdf.php
+- Reorganized rdf.php
+- Modified glue due to reorganization of rdf.php
+- Removed all tabs from date.php
+
+------------------------------------------------------------------------
+r208 | mrfrost | 2004-09-11 00:44:42 +0200 (Sat, 11 Sep 2004) | 1 line
+Changed paths:
+   D /newsposter
+   A /software/newsposter (from /newsposter:207)
+
+
+------------------------------------------------------------------------
+r207 | mrfrost | 2004-09-11 00:44:17 +0200 (Sat, 11 Sep 2004) | 2 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/rdf.php
+
+- Added StripSlashes to RDF class
+
+------------------------------------------------------------------------
+r185 | mrfrost | 2004-09-10 12:00:18 +0200 (Fri, 10 Sep 2004) | 4 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/themes/default/_header.inc
+   M /newsposter/trunk/themes/default/images/smile/COPYRIGHT
+   M /newsposter/trunk/themes/lenz/_header.inc
+   M /newsposter/trunk/themes/lenz/images/smile/COPYRIGHT
+   M /newsposter/trunk/themes/np_home/images/smile/COPYRIGHT
+   D /newsposter/trunk/tools/cut_file.php
+   A /newsposter/trunk/tools/split_file.php (from /newsposter/trunk/tools/cut_file.php:184)
+
+- Added ISO 8601 date format
+- Redone the RDF class
+- Renamed cut_file.php to split_file.php
+
+------------------------------------------------------------------------
+r184 | mrfrost | 2004-09-10 09:38:00 +0200 (Fri, 10 Sep 2004) | 2 lines
+Changed paths:
+   A /newsposter/trunk/tools/cut_file.php
+
+- Redone cut_file.php. Takes now one or two separator strings
+
+------------------------------------------------------------------------
+r183 | mrfrost | 2004-09-10 05:29:34 +0200 (Fri, 10 Sep 2004) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/include/constants.php
+
+- Changed version and codename in constants.php
+
+------------------------------------------------------------------------
+r182 | mrfrost | 2004-09-10 05:15:44 +0200 (Fri, 10 Sep 2004) | 5 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/README
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   D /newsposter/trunk/doc/handbook
+   A /newsposter/trunk/include/i18n.php
+   D /newsposter/trunk/include/tree.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/Convention
+   A /newsposter/trunk/lang/de.php (from /newsposter/trunk/lang/de_DE.php:181)
+   D /newsposter/trunk/lang/de_DE.php
+   D /newsposter/trunk/tools/cut_file.php
+
+- Added i18n.php (content negotiation) to Newsposter's core
+- modified README, TODO for upcoming release
+- removed empty folder doc/handbook and all references to it
+- removed tools/cut_file.php because it was not working properly
+
+------------------------------------------------------------------------
+r181 | mrfrost | 2004-09-10 02:48:32 +0200 (Fri, 10 Sep 2004) | 2 lines
+Changed paths:
+   M /newsposter/trunk/lang/Convention
+   A /newsposter/trunk/lang/de_DE.php (from /newsposter/trunk/lang/german.php:121)
+   A /newsposter/trunk/lang/en.php (from /newsposter/trunk/lang/english.php:121)
+   D /newsposter/trunk/lang/english.php
+   D /newsposter/trunk/lang/german.php
+
+- renamed language files to iso codes
+
+------------------------------------------------------------------------
+r121 | mrfrost | 2004-02-08 00:15:00 +0100 (Sun, 08 Feb 2004) | 1 line
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/tools/test_conf.php
+
+
+------------------------------------------------------------------------
+r120 | mrfrost | 2003-12-26 03:45:26 +0100 (Fri, 26 Dec 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/themes/default/images/smile/angry.png
+   M /newsposter/trunk/themes/default/images/smile/dead.png
+   M /newsposter/trunk/themes/default/images/smile/discuss.png
+   M /newsposter/trunk/themes/default/images/smile/evil.png
+   M /newsposter/trunk/themes/default/images/smile/happy.png
+   M /newsposter/trunk/themes/default/images/smile/insane.png
+   M /newsposter/trunk/themes/default/images/smile/laughing.png
+   M /newsposter/trunk/themes/default/images/smile/mean.png
+   M /newsposter/trunk/themes/default/images/smile/none.png
+   M /newsposter/trunk/themes/default/images/smile/pissed.png
+   M /newsposter/trunk/themes/default/images/smile/sad.png
+   M /newsposter/trunk/themes/default/images/smile/satisfied.png
+   M /newsposter/trunk/themes/default/images/smile/shocked.png
+   M /newsposter/trunk/themes/default/images/smile/sleepy.png
+   M /newsposter/trunk/themes/default/images/smile/suprised.png
+   M /newsposter/trunk/themes/default/images/smile/uplooking.png
+   M /newsposter/trunk/themes/lenz/images/smile/angry.png
+   M /newsposter/trunk/themes/lenz/images/smile/dead.png
+   M /newsposter/trunk/themes/lenz/images/smile/discuss.png
+   M /newsposter/trunk/themes/lenz/images/smile/evil.png
+   M /newsposter/trunk/themes/lenz/images/smile/happy.png
+   M /newsposter/trunk/themes/lenz/images/smile/insane.png
+   M /newsposter/trunk/themes/lenz/images/smile/laughing.png
+   M /newsposter/trunk/themes/lenz/images/smile/mean.png
+   M /newsposter/trunk/themes/lenz/images/smile/none.png
+   M /newsposter/trunk/themes/lenz/images/smile/pissed.png
+   M /newsposter/trunk/themes/lenz/images/smile/sad.png
+   M /newsposter/trunk/themes/lenz/images/smile/satisfied.png
+   M /newsposter/trunk/themes/lenz/images/smile/shocked.png
+   M /newsposter/trunk/themes/lenz/images/smile/sleepy.png
+   M /newsposter/trunk/themes/lenz/images/smile/suprised.png
+   M /newsposter/trunk/themes/lenz/images/smile/uplooking.png
+   M /newsposter/trunk/themes/np_home/images/smile/angry.png
+   M /newsposter/trunk/themes/np_home/images/smile/dead.png
+   M /newsposter/trunk/themes/np_home/images/smile/discuss.png
+   M /newsposter/trunk/themes/np_home/images/smile/evil.png
+   M /newsposter/trunk/themes/np_home/images/smile/happy.png
+   M /newsposter/trunk/themes/np_home/images/smile/insane.png
+   M /newsposter/trunk/themes/np_home/images/smile/laughing.png
+   M /newsposter/trunk/themes/np_home/images/smile/mean.png
+   M /newsposter/trunk/themes/np_home/images/smile/none.png
+   M /newsposter/trunk/themes/np_home/images/smile/pissed.png
+   M /newsposter/trunk/themes/np_home/images/smile/sad.png
+   M /newsposter/trunk/themes/np_home/images/smile/satisfied.png
+   M /newsposter/trunk/themes/np_home/images/smile/shocked.png
+   M /newsposter/trunk/themes/np_home/images/smile/sleepy.png
+   M /newsposter/trunk/themes/np_home/images/smile/suprised.png
+   M /newsposter/trunk/themes/np_home/images/smile/uplooking.png
+
+- All smileys have now a white background if transparency fails
+
+------------------------------------------------------------------------
+r119 | mrfrost | 2003-12-23 01:44:51 +0100 (Tue, 23 Dec 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/README
+
+- Changed contributor note of chicco
+
+------------------------------------------------------------------------
+r118 | mrfrost | 2003-12-23 01:34:00 +0100 (Tue, 23 Dec 2003) | 5 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/lang/english.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/default/_header.inc
+   M /newsposter/trunk/themes/lenz/_header.inc
+   M /newsposter/trunk/themes/lenz/images/misc/mark_fresh.png
+   M /newsposter/trunk/themes/lenz/images/misc/mark_old.png
+   M /newsposter/trunk/themes/np_home/images/misc/mark_fresh.png
+   M /newsposter/trunk/themes/np_home/images/misc/mark_old.png
+
+- Added new fresh/old images from chicco <xms@uni.de> (thanks!)
+- fresh/old now have alternative text
+- updated Doxyfile for new doxygen version
+- Added link tags for RSS to _header.inc files.
+
+------------------------------------------------------------------------
+r117 | mrfrost | 2003-12-22 23:33:25 +0100 (Mon, 22 Dec 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/spool
+   M /newsposter/trunk/themes/default/oview_item.inc
+   M /newsposter/trunk/themes/lenz/AUTHOR
+   M /newsposter/trunk/themes/lenz/oview_item.inc
+   M /newsposter/trunk/themes/lenz/style.css
+   M /newsposter/trunk/themes/np_home/oview_item.inc
+
+- Each even line in the oview is colored in the "lenz" theme.
+- Add some infos to AUTHOR and style.css of "lenz" theme.
+
+------------------------------------------------------------------------
+r116 | mrfrost | 2003-11-20 18:38:02 +0100 (Thu, 20 Nov 2003) | 2 lines
+Changed paths:
+   A /newsposter/trunk/INSTALL
+
+- Had some trouble with svn repository: adding just deleted INSTALL.
+
+------------------------------------------------------------------------
+r115 | mrfrost | 2003-11-20 18:34:40 +0100 (Thu, 20 Nov 2003) | 6 lines
+Changed paths:
+   D /newsposter/trunk/INSTALL
+   M /newsposter/trunk/themes/lenz/images/misc/valid_xhtml.png
+
+- Changed colors and made small changes of the general appearance of the "lenz" theme
+- PHP 4.3.3 complains (E_NOTICE ?) about session_start() if session was already
+  started. Worked around this.
+- Changed some german and english translations and added a new $lang key.
+
+
+------------------------------------------------------------------------
+r114 | mrfrost | 2003-10-31 13:07:37 +0100 (Fri, 31 Oct 2003) | 5 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/README
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/english.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/lenz/_footer.inc
+   M /newsposter/trunk/themes/lenz/_header.inc
+   M /newsposter/trunk/themes/lenz/chact.inc
+   M /newsposter/trunk/themes/lenz/comment_form.inc
+   M /newsposter/trunk/themes/lenz/error.inc
+   M /newsposter/trunk/themes/lenz/images/misc/mark_fresh.png
+   M /newsposter/trunk/themes/lenz/images/misc/mark_old.png
+   A /newsposter/trunk/themes/lenz/images/misc/reply.png
+   M /newsposter/trunk/themes/lenz/images/misc/valid_xhtml.png
+   M /newsposter/trunk/themes/lenz/login.inc
+   M /newsposter/trunk/themes/lenz/posting_form.inc
+   M /newsposter/trunk/themes/lenz/posting_sel.inc
+   M /newsposter/trunk/themes/lenz/preview.inc
+   M /newsposter/trunk/themes/lenz/search.inc
+   M /newsposter/trunk/themes/lenz/style.css
+   M /newsposter/trunk/themes/lenz/topics/comment.inc
+   M /newsposter/trunk/themes/lenz/topics/default.inc
+
+- Changed colors and made small changes of the general appearance of the "lenz" theme
+- PHP 4.3.3 complains (E_NOTICE ?) about session_start() if session was already started. Worked around this.
+- Changed some german and english translations and added a new $lang key.
+
+
+------------------------------------------------------------------------
+r113 | mrfrost | 2003-10-07 22:01:51 +0200 (Tue, 07 Oct 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/posting_form.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/themes/lenz/_footer.inc
+   M /newsposter/trunk/themes/lenz/oview.inc
+   M /newsposter/trunk/themes/lenz/style.css
+   M /newsposter/trunk/themes/lenz/topics/default.inc
+
+- added a check_post call to posting_form.php. This allows direct redirect from login form to posting form.
+- edited lenz theme
+
+------------------------------------------------------------------------
+r112 | mrfrost | 2003-10-07 13:09:28 +0200 (Tue, 07 Oct 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/README
+   M /newsposter/trunk/config.php
+   A /newsposter/trunk/doc/handbook/common_pitfalls.txt
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/spool
+   M /newsposter/trunk/themes/default/AUTHOR
+   A /newsposter/trunk/themes/lenz
+   A /newsposter/trunk/themes/lenz/AUTHOR
+   A /newsposter/trunk/themes/lenz/_footer.inc
+   A /newsposter/trunk/themes/lenz/_header.inc
+   A /newsposter/trunk/themes/lenz/chact.inc
+   A /newsposter/trunk/themes/lenz/comment_form.inc
+   A /newsposter/trunk/themes/lenz/error.inc
+   A /newsposter/trunk/themes/lenz/images
+   A /newsposter/trunk/themes/lenz/images/misc
+   A /newsposter/trunk/themes/lenz/images/misc/mark_fresh.png
+   A /newsposter/trunk/themes/lenz/images/misc/mark_old.png
+   A /newsposter/trunk/themes/lenz/images/misc/rss_xml.png
+   A /newsposter/trunk/themes/lenz/images/misc/valid_xhtml.png
+   A /newsposter/trunk/themes/lenz/images/smile
+   A /newsposter/trunk/themes/lenz/images/smile/COPYRIGHT
+   A /newsposter/trunk/themes/lenz/images/smile/angry.png
+   A /newsposter/trunk/themes/lenz/images/smile/dead.png
+   A /newsposter/trunk/themes/lenz/images/smile/discuss.png
+   A /newsposter/trunk/themes/lenz/images/smile/evil.png
+   A /newsposter/trunk/themes/lenz/images/smile/happy.png
+   A /newsposter/trunk/themes/lenz/images/smile/insane.png
+   A /newsposter/trunk/themes/lenz/images/smile/laughing.png
+   A /newsposter/trunk/themes/lenz/images/smile/mean.png
+   A /newsposter/trunk/themes/lenz/images/smile/none.png
+   A /newsposter/trunk/themes/lenz/images/smile/pissed.png
+   A /newsposter/trunk/themes/lenz/images/smile/sad.png
+   A /newsposter/trunk/themes/lenz/images/smile/satisfied.png
+   A /newsposter/trunk/themes/lenz/images/smile/shocked.png
+   A /newsposter/trunk/themes/lenz/images/smile/sleepy.png
+   A /newsposter/trunk/themes/lenz/images/smile/suprised.png
+   A /newsposter/trunk/themes/lenz/images/smile/uplooking.png
+   A /newsposter/trunk/themes/lenz/login.inc
+   A /newsposter/trunk/themes/lenz/oview.inc
+   A /newsposter/trunk/themes/lenz/oview_item.inc
+   A /newsposter/trunk/themes/lenz/posting_form.inc
+   A /newsposter/trunk/themes/lenz/posting_sel.inc
+   A /newsposter/trunk/themes/lenz/preview.inc
+   A /newsposter/trunk/themes/lenz/search.inc
+   A /newsposter/trunk/themes/lenz/style.css
+   A /newsposter/trunk/themes/lenz/topics
+   A /newsposter/trunk/themes/lenz/topics/_control.php
+   A /newsposter/trunk/themes/lenz/topics/comment.inc
+   A /newsposter/trunk/themes/lenz/topics/default.inc
+   M /newsposter/trunk/themes/np_home/AUTHOR
+   M /newsposter/trunk/tools/print_version.php
+
+- added and edited 'lenz' theme provided by Lenz Grimmer
+- added common_pitfalls.txt note
+- other small changes
+
+------------------------------------------------------------------------
+r96 | mrfrost | 2003-07-14 16:48:23 +0200 (Mon, 14 Jul 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/tree.php
+
+set keywords property
+
+------------------------------------------------------------------------
+r95 | mrfrost | 2003-07-14 16:44:16 +0200 (Mon, 14 Jul 2003) | 1 line
+Changed paths:
+   M /newsposter/trunk/glue/posting_form.php
+
+
+------------------------------------------------------------------------
+r94 | mrfrost | 2003-07-03 20:16:40 +0200 (Thu, 03 Jul 2003) | 2 lines
+Changed paths:
+   A /newsposter/trunk/include/tree.php
+   M /newsposter/trunk/lang/Convention
+
+
+
+------------------------------------------------------------------------
+r80 | mrfrost | 2003-05-02 01:43:56 +0200 (Fri, 02 May 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+
+
+
+------------------------------------------------------------------------
+r77 | mrfrost | 2003-03-09 15:48:09 +0100 (Sun, 09 Mar 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/nntp.php
+
+
+
+------------------------------------------------------------------------
+r75 | mrfrost | 2003-02-21 17:08:48 +0100 (Fri, 21 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/README
+
+
+
+------------------------------------------------------------------------
+r67 | anonymous | 2003-02-14 18:49:00 +0100 (Fri, 14 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/output.php
+
+- make np finally XHTML compatible
+
+------------------------------------------------------------------------
+r66 | anonymous | 2003-02-14 18:11:54 +0100 (Fri, 14 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/themes/np_home/chact.inc
+   M /newsposter/trunk/themes/np_home/comment_form.inc
+   M /newsposter/trunk/themes/np_home/error.inc
+   M /newsposter/trunk/themes/np_home/login.inc
+   M /newsposter/trunk/themes/np_home/oview.inc
+   M /newsposter/trunk/themes/np_home/posting_form.inc
+   M /newsposter/trunk/themes/np_home/preview.inc
+   M /newsposter/trunk/themes/np_home/search.inc
+   M /newsposter/trunk/themes/np_home/topics/comment.inc
+   M /newsposter/trunk/themes/np_home/topics/default.inc
+
+- changed bg to style in np_home
+
+------------------------------------------------------------------------
+r62 | mrfrost | 2003-02-14 13:42:29 +0100 (Fri, 14 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/blacklist.php
+
+- small bugfix in blacklist class
+
+------------------------------------------------------------------------
+r61 | mrfrost | 2003-02-13 19:36:49 +0100 (Thu, 13 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/constants.php
+
+- changed version constant to 0.5.0
+
+------------------------------------------------------------------------
+r59 | mrfrost | 2003-02-13 19:29:20 +0100 (Thu, 13 Feb 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/README
+   M /newsposter/trunk/include/blacklist.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   A /newsposter/trunk/lang/english.php
+   D /newsposter/trunk/themes/blue_dwarf
+   A /newsposter/trunk/themes/np_home/chact.inc
+   A /newsposter/trunk/themes/np_home/comment_form.inc
+   A /newsposter/trunk/themes/np_home/error.inc
+   A /newsposter/trunk/themes/np_home/images
+   A /newsposter/trunk/themes/np_home/images/misc
+   A /newsposter/trunk/themes/np_home/images/misc/COPYRIGHT
+   A /newsposter/trunk/themes/np_home/images/misc/border.png
+   A /newsposter/trunk/themes/np_home/images/misc/mark_fresh.png
+   A /newsposter/trunk/themes/np_home/images/misc/mark_old.png
+   A /newsposter/trunk/themes/np_home/images/smile
+   A /newsposter/trunk/themes/np_home/images/smile/COPYRIGHT
+   A /newsposter/trunk/themes/np_home/images/smile/angry.png
+   A /newsposter/trunk/themes/np_home/images/smile/dead.png
+   A /newsposter/trunk/themes/np_home/images/smile/discuss.png
+   A /newsposter/trunk/themes/np_home/images/smile/evil.png
+   A /newsposter/trunk/themes/np_home/images/smile/happy.png
+   A /newsposter/trunk/themes/np_home/images/smile/insane.png
+   A /newsposter/trunk/themes/np_home/images/smile/laughing.png
+   A /newsposter/trunk/themes/np_home/images/smile/mean.png
+   A /newsposter/trunk/themes/np_home/images/smile/none.png
+   A /newsposter/trunk/themes/np_home/images/smile/pissed.png
+   A /newsposter/trunk/themes/np_home/images/smile/sad.png
+   A /newsposter/trunk/themes/np_home/images/smile/satisfied.png
+   A /newsposter/trunk/themes/np_home/images/smile/shocked.png
+   A /newsposter/trunk/themes/np_home/images/smile/sleepy.png
+   A /newsposter/trunk/themes/np_home/images/smile/suprised.png
+   A /newsposter/trunk/themes/np_home/images/smile/uplooking.png
+   A /newsposter/trunk/themes/np_home/login.inc
+   A /newsposter/trunk/themes/np_home/oview.inc
+   A /newsposter/trunk/themes/np_home/oview_item.inc
+   A /newsposter/trunk/themes/np_home/posting_form.inc
+   A /newsposter/trunk/themes/np_home/posting_sel.inc
+   A /newsposter/trunk/themes/np_home/preview.inc
+   A /newsposter/trunk/themes/np_home/search.inc
+   A /newsposter/trunk/themes/np_home/topics
+   A /newsposter/trunk/themes/np_home/topics/_control.php
+   A /newsposter/trunk/themes/np_home/topics/comment.inc
+   A /newsposter/trunk/themes/np_home/topics/default.inc
+
+- added np_home theme
+- added english translation
+
+------------------------------------------------------------------------
+r57 | mrfrost | 2003-02-12 17:33:48 +0100 (Wed, 12 Feb 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   A /newsposter/trunk/doc/handbook/TO_BE_WRITTEN
+   A /newsposter/trunk/doc/handbook/de_about.txt
+   M /newsposter/trunk/glue/error.php
+   M /newsposter/trunk/glue/expanded.php
+   M /newsposter/trunk/include/blacklist.php
+   A /newsposter/trunk/themes/blue_dwarf
+   A /newsposter/trunk/themes/blue_dwarf/AUTHOR
+   A /newsposter/trunk/themes/default/AUTHOR
+   A /newsposter/trunk/themes/np_home
+   A /newsposter/trunk/themes/np_home/AUTHOR
+   A /newsposter/trunk/tools/cut_file.php
+   M /newsposter/trunk/tools/pass_shell.php
+
+- completed blacklist functionality
+- added skeleton for np_home and blue dwarf themes
+- wrote small cut_file.php script
+
+------------------------------------------------------------------------
+r56 | mrfrost | 2003-02-11 20:43:43 +0100 (Tue, 11 Feb 2003) | 5 lines
+Changed paths:
+   M /newsposter/trunk/README
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/chact.php
+   M /newsposter/trunk/glue/delete.php
+   M /newsposter/trunk/glue/expanded.php
+   M /newsposter/trunk/glue/posting_form.php
+   M /newsposter/trunk/include/auth.php
+   A /newsposter/trunk/include/blacklist.php
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/themes/default/chact.inc
+   D /newsposter/trunk/themes/default/images/misc/depth_length.png
+   D /newsposter/trunk/themes/default/images/misc/depth_start.png
+   D /newsposter/trunk/themes/default/images/misc/depth_stop.png
+   M /newsposter/trunk/themes/default/posting_form.inc
+   M /newsposter/trunk/themes/default/posting_sel.inc
+   M /newsposter/trunk/themes/default/preview.inc
+
+- added my_trigger_error and replaced all trigger_errors with it
+- added NP_Blacklist
+- completed config.php with comments
+- trans_sid is not needed anymore
+
+------------------------------------------------------------------------
+r53 | mrfrost | 2003-02-05 01:15:27 +0100 (Wed, 05 Feb 2003) | 6 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/expanded.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/ubb_code.php
+   M /newsposter/trunk/tools/test_conf.php
+   M /newsposter/trunk/tools/update_data.php
+
+- wrote prep_msgid
+- completed update_data.php
+- wrote test_conf.php
+- made ubb class capable of locale specific characters
+- added config variable to control oview output in expanded view 
+
+------------------------------------------------------------------------
+r52 | anonymous | 2003-02-02 18:55:11 +0100 (Sun, 02 Feb 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/themes/default/_header.inc
+   A /newsposter/trunk/tools/test_conf.php
+
+- add test_conf.php
+
+------------------------------------------------------------------------
+r51 | anonymous | 2003-02-02 14:14:37 +0100 (Sun, 02 Feb 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/glue/chact_dispatch.php
+   A /newsposter/trunk/glue/delete.php
+   M /newsposter/trunk/glue/posting_form.php
+   A /newsposter/trunk/glue/posting_sel.php
+   M /newsposter/trunk/glue/search.php
+   M /newsposter/trunk/glue/write.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/default/_header.inc
+   M /newsposter/trunk/themes/default/login.inc
+   M /newsposter/trunk/themes/default/oview_item.inc
+   M /newsposter/trunk/themes/default/posting_form.inc
+   A /newsposter/trunk/themes/default/posting_sel.inc
+   M /newsposter/trunk/themes/default/search.inc
+   M /newsposter/trunk/themes/default/topics/comment.inc
+   M /newsposter/trunk/themes/default/topics/default.inc
+
+- wrote search/edit/delete functions
+- tagged as rc1
+
+------------------------------------------------------------------------
+r50 | mrfrost | 2003-01-31 13:58:30 +0100 (Fri, 31 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/README
+   M /newsposter/trunk/glue/search.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/Convention
+   M /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/themes/default/images/misc/rss_xml.png
+   A /newsposter/trunk/themes/default/images/misc/valid_xhtml.png
+   M /newsposter/trunk/themes/default/search.inc
+
+- small modifications
+
+------------------------------------------------------------------------
+r49 | mrfrost | 2003-01-28 20:35:02 +0100 (Tue, 28 Jan 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/INSTALL
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/README
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   D /newsposter/trunk/doc/features.list
+   A /newsposter/trunk/doc/handbook
+   M /newsposter/trunk/glue/expanded.php
+   M /newsposter/trunk/glue/output_news.php
+   M /newsposter/trunk/glue/oview.php
+   A /newsposter/trunk/glue/search.php
+   M /newsposter/trunk/glue/write.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/index.php
+   D /newsposter/trunk/lang/english.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/default/_header.inc
+   A /newsposter/trunk/themes/default/comment_form.inc (from /newsposter/trunk/themes/default/comments.inc:48)
+   D /newsposter/trunk/themes/default/comments.inc
+   A /newsposter/trunk/themes/default/images/misc/depth_length.png
+   A /newsposter/trunk/themes/default/images/misc/depth_start.png
+   A /newsposter/trunk/themes/default/images/misc/depth_stop.png
+   D /newsposter/trunk/themes/default/images/misc/fresh.png
+   A /newsposter/trunk/themes/default/images/misc/mark_fresh.png (from /newsposter/trunk/themes/default/images/misc/fresh.png:48)
+   A /newsposter/trunk/themes/default/images/misc/mark_old.png (from /newsposter/trunk/themes/default/images/misc/old.png:48)
+   D /newsposter/trunk/themes/default/images/misc/old.png
+   M /newsposter/trunk/themes/default/oview.inc
+   M /newsposter/trunk/themes/default/oview_item.inc
+   A /newsposter/trunk/themes/default/search.inc
+   M /newsposter/trunk/themes/default/topics/_control.php
+   A /newsposter/trunk/themes/default/topics/comment.inc
+   M /newsposter/trunk/themes/default/topics/default.inc
+
+- wrote README
+- deleted english.php
+- updated depth view of threads
+
+------------------------------------------------------------------------
+r48 | mrfrost | 2003-01-23 23:50:58 +0100 (Thu, 23 Jan 2003) | 4 lines
+Changed paths:
+   A /newsposter/trunk/INSTALL
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   A /newsposter/trunk/glue/expanded.php
+   A /newsposter/trunk/glue/output_news.php
+   A /newsposter/trunk/glue/oview.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/themes/default/_footer.inc
+   A /newsposter/trunk/themes/default/_header.inc
+   M /newsposter/trunk/themes/default/chact.inc
+   A /newsposter/trunk/themes/default/comments.inc
+   M /newsposter/trunk/themes/default/error.inc
+   M /newsposter/trunk/themes/default/login.inc
+   A /newsposter/trunk/themes/default/oview.inc
+   A /newsposter/trunk/themes/default/oview_item.inc
+   M /newsposter/trunk/themes/default/posting_form.inc
+   M /newsposter/trunk/themes/default/preview.inc
+   M /newsposter/trunk/themes/default/topics/_control.php
+   M /newsposter/trunk/themes/default/topics/default.inc
+   M /newsposter/trunk/tools/update_data.php
+
+- wrote expanded.php and comments.inc
+- added default header and footer
+- wrote overview page
+
+------------------------------------------------------------------------
+r47 | anonymous | 2003-01-19 20:10:30 +0100 (Sun, 19 Jan 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   A /newsposter/trunk/glue/output_all.php
+   M /newsposter/trunk/glue/write.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/index.php
+   A /newsposter/trunk/themes/default/images/misc/fresh.png
+   A /newsposter/trunk/themes/default/images/misc/old.png
+   M /newsposter/trunk/themes/default/topics/default.inc
+   A /newsposter/trunk/tools/update_data.php
+
+- added updata_data.php file which updates the data from an old 0.4.*
+  installation
+- added images for fresh and old postings
+
+------------------------------------------------------------------------
+r46 | anonymous | 2003-01-18 10:10:42 +0100 (Sat, 18 Jan 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/preview.php
+   A /newsposter/trunk/glue/write.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   D /newsposter/trunk/themes/default/images/smile/pissed-off.png
+   A /newsposter/trunk/themes/default/images/smile/pissed.png (from /newsposter/trunk/themes/default/images/smile/pissed-off.png:45)
+   M /newsposter/trunk/themes/default/preview.inc
+   M /newsposter/trunk/themes/default/topics/default.inc
+
+- finished write.php
+- bugfix in rdf.php: entities of utf8 chars were invalid 
+
+------------------------------------------------------------------------
+r45 | mrfrost | 2003-01-17 15:27:27 +0100 (Fri, 17 Jan 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/chact_dispatch.php
+   M /newsposter/trunk/glue/posting_form.php
+   A /newsposter/trunk/glue/preview.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/default/chact.inc
+   M /newsposter/trunk/themes/default/error.inc
+   A /newsposter/trunk/themes/default/images/smile/none.png
+   M /newsposter/trunk/themes/default/login.inc
+   M /newsposter/trunk/themes/default/posting_form.inc
+   A /newsposter/trunk/themes/default/preview.inc
+   M /newsposter/trunk/themes/default/topics/_control.php
+   M /newsposter/trunk/themes/default/topics/default.inc
+
+- wrote default topic
+- wrote preview
+- added none.png one pixel transparent image
+
+------------------------------------------------------------------------
+r44 | anonymous | 2003-01-12 17:50:14 +0100 (Sun, 12 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/chact.php
+   M /newsposter/trunk/glue/error.php
+   M /newsposter/trunk/glue/login.php
+   M /newsposter/trunk/glue/posting_form.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/themes/default/error.inc
+   A /newsposter/trunk/themes/default/images/smile/COPYRIGHT
+   A /newsposter/trunk/themes/default/images/smile/angry.png
+   A /newsposter/trunk/themes/default/images/smile/dead.png
+   A /newsposter/trunk/themes/default/images/smile/discuss.png
+   A /newsposter/trunk/themes/default/images/smile/evil.png
+   A /newsposter/trunk/themes/default/images/smile/happy.png
+   A /newsposter/trunk/themes/default/images/smile/insane.png
+   A /newsposter/trunk/themes/default/images/smile/laughing.png
+   A /newsposter/trunk/themes/default/images/smile/mean.png
+   A /newsposter/trunk/themes/default/images/smile/pissed-off.png
+   A /newsposter/trunk/themes/default/images/smile/sad.png
+   A /newsposter/trunk/themes/default/images/smile/satisfied.png
+   A /newsposter/trunk/themes/default/images/smile/shocked.png
+   A /newsposter/trunk/themes/default/images/smile/sleepy.png
+   A /newsposter/trunk/themes/default/images/smile/suprised.png
+   A /newsposter/trunk/themes/default/images/smile/uplooking.png
+   M /newsposter/trunk/themes/default/posting_form.inc
+   A /newsposter/trunk/themes/default/topics/_control.php
+   A /newsposter/trunk/themes/default/topics/default.inc
+
+- worked on glue
+
+------------------------------------------------------------------------
+r43 | anonymous | 2003-01-11 11:41:07 +0100 (Sat, 11 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   D /newsposter/trunk/glue/auth_err.php
+   M /newsposter/trunk/glue/chact.php
+   M /newsposter/trunk/glue/chact_dispatch.php
+   A /newsposter/trunk/glue/error.php (from /newsposter/trunk/glue/auth_err.php:42)
+   M /newsposter/trunk/glue/login.php
+   A /newsposter/trunk/glue/posting_form.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/mail.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   D /newsposter/trunk/themes/default/auth_err.inc
+   A /newsposter/trunk/themes/default/error.inc (from /newsposter/trunk/themes/default/auth_err.inc:42)
+   A /newsposter/trunk/themes/default/posting_form.inc
+
+- renamed auth_err to error
+
+------------------------------------------------------------------------
+r42 | mrfrost | 2003-01-10 16:13:02 +0100 (Fri, 10 Jan 2003) | 2 lines
+Changed paths:
+   A /newsposter/trunk/glue/auth_err.php
+
+- added auth_err.php
+
+------------------------------------------------------------------------
+r41 | mrfrost | 2003-01-10 12:47:37 +0100 (Fri, 10 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+
+- worked on Makefile
+
+------------------------------------------------------------------------
+r40 | mrfrost | 2003-01-10 12:45:36 +0100 (Fri, 10 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/glue/chact.php
+   A /newsposter/trunk/glue/chact_dispatch.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/mail.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/Convention
+   M /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/themes/default/auth_err.inc
+   A /newsposter/trunk/themes/default/chact.inc
+   M /newsposter/trunk/themes/default/login.inc
+   M /newsposter/trunk/tools/pass_web.php
+
+- worked on glue and some classes
+
+------------------------------------------------------------------------
+r39 | mrfrost | 2003-01-09 22:11:42 +0100 (Thu, 09 Jan 2003) | 6 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   A /newsposter/trunk/glue
+   A /newsposter/trunk/glue/chact.php
+   A /newsposter/trunk/glue/login.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/mail.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/output.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/include/store_fs.php
+   A /newsposter/trunk/index.php
+   M /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/themes/default/login.inc
+
+- began to write NP_Output
+- added values to german translation
+- now the url to postings etc. is managed by a config var
+- wrote glue and index.php files
+- began default theme. it's really ugly, hope chicco will fix this ;-)
+
+------------------------------------------------------------------------
+r38 | mrfrost | 2003-01-07 22:43:19 +0100 (Tue, 07 Jan 2003) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/mail.php
+
+- keyword was not expanded Id: -> Id
+
+------------------------------------------------------------------------
+r37 | mrfrost | 2003-01-07 22:39:48 +0100 (Tue, 07 Jan 2003) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/mail.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/include/ubb_code.php
+   M /newsposter/trunk/lang/Convention
+   M /newsposter/trunk/lang/english.php
+   M /newsposter/trunk/lang/german.php
+
+- finished NP_Mail
+- some bugfixes
+
+------------------------------------------------------------------------
+r36 | anonymous | 2003-01-03 11:51:49 +0100 (Fri, 03 Jan 2003) | 4 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/doc/features.list
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/mail.php
+   M /newsposter/trunk/include/passwd.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/tools/pass_shell.php
+   M /newsposter/trunk/tools/pass_web.php
+
+- renamed all session vars to $_SESSION['NP']*
+- began to write NP_Mail
+- adapted names in NP_Password 
+
+------------------------------------------------------------------------
+r35 | anonymous | 2002-12-31 14:30:11 +0100 (Tue, 31 Dec 2002) | 4 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/include/store_fs.php
+
+- finished NP_RDF class
+- added two parameters to function get_all_posting() for slice
+- wrote NP_Storing::_my_array_slice()
+
+------------------------------------------------------------------------
+r34 | anonymous | 2002-12-31 11:27:00 +0100 (Tue, 31 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/rdf.php
+
+
+
+------------------------------------------------------------------------
+r33 | anonymous | 2002-12-31 11:20:03 +0100 (Tue, 31 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/doc/features.list
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/include/store_fs.php
+
+- edited the NP_RDF class
+
+------------------------------------------------------------------------
+r32 | anonymous | 2002-12-30 00:07:27 +0100 (Mon, 30 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/com_line.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/passwd.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/include/ubb_code.php
+   A /newsposter/trunk/spool/WARNING
+
+- added brief description for all classes
+- began to write NP_RDF
+
+------------------------------------------------------------------------
+r31 | anonymous | 2002-12-29 00:35:09 +0100 (Sun, 29 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+
+- wrote all get_* functions and replace_posting()
+- small bugfix in NP_Posting
+
+------------------------------------------------------------------------
+r30 | anonymous | 2002-12-28 14:11:28 +0100 (Sat, 28 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+
+- wrote remove_postings(); this function can delete one or more postings and also can deletes their children
+
+------------------------------------------------------------------------
+r29 | mrfrost | 2002-12-26 18:15:12 +0100 (Thu, 26 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/store_fs.php
+
+- wrote get_latest_date and _create_oview_file functions
+
+------------------------------------------------------------------------
+r28 | anonymous | 2002-12-22 23:35:42 +0100 (Sun, 22 Dec 2002) | 4 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/doc/features.list
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+
+- added date format for mbox postmarks
+- extended store_fs.php
+- removed carriage return from NP_Posting
+
+------------------------------------------------------------------------
+r27 | mrfrost | 2002-12-22 12:27:44 +0100 (Sun, 22 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/com_line.php
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/passwd.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/include/ubb_code.php
+
+- changed Doxyfile
+- accommodated all includes for doxygen
+
+------------------------------------------------------------------------
+r26 | anonymous | 2002-12-22 04:10:57 +0100 (Sun, 22 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/config.php
+   A /newsposter/trunk/doc/doxygen
+   A /newsposter/trunk/doc/doxygen/Doxyfile
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/lang/Convention
+
+- enabled doxygen for Newsposter's includes
+- wrote _open_files/_close_files/_create_postmark for NP_Storing
+
+------------------------------------------------------------------------
+r25 | mrfrost | 2002-12-21 11:46:29 +0100 (Sat, 21 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/Makefile
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/constants.php
+
+- completed Makefile
+
+------------------------------------------------------------------------
+r24 | mrfrost | 2002-12-18 23:10:52 +0100 (Wed, 18 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk
+   A /newsposter/trunk/Makefile
+   A /newsposter/trunk/include/mail.php
+   A /newsposter/trunk/include/output.php
+   A /newsposter/trunk/include/rdf.php
+   M /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/tools/print_version.php
+
+- created some files
+
+------------------------------------------------------------------------
+r23 | mrfrost | 2002-12-18 06:43:55 +0100 (Wed, 18 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/TODO
+   M /newsposter/trunk/include/posting.php
+   A /newsposter/trunk/lang/Convention
+   M /newsposter/trunk/lang/english.php
+   M /newsposter/trunk/lang/german.php
+   M /newsposter/trunk/tools/pass_shell.php
+
+- tested NP_Nntp and NP_Posting with local leafnode: works all fine
+- set up conventions for translations
+
+------------------------------------------------------------------------
+r22 | mrfrost | 2002-12-17 06:40:13 +0100 (Tue, 17 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+
+- wrote create_supersede
+- small fixes in the other classes
+
+------------------------------------------------------------------------
+r21 | mrfrost | 2002-12-16 21:52:46 +0100 (Mon, 16 Dec 2002) | 5 lines
+Changed paths:
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/include/ubb_code.php
+
+- wrote create_cancel in NP_Posting
+- fixed a bug in date.php; stamp2string ignored the second parameter $format
+- fixed incorrect syntax in store_fs.php
+- changed ubb replacement for [image]
+
+------------------------------------------------------------------------
+r20 | mrfrost | 2002-12-15 11:13:32 +0100 (Sun, 15 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/doc/features.list
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+
+- wrote skeleton for NP_Storing (fs). This class should be generic.
+
+------------------------------------------------------------------------
+r19 | mrfrost | 2002-12-11 23:19:03 +0100 (Wed, 11 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/tools/pass_shell.php
+   M /newsposter/trunk/tools/pass_web.php
+
+- add $cfg['PostAnonymous']
+- wrote (began to) function create_post() in NP_Posting
+
+------------------------------------------------------------------------
+r18 | mrfrost | 2002-12-10 23:46:13 +0100 (Tue, 10 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/com_line.php
+   M /newsposter/trunk/include/constants.php
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/passwd.php
+   M /newsposter/trunk/include/posting.php
+   M /newsposter/trunk/include/store_fs.php
+   M /newsposter/trunk/include/ubb_code.php
+
+- keyword (Id) substitution activated
+
+------------------------------------------------------------------------
+r17 | mrfrost | 2002-12-10 23:32:46 +0100 (Tue, 10 Dec 2002) | 2 lines
+Changed paths:
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/posting.php
+
+- wrote perm_lookup and perm_check functions for NP_Auth
+
+------------------------------------------------------------------------
+r15 | mrfrost | 2002-12-08 20:17:08 +0100 (Sun, 08 Dec 2002) | 3 lines
+Changed paths:
+   A /newsposter/trunk/doc/features.list
+   M /newsposter/trunk/include/posting.php
+
+- added features.list
+- made small changes in the NP_Posting class
+
+------------------------------------------------------------------------
+r14 | mrfrost | 2002-12-06 20:26:45 +0100 (Fri, 06 Dec 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/include/auth.php
+   M /newsposter/trunk/include/nntp.php
+   M /newsposter/trunk/include/posting.php
+
+- made absolute include path for "../config.php"
+- wrote ext2int function in the NP_Posting class
+
+------------------------------------------------------------------------
+r13 | mrfrost | 2002-11-29 00:06:21 +0100 (Fri, 29 Nov 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/posting.php
+
+_createMsgid() generates and validates a msgid and returns it,
+if it is valid
+
+------------------------------------------------------------------------
+r12 | mrfrost | 2002-11-27 05:59:53 +0100 (Wed, 27 Nov 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/date.php
+   M /newsposter/trunk/include/posting.php
+
+added a new date format yyyymmdd
+wrote function create msgid(), doesn't validate msgid yet.
+
+------------------------------------------------------------------------
+r11 | mrfrost | 2002-11-26 23:36:08 +0100 (Tue, 26 Nov 2002) | 4 lines
+Changed paths:
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/posting.php
+
+wrote NP_Posting->int2ext() function: converts posting in the
+ internal format to the external format
+wrote remove_cchars() which removes all ASCII characters < 31
+
+------------------------------------------------------------------------
+r10 | mrfrost | 2002-11-25 19:55:59 +0100 (Mon, 25 Nov 2002) | 3 lines
+Changed paths:
+   M /newsposter/trunk/config.php
+   M /newsposter/trunk/include/misc.php
+   M /newsposter/trunk/include/posting.php
+
+Wrote function clean_cchars($text) to replace all ASCII control characters
+in $text
+
+------------------------------------------------------------------------
+r8 | mrfrost | 2002-11-22 16:22:19 +0100 (Fri, 22 Nov 2002) | 2 lines
+Changed paths:
+   D /newsposter/trunk/doc/RFCs
+
+Deleted all RFCs.
+
+------------------------------------------------------------------------
+r7 | mrfrost | 2002-11-22 16:15:04 +0100 (Fri, 22 Nov 2002) | 3 lines
+Changed paths:
+   A /newsposter/trunk/doc/RFCs
+   A /newsposter/trunk/doc/RFCs/rfc1036.txt
+   A /newsposter/trunk/doc/RFCs/rfc822.txt
+   A /newsposter/trunk/doc/RFCs/rfc977.txt
+
+Included RFC 822, 977, 1036.
+These RFCs describe Mail/News messages format and NNTP connections.
+
+------------------------------------------------------------------------
+r6 | mrfrost | 2002-11-22 15:47:09 +0100 (Fri, 22 Nov 2002) | 2 lines
+Changed paths:
+   A /newsposter
+   A /newsposter/tags
+   A /newsposter/trunk
+   A /newsposter/trunk/COPYING
+   A /newsposter/trunk/README
+   A /newsposter/trunk/TODO
+   A /newsposter/trunk/config.php
+   A /newsposter/trunk/doc
+   A /newsposter/trunk/include
+   A /newsposter/trunk/include/auth.php
+   A /newsposter/trunk/include/com_line.php
+   A /newsposter/trunk/include/constants.php
+   A /newsposter/trunk/include/date.php
+   A /newsposter/trunk/include/misc.php
+   A /newsposter/trunk/include/nntp.php
+   A /newsposter/trunk/include/passwd.php
+   A /newsposter/trunk/include/posting.php
+   A /newsposter/trunk/include/store_fs.php
+   A /newsposter/trunk/include/ubb_code.php
+   A /newsposter/trunk/lang
+   A /newsposter/trunk/lang/english.php
+   A /newsposter/trunk/lang/german.php
+   A /newsposter/trunk/spool
+   A /newsposter/trunk/themes
+   A /newsposter/trunk/themes/default
+   A /newsposter/trunk/themes/default/images
+   A /newsposter/trunk/themes/default/images/misc
+   A /newsposter/trunk/themes/default/images/smile
+   A /newsposter/trunk/themes/default/topics
+   A /newsposter/trunk/tools
+   A /newsposter/trunk/tools/pass_shell.php
+   A /newsposter/trunk/tools/pass_web.php
+
+Initial import of newsposter version 0.5.0.
+
+------------------------------------------------------------------------

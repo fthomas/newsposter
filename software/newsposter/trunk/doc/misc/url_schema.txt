@@ -1,0 +1,25 @@
+
+ Newsposter 0.6 URL Schema
+ =========================
+ 
+ Ab der Version 0.6 soll der Newsposter die Möglichkeit besitzen mehrere
+ Datenbanken anzusprechen und die Postings in Kategorieen einzuteilen. Dafür
+ wird jede Datenbank (XML) separat in einer Datei gespeichert, in der wiederum
+ alle Postings aller Kategorieen dieser Datenbank gespeichert werden. Ich
+ beschreibe in diesem Dokument welche URLs der Newsposter verwenden wird, um
+ eine bestimmte Auswahl an Postings anzuzeigen.
+
+
+ non-crufty                    crufty 
+ ------------------------------------------------------------------------------
+ weblog/2004/09/22             weblog/?np_at=20040922
+ weblog/2004/09                weblog/?np_at=200409
+ weblog/2004                   weblog/?np_at=2004
+ 
+ weblog/frank/2004/09/22       weblog/?np_at=20040922&np_db=frank
+ weblog/frank/2004/09          weblog/?np_at=200409&np_db=frank
+ weblog/frank/2004             weblog/?np_at=2004&np_db=frank
+ 
+                               weblog/?np_at=20040922&np_db=frank&np_lang=de
+                               weblog/?np_at=200409&np_db=frank&np_lang=de
+                               weblog/?np_at=2004&np_db=frank&np_lang=de
