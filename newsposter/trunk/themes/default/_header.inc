@@ -8,7 +8,7 @@
 <head>
     <title>Newsposter Demo</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/news.rss" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/rss10.xml" />
     <style type="text/css">
 	a {
 	    color: #4278c9;
@@ -34,7 +34,7 @@
 	<tr>
 	    <td align="center" colspan="2"><a href="INSTALL">Installation</a></td>
 	    <td align="center"><a href="tools/test_conf.php">Check<br />Settings</a></td>
-	    <td align="center"><a href="spool/news.rss"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
+	    <td align="center"><a href="spool/rss10.xml"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
 	    <td align="center" colspan="2"><a href="http://validator.w3.org/check/referer"><img src="themes/default/images/misc/valid_xhtml.png" alt="Valid XHTML" border="0" /></a></td>
 	</tr>
     </table>

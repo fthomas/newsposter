@@ -10,29 +10,31 @@
  *
  * Following date formats are supported:
  *
- *	 1 =>	24.12.1984 13:43
+ *    1 =>    24.12.1984 13:43
  *
- *       2 =>   24.12.1984
+ *    2 =>    24.12.1984
  *
- *       3 =>	1984/12/24 13:43
+ *    3 =>    1984/12/24 13:43
  *
- *       4 =>	1984/12/24
+ *    4 =>    1984/12/24
  *
- *       5 =>	Dezember 1984
+ *    5 =>    Dezember 1984
  *
- *       6 =>	Dezember 24 1984
+ *    6 =>    Dezember 24 1984
  *
- *       7 =>	Montag, Dezember 24 @ 13:43:00 UTC
+ *    7 =>    Montag, Dezember 24 @ 13:43:00 UTC
  *
- *       8 =>	(RFC 822 formatted date)
+ *    8 =>    (RFC 822 formatted date)
  *
- *       9 =>	11000.1100.11111000000 (binary notation)
+ *    9 =>    11000.1100.11111000000 (binary notation)
  *
- *	10 =>	(seconds since the epoch (01.01.1970))
+ *   10 =>    (seconds since the epoch (01.01.1970))
  *
- *	11 =>	19841224134300
+ *   11 =>    19841224134300
  *
- *	12 =>	mbox-date: Mon Dec 24 13:43:00 1984
+ *   12 =>    mbox-date: Mon Dec 24 13:43:00 1984
+ *
+ *   13 =>    1984-12-24T13:34:00Z
  */
 
 /**
@@ -105,7 +107,11 @@ function stamp2string($time_stamp = -1, $format = 0)
 		case 12:
 			$time_string = date('D M d H:i:s O Y', $time_stamp);
 			return $time_string;
-			
+		
+                case 13:
+                        $time_string = date('Y-m-d\TH:i:s\Z', $time_stamp);
+                        return $time_string;
+                
 		default:
 			my_trigger_error("Invalid date format ($format)");
 			return "01.01.1970";

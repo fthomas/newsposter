@@ -27,13 +27,13 @@ $cfg['PageURL']     = 'http://localhost/';
 $cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
-//  1)  24.12.1984 13:43	 2)  24.12.1984
-//  3)  1984/12/24 13:43	 4)  1984/12/24
-//  5)  Dezember 1984		 6)  Dezember 24 1984
+//  1)  24.12.1984 13:43             2)  24.12.1984
+//  3)  1984/12/24 13:43             4)  1984/12/24
+//  5)  Dezember 1984                6)  Dezember 24 1984
 //  7)  Montag, Dezember 24 @ 13:43:00 UTC
-//  8)  (RFC 822 formatted)	 9)  11000.1100.11111000000
-// 10)  (seconds since epoch)	11)  19841224134300
-// 12)  Mon Dec 24 13:43:00 1984
+//  8)  (RFC 822 formatted)          9)  11000.1100.11111000000
+// 10)  (seconds since epoch)       11)  19841224134300
+// 12)  Mon Dec 24 13:43:00 1984    13)  1984-12-24T13:34:00Z
 // (int)
 $cfg['DateFormat']  = 1;
 
@@ -187,7 +187,7 @@ $cfg['BindDN']       = 'cn=admin,o=avalon';
 
 // LDAP bind password.
 // (string)
-$cfg['BindPassword'] = 'geheim';
+$cfg['BindPassword'] = 'insecure';
 
 // The username is compared with this attribute.
 // (string)

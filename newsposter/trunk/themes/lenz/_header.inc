@@ -9,7 +9,7 @@
     <title>Newsposter Weblog (http://newsposter.webhop.org/)</title>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" title="Default" href="themes/lenz/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/news.rss" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="spool/rss10.xml" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	    <td align="center"><a href="index.php?np_act=output_news"><b>Show latest</b></a></td>
 	    <td align="center"><a href="index.php?np_act=search"><b>Search</b></a></td>
 	    <td align="center"><a href="index.php?np_act=oview"><b>Overview</b></a></td>
-	    <td align="center"><a href="spool/news.rss"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
+	    <td align="center"><a href="spool/rss10.xml"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
 	</tr>
     </table>
     <br />
