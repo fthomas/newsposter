@@ -1,6 +1,9 @@
 - LDAP authentication needs admin rights
   -> every LDAP user should use it
 
+- np_act=auth_err sends email on every hit
+  -> write blacklist class like in Newsposter 0.4.x
+
 - tools/pass_shell.php needs /usr/bin/php. Some distributions
   might call the php binary "php4".
   -> make a note in the documentation

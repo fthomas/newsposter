@@ -37,13 +37,16 @@ switch($action)
 	$inc = 'chact_dispatch.php';
 	break;
     
-    case 'auth_err':
-	$inc = 'auth_err.php';
+    case 'error':
+	$inc = 'error.php';
+	break;
+
+    case 'posting_form':
+	$inc = 'posting_form.php';
 	break;
 
     default:
 	$inc = 'login.php';
-	break;
 }
 
 // now include selected file

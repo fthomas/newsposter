@@ -91,19 +91,19 @@ $cfg['permission'][1]   = ADMIN & ~P_WRITE;
  */
 
 // (bool)
-$cfg['UseLDAPAuth'] = TRUE;
+$cfg['UseLDAPAuth']  = TRUE;
 
 // (string)
-$cfg['LDAPServer']  = 'localhost';
+$cfg['LDAPServer']   = 'localhost';
 
 // (int)
-$cfg['LDAPPort']    = 389;
+$cfg['LDAPPort']     = 389;
 
 // (string)
-$cfg['SearchBase']  = 'ou=address_book,o=avalon';
+$cfg['SearchBase']   = 'ou=address_book,o=avalon';
 
 // (string)
-$cfg['BindDN']      = 'cn=admin,o=avalon';
+$cfg['BindDN']       = 'cn=admin,o=avalon';
 
 // (string)
 $cfg['BindPassword'] = 'anja';
@@ -194,7 +194,7 @@ $cfg['Complaints']   = 'postmaster@newsposter.org';
  */
  
 // (bool)
-$cfg['SendMailOnError']   = TRUE;
+$cfg['SendMailOnError']   = FALSE;
 
 // (bool)
 $cfg['SendMailOnSuccess'] = TRUE;

@@ -42,10 +42,14 @@ class NP_Mail {
 	$addr      = $this->_get_host_addr();
 	$sess_vars = '';
 	
+	// use output buffering to catch print_r output
+	ob_start();
+	
 	if (isset($_SESSION['NP']))
-	    $sess_vars .= var_export($_SESSION['NP'], TRUE);
-	else if (isset($_POST))
-	    $sess_vars .= "\n" . var_export($_POST, TRUE);
+	    print_r($_SESSION['NP']);
+	
+	$sess_vars = ob_get_contents();
+	ob_end_clean();
     
 	// compose body of error mail
 	$body = $lang['mail_intro_error'] . ":\n"

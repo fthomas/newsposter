@@ -80,11 +80,16 @@ function remove_cchars($text)
  * @param	string	$filename
  * @return	string
  */
-function c_theme_path($filename)
+function create_theme_path($filename)
 {
     global $cfg;
-    
     return 'themes/' . $cfg['Theme'] . "/$filename";
+}
+
+/// create _GET paramter for session_id
+function create_sess_param()
+{
+    return 'PHPSESSID=' . session_id();
 }
 
 /// only for debug purposes

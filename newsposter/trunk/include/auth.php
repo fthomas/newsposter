@@ -32,7 +32,7 @@ class NP_Auth {
     {
 	global $cfg;
 	
-        $this->error_page = $cfg['IndexURL'] . "?np_act=auth_err";
+        $this->error_page = $cfg['IndexURL'] . "?np_act=error";
     }
 
     /**
@@ -185,7 +185,7 @@ class NP_Auth {
 
         // test user's password
         $pass = &new NP_Passwords;
-        if ($pass->cmpHashes($password, $entries[0]['userpassword'][0]))
+        if ($pass->cmp_hashes($password, $entries[0]['userpassword'][0]))
         {
             $this->username = $username;
             $this->password = $password;
@@ -222,7 +222,7 @@ class NP_Auth {
         if (isset($_SESSION['NP']['auth']) && $_SESSION['NP']['auth'] == TRUE)
             return TRUE;
         else {
-            header("Location: $this->error_page");
+            header("Location: $this->error_page&auth");
             exit();
         }
     }
@@ -256,7 +256,7 @@ class NP_Auth {
      * @param	int	$action
      * @return	bool
      */
-    function perm_check($action)
+    function check_perm($action)
     {
 	$lookup = $this->perm_lookup();
     
@@ -264,7 +264,8 @@ class NP_Auth {
 	    return TRUE;
 	else
 	{
-	    header("Location: $this->error_page");
+	    $sess_id = create_sess_param();
+	    header("Location: $this->error_page&perm&$sess_id");
 	    exit();
 	}
     }

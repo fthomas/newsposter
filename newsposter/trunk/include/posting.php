@@ -82,17 +82,17 @@ class NP_Posting {
 	if (!empty($_SESSION['NP']['name'])) 
 	    $int_post['name'] = $_SESSION['NP']['name'];
 	else
-	    $int_post['name'] = 'unknown';
+	    $int_post['name'] = $lang['misc_unknown'];
 	
 	if (!empty($_SESSION['NP']['mail']))
 	    $int_post['mail'] = $_SESSION['NP']['mail'];
 	else
-	    $int_post['mail'] = 'unknown';
+	    $int_post['mail'] = $lang['misc_unknown'];
     
 	if (!empty($_SESSION['NP']['subject']))
 	    $int_post['subject'] = $_SESSION['NP']['subject'];
 	else
-	    $int_post['subject'] = 'unknown';
+	    $int_post['subject'] = $lang['misc_unknown'];
 	
 	$int_post['user']     = $_SESSION['NP']['username'];
 	$int_post['msgid']    = $this->_create_msgid();
