@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <br /><br />
 <form action="index.php?np_act=chact" method="post">
-<table border="1" width="50%" align="center" cellspacing="0" cellpadding="5">
+<table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
     <tr>
 	<td colspan="2">
 	    <b><?php echo 'Newsposter ' . VERSION; ?></b>

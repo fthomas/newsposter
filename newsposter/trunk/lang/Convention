@@ -8,4 +8,4 @@ convention and notes for translation contributors:
  - incomplete/deprecated files will be begin with an underscored
    (e.g. _french.php)
  - %s in $lang elements is a conversion specification for sprintf
-   functions
+   functions (http://www.php.net/sprintf)

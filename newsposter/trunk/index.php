@@ -32,12 +32,21 @@ switch($action)
     case 'chact':
 	$inc = 'chact.php';
 	break;
+
+    case 'chact_dispatch':
+	$inc = 'chact_dispatch.php';
+	break;
     
     case 'auth_err':
 	$inc = 'auth_err.php';
 	break;
+
+    default:
+	$inc = 'login.php';
+	break;
 }
 
+// now include selected file
 require_once($np_dir . '/glue/' . $inc);
 
 ?>

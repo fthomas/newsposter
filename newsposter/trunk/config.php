@@ -79,7 +79,7 @@ $cfg['UseBuiltInAuth']  = TRUE;
 
 $cfg['username'][0]     = 'newsposter';
 $cfg['password'][0]     = 'insecure';
-$cfg['permission'][0]   = SLAVE;
+$cfg['permission'][0]   = SLAVE + P_EDIT_NEWS;
 
 $cfg['username'][1]     = 'admin';
 $cfg['password'][1]     = '{SSHA}i2J32p9b+99AVO9MkAoQWz6eBDc0ZTBjMGNjNQ==';

@@ -10,7 +10,7 @@ $hashed_pass = '';
 if (!empty($_POST['pass']))
 {
     $pass = &new NP_Passwords();
-    $hash_type = $pass->get_mode($_POST['hash']);
+    $hash_type   = $pass->get_mode($_POST['hash']);
     $hashed_pass = $pass->create_hash($_POST['pass'], $hash_type);
 }
 

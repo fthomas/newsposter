@@ -39,12 +39,13 @@ class NP_Mail {
     {
 	global $cfg, $lang;
 	
-	$addr = $this->_get_host_addr();
+	$addr      = $this->_get_host_addr();
+	$sess_vars = '';
 	
 	if (isset($_SESSION['NP']))
-	    $sess_vars = var_export($_SESSION['NP'], TRUE);
-	else
-	    $sess_vars = '';
+	    $sess_vars .= var_export($_SESSION['NP'], TRUE);
+	else if (isset($_POST))
+	    $sess_vars .= "\n" . var_export($_POST, TRUE);
     
 	// compose body of error mail
 	$body = $lang['mail_intro_error'] . ":\n"

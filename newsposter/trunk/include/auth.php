@@ -95,7 +95,17 @@ class NP_Auth {
      */
     function check_post()
     {
-	if (!isset($_POST['login_name']) || !isset($_POST['login_pass']))
+	global $cfg;	
+
+	// If we disable the text inputs, the post vars
+	// are not set.
+	if ($cfg['UseBuiltInAuth'] === FALSE)
+	{
+	    $_POST['login_name'] = '';
+	    $_POST['login_pass'] = '';
+	}
+
+	else if (!isset($_POST['login_name']) || !isset($_POST['login_pass']))
 	    return $this->check_auth();
     
         return $this->auth_user($_POST['login_name'], $_POST['login_pass']);

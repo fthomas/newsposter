@@ -13,6 +13,15 @@ $lang = array (
     'login_submit' => 'Login',
     'login_reset'  => 'Reset',
     'login_anonym' => 'anonym',
+    
+    /**
+     * chact.php
+     */
+    'radio_text'   => 'Wähle eine der folgenden Aktionen...',
+    'radio_write'  => 'Posting <b>schreiben</b>',
+    'radio_edit'   => 'Posting <b>editieren</b>',
+    'radio_delete' => 'Postings <b>löschen</b>',
+    'radio_submit' => 'weiter',
 
     /**
      * misc
