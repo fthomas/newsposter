@@ -10,15 +10,15 @@ misc:
 dist:
 	make misc
 	make doxygen
-	svn export . $(DIRNAME)
-	cp ChangeLog $(DIRNAME)
-	cp -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
-	rm $(DIRNAME)/Makefile
-	rm $(DIRNAME)/doc/doxygen/Doxyfile
-	tar -zcf $(DIRNAME).tar.gz  $(DIRNAME)
-	tar -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
-	zip -9 -r $(DIRNAME).zip    $(DIRNAME)
-	rm -r $(DIRNAME)
+	svn  export . $(DIRNAME)
+	cp   ChangeLog $(DIRNAME)
+	cp   -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
+	rm   $(DIRNAME)/Makefile
+	rm   $(DIRNAME)/doc/doxygen/Doxyfile
+	tar  -zcf $(DIRNAME).tar.gz  $(DIRNAME)
+	tar  -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
+	zip  -9 -r $(DIRNAME).zip    $(DIRNAME)
+	rm   -r $(DIRNAME)
 
 clean:
 	-rm error.log
@@ -30,5 +30,5 @@ clean:
 	-rm -r doc/doxygen/html
 
 doxygen:
-	-rm -r doc/doxygen/html
+	-rm     -r doc/doxygen/html
 	doxygen doc/doxygen/Doxyfile

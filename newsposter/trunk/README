@@ -5,25 +5,22 @@
 >> What is it?
 
     Newsposter is a versatile weblog written in the excellent scripting
-    language PHP.
+    language PHP. The huge amount of options and functions and it's
+    flexibility make Newsposter to a very useful tool, applicable in
+    various environments.
     
-    Newsposter ist ein vielseitiges Weblog, geschrieben in der
-    Skriptsprache PHP. Die große Anzahl an Funktionen und Optionen
-    machen Newsposter zu einem sehr nützlichen Werkzeug, welches
-    in vielen verschiedenen Gebieten zum Einsatz kommen kann.
+    To it's features count: comments, themes and topics, RDF/RSS 1.0,
+    one-way NNTP gateway, multi-user, multilingual, search function,
+    hashed passwords, login per LDAP directory, different user rights,
+    mail protocols, marking of new and old postings, UBB code, data
+    storage in "mbox" format, UTF-8 support, etc.  
     
-    Zu Newsposters Fähigkeiten zählen: Kommentare, Themes und Topics,
-    RDF/RSS 1.0, one-way NNTP Gateway, Mehrbenutzer fähig, mehrsprachig,
-    Suchfunktion, verschlüsselte Passwörter, Login über LDAP Verzeichnis,
-    verschiedene Rechte für Benutzer, Protokolle per Mail, Markierung
-    besonders alter und neuer Einträge, UBB Code, Speicherung der Daten
-    im "mbox" Format, UTF-8 Unterstützung, etc.
-
 
 >> Where to get it?
 
     The latest version of Newsposter is available at
-    http://newsposter.webhop.org/.
+    http://newsposter.webhop.org/ or
+    http://www.thomas-alfeld.de/frank/nw.org/.
     
     
 >> What now?
@@ -34,7 +31,31 @@
     
     If there are any questions or suggestions or if you have found
     bugs, send mail to frank@thomas-alfeld.de. 
+
+
+>> Credits!
     
+    Here is a list of people that have contributed to the Newsposter
+    project. It is sorted by name.
+
+    
+    chicco
+	- Drawed all smile emoticons and is maintainer of the chn
+	  theme. Wrote english translation for Newsposter 0.5.x.
+	 
+    PiXeLpApst
+	- Co-programmer of Newsposter version 0.4.0. 
+	
+    Martin Vasilev
+	- Wrote bulgarian translation for Newsposter 0.4.x.
+
+
+    ...and others, who contributed suggestions for improvement or new
+    features or reported bugs.
+    
+	Thanks,
+	    Frank
+	    
     
     ----------------------------------------------------------------
     

@@ -97,8 +97,18 @@ $lang = array (
      */
     'comment_head'   => 'News kommentieren',
     'comment_send'   => 'Kommentieren',
-    'comment_answer' => 'antworten'
-        
+    'comment_answer' => 'antworten',
+    
+    /**
+     * search
+     */
+    'search_head'    => 'Suche',
+    'search_text'    => 'Suche nach',
+    'search_in'      => 'in',
+    'search_all'     => 'News und Kommentaren',
+    'search_comment' => 'Kommentaren',
+    'search_news'    => 'News'
+    
 );
 
 /* vim:set encoding=utf-8: */

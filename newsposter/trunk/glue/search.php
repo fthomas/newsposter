@@ -7,6 +7,7 @@
 require_once('include/misc.php');
 
 print_header();
+require_once(create_theme_path('search.inc'));
 print_footer();
 
 ?>

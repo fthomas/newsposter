@@ -28,10 +28,7 @@ $_SESSION['NP']['rdf_inst']    = &new NP_RDF;
 
 // if no np_action is specified we want to show
 // postings
-if (empty($_GET['np_act']))
-    $action = 'output_news';
-else
-    $action = $_GET['np_act'];
+$action = (empty($_GET['np_act'])) ? ('output_news') : ($_GET['np_act']);
 
 // look up action var
 switch($action)
