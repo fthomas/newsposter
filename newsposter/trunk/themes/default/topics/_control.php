@@ -5,10 +5,10 @@
 
 // The first topic is the default.
 
-$topic[0]['name']     = 'default';
-$topic[0]['filename'] = 'default.inc';
+$topics[0]['name']     = 'default';
+$topics[0]['filename'] = 'default.inc';
 
-// $topic[1]['name']     = 'Newsposter';
-// $topic[1]['filename'] = 'np.inc';
+// $topics[1]['name']     = 'Newsposter';
+// $topics[1]['filename'] = 'np.inc';
 
 ?>

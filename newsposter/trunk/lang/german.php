@@ -6,7 +6,7 @@
 $lang = array (
 
     /**
-     * login.php
+     * login
      */
     'login_head'   => 'Login',
     'login_user'   => 'Username',
@@ -16,7 +16,7 @@ $lang = array (
     'login_anonym' => 'anonym',
     
     /**
-     * chact.php
+     * chact
      */
     'radio_text'   => 'Wähle eine der folgenden Aktionen...',
     'radio_write'  => 'Posting <b>schreiben</b>',
@@ -25,7 +25,7 @@ $lang = array (
     'radio_submit' => 'weiter',
 
     /**
-     * error.php
+     * error
      */
     'error'           => 'F E H L E R',
     'error_perm_text' => 'Du hast zu wenig Rechte!',
@@ -90,8 +90,14 @@ $lang = array (
     'emot_shocked'   => 'geschockt',
     'emot_sleepy'    => 'schläfrig',
     'emot_suprised'  => 'überrascht',
-    'emot_uplooking' => 'betend'
+    'emot_uplooking' => 'betend',
 
+    /**
+     * expanded
+     */
+    'comment_head' => 'News kommentieren',
+    'comment_send' => 'Kommentieren'
+        
 );
 
 /* vim:set encoding=utf-8: */

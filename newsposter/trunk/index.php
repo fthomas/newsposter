@@ -29,7 +29,7 @@ $_SESSION['NP']['rdf_inst']    = &new NP_RDF;
 // if no np_action is specified we want to show
 // postings
 if (empty($_GET['np_act']))
-    $action = 'login';
+    $action = 'output_news';
 else
     $action = $_GET['np_act'];
 
@@ -65,12 +65,24 @@ switch($action)
 	$inc = 'write.php';
 	break;
     
+    case 'output_news':
+	$inc = 'output_news.php';
+	break;
+	
     case 'output_all':
 	$inc = 'output_all.php';
 	break;
 
+    case 'expanded':
+	$inc = 'expanded.php';
+	break;
+    
+    case 'oview':
+	$inc = 'oview.php';
+	break;
+	
     default:
-	$inc = 'login.php';
+	$inc = 'output_news.php';
 }
 
 // now include selected file

@@ -12,3 +12,6 @@
   the passwords scripts end with "server not found" (PHP then
   segfaults).
   -> document this behaviour
+
+- update_data.php incomplete
+  -> guess what!

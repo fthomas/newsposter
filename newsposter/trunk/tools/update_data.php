@@ -10,9 +10,9 @@ $separator = '<-separator->';
 chdir('..');
 
 // include all required files
-require_once('include/posting.php');
-require_once('include/store_fs.php');
 require_once('config.php');
+require_once('include/posting.php');
+require_once('include/' . $cfg['StoreTypeFile']);
 
 // change back to tools directory
 chdir('tools');
@@ -36,7 +36,7 @@ if (!file_exists('data.txt'))
 // read entire file
 $data_lines = file('data.txt');
 
-// pop last item of array
+// pop last item of array. it is empty
 array_pop($data_lines);
 
 foreach($data_lines as $key => $line)

@@ -297,9 +297,11 @@ class NP_Posting {
 	$ext .= "\n";
 
 	// get internal encoding and encode $body to utf-8
-	$int_enc = iconv_get_encoding('internal_encoding');	
-	$body    = iconv($int_enc, 'UTF-8', $int_post['body']);
-	$ext    .= $body;
+	//$int_enc = iconv_get_encoding('internal_encoding');	
+	//$body    = iconv($int_enc, 'UTF-8', $int_post['body']);
+	
+	$body      = $int_post['body'];
+	$ext      .= $body;
 	
 	return $ext;
     }
@@ -334,7 +336,6 @@ class NP_Posting {
      * @access	public
      * @param	mixed	$message
      * @return	string	An URL pointing to the news article or comment. 
-     * @todo	Fix link
      */
     function get_sp_url($message)
     {
@@ -348,10 +349,11 @@ class NP_Posting {
 	    $parents = explode(' ', $message['refs']);
 	    $parent  = urlencode($parents[0]);
 	    
-	    return sprintf("%s?=%s&=%s", $cfg['IndexURL'], $parent, $msgid);
+	    return sprintf("%s?np_act=expanded&msg_id=%s#%s", $cfg['IndexURL'],
+			    $parent, $msgid);
 	}
 	else
-	    return sprintf("%s?=%s", $cfg['IndexURL'], $msgid);
+	    return sprintf("%s?np_act=output_all#%s", $cfg['IndexURL'], $msgid);
     }
     
     /**

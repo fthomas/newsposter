@@ -1,6 +1,5 @@
 
 <!-- $Id$ -->
-<br /><br />
 <form action="index.php?np_act=chact_dispatch" method="post">
 <table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
     <tr>

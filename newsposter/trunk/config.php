@@ -41,7 +41,7 @@ $cfg['CutOffAge']   = 0;
 $cfg['MarkFresh']   = 60 * 60 * 12;
 
 // (int)
-$cfg['MarkOld']     = 60 * 60 * 24;
+$cfg['MarkOld']     = 60 * 60 * 24 * 2;
 
 // (bool)
 $cfg['ParseUBB']         = TRUE;
@@ -50,7 +50,7 @@ $cfg['ParseUBB']         = TRUE;
 $cfg['TimeVariance']     = 0;
 
 // (bool)
-$cfg['StripSlashes']     = FALSE;
+$cfg['StripSlashes']     = TRUE;
 
 // (bool)
 $cfg['AllowChangeNames'] = TRUE;
@@ -135,10 +135,10 @@ $cfg['AllowedTags'] = '<p><a><i><b>';
 $cfg['Theme']           = 'default';
 
 // (string)
-$cfg['IncludeHeader']   = '';
+$cfg['IncludeHeader']   = 'themes/default/_header.inc';
 
 // (string)
-$cfg['IncludeFooter']   = '';
+$cfg['IncludeFooter']   = 'themes/default/_footer.inc';
 
 
 /**
@@ -155,7 +155,7 @@ $cfg['RDFIncludeComments'] = TRUE;
 $cfg['RDFDescription']     = 'Blue Dwarf - Frank Thomas personal homepage';
 
 // (int)
-$cfg['RDFMaxItems']        = 20;
+$cfg['RDFMaxItems']        = 10;
 
 
 /**
@@ -163,7 +163,7 @@ $cfg['RDFMaxItems']        = 20;
  */
 
 // (bool)
-$cfg['PostNNTP']     = TRUE;
+$cfg['PostNNTP']     = FALSE;
 
 // (string)
 $cfg['NNTPServer']   = 'localhost';
@@ -195,16 +195,16 @@ $cfg['Complaints']   = 'frank@thomas-alfeld.de';
 $cfg['SendMailOnError']   = FALSE;
 
 // (bool)
-$cfg['SendMailOnSuccess'] = TRUE;
+$cfg['SendMailOnSuccess'] = FALSE;
 
 // (string CSV)
 $cfg['EmailTo']        = 'mrfrost@localhost,frank@thomas-alfeld.de';
 
 // (string)
-$cfg['EmailFrom']      = 'newsposter@localhost';
+$cfg['EmailFrom']      = 'mrfrost@localhost';
 
 // (bool)
-$cfg['SendNewsletter'] = TRUE;
+$cfg['SendNewsletter'] = FALSE;
 
 // (string CSV)
 $cfg['NewsletterTo']   = 'mrfrost@localhost,frank@thomas-alfeld.de';
