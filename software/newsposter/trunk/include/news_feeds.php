@@ -235,6 +235,8 @@ class NP_NewsFeeds {
                  . "    <link>{$cfg['PageURL']}</link>\n"
                  . "    <description>{$cfg['Description']}</description>\n"
                  . "    <dc:date>{$now_iso8601}</dc:date>\n"
+                 . "    <dcterms:issued>{$now_iso8601}</dcterms:issued>\n"
+                 . "    <dcterms:modified>{$now_iso8601}</dcterms:modified>\n"
                  . "\n"
                  . "    <!-- name=\"generator\" content=\"Newsposter/". VERSION ."\" -->\n"
                  . "    <admin:generatorAgent rdf:resource=\"http://newsposter.webhop.org/\" />\n"
