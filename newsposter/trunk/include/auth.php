@@ -81,7 +81,7 @@ class NP_Auth {
      * @access	public
      * @return	bool
      */
-    function check_POST()
+    function check_post()
     {
         return $this->auth_user($_POST['login_name'], $_POST['login_pass']);
     }
@@ -181,9 +181,9 @@ class NP_Auth {
     {
         session_start();
 
-        $_SESSION['auth']     = TRUE;
-        $_SESSION['username'] = $this->username;
-        $_SESSION['perm']     = $this->perm;
+        $_SESSION['NP']['auth']     = TRUE;
+        $_SESSION['NP']['username'] = $this->username;
+        $_SESSION['NP']['perm']     = $this->perm;
     }
     
     /**
@@ -194,7 +194,7 @@ class NP_Auth {
     {
         session_start();
         
-        if (isset($_SESSION['auth']) && $_SESSION['auth'] == TRUE)
+        if (isset($_SESSION['NP']['auth']) && $_SESSION['NP']['auth'] == TRUE)
             return TRUE;
         else {
             header("Location: $this->error_page");
@@ -217,7 +217,7 @@ class NP_Auth {
 	// value for each permission bit
 	foreach($perms_array as $perm_bit)
 	{
-	    if (($_SESSION['perm'] & $perm_bit) != 0)
+	    if (($_SESSION['NP']['perm'] & $perm_bit) != 0)
 		$result[$perm_bit] = TRUE;
 	    else
 		$result[$perm_bit] = FALSE;

@@ -15,6 +15,7 @@ require_once($cfg['StoreTypeFile']);
  * It also transforms the internal to the external posting
  * format and the other way round.
  *
+ * <pre>
  * The internal posting format (associative array):
  *
  *	array (
@@ -32,7 +33,7 @@ require_once($cfg['StoreTypeFile']);
  *		'emoticon'=> 'happy',
  *		'body'    => 'hello.<br /> this is the content of the posting'
  *	);
- *
+ * 
  * The external posting format (text only):  
  *
  *	From: "Frank Thomas" <frank@thomas-alfeld.de>
@@ -55,6 +56,7 @@ require_once($cfg['StoreTypeFile']);
  *	X-NP-Emoticon: happy
  *	
  *	hello.<br /> this is the content of the posting
+ * </pre>
  * @brief	Internal/external format handling of postings
  */
 class NP_Posting {
@@ -72,34 +74,34 @@ class NP_Posting {
     
 	// for anonymous posting set name/mail/subject to
 	// unknown
-	$_SESSION['name']    = trim($_SESSION['name']);
-	$_SESSION['mail']    = trim($_SESSION['mail']);
-	$_SESSION['subject'] = trim($_SESSION['subject']);
+	$_SESSION['NP']['name']    = trim($_SESSION['NP']['name']);
+	$_SESSION['NP']['mail']    = trim($_SESSION['NP']['mail']);
+	$_SESSION['NP']['subject'] = trim($_SESSION['NP']['subject']);
 	
-	if (!empty($_SESSION['name'])) 
-	    $int_post['name'] = $_SESSION['name'];
+	if (!empty($_SESSION['NP']['name'])) 
+	    $int_post['name'] = $_SESSION['NP']['name'];
 	else
 	    $int_post['name'] = 'unknown';
 	
-	if (!empty($_SESSION['mail']))
-	    $int_post['mail'] = $_SESSION['mail'];
+	if (!empty($_SESSION['NP']['mail']))
+	    $int_post['mail'] = $_SESSION['NP']['mail'];
 	else
 	    $int_post['mail'] = 'unknown';
     
-	if (!empty($_SESSION['subject']))
-	    $int_post['subject'] = $_SESSION['subject'];
+	if (!empty($_SESSION['NP']['subject']))
+	    $int_post['subject'] = $_SESSION['NP']['subject'];
 	else
 	    $int_post['subject'] = 'unknown';
 	
-	$int_post['user']     = $_SESSION['username'];
+	$int_post['user']     = $_SESSION['NP']['username'];
 	$int_post['msgid']    = $this->_create_msgid();
 	$int_post['ngs']      = $cfg['Newsgroup'];
 	$int_post['date']     = my_date();
 	$int_post['stamp']    = my_date(10);
 	$int_post['c_to']     = $cfg['Complaints'];
-	$int_post['topic']    = $_SESSION['topic'];
-	$int_post['emoticon'] = $_SESSION['emoticon'];
-	$int_post['body']     = $_SESSION['body'];
+	$int_post['topic']    = $_SESSION['NP']['topic'];
+	$int_post['emoticon'] = $_SESSION['NP']['emoticon'];
+	$int_post['body']     = $_SESSION['NP']['body'];
 	
 	// determine weather $int_post is a posting or
 	// a comment and has references
@@ -151,7 +153,7 @@ class NP_Posting {
 	$ext_post  = "Control: cancel $msgid\n" . $ext_post;
 	
 	// remove all X-NP-* header; the position of
-	// these should be fixed 
+	// these should be fixed after removing all references
 	$ext_post  = explode("\n", $ext_post);
 	$ext_post  = implode("\n", array_slice($ext_post, 0, 10));	
 	$ext_post .= "\n\n" . $body;
@@ -275,7 +277,7 @@ class NP_Posting {
 	$lines = substr_count($int_post['body'], "\n") + 1;
 	$ext  .= "Lines: $lines\n";
 	
-	$ext .= sprintf('User-Agent: Newsposter/%s ("%s")%s', VERSION, CODENAME, "\n");
+	$ext .= USER_AGENT . "\n";
 	$ext .= "Content-Type: text/plain; charset=utf-8\n";
 	$ext .= "Content-Transfer-Encoding: 8bit\n";
 	$ext .= "X-Complaints-To: {$int_post['c_to']}\n";

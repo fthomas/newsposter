@@ -19,7 +19,7 @@ class NP_Passwords {
      * @access	private
      * @return	string	The return value is an eight byte long random string.
      */
-    function _genSalt()
+    function _gen_salt()
     {
         mt_srand((double)microtime()*1000000);
         $salt = substr(md5(mt_rand()), 4, 8);
@@ -32,7 +32,7 @@ class NP_Passwords {
      * @param	string	$str2
      * @return	bool
      */
-    function _cmpStrings($str1, $str2)
+    function _cmp_strings($str1, $str2)
     {
         return (strcmp($str1, $str2) == 0) ? TRUE : FALSE;
     }
@@ -43,7 +43,7 @@ class NP_Passwords {
      * @param	int	$mode
      * @return	string
      */
-    function createHash($password, $mode = SSHA)
+    function create_hash($password, $mode = SSHA)
     {
         if ($mode != CRYPT && !function_exists('mhash'))
             $mode = PLAIN;
@@ -61,7 +61,7 @@ class NP_Passwords {
             // You need an explanation for the construction of SSHA hashes?
             // http://developer.netscape.com/docs/technote/ldap/pass_sha.html
             case SSHA:
-                $salt = $this->_genSalt();
+                $salt = $this->_gen_salt();
                 $hash = mhash(MHASH_SHA1, $password . $salt);
 
                 $hashed_password = '{SSHA}' . base64_encode($hash . $salt);
@@ -72,7 +72,7 @@ class NP_Passwords {
                 return $hashed_password;
 
             case SMD5:
-                $salt = $this->_genSalt();
+                $salt = $this->_gen_salt();
                 $hash = mhash(MHASH_MD5, $password . $salt);
 
                 $hashed_password = '{SMD5}' . base64_encode($hash . $salt);
@@ -90,7 +90,7 @@ class NP_Passwords {
      * @param	int	$mode
      * @return	bool
      */
-    function cmpKnownHashes($password, $hash, $mode)
+    function cmp_known_hashes($password, $hash, $mode)
     {
         if ($mode != CRYPT && !function_exists('mhash'))
             $mode = PLAIN;
@@ -104,13 +104,13 @@ class NP_Passwords {
                 $salt = substr($hash, 0, CRYPT_SALT_LENGTH);
                 $new_hash = crypt($password, $salt);
 
-                return $this->_cmpStrings($hash, $new_hash);
+                return $this->_cmp_strings($hash, $new_hash);
 
             case SHA:
                 $hash = base64_decode(substr($hash, 5));
                 $new_hash = mhash(MHASH_SHA1, $password);
 
-                return $this->_cmpStrings($hash, $new_hash);
+                return $this->_cmp_strings($hash, $new_hash);
 
             case SSHA:
                 $hash = base64_decode(substr($hash, 6));
@@ -119,13 +119,13 @@ class NP_Passwords {
                 $salt = substr($hash, 20);
 
                 $new_hash = mhash(MHASH_SHA1, $password . $salt);
-                return $this->_cmpStrings($orig_hash, $new_hash);
+                return $this->_cmp_strings($orig_hash, $new_hash);
 
             case MD5:
                 $hash = base64_decode(substr($hash, 5));
                 $new_hash = mhash(MHASH_MD5, $password);
 
-                return $this->_cmpStrings($hash, $new_hash);
+                return $this->_cmp_strings($hash, $new_hash);
 
             case SMD5:
                 $hash = base64_decode(substr($hash, 6));
@@ -134,10 +134,10 @@ class NP_Passwords {
                 $salt = substr($hash, 16);
 
                 $new_hash = mhash(MHASH_MD5, $password . $salt);
-                return _cmpStrings($orig_hash, $new_hash);
+                return _cmp_strings($orig_hash, $new_hash);
 
              case PLAIN:
-                return $this->_cmpStrings($password, $hash);
+                return $this->_cmp_strings($password, $hash);
 
             default:
                 return FALSE;
@@ -150,7 +150,7 @@ class NP_Passwords {
      * @param	string	$hash
      * @return	bool
      */
-    function cmpHashes($password, $hash)
+    function cmp_hashes($password, $hash)
     {
         $three = strtoupper(substr($hash, 0, 5));
         $four  = strtoupper(substr($hash, 0, 6));
@@ -169,7 +169,7 @@ class NP_Passwords {
         else
             $mode = PLAIN;
             
-        return $this->cmpKnownHashes($password, $hash, $mode);
+        return $this->cmp_known_hashes($password, $hash, $mode);
     }
     
     /**
@@ -177,7 +177,7 @@ class NP_Passwords {
      * @param	string	$string_mode
      * @return	int
      */
-    function getMode($string_mode)
+    function get_mode($string_mode)
     {
         switch(strtoupper($string_mode))
         {

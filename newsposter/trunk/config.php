@@ -14,13 +14,13 @@ require_once('include/constants.php');
  */
 
 // (string)
-$cfg['PageTitle'] = 'My personal homepage!';
+$cfg['PageTitle']   = 'My personal homepage!';
 
 // (string)
 $cfg['Language']    = 'german';
 
 // (string)
-$cfg['Locale']  = 'de_DE';
+$cfg['Locale']      = 'de_DE';
 
 // (int)
 $cfg['DateFormat']  = 1;
@@ -35,25 +35,13 @@ $cfg['CutOffAge']   = 0;
 $cfg['MarkFresh']   = 60 * 60 * 12;
 
 // (int)
-$cfg['MarkOld'] = 60 * 60 * 24 * 14;
+$cfg['MarkOld']     = 60 * 60 * 24 * 14;
 
 // (bool)
-$cfg['PostAnonymous']   = FALSE;
+$cfg['PostAnonymous']    = FALSE;
 
 // (bool)
 $cfg['ParseUBB']    = TRUE;
-
-// (bool)
-$cfg['SendMailOnError'] = TRUE;
-
-// (bool)
-$cfg['SendMailOnSuccess']   = TRUE;
-
-// (string CSV)
-$cfg['EmailTo'] = 'mrfrost@localhost,frank@thomas-alfeld.de';
-
-// (string)
-$cfg['EmailFrom']   = 'newsposter@localhost';
 
 // (int)
 $cfg['TimeVariance']     = 0;
@@ -91,7 +79,7 @@ $cfg['permission'][1]   = ADMIN & ~P_WRITE;
 
 
 /**
- * Authentication - LDAP
+ * Authentication (LDAP)
  */
 
 // (bool)
@@ -107,19 +95,19 @@ $cfg['LDAPPort']    = 389;
 $cfg['SearchBase']  = 'ou=address_book,o=avalon';
 
 // (string)
-$cfg['BindDN']  = 'cn=admin,o=avalon';
+$cfg['BindDN']      = 'cn=admin,o=avalon';
 
 // (string)
-$cfg['BindPassword']    = 'anja';
+$cfg['BindPassword'] = 'anja';
 
 // (string)
-$cfg['UsernameAttr']    = 'cn';
+$cfg['UsernameAttr'] = 'cn';
 
 // (string)
-$cfg['PermAttr']    = 'note';
+$cfg['PermAttr']     = 'note';
 
 // (int)
-$cfg['DefaultPerm'] = USER;
+$cfg['DefaultPerm']  = USER;
 
 
 /**
@@ -190,18 +178,35 @@ $cfg['NNTPUser']    = '';
 $cfg['NNTPPassword']    = '';
 
 // (string)
-$cfg['Newsgroup']  = 'de.alt.test';
+$cfg['Newsgroup']   = 'de.alt.test';
 
 // (string)
-$cfg['FQDN']       = '';
+$cfg['FQDN']        = '';
 
 // (string)
-$cfg['Complaints'] ='postmaster@newsposter.org'
+$cfg['Complaints']  = 'postmaster@newsposter.org';
 
 
 /**
- * Newsletter
+ * Mail and Newsletter
  */
+ 
+// (bool)
+$cfg['SendMailOnError']   = TRUE;
 
+// (bool)
+$cfg['SendMailOnSuccess'] = TRUE;
+
+// (string CSV)
+$cfg['EmailTo']        = 'mrfrost@localhost,frank@thomas-alfeld.de';
+
+// (string)
+$cfg['EmailFrom']      = 'newsposter@localhost';
+
+// (bool)
+$cfg['SendNewsletter'] = TRUE;
+
+// (string CSV)
+$cfg['NewsletterTo']   = 'mrfrost@localhost,frank@thomas-alfeld.de';
 
 ?>

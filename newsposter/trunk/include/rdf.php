@@ -40,6 +40,7 @@ class NP_RDF {
     /**
      * @access	public
      * @return	bool
+     * @todo	Change $rdf_link to a valid URL.
      */
     function create_rdf_file()
     {

@@ -20,7 +20,7 @@ if (empty($hash_input))
 // create new password
 $pass = &new NP_Passwords();
 
-if ( !($hash_type = $pass->getMode($hash_input)) )
+if ( !($hash_type = $pass->get_mode($hash_input)) )
     $com->write_err("Wrong hash type.\n");
 
 $com->write_ln("You selected '$hash_input'.\n\n");
@@ -28,7 +28,7 @@ $com->write_ln("Enter your password in cleartext []> ");
 
 $pass_input = $com->read_ln();
 
-$hashed_pass = $pass->createHash($pass_input, $hash_type);
+$hashed_pass = $pass->create_hash($pass_input, $hash_type);
 
 $com->write_ln("\nYour $hash_input encrypted password is:\n$hashed_pass\n\n");
 
