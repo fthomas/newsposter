@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:annotate="http://purl.org/rss/1.0/modules/annotate/"
+  xmlns="http://purl.org/rss/1.0/">
+
+  <channel rdf:about="http://newsposter.webhop.org/">
+    <title>Newsposter Home</title>
+    <link>http://newsposter.webhop.org/</link>
+    <description>Newsposter - The versatile weblog</description>
+    <dc:date>2004-10-01T12:02:27Z</dc:date>
+    <dcterms:issued>2004-10-01T12:02:27Z</dcterms:issued>
+    <dcterms:modified>2004-10-01T12:02:27Z</dcterms:modified>
+
+    <!-- name="generator" content="Newsposter/0.5.3" -->
+    <admin:generatorAgent rdf:resource="http://newsposter.webhop.org/" />
+
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E" />
+        <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E" />
+        <rdf:li rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E" />
+      </rdf:Seq>
+    </items>
+  </channel>
+
+  <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E">
+    <title>Re: efwefwe</title>
+    <link>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E</link>
+    <annotate:reference rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E" />
+    <content:encoded>
+      <![CDATA[sfdgxvcxcvxcv]]>
+    </content:encoded>
+    <dc:creator>gsdfg (sfd)</dc:creator>
+    <dc:date>2004-10-01T12:00:31Z</dc:date>
+    <dcterms:created>2004-10-01T12:00:31Z</dcterms:created>
+    <dcterms:modified>2004-10-01T12:02:26Z</dcterms:modified>
+  </item>
+
+  <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E">
+    <title>Re: efwefwe</title>
+    <link>http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E</link>
+    <annotate:reference rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost&amp;child_of=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E" />
+    <content:encoded>
+      <![CDATA[fgsfdgsdfg]]>
+    </content:encoded>
+    <dc:creator>fdgsd (edfg)</dc:creator>
+    <dc:date>2004-10-01T12:00:27Z</dc:date>
+    <dcterms:created>2004-10-01T12:00:27Z</dcterms:created>
+    <dcterms:modified>2004-10-01T12:00:27Z</dcterms:modified>
+  </item>
+
+  <item rdf:about="http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E">
+    <title>efwefwe</title>
+    <link>http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E</link>
+    <annotate:reference rdf:resource="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=%3Ce94b.20041001135853%40localhost%3E" />
+    <content:encoded>
+      <![CDATA[fwefwefwef]]>
+    </content:encoded>
+    <dc:creator>wefw (wer)</dc:creator>
+    <dc:date>2004-10-01T11:58:53Z</dc:date>
+    <dcterms:created>2004-10-01T11:58:53Z</dcterms:created>
+    <dcterms:modified>2004-10-01T11:58:53Z</dcterms:modified>
+  </item>
+
+</rdf:RDF>

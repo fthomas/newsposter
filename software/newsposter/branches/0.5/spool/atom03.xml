@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed version="0.3" xmlns="http://purl.org/atom/ns#" xml:lang="de">
+  <title>Newsposter Home</title>
+  <link rel="alternate" type="text/html" href="http://newsposter.webhop.org/" />
+  <tagline>Newsposter - The versatile weblog</tagline>
+  <generator url="http://newsposter.webhop.org/" version="0.5.3">Newsposter</generator>
+  <modified>2004-10-01T12:02:27Z</modified>
+
+  <entry>
+    <title>Re: efwefwe</title>
+    <link rel="alternate" type="text/html" href="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3C7e5b.20041001140226%40localhost%3E" />
+    <author>
+      <name>sfd</name>
+      <email>gsdfg</email>
+    </author>
+    <id>tag:newsposter.webhop.org,2004-10-01:admin1096632031</id>
+    <modified>2004-10-01T12:02:26Z</modified>
+    <issued>2004-10-01T12:00:31Z</issued>
+    <content type="text/html" mode="escaped">
+      <![CDATA[sfdgxvcxcvxcv]]>
+    </content>
+  </entry>
+
+  <entry>
+    <title>Re: efwefwe</title>
+    <link rel="alternate" type="text/html" href="http://localhost/~mrfrost/newsposter/index.php?np_act=expanded&amp;msg_id=e94b.20041001135853_AT_localhost#%3Cface.20041001140027%40localhost%3E" />
+    <author>
+      <name>edfg</name>
+      <email>fdgsd</email>
+    </author>
+    <id>tag:newsposter.webhop.org,2004-10-01:newsposter1096632027</id>
+    <modified>2004-10-01T12:00:27Z</modified>
+    <issued>2004-10-01T12:00:27Z</issued>
+    <content type="text/html" mode="escaped">
+      <![CDATA[fgsfdgsdfg]]>
+    </content>
+  </entry>
+
+  <entry>
+    <title>efwefwe</title>
+    <link rel="alternate" type="text/html" href="http://localhost/~mrfrost/newsposter/index.php?np_act=output_all#%3Ce94b.20041001135853%40localhost%3E" />
+    <author>
+      <name>wer</name>
+      <email>wefw</email>
+    </author>
+    <id>tag:newsposter.webhop.org,2004-10-01:newsposter1096631933</id>
+    <modified>2004-10-01T11:58:53Z</modified>
+    <issued>2004-10-01T11:58:53Z</issued>
+    <content type="text/html" mode="escaped">
+      <![CDATA[fwefwefwef]]>
+    </content>
+  </entry>
+
+</feed>
