@@ -82,8 +82,6 @@ class NP_Auth {
      */
     function check_POST()
     {
-        global $_POST;
-		        
         return $this->auth_user($_POST['login_name'], $_POST['login_pass']);
     }
 
@@ -203,6 +201,47 @@ class NP_Auth {
         }
     }
 
+    /**
+     * @access	public
+     * @returns	array
+     */
+    function perm_lookup()
+    {
+	session_start();
+		
+	$perms_array = array(P_WRITE, P_EDIT, P_DEL,
+			P_EDIT_NEWS, P_DEL_NEWS, P_DEL_COMMENTS);
+	
+	// creates an array with a bool
+	// value for each permission bit
+	foreach($perms_array as $perm_bit)
+	{
+	    if (($_SESSION['perm'] & $perm_bit) != 0)
+		$result[$perm_bit] = TRUE;
+	    else
+		$result[$perm_bit] = FALSE;
+	}
+	
+	return $result;
+    }
+    
+    /**
+     * @access	public
+     * @param	int	$action
+     * @returns	bool
+     */
+    function perm_check($action)
+    {
+	$lookup = $this->perm_lookup();
+    
+	if ($lookup[$action] == TRUE)
+	    return TRUE;
+	else
+	{
+	    header("Location: $this->error_page");
+	    exit();
+	}
+    }
 
 }
 

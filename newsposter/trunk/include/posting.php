@@ -201,14 +201,14 @@ class NP_Posting {
      * @access	private
      * @returns	string
      */
-     function _createMsgid()
+     function _create_msgid()
      {
         $store_inst = new NP_Storing;
      
         do
 	{
-	    $msgid    = $this->_suggestMsgid();
-	    $is_valid = $store_inst->validateMsgid($msgid);
+	    $msgid    = $this->_suggest_msgid();
+	    $is_valid = $store_inst->validate_msgid($msgid);
 	} while ($is_valid == FALSE);
 	
 	return $msgid;
@@ -218,7 +218,7 @@ class NP_Posting {
      * @access	private
      * @returns	string
      */
-    function _suggestMsgid()
+    function _suggest_msgid()
     {
 	if (empty($cfg['FQDN']))
 	    $dn = 'newsposter';
