@@ -320,7 +320,7 @@ class NP_Posting {
      */
     function _create_msgid()
     {
-        $store_inst = new NP_Storing;
+        $store_inst = &new NP_Storing;
      
         do
 	{
@@ -338,7 +338,7 @@ class NP_Posting {
     function _suggest_msgid()
     {
 	if (empty($cfg['FQDN']))
-	    $dn = 'newsposter';
+	    $dn = 'newsposter.org';
 	else
 	    $dn = $cfg['FQDN']; 
 	
