@@ -3,9 +3,9 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
+require_once('misc.php');
+
 require_once('constants.php');
-require_once('misc.php'); 
 
 /**
  * This file defines functions to create and compare hashed passwords.

@@ -98,18 +98,6 @@ $cfg['AllowChangeNames'] = TRUE;
 // (string)
 $cfg['NameVar']          = '';
 
-// Here you can specify the file with your preferred NP_Storage
-// class. The default store_fs uses plain text files for storage.
-// (string)
-$cfg['StoreTypeFile']    = 'store_fs.php';
-
-// This option is only available when using 'store_fs.php' as
-// $cfg['StoreTypeFile']. All postings then are obtained from
-// this source.
-// E.g.: $cfg['RemoteSpoolDir'] = 'ftp://other.site.tld/newsposter/spool/';
-// (string)
-$cfg['RemoteSpoolDir']   = '';
-
 
 /**
  * Internationalization (i18n)

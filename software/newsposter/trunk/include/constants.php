@@ -6,6 +6,11 @@
 /**
  * Various constants
  *
+ * Here is a list of former codenames:
+ *  - 0.5.2 Resurrection
+ *  - 0.5.1 Falling leaves
+ *  - 0.5.0 Odyssee
+ *
  * @package Newsposter
  */
 
@@ -15,23 +20,13 @@ define('CODENAME'  , 'Resurrection');
 define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
 
-// version codename history
-// 0.5.2    Resurrection
-// 0.5.1    Falling leaves
-// 0.5.0    Odyssee
-
-
-
-/**#@+
- * hash used by Newsposter's authentication
- */
+// hashes used by Newsposter's authentication
 define('CRYPT', 1);
 define('SHA'  , 2);
 define('SSHA' , 3);
 define('MD5'  , 4);
 define('SMD5' , 5);
 define('PLAIN', 6);
-/**#@-*/
 
 // permission bits
 define('P_WRITE'          , 1);   // write      articles and comments

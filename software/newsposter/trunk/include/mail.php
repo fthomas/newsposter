@@ -3,11 +3,11 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
-require_once('constants.php');
 require_once('misc.php');
-require_once('posting.php');
 require_once($np_dir . '/config.php');
+
+require_once('constants.php');
+require_once('posting.php');
 
 /**
  * This class sends mail after a posting was written or
@@ -163,9 +163,11 @@ class NP_Mail {
         return $addr;
     }
     
+    /**
+     *
+     */
     function _get_session_vars()
     {
-        // start output buffering
         ob_start();
 
         if (isset($_SESSION['NP']))
@@ -173,7 +175,6 @@ class NP_Mail {
 
         $session_vars = ob_get_contents();
         
-        // clean output buffer and end buffering
         ob_end_clean();
         
         return $session_vars;

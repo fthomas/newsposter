@@ -6,10 +6,10 @@
 // language_accept() and language_negotiate() taken from:
 // http://www.zend.com/codex.php?id=616&single=1
 
-// include all required files
-require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/config.php');
+
+require_once('constants.php');
 
 /**
  * This class adds internationalization (i18n) and content negotiation

@@ -3,8 +3,8 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
 require_once('misc.php');
+require_once($np_dir . '/config.php');
 
 /**
  * This class tracks users and time of interaction and

@@ -3,10 +3,10 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
 require_once('misc.php');
-require_once('posting.php');
+
 require_once('date.php');
+require_once('posting.php');
 
 /**
  * The NP_Storing class handles all save/load/delete actions for

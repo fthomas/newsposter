@@ -3,13 +3,14 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
 require_once('misc.php');
+require_once($np_dir . '/config.php');
+
 require_once('constants.php');
 require_once('date.php');
-require_once($np_dir . '/config.php');
-require_once(create_theme_path('topics/_control.php'));
 require_once('external/str_highlight.php');
+
+require_once(create_theme_path('topics/_control.php'));
 
 /**
  * This class defines functions which handle the dynamic part

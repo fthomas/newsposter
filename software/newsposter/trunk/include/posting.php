@@ -3,12 +3,35 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
-require_once('date.php');
 require_once('misc.php');
-require_once('constants.php');
 require_once($np_dir . '/config.php');
-require_once($cfg['StoreTypeFile']);
+
+require_once('constants.php');
+require_once('date.php');
+require_once('store_fs.php');
+
+/**
+ *
+ */
+class NP_Posting2 {
+
+    var $user     = '';
+    var $name     = '';
+    var $uri      = '';
+    var $title    = '';
+    var $msgid    = '';
+    var $refs     = array();
+    var $created  = 0;
+    var $modified = 0;
+    var $topic    = '';
+    var $content  = '';
+    var $category = '';
+    var $database = '';
+    
+    function NP_Posting2()
+    {
+    }
+}
 
 /**
  * The NP_Posting class can create postings and comments.

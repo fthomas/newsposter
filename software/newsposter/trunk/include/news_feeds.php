@@ -3,10 +3,11 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-require_once('../config.php');
+require_once('misc.php');
+require_once($np_dir . '/config.php');
+
 require_once('constants.php');
 require_once('date.php');
-require_once('misc.php');
 require_once('store_fs.php');
 require_once('ubb_code.php');
 require_once('external/str_word_count.php');
@@ -35,7 +36,6 @@ class NP_NewsFeeds {
     {
         global $cfg, $np_dir;
 
-        // create global NP_Storing / NP_Posting / NP_UBB instance
         $this->store_inst = &new NP_Storing;
         $this->post_inst  = &new NP_Posting;
         
@@ -46,7 +46,6 @@ class NP_NewsFeeds {
         $this->feed_file['rss20']  = $np_dir . '/spool/feeds/rss20.xml';
         $this->feed_file['atom03'] = $np_dir . '/spool/feeds/atom03.xml';
         
-        // create all feed files
         if (! file_exists($np_dir . '/spool/feeds/'))
             mkdir($np_dir . '/spool/feeds/');
                 
@@ -58,7 +57,8 @@ class NP_NewsFeeds {
     }
     
     /**
-     * Creates all supported feeds.
+     * Creates all supported feeds
+     *
      * @access    public
      */
     function create_all()
@@ -72,9 +72,12 @@ class NP_NewsFeeds {
     }
     
     /**
+     * Composes all informations for feed items/entries
+     *
      * Uses NP_Storing and NP_Posting to get all content for the news
      * feeds. The feed specific data is stored in an array returned by
      * this function.
+     *
      * @access    public
      * @return    array    feed specific news items
      */
@@ -87,13 +90,12 @@ class NP_NewsFeeds {
         else
             $max_items = $cfg['MaxFeedItems'];
         
-        // get all postings
+
         if ($cfg['IncludeComments'])
             $posts = $this->store_inst->get_all_postings(0, $max_items);
         else
             $posts = $this->store_inst->get_all_news(0, $max_items);
     
-        // initialize array
         $this->feed_items['rss10']['channel'] = '';
         $this->feed_items['rss10']['rdf']     = '';
         $this->feed_items['rss20']['channel'] = '';
@@ -113,29 +115,11 @@ class NP_NewsFeeds {
             {
                 $posting['body'] = $this->ubb_inst->replace($posting['body']);
             }
-            
+                        
             if ($cfg['MaxFeedWords'] > 0)
             {
-                // If you want to limit the size of the entry, you
-                // probably want to remove all markup.
-                $posting['body'] = strip_tags($posting['body']);
-                
-                $words = str_word_count($posting['body'], 2);
-
-                if (count($words) > $cfg['MaxFeedWords'])
-                {
-                    $i = 0;
-                    foreach ($words as $key => $word)
-                    {
-                        $i++;
-                        if ($i >= $cfg['MaxFeedWords'])
-                        {
-                            $end = $key + strlen($word);
-                            break;
-                        }
-                    }
-                    $posting['body'] = substr($posting['body'], 0, $end) . ' ...';
-                }
+               $posting['body'] = $this->_trim_text($posting['body'],
+                   $cfg['MaxFeedWords']);
             }
             
             $posting['name']    = strip_tags($posting['name']); 
@@ -185,6 +169,9 @@ class NP_NewsFeeds {
                 .  "\n";
             
             /* ---- Atom 0.3 ----- */
+            //
+            // <id> is changed after the posting was edited
+            // <atom:modified> is not used properly 
             
             $this->feed_items['atom03']['feed']
                 .= "  <entry>\n"
@@ -207,6 +194,7 @@ class NP_NewsFeeds {
     
     /**
      * Creates RSS 1.0 news feed
+     *
      * @access    public
      * @return    bool
      */
@@ -217,6 +205,7 @@ class NP_NewsFeeds {
         $now_iso8601 = my_date(13);
 
         $content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                 . "<!-- name=\"generator\" content=\"Newsposter\\". VERSION ."\" -->\n"
                  . "<rdf:RDF\n"
                  . "  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
                  . "  xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n"
@@ -249,6 +238,7 @@ class NP_NewsFeeds {
     
     /**
      * Creates RSS 2.0 news feed
+     *
      * @access    public
      * @return    bool
      */
@@ -282,6 +272,7 @@ class NP_NewsFeeds {
     
     /**
      * Creates Atom 0.3 news feed
+     *
      * @access    public
      * @return    bool
      */    
@@ -309,6 +300,39 @@ class NP_NewsFeeds {
         
         return fclose($fp);   
     }
+    
+    /**
+     * @access    private
+     * @param     string    $text
+     * @param     int       $max_words
+     * @return    string
+     */
+    function _trim_text($text, $max_words)
+    {
+        // If you want to limit the size of the entry, you
+        // probably want to remove all markup.
+        $text = strip_tags($text);
+                
+        $words = str_word_count($text, 2);
+
+        if (count($words) > $max_words)
+        {
+            $i = 0;
+            foreach ($words as $key => $word)
+            {
+                $i++;
+                if ($i >= $max_words)
+                {
+                    $end = $key + strlen($word);
+                    break;
+                }
+            }
+            $text = substr($text, 0, $end) . ' ...';
+        }
+        
+        return $text;
+    }
+    
 }
 
 ?>

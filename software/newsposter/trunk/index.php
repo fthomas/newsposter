@@ -3,18 +3,18 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
 require_once('include/misc.php');
-require_once('include/output.php');
+
 require_once('include/auth.php');
-require_once('include/posting.php');
-require_once('include/nntp.php');
-require_once('include/mail.php');
-require_once('include/ubb_code.php');
-require_once('include/news_feeds.php');
 require_once('include/blacklist.php');
 require_once('include/i18n.php');
-require_once('include/' . $cfg['StoreTypeFile']);
+require_once('include/mail.php');
+require_once('include/news_feeds.php');
+require_once('include/nntp.php');
+require_once('include/output.php');
+require_once('include/posting.php');
+require_once('include/store_fs.php');
+require_once('include/ubb_code.php');
 
 if (!isset($_SESSION))
     session_start();

@@ -28,9 +28,6 @@
  * @package Newsposter
  */
 
-require_once('../config.php');
-require_once('misc.php');
-
 /**
  * @access    public
  * @param     int      $time_stamp    UNIX time stamp

@@ -3,11 +3,11 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-// include all required files
 require_once('misc.php');
-require_once('passwd.php');
-require_once('constants.php');
 require_once($np_dir . '/config.php');
+
+require_once('constants.php');
+require_once('passwd.php');
 
 /**
  * This class handles newsposter's authentication. You can easily add
