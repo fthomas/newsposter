@@ -15,16 +15,16 @@ require_once('include/constants.php');
 // Set this to the name of your homepage. It is used in the login head
 // and in the RSS file.
 // (string)
-$cfg['PageTitle']   = 'Newsposter - http://newsposter.webhop.org';
+$cfg['PageTitle']   = 'Blue Dwarf 2';
 
 // This should be the URL of your homepage.
 // (string)
-$cfg['PageURL']     = 'http://newsposter.webhop.org/';
+$cfg['PageURL']     = 'http://www.thomas-alfeld.de/frank/';
 
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
+$cfg['IndexURL']    = 'http://localhost/~mrfrost/homepages/blue_dwarf2/weblog/index.php';
 
 // Choose your preferred date format from the list below.
 //    1 =>    24.12.1984 13:43
@@ -57,7 +57,7 @@ $cfg['CutOffAge']   = 0;
 // If postings are not older than this in seconds they will be
 // marked as "fresh" postings. 0 disables this option.
 // (int)
-$cfg['MarkFresh']   = 60 * 60 * 12;
+$cfg['MarkFresh']   = 60 * 60 * 24;
 
 // If postings are older than this in seconds they will be
 // marked as "old" postings. 0 disables this option.
@@ -79,7 +79,7 @@ $cfg['TimeVariance']     = 0;
 // of the comment function you can block IPs for a special time
 // period. This value represents seconds. 0 disables this option.
 // (int)
-$cfg['BlacklistTime']    = 0;
+$cfg['BlacklistTime']    = 15;
 
 // If PHP add slashes to " or ' (\" and \'), turn this on to remove
 // them.
@@ -222,7 +222,7 @@ $cfg['UseComments']  = TRUE;
 // If TRUE on the index.php?np_act=expanded sites an overview of
 // the current thread is shown.
 // (bool)
-$cfg['ShowOverview'] = TRUE; 
+$cfg['ShowOverview'] = FALSE; 
 
 // Allow HTML in comments here. This is very insecure, visitors
 // can screw up your design or can place meta refresh tags in
@@ -242,7 +242,7 @@ $cfg['AllowedTags']  = '<p><a><i><b>';
 // Specify your theme here. This name is equal to the directory
 // name of the theme.
 // (string)
-$cfg['Theme'] = 'lenz';
+$cfg['Theme'] = 'blue_dwarf2';
 
 // Specify here the files used for the content printed above and
 // beneath Newsposter's output.
@@ -264,8 +264,8 @@ $cfg['Theme'] = 'lenz';
 //     Newsposter translation, you have to add it to the $avail_lang
 //     array in include/i18n.php.
 // (string)
-$cfg['IncludeHeader'] = 'themes/'. $cfg['Theme'] .'/_header.inc.en';
-$cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc.en';
+$cfg['IncludeHeader'] = '/home/mrfrost/radix/forum/homepages/blue_dwarf2/include/h+f/header.html.de';
+$cfg['IncludeFooter'] = '/home/mrfrost/radix/forum/homepages/blue_dwarf2/include/h+f/footer.html.de';
 
 // These are used for the depth indicator.
 // (string)
@@ -297,12 +297,18 @@ $cfg['IncludeComments'] = TRUE;
 
 // This is the description of your site used in the news feeds.
 // (string)
-$cfg['Description']     = 'http://newsposter.webhop.org - Home of Newsposter, the versatile weblog';
+$cfg['Description']     = 'Blue Dwarf 2 - Personal Website of Frank Thomas';
 
 // The maximum of postings in your news feeds. 0 disables the
 // limitation.
 // (int)
-$cfg['MaxFeedItems']    = 10;
+$cfg['MaxFeedItems']    = 15;
+
+// The maximum of words in each of your feed entry. After the last
+// word in your entry Newsposter adds " ..." to it.
+// A negative value disables this limitation.
+// (int)
+$cfg['MaxFeedWords']    = -1;
 
 
 /**

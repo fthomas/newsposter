@@ -9,6 +9,7 @@ require_once('constants.php');
 require_once('date.php');
 require_once($np_dir . '/config.php');
 require_once(create_theme_path('topics/_control.php'));
+require_once('external/str_highlight.php');
 
 /**
  * This class defines functions which handle the dynamic part
@@ -501,11 +502,18 @@ class NP_Output {
                     $deep_add .= $cfg['DepthLength'];
 
                     $deep_add .= $cfg['DepthStop'];
+                    
+                if (!$cfg['AllowHTML'])
+                {
+                    $posting['name']    = strip_tags($posting['name']);
+                    $posting['mail']    = strip_tags($posting['mail']);
+                    $posting['subject'] = strip_tags($posting['subject']);
+                }
             }
 
             // strip all slashes?
             $posting = $this->_my_stripslashes($posting);
-
+            
             // create checkbox
             $checkbox = '';
             if ($with_boxes === TRUE)
@@ -602,39 +610,21 @@ class NP_Output {
     }
     
     /**
-     * Highlight a string in text without corrupting HTML tags.
-     * http://aidan.dotgeek.org/lib/?file=function.str_highlight.php
-     * @author      Aidan Lister <aidan@php.net>
-     * @version     2.0
-     * @access      private
-     * @param       string          $text        The text to search
-     * @param       array|string    $needle      The string to highlight
-     * @param       bool            $simple      Set to true to replace text disregarding HTML tags
-     * @return      The text with the needle highlighted
+     * Calls the external function str_highlight() to highlight
+     * the string $needle in $text.
+     * @access    private
+     * @param     string    $text
+     * @param     string    $needle
+     * @return    string
      */
-    function _str_highlight($text, $needle, $simple = FALSE)
+    function _str_highlight($text, $needle)
     {
         global $cfg;
 
-        // Select pattern to use
-        if ($simple === TRUE) {
-            // If there are no HTML tags to be worried about, use this
-            $regex = '#(%s)#i';
-        } else {
-            // If there are HTML tags, we need to make sure we don't break them
-            $regex = '#(?!<.*?)(%s)(?![^<>]*?>)#si';
-        }
-        
         $start = "<strong style=\"background:{$cfg['MatchColor']}\">";
         $end   = "</strong>";
-
-        $needle = (array) $needle;
-        foreach ($needle as $needle_single) {
-            $text = preg_replace(sprintf($regex, preg_quote($needle_single)),
-                $start . '\1' . $end, $text);
-        }
-
-        return $text;
+        
+        return str_highlight($text, $needle, $start, $end, FALSE);
     }
 }
 

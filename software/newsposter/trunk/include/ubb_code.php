@@ -15,10 +15,10 @@ require_once($np_dir . '/config.php');
  * The following statements are replaced by this class:
  *
  *   [url]www.google.com[/url]  
- *          => <a href="http://www.google.com" target="new">www.google.com</a>
+ *          => <a href="http://www.google.com">www.google.com</a>
  *
  *   [url=http://www.google.com]Google[/url]
- *          => <a href="http://www.google.com" target="new">Google</a>
+ *          => <a href="http://www.google.com">Google</a>
  *
  *   [email]frank@thomas-alfeld.de[/email]
  *          => <a href="mailto:frank@thomas-alfeld.de">frank@thomas-alfeld.de</a>
@@ -33,16 +33,16 @@ require_once($np_dir . '/config.php');
  *          => <u>underlined</u>
  *
  *   [color=blue]blue text[/color]
- *          => <font color="blue">blue text</font>
+ *          => <span style="color:blue">blue text</span>
  *
  *   [center]centered text[/center]
- *          => <center>centered text</center>
+ *          => <div style="text-align:center">centered text</div>
  *
  *   [small][/small]
- *          => <font size="-1"></font>
+ *          => <span style="font-size:small"></span>
  *
  *   [big][/big]
- *          => <font size="+1"></font>
+ *          => <span style="font-size:large"></span>
  *
  *   [img]http://host/picture.jpg[/img]
  *          => <img src="http://host/picture.jpg" title="http://host/picture.jpg" alt="" border="0" />
@@ -68,12 +68,10 @@ class NP_UBB {
 	// set locale for ctpye. with the 'u' pattern modifier locale specific
 	// characters are matched by $pattern
 	setlocale(LC_CTYPE, $cfg['Locale']);
-	
-        // valid_chars
-        $v_chars = 'a-zA-Z.,:;=\/\?&!@% <>"0-9\+\-#\w';
 
-        // pattern
-        $pattern = "/\[(\w*)([$v_chars]*)\]([$v_chars]*)\[(\/\\1)\]/usi";
+        $valid_chars = 'a-zA-Z.,:;=\/\?&~!@% <>"0-9\+\-#\w';
+
+        $pattern = "/\[(\w*)([$valid_chars]*)\]([$valid_chars]*)\[(\/\\1)\]/usi";
 
         while( preg_match($pattern, $this->text) && $depth-- )
         {
@@ -105,7 +103,7 @@ class NP_UBB {
                 if (strtolower(substr($matches[2], 0, 7)) != 'http://')
                     $matches[2] = 'http://' . $matches[2];
 
-                $repl = sprintf('<a href="%s" target="new">%s</a>', $matches[2], $matches[3]);
+                $repl = sprintf('<a href="%s">%s</a>', $matches[2], $matches[3]);
                 return $repl;
             
             case 'email':
@@ -128,23 +126,23 @@ class NP_UBB {
                 return $repl;
 
             case 'color':
-                $repl = sprintf('<font color="%s">%s</font>', $matches[2], $matches[3]);
+                $repl = sprintf('<span style="color:%s">%s</span>', $matches[2], $matches[3]);
                 return $repl;
 
             case 'center': // centered
-                $repl = "<center>$matches[3]</center>";
+                $repl = "<div style=\"text-align:center\">$matches[3]</div>";
                 return $repl;
 
             case 'small':
-                $repl = "<font size=\"-1\">$matches[3]</font>";
+                $repl = "<span style=\"font-size:small\">$matches[3]</span>";
                 return $repl;
 
             case 'big':
-                $repl = "<font size=\"+1\">$matches[3]</font>";
+                $repl = "<span style=\"font-size:large\">$matches[3]</span>";
                 return $repl;
 
             case 'img':
-                $repl = sprintf('<img src="%s" title="%s" alt="" border="0" />',
+                $repl = sprintf('<img src="%s" title="%s" alt="" style="border:none" />',
 			$matches[3], $matches[3]);
                 return $repl;
         }

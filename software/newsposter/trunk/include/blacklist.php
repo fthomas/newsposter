@@ -19,59 +19,69 @@ class NP_Blacklist {
      */
     function validate_user()
     {
-	global $cfg, $np_dir;
-	 
-	if ($cfg['BlacklistTime'] == 0)
-	    return TRUE;
-	
-	$bl_file = $np_dir . '/spool/blacklist.txt';
+        global $cfg, $np_dir;
+ 
+        if ($cfg['BlacklistTime'] == 0)
+            return TRUE;
+
+        $bl_file = $np_dir . '/spool/blacklist.txt';
     
-	if (!file_exists($bl_file))
-	    touch($bl_file);
+        if (! file_exists($bl_file))
+            touch($bl_file);
     
-	if (($bl_fp = fopen($bl_file, 'r+')) === FALSE)
-	{
-	    my_trigger_error('Could not open blacklist file');
-	    return TRUE;
-	}
-	
-	flock($bl_fp, LOCK_EX);
-	
-	// read entire content
-	$cont = fread($bl_fp, filesize($bl_file));
-	$cont = explode("\n", $cont);
-    
-	$new_cont = sprintf("%s %s\n", $_SERVER['REMOTE_ADDR'], time());
-	$bool     = TRUE;
-	foreach ($cont as $line)
-	{
-	    if (empty($line))
-		continue;
-		
-	    $values = explode(' ', $line);
-	    $diff   = time() - (int) $values[1];
-	    
-	    if ($diff >= $cfg['BlacklistTime'])
-		continue;
-		
-	    if ($_SERVER['REMOTE_ADDR'] == $values[0])
-	    {
-		$bool = FALSE;
-		continue;
-	    }
-	    
-	    if ($diff < $cfg['BlacklistTime'])
-		$new_cont .= sprintf("%s %s\n", $values[0], time());
-	}
-	
-	ftruncate($bl_fp, 0);
-	fseek    ($bl_fp, 0);
-	fwrite   ($bl_fp, $new_cont);
-	
-	flock($bl_fp, LOCK_UN);
-	fclose($bl_fp);
-	
-	return $bool;
+        if (! is_readable($bl_file))
+        {
+            my_trigger_error('Could not open blacklist file');
+            return TRUE;        
+        }
+        
+        $bl_fp = fopen($bl_file, 'r+');
+        $size  = filesize($bl_file);
+        $cont  = array();
+        
+        flock($bl_fp, LOCK_EX);
+        
+        if ($size != 0)
+        {
+            $cont = fread($bl_fp, $size);
+            $cont = explode("\n", $cont);
+        }
+        
+        $ip_addr  = $_SERVER['REMOTE_ADDR'];
+        $hostname = gethostbyaddr($ip_addr );
+        
+        $new_cont = sprintf("%s:%s:%s\n", time(), $ip_addr, $hostname);
+        $bool     = TRUE;
+
+        foreach ($cont as $line)
+        {
+            if (empty($line))
+                continue;
+
+            $values = explode(':', $line);
+            $diff   = time() - (int) $values[0];
+            
+            if ($diff >= $cfg['BlacklistTime'])
+                continue;
+
+            if ($ip_addr == $values[1])
+            {
+                $bool = FALSE;
+                continue;
+            }
+
+            if ($diff < $cfg['BlacklistTime'])
+                $new_cont .= sprintf("%s:%s:%s\n", time(), $ip_addr, $hostname);
+        }
+
+        ftruncate($bl_fp, 0);
+        fseek    ($bl_fp, 0);
+        fwrite   ($bl_fp, $new_cont);
+
+        flock($bl_fp, LOCK_UN);
+        fclose($bl_fp);
+
+        return $bool;
     }
     
 }

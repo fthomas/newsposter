@@ -7,8 +7,10 @@
 require_once('misc.php');
 require_once('constants.php');
 require_once('date.php');
+require_once('ubb_code.php');
 require_once($np_dir . '/config.php');
 require_once($cfg['StoreTypeFile']);
+require_once('external/str_word_count.php');
 
 /**
  * This class creates news feeds for aggregation. Currently the
@@ -22,22 +24,21 @@ class NP_NewsFeeds {
 
     var $store_inst = 0;
     var $post_inst  = 0;
+    var $ubb_inst   = 0;
     
     var $feed_file  = array();
     var $feed_items = array();
-
+    
     function NP_NewsFeeds()
     {
-        $this->__construct();
-    }
-    
-    function __construct()
-    {
-        global $np_dir;
+        global $cfg, $np_dir;
 
-        // create global NP_Storing / NP_Posting instance
+        // create global NP_Storing / NP_Posting / NP_UBB instance
         $this->store_inst = &new NP_Storing;
         $this->post_inst  = &new NP_Posting;
+        
+        if ($cfg['ParseUBB'])
+            $this->ubb_inst = &new NP_UBB;
 
         $this->feed_file['rss10']  = $np_dir . '/spool/rss10.xml';
         $this->feed_file['rss20']  = $np_dir . '/spool/rss20.xml';
@@ -76,7 +77,7 @@ class NP_NewsFeeds {
     {
         global $cfg;
         
-        if ($cfg['MaxFeedItems'] == 0)
+        if ($cfg['MaxFeedItems'] <= 0)
             $max_items = NULL;
         else
             $max_items = $cfg['MaxFeedItems'];
@@ -103,6 +104,35 @@ class NP_NewsFeeds {
                 $posting['body']    = stripslashes($posting['body']);
             }
             
+            if ($cfg['ParseUBB'])
+            {
+                $posting['body'] = $this->ubb_inst->replace($posting['body']);
+            }
+            
+            if ($cfg['MaxFeedWords'] > 0)
+            {
+                // If you want to limit the size of the entry, you
+                // probably want to remove all markup.
+                $posting['body'] = strip_tags($posting['body']);
+                
+                $words = str_word_count($posting['body'], 2);
+
+                if (count($words) > $cfg['MaxFeedWords'])
+                {
+                    $i = 0;
+                    foreach ($words as $key => $word)
+                    {
+                        $i++;
+                        if ($i >= $cfg['MaxFeedWords'])
+                        {
+                            $end = $key + strlen($word);
+                            break;
+                        }
+                    }
+                    $posting['body'] = substr($posting['body'], 0, $end) . ' ...';
+                }
+            }
+            
             $posting['msgid'] = prep_msgid($posting['msgid']);
             
             $link_view = $this->post_inst->get_posting_url($posting, VIEW);
@@ -115,7 +145,7 @@ class NP_NewsFeeds {
             /* ---- RSS 1.0 ---- */
             
             $this->feed_items['rss10']['channel']
-                .= "        <rdf:li rdf:resource=\"{$link}\" />\n";
+                .= "        <rdf:li rdf:resource=\"{$link_view}\" />\n";
             
             $this->feed_items['rss10']['rdf']
                 .= "  <item rdf:about=\"{$link_view}\">\n"

@@ -5,8 +5,8 @@
     <table style="width:100%;border:none" border="0">
       <tr>
         <td style="text-align:left;width:1px"><img src="EMOTICON.png" style="border:none" alt="emoticon" /></td>
-        <td style="text-align:left"><strong>SUBJECT</strong></td>
-        <td style="text-align:right"><a href="mailto:MAIL">NAME</a> - DATE</td>
+        <td style="text-align:left;vertical-align:middle"><strong>SUBJECT</strong></td>
+        <td style="text-align:right;vertical-align:middle"><a href="mailto:MAIL">NAME</a> DATE</td>
       </tr>
     </table>
   </div>
@@ -23,4 +23,4 @@
   </div>
 </div>
 <br />
-<br />
+
