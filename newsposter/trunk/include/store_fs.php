@@ -30,6 +30,9 @@ class NP_Storing {
     function __construct()
     {
 	global $np_dir;
+	
+	// create global instance of NP_Posting for this class
+	$this->post_inst  = &new NP_Posting;
     
 	$this->mbox_file  = $np_dir . '/spool/mbox';
 	$this->mbox_bak   = $np_dir . '/spool/mbox.bak';
@@ -55,9 +58,6 @@ class NP_Storing {
 	    $this->_create_oview_file($fp);
 	    $this->_close_files($fp);
 	}
-	 	
-	// create a global instance of NP_Posting for this class
-	$this->post_inst = &new NP_Posting;
     }
 
     /**
@@ -79,9 +79,9 @@ class NP_Storing {
 	
 	fwrite($fp['mbox'], $this->_create_postmark($posting));
 	fwrite($fp['mbox'], $this->post_inst->int2ext($posting));
-	fwrite($fp['mbox'], "\n\n");
 	
 	$fp_pos['stop']  = ftell($fp['mbox']);
+	fwrite($fp['mbox'], "\n\n");
 	
 	fwrite($fp['oview'], $this->_create_oview_line($posting, $fp_pos));
     
@@ -93,6 +93,8 @@ class NP_Storing {
     function replace_posting($posting, $rep_msgid){}
 
     function get_all_postings(){}
+
+    function get_all_news(){}
 
     function get_posting($msgid){}
 
@@ -116,7 +118,24 @@ class NP_Storing {
 	return TRUE;
     }
 
-    function get_latest_date(){}
+    /**
+     * @access	public
+     * @return	int	Unix time stamp of the latest posting
+     *			(could also be a comment).
+     */
+    function get_latest_date()
+    {
+	$oview = $this->_parse_oview_file();
+	$stamp = 0;
+	
+	foreach($oview as $entry)
+	{
+	    if ($entry['stamp'] > $stamp)
+		$stamp = $entry['stamp'];
+	}
+	
+	return $stamp;
+    }
 
     /**
      * @access	private
@@ -180,7 +199,59 @@ class NP_Storing {
 	return $postmark;
     }
     
-    function _create_oview_file($fp){}
+    /**
+     * @access	private
+     * @param	array	$fp	Array of file pointers.
+     */
+    function _create_oview_file($fp)
+    {
+	// initialize some variables
+	$buffer    = '';
+	$header    = '';
+	$oview_con = '';
+	$fp_pos['cur'] = 0;
+	$filesize      = filesize($this->mbox_file);
+	
+	while ($filesize > $fp_pos['cur'])
+	{
+	    $fp_pos['start'] = ftell($fp['mbox']);
+	    
+	    do {
+		$header .= $buffer;
+		// if name or subject are longer than 4096
+		// bytes, we have got a problem
+		$buffer  = fgets($fp['mbox'], 4096);
+		
+		// get lines number
+		if (substr($buffer, 0, 6) == 'Lines:')
+		    $lines = (int) substr(trim($buffer), 7);
+	    
+	    // if buffer is a newline we reached the end of
+	    // the header
+	    } while($buffer != "\n");
+	
+	    // now we set the file pointer to the first newline
+	    // included by this class (after storing the posting) 
+	    for($i = 0; $i < $lines; ){
+		$char = fgetc($fp['mbox']);
+		if ($char == "\n") $i++;
+	    }
+	
+	    // set file pointer to the beginning of the next 
+	    // posting or EOF, save some fp positions
+	    $fp_pos['stop'] = ftell($fp['mbox']) - 1;
+	    fseek($fp['mbox'], 1, SEEK_CUR);
+	    $fp_pos['cur']  = ftell($fp['mbox']);
+
+	    $int_post   = $this->post_inst->ext2int($header);
+	    $oview_con .= $this->_create_oview_line($int_post, $fp_pos);
+	}
+
+	// truncate overview file to zero length and
+	// write new content to file
+	ftruncate($fp['oview'], 0);	
+	fwrite($fp['oview'], $oview_con);
+    }
     
     /**
      * @access	private

@@ -4,3 +4,7 @@
 - tools/pass_shell.php needs /usr/bin/php. Some distributions
   might call the php binary "php4".
   -> make a note in the documentation
+
+- If mbox was edited by hand .overview must be deleted.
+  -> make a note in the documentation / add README.1st file
+  in spool dir
