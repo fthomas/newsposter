@@ -117,6 +117,9 @@ $cfg['DefaultPerm']  = USER;
  */
 
 // (bool)
+$cfg['UseComments'] = TRUE;
+
+// (bool)
 $cfg['AllowHTML']   = FALSE;
 
 // (string)
@@ -180,7 +183,7 @@ $cfg['Newsgroup']    = 'de.alt.test';
 $cfg['FQDN']         = 'newsposter.webhop.org';
 
 // (string)
-$cfg['Complaints']   = 'postmaster@newsposter.org';
+$cfg['Complaints']   = 'frank@thomas-alfeld.de';
 
 
 /**

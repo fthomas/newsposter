@@ -6,6 +6,7 @@
 // include all required files
 require_once('misc.php');
 require_once('constants.php');
+require_once('date.php');
 require_once($np_dir . '/config.php');
 
 /**
@@ -217,18 +218,24 @@ class NP_Output {
     }
     
     /**
-     *
+     * @access	public
+     * @param	array	$int_post
+     * @return	string
+     * @todo	Change the read_more and comment URL
      */
     function render_posting($int_post)
     {
+	global $cfg, $lang;
+    
 	// include topics control file
 	require_once(create_theme_path('topics/_control.php'));
 	
 	// initialize filename variable with default topic
-	$filename = $topic[0]['filename'];
-	$emoticon = create_theme_path('images/smile/' .
+	$filename  = $topic[0]['filename'];
+	$emoticon  = create_theme_path('images/smile/' .
 			$int_post['emoticon'] . '.png');
-			
+	$read_more = $comment = '';
+	
 	foreach($topic as $key => $entry)
 	{
 	    if ($entry['name'] === $int_post['topic'])
@@ -251,6 +258,25 @@ class NP_Output {
 	$tc = fread($fp, filesize($filename));
 	fclose($fp);
 	
+	if ($pos = strpos($int_post['body'], ' CUT '))
+	{
+	    $int_post['body'] = substr($int_post['body'], 0, $pos);
+	    $read_more        = $lang['misc_more']; 
+	}
+	
+	if ($cfg['TimeVariance'] != 0)
+	{
+	    $stamp            = $cfg['TimeVariance'] + $int_post['stamp']; 
+	    $int_post['date'] = stamp2string($stamp, $cfg['DateFormat']);
+	}
+	
+	if ($cfg['UseComments'])
+	    $comment = $lang['misc_comments'] . ' []';
+	
+	if ($cfg['ParseUBB'])
+	    $int_post['body'] = $_SESSION['NP']['ubb_inst']->replace(
+						    $int_post['body']);
+	
 	$search  = array(
 	    0  => 'NAME',
 	    1  => 'MAIL',
@@ -261,7 +287,9 @@ class NP_Output {
 	    7  => 'TIMESTAMP',
 	    8  => 'TOPIC',
 	    9  => 'EMOTICON',
-	    10 => 'BODY'
+	    10 => 'READ_MORE',
+	    11 => 'COMMENTS',
+	    12 => 'BODY'
 	);
 	
 	$replace = array(
@@ -274,7 +302,9 @@ class NP_Output {
 	    7  => $int_post['stamp'],
 	    8  => $int_post['topic'],
 	    9  => $emoticon,
-	    10 => $int_post['body']
+	    10 => $read_more,
+	    11 => $comment,
+	    12 => $int_post['body']
 	);
     
 	$tc = str_replace($search, $replace, $tc);

@@ -16,5 +16,14 @@
     <tr>
 	<td>BODY</td>
     </tr>
+    <tr>
+	<td>
+	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+		<tr>
+		    <td align="right">READ_MORE &nbsp; COMMENTS</td>
+		</tr>
+	    </table>
+	</td>
+    </tr>
 </table>
 <br /><br />

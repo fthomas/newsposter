@@ -97,7 +97,7 @@ class NP_Posting {
 	$int_post['user']     = $_SESSION['NP']['username'];
 	$int_post['msgid']    = $this->_create_msgid();
 	$int_post['ngs']      = $cfg['Newsgroup'];
-	$int_post['date']     = my_date();
+	$int_post['date']     = my_date($cfg['DateFormat']);
 	$int_post['stamp']    = my_date(10);
 	$int_post['c_to']     = $cfg['Complaints'];
 	$int_post['topic']    = $_SESSION['NP']['topic'];
@@ -335,15 +335,17 @@ class NP_Posting {
 	global $cfg;
 	
 	$message = $this->_to_array($message);
+	$msgid   = htmlentities($message['msgid']);
     
 	if (isset($message['refs']) && !empty($message['refs']))
 	{
 	    $parents = explode(' ', $message['refs']);
-	    return sprintf("%s?=%s&=%s", $cfg['IndexURL'], $parents[0],
-			    $message['msgid']);
+	    $parent  = htmlentities($parents[0]);
+	    
+	    return sprintf("%s?=%s&=%s", $cfg['IndexURL'], $parent, $msgid);
 	}
 	else
-	    return sprintf("%s?=%s", $cfg['IndexURL'], $message['msgid']);
+	    return sprintf("%s?=%s", $cfg['IndexURL'], $msgid);
     }
     
     /**

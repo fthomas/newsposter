@@ -15,7 +15,7 @@
 	    </form>
 	</td>
 	<td align="center">
-	    <form action="index.php?np_act=" method="post">
+	    <form action="index.php?np_act=write" method="post">
 		<input type="submit" value="<?php echo $lang['preview_save']; ?>" />
 	    </form>
 	</td>

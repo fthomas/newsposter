@@ -41,10 +41,12 @@ $lang = array (
     'misc_subject'  => 'Überschrift',
     'misc_article'  => 'Artikel',
     'misc_comment'  => 'Kommentar',
+    'misc_comments' => 'Kommentare',
     'misc_unknown'  => 'unbekannt',
     'misc_topic'    => 'Topic',
     'misc_body'     => 'Body',
     'misc_emoticon' => 'Emoticon',
+    'misc_more'     => 'Weiterlesen...',
 
     /**
      * perform

@@ -73,7 +73,9 @@ class NP_RDF {
 	    else
 		$desc = $entry['body'];
 	
-	    $desc   = htmlentities(strip_tags($desc), ENT_COMPAT, 'UTF-8'); 
+	    $desc   = str_replace("\n", ' ', $desc);
+	    $desc   = htmlspecialchars(strip_tags($desc)); 
+	    
 	    $pos    = count($items);
 	    $items .= "\t<item rdf:about=\"$rdf_link\">\n"
 	            . "\t\t<title>{$entry['subject']}</title>\n"

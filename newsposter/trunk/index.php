@@ -8,6 +8,11 @@ require_once('include/misc.php');
 require_once('include/output.php');
 require_once('include/auth.php');
 require_once('include/posting.php');
+require_once('include/nntp.php');
+require_once('include/mail.php');
+require_once('include/ubb_code.php');
+require_once('include/rdf.php');
+require_once('include/' . $cfg['StoreTypeFile']);
 
 session_start();
 
@@ -15,6 +20,11 @@ session_start();
 $_SESSION['NP']['output_inst'] = &new NP_Output;
 $_SESSION['NP']['auth_inst']   = &new NP_Auth;
 $_SESSION['NP']['post_inst']   = &new NP_Posting;
+$_SESSION['NP']['store_inst']  = &new NP_Storing;
+$_SESSION['NP']['nntp_inst']   = &new NP_NNTP;
+$_SESSION['NP']['mail_inst']   = &new NP_Mail;
+$_SESSION['NP']['ubb_inst']    = &new NP_UBB;
+$_SESSION['NP']['rdf_inst']    = &new NP_RDF;
 
 // if no np_action is specified we want to show
 // postings
@@ -49,6 +59,10 @@ switch($action)
 
     case 'preview':
 	$inc = 'preview.php';
+	break;
+
+    case 'write':
+	$inc = 'write.php';
 	break;
 
     default:

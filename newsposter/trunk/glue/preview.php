@@ -29,6 +29,7 @@ if (isset($_POST['nl2br']))
 
 // create internal formatted posting from session variables
 $preview_post = $_SESSION['NP']['post_inst']->create_post();
+$_SESSION['NP']['internal_posting'] = $preview_post;
 
 print_header();
 require_once(create_theme_path('preview.inc'));
