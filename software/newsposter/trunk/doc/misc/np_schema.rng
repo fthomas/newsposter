@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: np_schema.rng 238 2004-09-27 17:00:52Z mrfrost $ -->
-
-<element name="database" ns="http://newsposter.webhop.org/"
-  xmlns:rng="http://relaxng.org/ns/structure/1.0">
-</element>

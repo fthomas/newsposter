@@ -20,7 +20,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+require_once('constants.php');
 require_once('misc.php');
+require_once($np_dir . '/conf/config.php');
 
 /**
  *
@@ -28,59 +30,26 @@ require_once('misc.php');
  */
 class NP_Storing {
 
-    /**
-     *
-     */
-    function set_database($filename = ''){}
+    function set_database($name = 'default'){}
  
-    /**
-     *
-     */
     function get_all_postings($category = '', $date = 0){}
   
-    /**
-     *
-     */
     function get_all_articles($category = '', $date = 0){}
 
-    /**
-     *
-     */
     function get_all_comments($category = '', $date = 0){}
 
-    /**
-     *
-     */
     function get_all_postings_from($username, $category = '', $date = 0){}
-    
-    /**
-     *
-     */
+
     function get_posting($msgid){}
- 
-    /**
-     *
-     */
+
     function get_thread($msgid, $with_ancestors = TRUE){}
- 
-    /**
-     *
-     */
+
     function store_posting($posting){}
-  
-    /**
-     *
-     */
+
     function replace_posting($posting, $msgid){}
-    
-    /**
-     *
-     */
+
     function remove_posting($msgid, $remove_descendants = TRUE){}
 
-    /**
-     *
-     */
     function msgid_exists($msgid){}   
 }
 
@@ -88,8 +57,117 @@ class NP_Storing {
  *
  * @package Newsposter
  */
-class NP_StoringXML extends NP_Storing {
+class NP_Storing_String extends NP_Storing {
 
+    var $db = array();
+    var $db_filename = '';
+    
+    function NP_Storing_String()
+    {
+        // set 'default' database
+        $this->set_database();
+    }
+    
+    function set_database($name = 'default')
+    {
+        global $cfg, $np_dir;
+        
+        $this->db_filename = "{$np_dir}/var/{$name}.db.txt";
+        
+        if (file_exists($this->db_filename))
+            return TRUE;
+        else
+        {
+            $this->db_filename = "{$np_dir}/var/default.db.txt";
+            touch($this->db_filename);
+        }
+        
+        return FALSE;
+    }
+    
+    function get_posting($msgid)
+    {
+        $fp = $this->_open_db();
+        
+        if (!$fp)
+            return FALSE;
+            
+        $this->_close_db($fp);
+        
+        if (array_key_exists($msgid, $this->db))
+            return $this->db[$msgid];
+    
+        return FALSE;
+    }
+    
+    function store_posting($posting)
+    {
+        $fp = $this->_open_db();
+        
+        if (!$fp)
+            return FALSE;
+            
+        $this->db["{$posting->msgid}"] = $posting;
+
+        return $this->_dump_db($fp);
+    }
+    
+    function msgid_exists($msgid)
+    {
+        $fp = $this->_open_db();
+        
+        if (!$fp)
+            return FALSE;
+            
+        $this->_close_db($fp);
+        
+        if (array_key_exists($msgid, $this->db))
+            return TRUE;
+            
+        return FALSE;
+    }
+    
+    function _open_db()
+    {
+        $fp = fopen($this->db_filename, 'r+');
+
+        if (!$fp)
+            return FALSE;
+    
+        flock($fp, LOCK_EX);
+
+        $db_file_age = time() - filectime($this->db_filename);
+        if ($db_file_age > 3600 * 24)
+            $this->_backup_db();
+        
+        $db_filesize = filesize($this->db_filename);
+        if ($db_filesize > 0)
+        {
+            $db_string = fread($fp, $db_filesize);
+            $this->db = unserialize($db_string);
+        }
+        
+        return $fp;
+    }
+    
+    function _dump_db($fp)
+    {
+        $db_string = serialize($this->db);
+        
+        rewind($fp);
+        ftruncate($fp, 0);
+        fwrite($fp, $db_string);
+
+        return $this->_close_db($fp);
+    }
+    
+    function _close_db($fp)
+    {
+        flock($fp, LOCK_UN);
+        return fclose($fp);
+    }
+    
+    function _backup_db(){}
 }
 
 ?>

@@ -2,7 +2,7 @@
 /* $Id: de.php 240 2004-09-30 17:59:03Z mrfrost $
  *
  * This file is part of Newsposter
- * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
+ * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,30 +66,6 @@ $lang = array(
     'preview_save' => 'Speichern',
     'preview_edit' => 'Bearbeiten', 
      
-    // %s = $lang['misc_article'] or $lang['misc_comment']
-    'mail_intro_success' => 'Folgender %s wurde soeben gepostet',
-    'mail_intro_error'   => 'Ein Zugangsversuch wurde aufgezeichnet',
-    'mail_subj_error'    => 'Fehler Protokoll - ' . $cfg['PageTitle'],
-    'mail_subj_new'      => 'Neues Posting auf '  . $cfg['PageTitle'],
-    'mail_ip'            => 'IP Adresse',
-    'mail_hostname'      => 'Hostname',
-
-    'emot_angry'     => 'wütend',
-    'emot_dead'      => 'tot',
-    'emot_discuss'   => 'diskutierend',
-    'emot_evil'      => 'böse',
-    'emot_happy'     => 'fröhlich',
-    'emot_insane'    => 'verrückt',
-    'emot_laughing'  => 'lachend',
-    'emot_mean'      => 'ernst',
-    'emot_pissed'    => 'angewiedert',
-    'emot_sad'       => 'traurig',
-    'emot_satisfied' => 'befriedigt',
-    'emot_shocked'   => 'geschockt',
-    'emot_sleepy'    => 'schläfrig',
-    'emot_suprised'  => 'überrascht',
-    'emot_uplooking' => 'betend',
-
     'comment_head'   => 'News kommentieren',
     'comment_send'   => 'Kommentieren',
     'comment_answer' => 'antworten',
@@ -99,7 +75,9 @@ $lang = array(
     'search_in'      => 'in',
     'search_all'     => 'allen Postings',
     'search_comment' => 'Kommentaren',
-    'search_news'    => 'News'
+    'search_news'    => 'News',
+    
+    'show_unknown_author' => 'unbekannt'
 );
 
 ?>

@@ -49,12 +49,11 @@ $cfg['Language'] = 'de';
 $cfg['Locale']   = 'de_DE';
 
 
-/**
+/*
  * Authentication
  */
 
 $cfg['UseBuiltInAuth']  = TRUE;
-
 
 $cfg['username'][0]     = 'newsposter';
 $cfg['password'][0]     = 'insecure';

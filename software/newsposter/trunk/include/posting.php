@@ -24,12 +24,13 @@ require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
 require_once('date.php');
-require_once('store_fs.php');
+require_once('storing.php');
+require_once('url.php');
 
 /**
  *
  */
-class NP_Posting2 {
+class NP_Posting {
 
     var $user      = '';
     var $name      = '';
@@ -45,31 +46,34 @@ class NP_Posting2 {
     var $database  = '';
     var $is_hidden = FALSE;
     
-    function NP_Posting2(){}
-    
     function create_from_array($array, $parent = NULL){}
     
-    function get_from_array($array)
+    function import_from_array($array){}
+    
+    function get_author()
     {
-        if (! $this->is_posting_array($array))
-        {
-            my_trigger_error('Array is not valid "posting array"');
-        }
+        if (empty($this->name) && empty($this->uri))
+            return $lang['show_unknown_author'];
+        
+        else if (empty($this->uri)) 
+            return $this->name;
+        
+        else if (empty($this->name))
+            return NP_URL::create_link($this->uri, $this->uri);
+        
+        else
+            return NP_URL::create_link($this->name, $this->uri);
     }
     
-    function get_author(){}
-    
-    function get_date_created($format)
+   
+    function get_posting_type()
     {
-        return stamp2string($this->created, $format);
+        if ($this->is_article())
+            return $lang['misc_article'];
+        
+        if ($this->is_comment())
+            return $lang['misc_comment'];
     }
-    
-    function get_date_modified($format)
-    {
-        return stamp2string($this->modified, $format);
-    }    
-    
-    function is_posting_array($array){}
     
     function is_article()
     {
@@ -80,7 +84,17 @@ class NP_Posting2 {
     {
         return (count($this->refs) != 0);
     }
+
+    function get_date_created($format)
+    {
+        return stamp2string($this->created, $format);
+    }
     
+    function get_date_modified($format)
+    {
+        return stamp2string($this->modified, $format);
+    }    
+        
     function is_older_than($seconds)
     {
         $now = time();
@@ -150,7 +164,7 @@ class NP_Posting2 {
  * </pre>
  * @brief	Internal/external format handling of postings
  */
-class NP_Posting {
+class NP_Posting1 {
 
     /**
      * @access	public
@@ -365,78 +379,7 @@ class NP_Posting {
 	return $ext;
     }
 
-    /**
-     * @access	public
-     * @param	mixed	$message
-     * @return	string
-     */
-    function get_msgid($message)
-    {
-	$message = $this->_to_array($message);
-	return $message['msgid'];	
-    }
-    
-    /**
-     * @access	public
-     * @param	mixed	$message
-     * @return	string
-     */
-    function get_type($message)
-    {
-	global $lang;
-	
-	$message = $this->_to_array($message);
-	return (isset($message['refs'])) ? ($lang['misc_comment'])
-		: ($lang['misc_article']);
-    }
-    
-    /**
-     * Returns an URL pointing to the article or comment. If $type
-     * is VIEW the URL points directly to the item, if it is FORM
-     * the URL points to a page where users can leave comments.
-     * @access    public
-     * @param     mixed     $message
-     * @param     int       $type     one of VIEW or FORM
-     * @return    string    An URL pointing to the news article or comment. 
-     */
-    function get_posting_url($message, $type)
-    {
-        global $cfg;
 
-        $message = $this->_to_array($message);
-        $msgid   = urlencode(prep_msgid($message['msgid']));
-    
-        // posting is a comment
-        if (isset($message['refs']) && !empty($message['refs']))
-        {
-            $ref_ids = explode(' ', $message['refs']);
-            $root    = urlencode(prep_msgid($ref_ids[0]));
-            $parent  = urlencode(prep_msgid($ref_ids[count($ref_ids)-1]));
-                
-            if ($type == VIEW)
-                return sprintf('%s?np_act=expanded&amp;msg_id=%s#%s',
-                    $cfg['IndexURL'], $root, $msgid);
-                    
-            if ($type == FORM)
-                return sprintf('%s?np_act=expanded&amp;msg_id=%s'
-                    . '&amp;child_of=%s#%s', $cfg['IndexURL'], 
-                    $root, $parent, $msgid);
-            
-        }
-        // posting is a news item
-        else
-        {
-            if ($type == VIEW)
-                return sprintf('%s?np_act=output_all#%s', $cfg['IndexURL'],
-                    $msgid);
-                    
-            if ($type == FORM)
-                return sprintf('%s?np_act=expanded&amp;msg_id=%s',
-                    $cfg['IndexURL'], $msgid);
-        }
-        
-        return $cfg['IndexURL'];
-    }
      
     /**
      * @access	private
@@ -469,22 +412,6 @@ class NP_Posting {
         return sprintf('<%s>', $msgid);
     }
     
-    /**
-     * @access	private
-     * @param	mixed	$message
-     * @return	array
-     */
-    function _to_array($message)
-    {
-	if (is_array($message))
-	    return $message;
-	
-	else if (is_string($message))
-	{
-	    $message = $this->ext2int($message);
-	    return $message;
-	}
-    }
 }
 
 ?>

@@ -2,7 +2,7 @@
 /* $Id: en.php 240 2004-09-30 17:59:03Z mrfrost $
  *
  * This file is part of Newsposter
- * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
+ * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
