@@ -8,7 +8,7 @@
  */
 
 // misc
-define('VERSION', '0.5.0');
+define('VERSION', '0.5.0-alpha');
 
 // hashes used by Newsposter's authentication
 define('CRYPT', 1);
