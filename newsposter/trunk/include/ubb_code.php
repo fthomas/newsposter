@@ -5,10 +5,12 @@
 
 // include all required files
 require_once('misc.php');
+require_once($np_dir . '/config.php');
 
 /**
  * This file defines functions to handle UBB Code. This class has a poor
- * error handling for invalid ubb code.
+ * error handling for invalid ubb code but can handle locale specific UTF-8
+ * characters.
  *
  * The following statements are replaced by this class:
  *
@@ -57,15 +59,21 @@ class NP_UBB {
      */
     function replace($orig_text)
     {
+	global $cfg;
+	
         $this->text = $orig_text;
         $depth = 10; // ubb code can be nested 10 times
                      // (for not detected/replaced codes)
 
+	// set locale for ctpye. with the 'u' pattern modifier locale specific
+	// characters are matched by $pattern
+	setlocale(LC_CTYPE, $cfg['Locale']);
+	
         // valid_chars
-        $v_chars = 'a-zA-Z.,:;=\/\?&!@% <>"0-9\+\-#';
+        $v_chars = 'a-zA-Z.,:;=\/\?&!@% <>"0-9\+\-#\w';
 
         // pattern
-        $pattern = "/\[(\w*)([$v_chars]*)\]([$v_chars]*)\[(\/\\1)\]/si";
+        $pattern = "/\[(\w*)([$v_chars]*)\]([$v_chars]*)\[(\/\\1)\]/usi";
 
         while( preg_match($pattern, $this->text) && $depth-- )
         {

@@ -49,7 +49,7 @@ if (empty($parent))
 // render parent and children
 $output = $_SESSION['NP']['output_inst']->render_posting($parent, FALSE);
 
-if ($cfg['UseComments'])
+if ($cfg['UseComments'] && $cfg['ShowOverview'])
     $output .= $_SESSION['NP']['output_inst']->render_oview($posts);
 
 foreach($posts as $comment)

@@ -26,7 +26,6 @@ There are two software packages needed by Newsposter.
   - Web Server which interprets PHP
   - PHP >= 4.2.0 (developed with PHP >= 4.2.3)
     - compiled with session support
-      and --enable-trans-sid option    
     - for hashed passwords PHP's mhash extension is needed
 
 
@@ -44,6 +43,9 @@ look like this:
     cp -r newsposter-0.5.x /var/www/homepage/newsposter
     chown www-data /var/www/homepage/newsposter/spool
     
+You can check if your system is ready to run Newsposter with
+the 'test_conf.php' script in the tools/ directory.
+
 
 3. Configuration
 ----------------

@@ -8,12 +8,3 @@
   the passwords scripts end with "server not found" (PHP then
   segfaults).
   -> document this behaviour
-
-- update_data.php is incomplete
-  -> guess what!
-
-- PHP must be compiled with --enable-trans-sid
-
-- config var für ovie expanded
-
-- umlaute funzen bei UBB nicht

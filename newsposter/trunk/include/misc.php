@@ -28,7 +28,6 @@ function print_header()
         include_once($cfg['IncludeHeader']);
 }
 
-
 /// prints file after newsposter's output
 function print_footer()
 {
@@ -85,10 +84,29 @@ function create_theme_path($filename)
     return 'themes/' . $cfg['Theme'] . "/$filename";
 }
 
+/**
+ * This function adds/removes '<' and '>' to/from message-id strings.
+ * @param	string	$msgid
+ * @return	string
+ */
+function prep_msgid($msgid)
+{
+    $first = $msgid[0];
+    $last  = substr($msgid, -1, 1);
+
+    if ($first === '<' && $last === '>')
+	return substr($msgid, 1, -1);
+	
+    if ($first !== '<' && $last !== '>')
+	return '<' . $msgid . '>';
+
+    return $msgid;
+}
+
 /// create _GET paramter for session_id
 function create_sess_param()
 {
-    return 'PHPSESSID=' . session_id();
+    return session_name() . '=' . session_id();
 }
 
 /// only for debug purposes

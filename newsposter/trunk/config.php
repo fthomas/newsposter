@@ -118,13 +118,16 @@ $cfg['DefaultPerm']  = USER;
  */
 
 // (bool)
-$cfg['UseComments'] = TRUE;
+$cfg['UseComments']  = TRUE;
 
 // (bool)
-$cfg['AllowHTML']   = FALSE;
+$cfg['ShowOverview'] = TRUE; 
+
+// (bool)
+$cfg['AllowHTML']    = FALSE;
 
 // (string)
-$cfg['AllowedTags'] = '<p><a><i><b>'; 
+$cfg['AllowedTags']  = '<p><a><i><b>'; 
 
 
 /**
