@@ -21,10 +21,12 @@ dist:
 	rm -r $(DIRNAME)
 
 clean:
+	-rm error.log
 	-rm spool/mbox
 	-rm spool/mbox.bak
-	-rm spool/.overview_fs
-	-rm spool/.overview_fs.bak
+	-rm spool/news.rss
+	-rm spool/overview_fs
+	-rm spool/overview_fs.bak
 	-rm -r doc/doxygen/html
 
 doxygen:
