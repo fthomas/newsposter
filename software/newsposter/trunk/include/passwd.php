@@ -1,17 +1,35 @@
 <?php
-/* $Id$ */
-//
-// Authors: Frank Thomas <frank@thomas-alfeld.de>
-
-require_once('misc.php');
-
+/* $Id$
+ *
+ * This file is part of 'Newsposter - A versatile weblog'
+ * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+ 
 require_once('constants.php');
 
 /**
+ * Hashed passwords creation/comparison class
+ *
  * This file defines functions to create and compare hashed passwords.
  * Except for CRYPT the mhash extension for PHP is needed to create
  * the hashes. (http://mhash.sourceforge.net/)
- * @brief	Hashed passwords creation/comparison class
+ *
+ * @package Newsposter
  */
 class NP_Passwords {
 

@@ -7,27 +7,26 @@ DIRNAME  = newsposter-$(VERSION)
 misc:
 	@echo "Newsposter Version: $(VERSION)"
 	@echo "Last Changed Revision: $(REVISION)"
-	@-svn log -v > doc/changelog.txt
+	@-svn log -v > doc/ChangeLog.txt
 
-dist: misc phpdoc
+dist: misc
 	svn  export . $(DIRNAME)
-	cp   doc/changelog.txt $(DIRNAME)
-	cp   -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
+	cp   doc/ChangeLog.txt $(DIRNAME)/doc/ChangeLog.txt
 	rm   $(DIRNAME)/Makefile
-	rm   $(DIRNAME)/doc/doxygen/Doxyfile
 	tar  -zcf $(DIRNAME).tar.gz  $(DIRNAME)
 	tar  -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
 	zip  -9 -r $(DIRNAME).zip    $(DIRNAME)
 	rm   -r $(DIRNAME)
 
 clean:
-	-rm error.log
-	-rm spool/mbox
-	-rm spool/mbox.bak
-	-rm spool/news.rss
-	-rm spool/overview_fs
-	-rm spool/overview_fs.bak
-	-rm -r spool/feeds
+	-rm var/error.log
+	-rm var/mbox
+	-rm var/mbox.bak
+	-rm var/overview_fs
+	-rm var/overview_fs.bak
+	-rm var/feed_atom03.xml
+	-rm var/feed_rss10.rdf
+	-rm var/feed_rss20.rdf        
 
 phpdoc:
 	-rm -r doc/phpdoc

@@ -6,7 +6,7 @@
 // include all required files
 require_once('include/misc.php');
 require_once('include/constants.php');
-require_once('config.php');
+require_once('conf/config.php');
 
 // if we are coming directly from login
 $_SESSION['NP']['auth_inst']->check_post();

@@ -5,7 +5,7 @@
 
 // include all required files
 require_once('include/misc.php');
-require_once('config.php');
+require_once('conf/config.php');
 
 // if $_POST is not set, this function also checks
 // session vars for authentication

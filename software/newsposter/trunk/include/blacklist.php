@@ -4,7 +4,7 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 require_once('misc.php');
-require_once($np_dir . '/config.php');
+require_once($np_dir . '/conf/config.php');
 
 /**
  * This class tracks users and time of interaction and

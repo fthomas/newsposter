@@ -1,6 +1,6 @@
 <?php
 /* $Id$ */
-require_once('include/constants.php');
+require_once('../include/constants.php');
 
 /**
  *  Newsposter Configuration File

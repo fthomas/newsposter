@@ -4,7 +4,7 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 require_once('misc.php');
-require_once($np_dir . '/config.php');
+require_once($np_dir . '/conf/config.php');
 
 /**
  * According to RFC 977 (http://www.faqs.org/rfcs/rfc977.html)

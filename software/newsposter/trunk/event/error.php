@@ -6,7 +6,7 @@
 // include all required files
 require_once('include/misc.php');
 require_once('include/mail.php');
-require_once('config.php');
+require_once('conf/config.php');
 
 if ($cfg['SendMailOnError'] == TRUE &&
     $_SESSION['NP']['bl_inst']->validate_user() == TRUE)

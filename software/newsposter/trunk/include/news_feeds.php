@@ -1,11 +1,27 @@
 <?php
-/* $Id$ */
-//
-// Authors: Frank Thomas <frank@thomas-alfeld.de>
+/* $Id$
+ *
+ * This file is part of 'Newsposter - A versatile weblog'
+ * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 require_once('misc.php');
-require_once($np_dir . '/config.php');
-
+require_once($np_dir . '/conf/config.php');
 require_once('constants.php');
 require_once('date.php');
 require_once('store_fs.php');
@@ -21,7 +37,7 @@ require_once('external/str_word_count.php');
  * - RSS 2.0  ({@link http://blogs.law.harvard.edu/tech/rss})
  * - Atom 0.3 ({@link http://www.mnot.net/drafts/draft-nottingham-atom-format-02.html})
  *
- * @package    Newsposter
+ * @package Newsposter
  */
 class NP_NewsFeeds {
 
@@ -45,9 +61,6 @@ class NP_NewsFeeds {
         $this->feed_file['rss10']  = $np_dir . '/var/feed_rss10.rdf';
         $this->feed_file['rss20']  = $np_dir . '/var/feed_rss20.xml';
         $this->feed_file['atom03'] = $np_dir . '/var/feed_atom03.xml';
-        
-        if (! file_exists($np_dir . '/spool/feeds/'))
-            mkdir($np_dir . '/spool/feeds/');
                 
         foreach ($this->feed_file as $file)
         {
@@ -302,6 +315,8 @@ class NP_NewsFeeds {
     }
     
     /**
+     * Removes all text after $max_words words
+     *
      * @access    private
      * @param     string    $text
      * @param     int       $max_words

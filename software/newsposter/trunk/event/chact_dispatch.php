@@ -4,7 +4,7 @@
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
 require_once('include/misc.php');
-require_once('config.php');
+require_once('conf/config.php');
 
 // check auth
 $_SESSION['NP']['auth_inst']->check_auth();

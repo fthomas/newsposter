@@ -5,7 +5,7 @@
 
 // include all required files
 require_once('include/misc.php');
-require_once('config.php');
+require_once('conf/config.php');
 
 $output = '';
 $posts  = $_SESSION['NP']['store_inst']->get_all_news(0, $cfg['MaxPostings']);

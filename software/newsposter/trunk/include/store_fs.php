@@ -1,19 +1,37 @@
 <?php
-/* $Id$ */
-//
-// Authors: Frank Thomas <frank@thomas-alfeld.de>
-
+/* $Id$
+ *
+ * This file is part of 'Newsposter - A versatile weblog'
+ * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+ 
 require_once('misc.php');
-
 require_once('date.php');
 require_once('posting.php');
 
 /**
+ * Database backend (using native FS)
+ *
  * The NP_Storing class handles all save/load/delete actions for
  * Newsposter's postings. This store_fs.php file uses a mbox like
  * spool and it directly operates with the filesystem.
+ *
  * @package    Newsposter
- * @brief	Database backend (using native FS)
  */
 class NP_Storing {
 
@@ -35,21 +53,12 @@ class NP_Storing {
 
 	// create global instance of NP_Posting for this class
 	$this->post_inst  = &new NP_Posting;
-	
-	// use a remote dir? so we don't need to touch our files
-	if (!empty($cfg['RemoteSpoolDir']))
-	{
-	    $this->mbox_file  = $cfg['RemoteSpoolDir'] . 'mbox';
-	    $this->oview_file = $cfg['RemoteSpoolDir'] . 'overview_fs';
 	    
-	    return TRUE;
-	}
-	    
-	$this->mbox_file  = $np_dir . '/spool/mbox';
-	$this->mbox_bak   = $np_dir . '/spool/mbox.bak';
+	$this->mbox_file  = $np_dir . '/var/mbox';
+	$this->mbox_bak   = $np_dir . '/var/mbox.bak';
 	
-	$this->oview_file = $np_dir . '/spool/overview_fs';
-	$this->oview_bak  = $np_dir . '/spool/overview_fs.bak';
+	$this->oview_file = $np_dir . '/var/overview_fs';
+	$this->oview_bak  = $np_dir . '/var/overview_fs.bak';
     
 	if (! file_exists($this->mbox_file))
 	    touch($this->mbox_file);

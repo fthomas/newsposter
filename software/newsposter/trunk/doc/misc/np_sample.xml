@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+
 <np:database version="0.1" xmlns:np="http://newsposter.webhop.org/">
 
-  <!-- This is the default category. -->
   <np:category cid="0">
     <np:title>Blue Dwarf 2</np:title>
     <np:link>http://www.thomas-alfeld.de/frank/</np:link>
@@ -12,15 +13,11 @@
     <np:modified>1095444924</np:modified>
   </np:category>
   
-  <!--
-    Here is an additional category called 'Newsposter'. I would post all
-    Newsposter related stuff to this category.
-   -->
   <np:category cid="1" name="Newsposter">
     <np:title>Home of Newsposter</np:title>
     <np:link>http://www.thomas-alfeld.de/frank/software/newsposter/</np:link>
     <np:description>
-      Newsposter - the versatile weblog: blogging at it's finest level.
+      Newsposter - A versatile weblog: blogging at it's finest level.
     </np:description>
     <np:modified>1065744923</np:modified>
   </np:category>

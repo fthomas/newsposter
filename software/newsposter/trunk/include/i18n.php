@@ -5,9 +5,17 @@
 //
 // language_accept() and language_negotiate() taken from:
 // http://www.zend.com/codex.php?id=616&single=1
-
+/*
+accept lang:
+de_DE
+de_de
+de-de
+de-DE
+de
+multiple locales in setlocale erst seit 4.3.0!
+*/
 require_once('misc.php');
-require_once($np_dir . '/config.php');
+require_once($np_dir . '/conf/config.php');
 
 require_once('constants.php');
 
@@ -154,8 +162,8 @@ class NP_I18N {
      */
     function _language_accept($accept='')
     {  
-        $lang = split(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']); 
- 
+        $lang = split(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
         // parse http_accept_language header 
         foreach($lang as $i=>$value)
         { 
