@@ -8,8 +8,8 @@
  */
 
 // misc
-define('VERSION'   , '0.5.1');
-define('CODENAME'  , 'Falling leaves');
+define('VERSION'   , '0.5.2');
+define('CODENAME'  , 'Resurrection');
 define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
 

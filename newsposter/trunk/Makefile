@@ -1,3 +1,4 @@
+# $Id$
 VERSION	 = `php -q tools/print_version.php`
 REVISION = `svn info | grep "Last Changed Rev" | sed s/"Last Changed Rev: "//`
 DIRNAME  = newsposter-$(VERSION)
