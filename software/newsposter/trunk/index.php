@@ -11,7 +11,7 @@ require_once('include/posting.php');
 require_once('include/nntp.php');
 require_once('include/mail.php');
 require_once('include/ubb_code.php');
-require_once('include/rdf.php');
+require_once('include/news_feeds.php');
 require_once('include/blacklist.php');
 require_once('include/i18n.php');
 require_once('include/' . $cfg['StoreTypeFile']);

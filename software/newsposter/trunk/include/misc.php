@@ -19,7 +19,9 @@ ini_set('arg_separator.output', '&amp;');
 //ini_set('error_reporting', E_ALL);
 //ini_set('log_errors'     , 1);
 
-/// write error message to file
+/**
+ * write error message to file
+ */
 function my_trigger_error($error_msg)
 {
     $error_log = $GLOBALS['np_dir'] . '/spool/error.log';
@@ -35,20 +37,20 @@ function my_trigger_error($error_msg)
     fclose($fp);
 }
 
-/// includes file before newsposter's output
+/**
+ * includes file before newsposter's output
+ */
 function print_header()
 {
-    global $cfg;
-    if (!empty($cfg['IncludeHeader']) && file_exists($cfg['IncludeHeader']))
-        include_once($cfg['IncludeHeader']);
+    $_SESSION['NP']['i18n_inst']->include_frame(HEADER);
 }
 
-/// includes file after newsposter's output
+/**
+ * includes file after newsposter's output
+ */
 function print_footer()
 {
-    global $cfg;
-    if (!empty($cfg['IncludeFooter']) && file_exists($cfg['IncludeFooter']))
-        include_once($cfg['IncludeFooter']);
+    $_SESSION['NP']['i18n_inst']->include_frame(FOOTER);
 }
 
 /**
@@ -124,25 +126,21 @@ function prep_msgid($msgid)
     return $msgid;
 }
 
-/// create GET paramter for session_id
+/**
+ * create GET paramter for session_id
+ */
 function create_sess_param()
 {
     return session_name() . '=' . session_id();
 }
 
-// create POST variable for session
+/**
+ * create POST variable for session
+ */
 function create_sess_post()
 {
     return sprintf('<input type="hidden" name="%s" value="%s" />%s',
-			session_name(), session_id(), "\n");
-}
-
-/// only for debug purposes
-function v_output($var)
-{
-    print '<pre>';
-    print_r($var);
-    print '</pre>';
+               session_name(), session_id(), "\n");
 }
 
 ?>

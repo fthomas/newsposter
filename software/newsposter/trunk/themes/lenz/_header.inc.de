@@ -19,12 +19,12 @@
     <table style="border: solid 1px black" cellspacing="0" cellpadding="5" align="center" width="100%">
 	<tr>
 	    <td align="center"><a href="index.php?np_act=login"><b>Login</b></a></td>
-	    <td align="center"><a href="index.php?np_act=chact"><b>Dispatch</b></a></td>
-	    <td align="center"><a href="index.php?np_act=output_all"><b>Show all</b></a></td>
-	    <td align="center"><a href="index.php?np_act=output_news"><b>Show latest</b></a></td>
-	    <td align="center"><a href="index.php?np_act=search"><b>Search</b></a></td>
-	    <td align="center"><a href="index.php?np_act=oview"><b>Overview</b></a></td>
-	    <td align="center"><a href="spool/rss10.xml"><img src="themes/default/images/misc/rss_xml.png" alt="RSS XML" border="0" /></a></td>
+	    <td align="center"><a href="index.php?np_act=chact"><b>Aktion wählen</b></a></td>
+	    <td align="center"><a href="index.php?np_act=output_all"><b>Alle Artikel</b></a></td>
+	    <td align="center"><a href="index.php?np_act=output_news"><b>Neusten Artikel</b></a></td>
+	    <td align="center"><a href="index.php?np_act=search"><b>Suchen</b></a></td>
+	    <td align="center"><a href="index.php?np_act=oview"><b>Üersicht</b></a></td>
+	    <td align="center"><a href="spool/rss10.xml"><img src="themes/default/images/misc/rss_xml.png" alt="RSS 1.0 XML" border="0" /></a></td>
 	</tr>
     </table>
     <br />

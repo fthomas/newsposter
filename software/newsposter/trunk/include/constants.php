@@ -14,8 +14,10 @@ define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
 
 // version codename history
-// 0.5.0	Odyssee
-// 0.5.1	Falling leaves
+// 0.5.2    Resurrection
+// 0.5.1    Falling leaves
+// 0.5.0    Odyssee
+
 
 // hashes used by Newsposter's authentication
 define('CRYPT', 1);
@@ -40,5 +42,13 @@ define('USER' , P_WRITE | P_EDIT | P_DEL);
 define('DUKE' , P_WRITE | P_EDIT | P_DEL | P_EDIT_NEWS | P_DEL_NEWS);
 define('ADMIN', P_WRITE | P_EDIT | P_DEL | P_EDIT_NEWS | P_DEL_NEWS |
                 P_DEL_COMMENTS);
+
+// NP_I18N::include_frame()
+define('HEADER', 1);
+define('FOOTER', 2);
+
+// NP_Posting::get_posting_url()
+define('VIEW', 1);
+define('FORM', 2);
 
 ?>

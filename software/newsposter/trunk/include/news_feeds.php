@@ -5,6 +5,7 @@
 
 // include all required files
 require_once('misc.php');
+require_once('constants.php');
 require_once('date.php');
 require_once($np_dir . '/config.php');
 require_once($cfg['StoreTypeFile']);
@@ -12,8 +13,9 @@ require_once($cfg['StoreTypeFile']);
 /**
  * This class creates news feeds for aggregation. Currently the
  * following feed standards are supported:
- *     RSS 1.0 (http://web.resource.org/rss/1.0/)
- *     RSS 2.0 (http://blogs.law.harvard.edu/tech/rss)
+ *     RSS 1.0  ( http://web.resource.org/rss/1.0/ )
+ *     RSS 2.0  ( http://blogs.law.harvard.edu/tech/rss )
+ *     Atom 0.3 ( http://www.mnot.net/drafts/draft-nottingham-atom-format-02.html )
  * @brief   News feeds creation class
  */
 class NP_NewsFeeds {
@@ -37,8 +39,9 @@ class NP_NewsFeeds {
         $this->store_inst = &new NP_Storing;
         $this->post_inst  = &new NP_Posting;
 
-        $this->feed_file['rss10'] = $np_dir . '/spool/rss10.xml';
-        $this->feed_file['rss20'] = $np_dir . '/spool/rss20.xml';
+        $this->feed_file['rss10']  = $np_dir . '/spool/rss10.xml';
+        $this->feed_file['rss20']  = $np_dir . '/spool/rss20.xml';
+        $this->feed_file['atom03'] = $np_dir . '/spool/atom03.xml';
         
         // create all feed files
         foreach ($this->feed_file as $file)
@@ -59,6 +62,7 @@ class NP_NewsFeeds {
         
         $this->create_rss10();
         $this->create_rss20();
+        $this->create_atom03();
     }
     
     /**
@@ -72,15 +76,22 @@ class NP_NewsFeeds {
     {
         global $cfg;
         
+        if ($cfg['MaxFeedItems'] == 0)
+            $max_items = NULL;
+        else
+            $max_items = $cfg['MaxFeedItems'];
+        
         // get all postings
         if ($cfg['IncludeComments'])
-            $posts = $this->store_inst->get_all_postings(0, $cfg['MaxFeedItems']);
+            $posts = $this->store_inst->get_all_postings(0, $max_items);
         else
-            $posts = $this->store_inst->get_all_news(0, $cfg['MaxFeedItems']);
+            $posts = $this->store_inst->get_all_news(0, $max_items);
     
         // initialize array
         $this->feed_items['rss10']['channel'] = '';
         $this->feed_items['rss10']['rdf']     = '';
+        $this->feed_items['rss20']['channel'] = '';
+        $this->feed_items['atom03']['feed']   = '';   
             
         foreach ($posts as $posting)
         {
@@ -92,10 +103,14 @@ class NP_NewsFeeds {
                 $posting['body']    = stripslashes($posting['body']);
             }
             
-            $link = $this->post_inst->get_sp_url($posting);
+            $posting['msgid'] = prep_msgid($posting['msgid']);
             
-            $date_iso8601 = stamp2string($posting['stamp'], 13);
-            $date_rfc822  = stamp2string($posting['stamp'], 8);
+            $link_view = $this->post_inst->get_posting_url($posting, VIEW);
+            $link_form = $this->post_inst->get_posting_url($posting, FORM);
+           
+            $date_iso8601_1 = stamp2string($posting['stamp'], 13);
+            $date_iso8601_2 = substr($date_iso8601_1, 0, 10);
+            $date_rfc822    = stamp2string($posting['stamp'], 8);
             
             /* ---- RSS 1.0 ---- */
             
@@ -103,14 +118,14 @@ class NP_NewsFeeds {
                 .= "        <rdf:li rdf:resource=\"{$link}\" />\n";
             
             $this->feed_items['rss10']['rdf']
-                .= "  <item rdf:about=\"{$link}\">\n"
+                .= "  <item rdf:about=\"{$link_view}\">\n"
                  . "    <title>{$posting['subject']}</title>\n"
-                 . "    <link>{$link}</link>\n"
+                 . "    <link>{$link_view}</link>\n"
                  . "    <content:encoded>\n"
                  . "      <![CDATA[{$posting['body']}]]>\n"
                  . "    </content:encoded>\n"
                  . "    <dc:creator>{$posting['mail']} ({$posting['name']})</dc:creator>\n"
-                 . "    <dc:date>{$date_iso8601}</dc:date>\n"
+                 . "    <dc:date>{$date_iso8601_1}</dc:date>\n"
                  . "  </item>\n"
                  . "\n";
                         
@@ -119,14 +134,35 @@ class NP_NewsFeeds {
             $this->feed_items['rss20']['channel']
                 .= "    <item>\n"
                 .  "      <title>{$posting['subject']}</title>\n"
-                .  "      <link>{$link}</link>\n"
+                .  "      <link>{$link_view}</link>\n"
                 .  "      <description>\n"
                 .  "        <![CDATA[{$posting['body']}]]>\n"
                 .  "      </description>\n"
                 .  "      <author>{$posting['mail']} ({$posting['name']})</author>\n"
+                .  "      <comments>{$link_form}</comments>\n"
                 .  "      <pubDate>{$date_rfc822}</pubDate>\n"
-                .  "      <guid isPermaLink=\"true\">{$link}</guid>\n"
-                .  "    </item>\n";
+                .  "      <guid isPermaLink=\"true\">{$link_view}</guid>\n"
+                .  "    </item>\n"
+                .  "\n";
+            
+            /* ---- Atom 0.3 ----- */
+            
+            $this->feed_items['atom03']['feed']
+                .= "  <entry>\n"
+                .  "    <title>{$posting['subject']}</title>\n"
+                .  "    <link rel=\"alternate\" type=\"text/html\" href=\"{$link_view}\" />\n"
+                .  "    <author>\n"
+                .  "      <name>{$posting['name']}</name>\n"
+                .  "      <email>{$posting['mail']}</email>\n"
+                .  "    </author>\n"
+                .  "    <id>tag:newsposter.webhop.org,{$date_iso8601_2}:{$posting['msgid']}</id>\n"
+                .  "    <modified>{$date_iso8601_1}</modified>\n"
+                .  "    <issued>{$date_iso8601_1}</issued>\n"
+                .  "    <content type=\"text/html\" mode=\"escaped\">\n"
+                .  "      <![CDATA[{$posting['body']}]]>\n"
+                .  "    </content>\n"
+                .  "  </entry>\n"
+                .  "\n";
         }
     }
     
@@ -189,6 +225,7 @@ class NP_NewsFeeds {
                  . "    <lastBuildDate>{$now_rfc822}</lastBuildDate>\n"
                  . "    <generator>". COMB_NAME ."</generator>\n"
                  . "    <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n"
+                 . "\n"
                  .      $this->feed_items['rss20']['channel']
                  . "  </channel>\n"
                  . "</rss>\n";
@@ -199,6 +236,36 @@ class NP_NewsFeeds {
         fwrite($fp, $content);
         
         return fclose($fp);
+    }
+    
+    /**
+     * Creates Atom 0.3 news feed
+     * @access    public
+     * @return    bool
+     */    
+    function create_atom03()
+    {
+        global $cfg;
+        
+        $now_iso8601 = my_date(13);
+        
+        $content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                 . "<feed version=\"0.3\" xmlns=\"http://purl.org/atom/ns#\" xml:lang=\"{$cfg['Language']}\">\n"
+                 . "  <title>{$cfg['PageTitle']}</title>\n"
+                 . "  <link rel=\"alternate\" type=\"text/html\" href=\"{$cfg['PageURL']}\" />\n"
+                 . "  <tagline>{$cfg['Description']}</tagline>\n"
+                 . "  <generator url=\"http://newsposter.webhop.org/\" version=\"" .VERSION. "\">Newsposter</generator>\n"
+                 . "  <modified>{$now_iso8601}</modified>\n"
+                 . "\n"
+                 .    $this->feed_items['atom03']['feed']
+                 . "</feed>\n";
+    
+        // write Atom 0.3 file
+        if (($fp = fopen($this->feed_file['atom03'], 'w')) == FALSE)
+            return FALSE;     
+        fwrite($fp, $content);
+        
+        return fclose($fp);   
     }
 }
 

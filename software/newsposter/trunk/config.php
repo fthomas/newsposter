@@ -27,13 +27,19 @@ $cfg['PageURL']     = 'http://localhost/';
 $cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
-//  1)  24.12.1984 13:43             2)  24.12.1984
-//  3)  1984/12/24 13:43             4)  1984/12/24
-//  5)  Dezember 1984                6)  Dezember 24 1984
-//  7)  Montag, Dezember 24 @ 13:43:00 UTC
-//  8)  (RFC 822 formatted)          9)  11000.1100.11111000000
-// 10)  (seconds since epoch)       11)  19841224134300
-// 12)  Mon Dec 24 13:43:00 1984    13)  1984-12-24T13:34:00Z
+//    1 =>    24.12.1984 13:43
+//    2 =>    24.12.1984
+//    3 =>    1984/12/24 13:43
+//    4 =>    1984/12/24
+//    5 =>    Dezember 1984
+//    6 =>    Dezember 24 1984
+//    7 =>    Montag, Dezember 24 @ 13:43:00 UTC
+//    8 =>    Mon, 24 Dec 1984 13:43:00 +0200  // RFC 822 date format
+//    9 =>    11000.1100.11111000000 // binary notation
+//   10 =>    // seconds since the epoch (01.01.1970)
+//   11 =>    19841224134300
+//   12 =>    Mon Dec 24 13:43:00 1984 // mbox date format
+//   13 =>    1984-12-24T13:34:00Z // ISO 8601 date format
 // (int)
 $cfg['DateFormat']  = 1;
 
@@ -108,8 +114,10 @@ $cfg['RemoteSpoolDir']   = '';
 
 // According to the 'Accept-Language' HTTP header Newsposter tries
 // to determine the preferred language of your visitor and sets the
-// $cfg['Language'] / $cfg['Locale'] variables accordingly. If
-// Newsposter and your visitor have no language in common
+// $cfg['Language'] / $cfg['Locale'] variables accordingly. Newsposter
+// will also look for localized header and footer files
+// (see $cfg['IncludeHeader'] and $cfg['IncludeFooter']).
+// If Newsposter and your visitor have no language in common
 // your $cfg['Language'] setting is used as default language.
 // (bool)
 $cfg['ContentNegotiation'] = TRUE;
@@ -234,35 +242,52 @@ $cfg['AllowedTags']  = '<p><a><i><b>';
 // Specify your theme here. This name is equal to the directory
 // name of the theme.
 // (string)
-$cfg['Theme']         = 'lenz';
+$cfg['Theme'] = 'lenz';
 
 // Specify here the files used for the content printed above and
 // beneath Newsposter's output.
+// If you enable $cfg['ContentNegotiation'] Newsposter will also
+// look for localized versions of your header and footer files
+// according to the preferred language of your visitor. Create
+// your localized header/footer files:
+//     header.inc.de // german header file 
+//     header.inc.en // english header file 
+//     header.inc.ja // japanese header file 
+//     footer.inc.de // german footer file 
+//     footer.inc.en // english footer file 
+//     footer.inc.ja // japanese footer file
+// and specify here the files you want to include if Newsposter and
+// your visitor have no language in common.
+//     $cfg['IncludeHeader'] = 'header.inc.de';
+//     $cfg['IncludeFooter'] = 'footer.inc.de';
+// Notice: If the language of your header/footer is not available as
+//     Newsposter translation you have to add it to the $avail_lang
+//     array in include/i18n.php.
 // (string)
-$cfg['IncludeHeader'] = 'themes/'. $cfg['Theme'] .'/_header.inc';
-$cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc';
+$cfg['IncludeHeader'] = 'themes/'. $cfg['Theme'] .'/_header.inc.en';
+$cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc.en';
 
 // These are used for the depth indicator.
 // (string)
-$cfg['DepthStart']  = '+';
-$cfg['DepthLength'] = '-';
-$cfg['DepthStop']   = '>';
+$cfg['DepthStart']    = '+';
+$cfg['DepthLength']   = '-';
+$cfg['DepthStop']     = '>';
 
 // This color is used for the search matches.
 // (string)
-$cfg['MatchColor']      = '#ffe100';
+$cfg['MatchColor']    = '#ffe100';
 
 // Each even line in the Overview output has this background color.
 // This is only available in the "lenz" theme.
 // (string)
-$cfg['EvenLineColor']   = '#ebf9fe';
+$cfg['EvenLineColor'] = '#ebf9fe';
 
 
 /**
- * News Feeds (RSS 1.0/2.0)
+ * News Feeds (RSS 1.0/2.0 and Atom 0.3)
  */
 
-// Turn RSS 1.0 and RSS 2.0 creation on/off.
+// Turn RSS 1.0/2.0 and Atom 0.3 creation on/off.
 // (bool)
 $cfg['CreateFeeds']     = TRUE;
 
@@ -274,7 +299,8 @@ $cfg['IncludeComments'] = TRUE;
 // (string)
 $cfg['Description']     = 'Example Homepage - www.example.com';
 
-// The maximum of postings in your news feeds.
+// The maximum of postings in your news feeds. 0 disables the
+// limitation.
 // (int)
 $cfg['MaxFeedItems']    = 10;
 

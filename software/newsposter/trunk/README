@@ -9,12 +9,22 @@
     flexibility make Newsposter to a very useful tool, applicable in
     various environments.
     
-    Newsposter has the following features and functions: comments,
-    themes and topics, RSS 1.0/2.0, one-way NNTP gateway, multi-user,
-    multilingual, content negotiation, search function, hashed passwords,
-    login per LDAP directory, different user rights, mail protocols,
-    marking of new and old postings, UBB code, data storage in "mbox"
-    format, UTF-8 support, etc.  
+    Newsposter has the following features and functions:
+     - Visitors can post comments
+     - Flood protection
+     - Themes and topics
+     - RSS 1.0/2.0 and Atom 0.3 feeds
+     - Multi-user with different access permission
+     - Multilingual and Content Negotiation
+     - Hashed passwords plain authentication 
+     - Authentication per LDAP directory
+     - Mail protocols and newsletters 
+     - Marking of new and old postings
+     - UBB code for news and comments
+     - Visitors can search in your news database 
+     - Stores data in "mbox" format and UTF-8 encoded
+     - One-way NNTP gateway
+    and many more...
     
 
 >> Where to get it?
@@ -28,6 +38,10 @@
     
     Downloaded Newsposter for the first time? Read the
     "Quick Installation Guide" in the INSTALL file.
+    
+    Take a look at the UPGRADE file, if you want to know what has
+    changed since the last version and how to upgrade your Newsposter
+    installation. 
     
     If there are any questions or suggestions or if you have found
     bugs, send mail to frank@thomas-alfeld.de. 
@@ -45,12 +59,12 @@
 
     Lenz Grimmer
         - Contributed the "lenz" theme for Newsposter 0.5.x.
- 
-    PiXeLpApst
-        - Co-programmer of Newsposter version 0.4.0. 
-
+    
     Martin Vasilev
         - Wrote bulgarian translation for Newsposter 0.4.x.
+         
+    PiXeLpApst
+        - Co-programmer of Newsposter version 0.4.0. 
 
 
     ...and others, who contributed suggestions for improvement or new

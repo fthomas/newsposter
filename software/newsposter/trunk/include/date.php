@@ -109,6 +109,7 @@ function stamp2string($time_stamp = -1, $format = 0)
             return $time_string;
 
         case 13:
+            $time_stamp -= date('Z');
             $time_string = date('Y-m-d\TH:i:s\Z', $time_stamp);
             return $time_string;
                 

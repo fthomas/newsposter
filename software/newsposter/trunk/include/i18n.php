@@ -7,6 +7,7 @@
 // http://www.zend.com/codex.php?id=616&single=1
 
 // include all required files
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/config.php');
 
@@ -33,14 +34,23 @@ class NP_I18N {
         $this->pref_lang = $cfg['Language'];
         
         // content negotiation is disabled
-        if ($cfg['ContentNegotiation'] == FALSE)
+        if (!$cfg['ContentNegotiation'])
         {
             $this->include_translation();
             return;
         }
         
         // negotiate language
-        $this->pref_lang = $this->language_accept($this->avail_lang);
+        $this->pref_lang = $this->_language_accept($this->avail_lang);
+        
+        // $_GET['np_lang'] overrides negotiated language
+        $_GET['np_lang'] = strtolower($_GET['np_lang']);
+        
+        if (isset($_GET['np_lang']) && preg_match('/\w{2}/', $_GET['np_lang'])
+            && in_array($_GET['np_lang'], $this->avail_lang))
+        {    
+            $this->pref_lang = $_GET['np_lang'];
+        }
         
         // fallback to default language
         if (empty($this->pref_lang))
@@ -68,16 +78,83 @@ class NP_I18N {
         $GLOBALS['lang'] = $lang;
     }
     
+
+    /**
+     * Tries to include a localized version of $cfg['IncludeHeader']
+     * or $cfg['IncludeFooter'] if ContentNegotiation is enabled.
+     * @access    public
+     * @param     int    $type    HEADER or FOOTER
+     * @return    bool
+     */
+    function include_frame($type=0)
+    {
+        global $cfg;
+    
+        switch ($type)
+        {
+            case HEADER:
+                $frame = $cfg['IncludeHeader'];
+                break;
+            
+            case FOOTER:
+                $frame = $cfg['IncludeFooter'];
+                break;
+            
+            default:
+                $frame = '';
+        }
+        
+        if (empty($frame))
+            return TRUE;
+    
+        if (!$cfg['ContentNegotiation'])
+        {
+            if (is_readable($frame))
+            {
+                include_once($frame);
+                return TRUE;
+            }
+            else 
+                return FALSE;
+        }
+        
+        // assume filename has language extension (header.inc.de)
+        if ( preg_match('/.*\.\w{2}$/', $frame) )
+        {
+            $frame_localized  = substr($frame, 0, strlen($frame)-3);
+            $frame_localized .= "." . $this->pref_lang;
+        }
+        else
+            $frame_localized = $frame .".". $this->pref_lang;
+
+        if (is_readable($frame_localized))
+        {
+            include_once($frame_localized);
+        }
+        else
+        {
+            if (is_readable($frame))
+            {
+                include_once($frame);
+                return TRUE;
+            }
+            else 
+                return FALSE;
+        }
+        
+        return TRUE;
+    }
+
     /**
      * Takes a list of languages the current document is 
      * available in as a parameter, and returns either a 
      * language that the browser and server have in common, 
      * or an empty string if no match was found.
-     * @access   public
+     * @access   private
      * @param    array    $accept    array of language codes to accept 
      * @return   string   negotiated language code or ''
      */
-    function language_accept($accept='')
+    function _language_accept($accept='')
     {  
         $lang = split(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']); 
  
@@ -88,21 +165,21 @@ class NP_I18N {
             $lang[$i] = trim($value[0]);
         } 
  
-        return $this->language_negotiate($lang, $accept);
+        return $this->_language_negotiate($lang, $accept);
     }
 
     /**
      * Finds a matching language between the two arrays. Tries 
      * to match whole language code, then first two characters 
      * (ie. 'en-us', 'en').
-     * @access   public 
+     * @access   private 
      * @param    array    $ask_lang     array of language codes the
      *                                  browser wants
      * @param    array    $accept_lang  array of language codes this
      *                                  document is available in 
      * @return   string   language code or ''
      */
-    function language_negotiate($ask_lang, $accept_lang)
+    function _language_negotiate($ask_lang, $accept_lang)
     { 
         if (!(is_array($ask_lang) && is_array($accept_lang)))
             return ''; 

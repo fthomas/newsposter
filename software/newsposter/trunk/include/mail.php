@@ -98,7 +98,7 @@ class NP_Mail {
 
 	// get type of posting
 	$type = $this->post_inst->get_type($posting);
-	$link = $this->post_inst->get_sp_url($posting);
+	$link = $this->post_inst->get_posting_url($posting, VIEW);
 	
 	// compose mail body
 	$body = sprintf("{$lang['mail_intro_success']}:\n", $type)

@@ -330,28 +330,59 @@ class NP_Posting {
     }
     
     /**
-     * 'sp' is show_posting 
-     * @access	public
-     * @param	mixed	$message
-     * @return	string	An URL pointing to the news article or comment. 
+     * 
+     * @access    public
+     * @param     mixed     $message
+     * @param     int       $type        
+     * @return    string    An URL pointing to the news article or comment. 
      */
-    function get_sp_url($message)
+    function get_posting_url($message, $type)
     {
-	global $cfg;
-	
-	$message = $this->_to_array($message);
-	$msgid   = urlencode(prep_msgid($message['msgid']));
+        global $cfg;
+
+        $message = $this->_to_array($message);
+        $msgid   = urlencode(prep_msgid($message['msgid']));
     
-	if (isset($message['refs']) && !empty($message['refs']))
-	{
-	    $parents = explode(' ', $message['refs']);
-	    $parent  = urlencode(prep_msgid($parents[0]));
-	    
-	    return sprintf("%s?np_act=expanded&amp;msg_id=%s#%s",
-			$cfg['IndexURL'], $parent, $msgid);
-	}
-	else
-	    return sprintf("%s?np_act=output_all#%s", $cfg['IndexURL'], $msgid);
+        // posting is a comment
+        if (isset($message['refs']) && !empty($message['refs']))
+        {
+            $ref_ids = explode(' ', $message['refs']);
+            $root    = urlencode(prep_msgid($ref_ids[0]));
+            $parent  = urlencode(prep_msgid($ref_ids[count($ref_ids)-1]));
+                
+            if ($type == VIEW)
+                return sprintf('%s?np_act=expanded&amp;msg_id=%s#%s',
+                    $cfg['IndexURL'], $root, $msgid);
+                    
+            if ($type == FORM)
+                return sprintf('%s?np_act=expanded&amp;msg_id=%s'
+                    . '&amp;child_of=%s#%s', $cfg['IndexURL'], 
+                    $root, $parent, $msgid);
+            
+        }
+        // posting is a news item
+        else
+        {
+            if ($type == VIEW)
+                return sprintf('%s?np_act=output_all#%s', $cfg['IndexURL'],
+                    $msgid);
+                    
+            if ($type == FORM)
+                return sprintf('%s?np_act=expanded&amp;msg_id=%s',
+                    $cfg['IndexURL'], $msgid);
+        }
+        
+        return $cfg['IndexURL'];
+    }
+    
+    /**
+     *
+     *
+     */
+    function get_comments_form_url($message)
+    {
+        $message = $this->_to_array($message);
+        $msgid   = urlencode(prep_msgid($message['msgid']));
     }
     
     /**
