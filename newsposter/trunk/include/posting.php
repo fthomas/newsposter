@@ -61,9 +61,9 @@ require_once($cfg['StoreTypeFile']);
 class NP_Posting {
 
     /**
-     * @param	array	$reference	An internal formatted  posting. 
      * @access	public
-     * @returns	array	The returned array is an internal formatted posting.
+     * @param	array	$reference	An internal formatted  posting. 
+     * @return	array	The returned array is an internal formatted posting.
      */
     function create_post($reference = NULL)
     {
@@ -116,9 +116,9 @@ class NP_Posting {
     }
 
     /**
-     * @param	array	$int_post
      * @access	public
-     * @returns	string
+     * @param	array	$int_post
+     * @return	string
      */
     function create_supersede($int_post)
     {
@@ -132,9 +132,9 @@ class NP_Posting {
     }
     
     /**
-     * @param	array	$int_post
      * @access	public
-     * @returns	string
+     * @param	array	$int_post
+     * @return	string
      */
     function create_cancel($int_post)
     {
@@ -161,9 +161,9 @@ class NP_Posting {
     }
 
     /**
-     * @param	string	$ext_post
      * @access	public
-     * @returns	array
+     * @param	string	$ext_post
+     * @return	array
      */    
     function ext2int($ext_post)
     {
@@ -243,9 +243,9 @@ class NP_Posting {
     }
 
     /**
-     * @param	array	$int_post
      * @access	public
-     * @returns	string
+     * @param	array	$int_post
+     * @return	string
      */
     function int2ext($int_post)
     {
@@ -299,7 +299,7 @@ class NP_Posting {
     /**
      * @access	public
      * @param	mixed	$message
-     * @returns	string
+     * @return	string
      */
     function get_msgid($message)
     {
@@ -315,7 +315,7 @@ class NP_Posting {
     
     /**
      * @access	private
-     * @returns	string
+     * @return	string
      */
     function _create_msgid()
     {
@@ -332,7 +332,7 @@ class NP_Posting {
      
     /**
      * @access	private
-     * @returns	string
+     * @return	string
      */
     function _suggest_msgid()
     {

@@ -24,7 +24,7 @@ class NP_ComLine {
     }
 
     /**
-     * @access  private
+     * @access	private
      */
     function __construct()
     {
@@ -39,9 +39,9 @@ class NP_ComLine {
     }
 
     /**
-     * @param   string  $mesg
-     * @access  public
-     * @returns void
+     * @access	public
+     * @param	string	$mesg
+     * @return	void
      */
     function write_ln($mesg)
     {
@@ -50,9 +50,9 @@ class NP_ComLine {
     }
 
     /**
-     * @param   string  $err_mesg
-     * @access  public
-     * @returns void
+     * @access	public
+     * @param	string	$err_mesg
+     * @return	void
      */
     function write_err($err_mesg)
     {
@@ -61,8 +61,8 @@ class NP_ComLine {
     }
 
     /**
-     * @access  public
-     * @returns string
+     * @access	public
+     * @return	string
      */
     function read_ln()
     {

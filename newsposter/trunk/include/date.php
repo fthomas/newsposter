@@ -35,7 +35,7 @@
 
 /**
  * @param	int	$time_stamp
- * @returns	string
+ * @return	string
  */
 function stamp2string($time_stamp = -1, $format = 0)
 {
@@ -107,8 +107,8 @@ function stamp2string($time_stamp = -1, $format = 0)
 }
 
 /**
- * @params	int	$format
- * @returns	string 
+ * @param	int	$format
+ * @return	string 
  */
 function my_date($format = 1)
 {

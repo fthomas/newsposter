@@ -51,8 +51,8 @@ class NP_Ubb {
     var $text = '';
 
     /**
-     * @access  public
-     * @param   string
+     * @access	public
+     * @param	string	$orig_text
      */
     function replace($orig_text)
     {
@@ -75,9 +75,9 @@ class NP_Ubb {
     }
     
     /**
-     * @access  private
-     * @param   string  $matches
-     * @returns string  The replacement for the current match.
+     * @access	private
+     * @param	string	$matches
+     * @return	string	The replacement for the current match.
      */
     function replace_match($matches)
     {

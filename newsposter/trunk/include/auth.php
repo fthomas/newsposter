@@ -34,9 +34,9 @@ class NP_Auth {
     }
 
     /**
-     * @access  public
-     * @param   string  $username
-     * @param   string  $password
+     * @access	public
+     * @param	string	$username
+     * @param	string	$password
      */
     function auth_user($username, $password)
     {
@@ -77,8 +77,8 @@ class NP_Auth {
     }
 
     /**
-     * @access  public
-     * @returns bool
+     * @access	public
+     * @return	bool
      */
     function check_POST()
     {
@@ -86,10 +86,10 @@ class NP_Auth {
     }
 
     /**
-     * @access  private
-     * @param   string  $username
-     * @param   string  $password
-     * @returns bool
+     * @access	private
+     * @param	string	$username
+     * @param	string	$password
+     * @return	bool
      */
     function _search_conf($username, $password)
     {
@@ -114,10 +114,10 @@ class NP_Auth {
     }
 
     /**
-     * @access  private
-     * @param   string  $username
-     * @param   string  $password
-     * @returns bool
+     * @access	private
+     * @param	string	$username
+     * @param	string	$password
+     * @return	bool
      */
     function _search_ldap($username, $password)
     {
@@ -174,7 +174,7 @@ class NP_Auth {
     }
 
     /**
-     * @access  private
+     * @access	private
      */
     function _make_session()
     {
@@ -186,8 +186,8 @@ class NP_Auth {
     }
     
     /**
-     * @access  public
-     * @returns bool
+     * @access	public
+     * @return	bool
      */
     function check_auth()
     {
@@ -203,7 +203,7 @@ class NP_Auth {
 
     /**
      * @access	public
-     * @returns	array
+     * @return	array
      */
     function perm_lookup()
     {
@@ -228,7 +228,7 @@ class NP_Auth {
     /**
      * @access	public
      * @param	int	$action
-     * @returns	bool
+     * @return	bool
      */
     function perm_check($action)
     {

@@ -39,7 +39,7 @@ function print_footer()
 
 // makes an absolute uri
 /**
- * @returns string
+ * @return	string
  */
 function abs_uri()
 {
@@ -57,8 +57,8 @@ function abs_uri()
 // This function removes all ASCII control characters
 // in $text and replaces them with an ordinary space. 
 /**
- * @params  string $text
- * @returns string
+ * @param	string	$text
+ * @return	string
  */
 function remove_cchars($text)
 {

@@ -16,8 +16,8 @@ require_once('misc.php');
 class NP_Passwords {
 
     /**
-     * @access  private
-     * @returns string  The return value is an eight byte long random string.
+     * @access	private
+     * @return	string	The return value is an eight byte long random string.
      */
     function _genSalt()
     {
@@ -27,10 +27,10 @@ class NP_Passwords {
     }
 
     /**
-     * @param   string  $str1
-     * @param   string  $str2
-     * @access  private
-     * @returns bool
+     * @access	private
+     * @param	string	$str1
+     * @param	string	$str2
+     * @return	bool
      */
     function _cmpStrings($str1, $str2)
     {
@@ -38,10 +38,10 @@ class NP_Passwords {
     }
 
     /**
-     * @param   string  $password
-     * @param   int     $mode
-     * @access  public
-     * @returns string
+     * @access	public
+     * @param	string	$password
+     * @param	int	$mode
+     * @return	string
      */
     function createHash($password, $mode = SSHA)
     {
@@ -84,11 +84,11 @@ class NP_Passwords {
     }
 
     /**
-     * @param   string  $password
-     * @param   string  $hash
-     * @param   int     $mode
-     * @access  public
-     * @returns bool
+     * @access	public
+     * @param	string	$password
+     * @param	string	$hash
+     * @param	int	$mode
+     * @return	bool
      */
     function cmpKnownHashes($password, $hash, $mode)
     {
@@ -145,10 +145,10 @@ class NP_Passwords {
     }
     
     /**
-     * @param   string  $password
-     * @param   string  $hash
-     * @access  public
-     * @returns bool
+     * @access	public
+     * @param	string	$password
+     * @param	string	$hash
+     * @return	bool
      */
     function cmpHashes($password, $hash)
     {
@@ -173,9 +173,9 @@ class NP_Passwords {
     }
     
     /**
-     * @param   string  $string_mode
-     * @access  public
-     * @returns int
+     * @access	public
+     * @param	string	$string_mode
+     * @return	int
      */
     function getMode($string_mode)
     {

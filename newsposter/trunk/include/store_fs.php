@@ -72,7 +72,7 @@ class NP_Storing {
 
     /**
      * @access	private
-     * @returns	array
+     * @return	array	Array of file pointers.
      */
     function _open_files()
     {
@@ -104,9 +104,9 @@ class NP_Storing {
     }
     
     /**
-     * @param	array	$fp
      * @access	private
-     * @returns	bool
+     * @param	array	$fp
+     * @return	bool
      */
     function _close_files($fp)
     {
@@ -120,9 +120,9 @@ class NP_Storing {
     }
     
     /**
-     * @param	array	$int_post
      * @access	private
-     * @returns	Postmark line for the mbox format.
+     * @param	array	$int_post
+     * @return	string	Postmark line for the mbox format.
      */
     function _create_postmark($int_post)
     {

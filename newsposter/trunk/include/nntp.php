@@ -17,9 +17,9 @@ class NP_Nntp {
     var $news_socket = '';
 
     /**
-     * @param	string	Can be a posting, cancel or supersede.
      * @access	public
-     * @returns	bool
+     * @param	string	Can be a posting, cancel or supersede.
+     * @return	bool
      */
     function post($mesg)
     {
@@ -34,8 +34,8 @@ class NP_Nntp {
     }
 
     /**
-     * @access  private
-     * @returns bool
+     * @access	private
+     * @return	bool
      */
     function _connect()
     {
@@ -71,8 +71,8 @@ class NP_Nntp {
     }
 
     /**
-     * @access  private
-     * @returns bool
+     * @access	private
+     * @return	bool
      */
     function _close()
     {
@@ -81,10 +81,10 @@ class NP_Nntp {
     }
     
     /**
-     * @access  private
-     * @param   string  $string
-     * @param   bool    $is_text
-     * @returns bool
+     * @access	private
+     * @param	string	$string
+     * @param	bool	$is_text
+     * @return	bool
      */
     function _sendline($string, $is_text = FALSE)
     {
@@ -123,9 +123,9 @@ class NP_Nntp {
     }
 
     /**
-     * @access  private
-     * @param   string  $text
-     * @param   string  $delimiter
+     * @access	private
+     * @param	string	$text
+     * @param	string	$delimiter
      */
     function _sendtext($text, $delimiter = "\n")
     {
