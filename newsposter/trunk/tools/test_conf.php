@@ -3,11 +3,14 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+require_once('../config.php');
+require_once('../include/misc.php');
+
 // test boolean variable
 function test_bool($component)
 {
     return ($component) ? ('<font color="green">Passed</font>')
-		: ('<font color="red">Failed</font>');
+        : ('<font color="red">Failed</font>');
 }
 
 $version   = version_compare('4.2.0', PHP_VERSION, '<=');

@@ -13,7 +13,7 @@ require_once($cfg['StoreTypeFile']);
  * aggregation. For more information visit http://www.w3.org/RDF/.
  * RSS 1.0 specification is used for creating RSS files
  * (http://purl.org/rss/1.0/).
- * @brief	RSS file creation class
+ * @brief   RSS file creation class
  */
 class NP_RDF {
 
@@ -23,21 +23,21 @@ class NP_RDF {
 
     function NP_RDF()
     {
-	$this->__construct();
+        $this->__construct();
     }
     
     function __construct()
     {
-	global $np_dir;	
-    
-	// create global NP_Storing / NP_Posting instance
-	$this->store_inst = &new NP_Storing;
-	$this->post_inst  = &new NP_Posting;
-	
-	$this->rdf_file   = $np_dir . '/spool/news.rss';
-	
-	if (! file_exists($this->rdf_file))
-	    touch($this->rdf_file);
+        global $np_dir;
+
+        // create global NP_Storing / NP_Posting instance
+        $this->store_inst = &new NP_Storing;
+        $this->post_inst  = &new NP_Posting;
+
+        $this->rdf_file   = $np_dir . '/spool/news.rss';
+
+        if (! file_exists($this->rdf_file))
+            touch($this->rdf_file);
     }
     
     /**

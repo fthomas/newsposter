@@ -25,10 +25,10 @@ function my_trigger_error($error_msg)
     $error_log = $GLOBALS['np_dir'] . '/spool/error.log';
 
     if (!file_exists($error_log))
-	touch($error_log);
+        touch($error_log);
 
     if (($fp = fopen($error_log, 'a')) === FALSE)
-	return FALSE;
+        return FALSE;
 
     $date = sprintf('[%s] ', date('r'));	
     fwrite($fp, $date . $error_msg . "\n");	
@@ -51,7 +51,7 @@ function print_footer()
         include_once($cfg['IncludeFooter']);
 }
 
-/** 
+/**
  * makes an absolute uri
  * @return	string
  * @deprecated	We use now $cfg['PageURL'], so users can
@@ -63,7 +63,7 @@ function abs_uri()
         $prot = 'https://';
     else
         $prot = 'http://';
-        
+
     $server = $_SERVER['HTTP_HOST'];
     $dir    = dirname($_SERVER['PHP_SELF']);
 
@@ -72,18 +72,18 @@ function abs_uri()
 
 /**
  * This function removes all ASCII control characters
- * in $text and replaces them with an ordinary space. 
+ * in $text and replaces them with an ordinary space.
  * @param	string	$text
  * @return	string
  */
 function remove_cchars($text)
 {
-    $chars = array();    
+    $chars = array();
     for($i = 0; $i < 32; $i++)
-	$chars[$i] = chr($i);
+        $chars[$i] = chr($i);
 
     // v_output($chars);
-        
+
     $text = str_replace($chars, " ", $text);
     return $text;
 }
@@ -111,14 +111,14 @@ function prep_msgid($msgid)
 
     if ($first === '<' && $last === '>')
     {
-	$msgid = str_replace('@', '_AT_', $msgid);
-	return substr($msgid, 1, -1);
+        $msgid = str_replace('@', '_AT_', $msgid);
+        return substr($msgid, 1, -1);
     }
-    	
+
     if ($first !== '<' && $last !== '>')
     {
-	$msgid = str_replace('_AT_', '@', $msgid);
-	return '<' . $msgid . '>';
+        $msgid = str_replace('_AT_', '@', $msgid);
+        return '<' . $msgid . '>';
     }
 
     return $msgid;

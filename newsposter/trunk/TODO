@@ -18,3 +18,5 @@
 
 - if comments and the referral posting are send/edited at the same
   time, the comment do not have a reference 
+
+- test_conf don't check whether IndexURL was set correctly
