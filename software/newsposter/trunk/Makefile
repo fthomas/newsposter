@@ -7,11 +7,11 @@ DIRNAME  = newsposter-$(VERSION)
 misc:
 	@echo "Newsposter Version: $(VERSION)"
 	@echo "Last Changed Revision: $(REVISION)"
-	@-svn log -v > ChangeLog
+	@-svn log -v > doc/changelog.txt
 
 dist: misc phpdoc
 	svn  export . $(DIRNAME)
-	cp   ChangeLog $(DIRNAME)
+	cp   doc/changelog.txt $(DIRNAME)
 	cp   -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
 	rm   $(DIRNAME)/Makefile
 	rm   $(DIRNAME)/doc/doxygen/Doxyfile

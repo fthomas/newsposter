@@ -76,13 +76,6 @@ class NP_Auth {
             $this->_make_session();
             return TRUE;
         }
-        
-        // search ldap directory for user
-        if ($this->_search_ldap($username, $password) == TRUE)
-        {
-            $this->_make_session();
-            return TRUE;
-        }
 
         // user & password not found
         my_trigger_error('Invalid credentials');
@@ -136,78 +129,6 @@ class NP_Auth {
                 }
             }
         }
-        return FALSE;
-    }
-
-    /**
-     * @access	private
-     * @param	string	$username
-     * @param	string	$password
-     * @return	bool
-     */
-    function _search_ldap($username, $password)
-    {
-        global $cfg;
-
-        if ($cfg['UseLDAPAuth'] == FALSE)
-            return FALSE;
-        
-	if (!function_exists('ldap_connect'))
-	{
-	    my_trigger_error('LDAP extension not available in this PHP version');
-	    return FALSE;
-	}
-	    
-        if (!$ldap_rs = ldap_connect($cfg['LDAPServer'], $cfg['LDAPPort']))
-        {
-	    my_trigger_error('Could not connect to LDAP server');
-	    return FALSE;
-	}
-
-        if (!ldap_bind($ldap_rs, $cfg['BindDN'], $cfg['BindPassword']))
-        {
-	    my_trigger_error('Could not bind to LDAP server');
-	    return FALSE;
-	}
-
-        // search for username
-        $filter = sprintf('(%s=%s)', $cfg['UsernameAttr'], $username);
-        $attrs  = array($cfg['UsernameAttr'], 'userPassword', $cfg['PermAttr']);
-
-        if (!$search = ldap_search($ldap_rs, $cfg['SearchBase'], $filter, $attrs))
-        {
-            ldap_unbind($ldap_rs);
-            return FALSE;
-        }
-
-        $entries = ldap_get_entries($ldap_rs, $search);
-
-        // empty userPassword attribute is not allowed
-        if (!isset($entries[0]['userpassword'][0]))
-        {
-            ldap_unbind($ldap_rs);
-            return FALSE;
-        }
-
-        // set permission for ldap user
-        $perm = @$entries[0][$cfg['PermAttr']][0];
-
-        if ((!is_numeric($perm) || ($perm > ADMIN || $perm < SLAVE)) || !isset($perm))
-            $perm = $cfg['DefaultPerm'];
-
-        // test user's password
-        $pass = &new NP_Passwords;
-        if ($pass->cmp_hashes($password, $entries[0]['userpassword'][0]))
-        {
-            $this->username = $username;
-            $this->password = $password;
-            $this->perm = (int) $perm;
-
-            ldap_unbind($ldap_rs);
-            return TRUE;
-        }
-
-        ldap_unbind($ldap_rs);
         return FALSE;
     }
 

@@ -160,49 +160,6 @@ $cfg['permission'][1]   = ADMIN & ~P_ARTICLES_EDIT;
 
 
 /**
- * Authentication (LDAP)
- */
-
-// Newsposter can use LDAP entries for authentication.
-// If you don't know what LDAP is, leave this to FALSE.
-// (bool)
-$cfg['UseLDAPAuth']  = FALSE;
-
-// LDAP server address.
-// (string)
-$cfg['LDAPServer']   = 'localhost';
-
-// LDAP server port.
-// (int)
-$cfg['LDAPPort']     = 389;
-
-// LDAP search base.
-// (string)
-$cfg['SearchBase']   = 'ou=address_book,o=avalon';
-
-// LDAP bind dn.
-// (string)
-$cfg['BindDN']       = 'cn=admin,o=avalon';
-
-// LDAP bind password.
-// (string)
-$cfg['BindPassword'] = 'insecure';
-
-// The username is compared with this attribute.
-// (string)
-$cfg['UsernameAttr'] = 'cn';
-
-// This attribute is used for the permission.
-// (string)
-$cfg['PermAttr']     = 'note';
-
-// If 'PermAttr' is no valid user permission use this permission
-// instead. 
-// (int)
-$cfg['DefaultPerm']  = USER;
-
-
-/**
  * Comments
  */
 

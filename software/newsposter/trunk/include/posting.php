@@ -15,21 +15,72 @@ require_once('store_fs.php');
  */
 class NP_Posting2 {
 
-    var $user     = '';
-    var $name     = '';
-    var $uri      = '';
-    var $title    = '';
-    var $msgid    = '';
-    var $refs     = array();
-    var $created  = 0;
-    var $modified = 0;
-    var $topic    = '';
-    var $content  = '';
-    var $category = '';
-    var $database = '';
+    var $user      = '';
+    var $name      = '';
+    var $uri       = '';
+    var $title     = '';
+    var $msgid     = '';
+    var $refs      = array();
+    var $created   = 0;
+    var $modified  = 0;
+    var $topic     = '';
+    var $content   = '';
+    var $category  = '';
+    var $database  = '';
+    var $is_hidden = FALSE;
     
-    function NP_Posting2()
+    function NP_Posting2(){}
+    
+    function create_from_array($array, $parent = NULL){}
+    
+    function get_from_array($array)
     {
+        if (! $this->is_posting_array($array))
+        {
+            my_trigger_error('Array is not valid "posting array"');
+        }
+    }
+    
+    function get_author(){}
+    
+    function get_date_created()
+    {
+        global $cfg;
+        return stamp2string($this->created, $cfg['DateFormat']);
+    }
+    
+    function get_date_modified()
+    {
+        global $cfg;
+        return stamp2string($this->modified, $cfg['DateFormat']);
+    }    
+    
+    function is_posting_array($array){}
+    
+    function is_article()
+    {
+        return (count($this->refs) == 0);
+    }
+    
+    function is_comment()
+    {
+        return (count($this->refs) != 0);
+    }
+    
+    function is_older_than($seconds)
+    {
+        $now = time();
+        $age = $now - $this->modified;
+        
+        return ($age > $seconds);
+    }
+    
+    function is_younger_than($seconds)
+    {
+        $now = time();
+        $age = $now - $this->modified;
+        
+        return ($age < $seconds);
     }
 }
 

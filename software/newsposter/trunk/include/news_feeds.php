@@ -42,9 +42,9 @@ class NP_NewsFeeds {
         if ($cfg['ParseUBB'])
             $this->ubb_inst = &new NP_UBB;
 
-        $this->feed_file['rss10']  = $np_dir . '/spool/feeds/rss10.xml';
-        $this->feed_file['rss20']  = $np_dir . '/spool/feeds/rss20.xml';
-        $this->feed_file['atom03'] = $np_dir . '/spool/feeds/atom03.xml';
+        $this->feed_file['rss10']  = $np_dir . '/var/feed_rss10.rdf';
+        $this->feed_file['rss20']  = $np_dir . '/var/feed_rss20.xml';
+        $this->feed_file['atom03'] = $np_dir . '/var/feed_atom03.xml';
         
         if (! file_exists($np_dir . '/spool/feeds/'))
             mkdir($np_dir . '/spool/feeds/');

@@ -3,7 +3,6 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-//include all required files
 require_once('include/misc.php');
 require_once('config.php');
 
@@ -21,6 +20,7 @@ if (!isset($_POST['action']) || empty($_POST['action']))
 switch($_POST['action'])
 {
     case 'write':
+        unset_posting_session_vars();
 	header("Location: {$cfg['IndexURL']}?np_act=posting_form&$sess_id");
 	exit(0);
 
@@ -35,6 +35,18 @@ switch($_POST['action'])
     default:
 	header("Location: {$cfg['IndexURL']}?np_act=chact&$sess_id");
 	exit(0);
+}
+
+function unset_posting_session_vars()
+{
+    unset($_SESSION['NP']['name']);    
+    unset($_SESSION['NP']['mail']);
+    unset($_SESSION['NP']['subject']); 
+    unset($_SESSION['NP']['topic']);
+    unset($_SESSION['NP']['emoticon']);
+    unset($_SESSION['NP']['body']);
+    unset($_SESSION['NP']['stamp']);
+    unset($_SESSION['NP']['refs']);
 }
 
 ?>
