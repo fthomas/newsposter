@@ -11,6 +11,9 @@ if (substr($np_dir, -7) == 'include')
     $np_dir = substr($np_dir, 0, -7);
 }
 
+// make XHTML compatible
+ini_set('arg_separator.output', '&amp;');
+
 // uncomment this for debugging
 //ini_set('error_log'      , $np_dir . '/spool/php_error.log');
 //ini_set('error_reporting', E_ALL);

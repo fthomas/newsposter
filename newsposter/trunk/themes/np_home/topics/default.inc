@@ -2,8 +2,8 @@
 <!-- $Id$ -->
 <a name="MSG_ID"></a>
 <table border="0" width="400px" align="center" cellspacing="0">
-    <tr><td colspan="3" background="themes/np_home/images/misc/border.png"></td></tr>
-    <tr><td width="1px" background="themes/np_home/images/misc/border.png"></td>
+    <tr><td colspan="3" style="background-image:url(themes/np_home/images/misc/border.png)"></td></tr>
+    <tr><td width="1px" style="background-image:url(themes/np_home/images/misc/border.png)"></td>
 	<td width="398px">
 	    <table border="0" cellspacing="5" cellpadding="0"
 		   width="100%" bgcolor="#eaf0f3">
@@ -23,7 +23,7 @@
 		</tr>
 	    </table>
         </td>
-	<td width="1px" background="themes/np_home/images/misc/border.png"></td></tr>
-    <tr><td colspan="3" background="themes/np_home/images/misc/border.png"></td></tr>
+	<td width="1px" style="background-image:url(themes/np_home/images/misc/border.png)"></td></tr>
+    <tr><td colspan="3" style="background-image:url(themes/np_home/images/misc/border.png)"></td></tr>
 </table>
 <br />
