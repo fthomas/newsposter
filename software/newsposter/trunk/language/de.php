@@ -1,41 +1,46 @@
 <?php
-/* $Id$ */
-//
-// Translators: Frank Thomas <frank@thomas-alfeld.de>
+/* $Id$
+ *
+ * This file is part of 'Newsposter - A versatile weblog'
+ * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
-$lang = array (
+$lang = array(
 
-    /**
-     * login
-     */
     'login_head'   => 'Login',
     'login_user'   => 'Username',
     'login_pass'   => 'Passwort',
     'login_submit' => 'Login',
     'login_reset'  => 'Reset',
     'login_anonym' => 'anonym',
-    
-    /**
-     * chact
-     */
+
     'radio_text'   => 'Aktion auswählen',
     'radio_write'  => 'Posting <b>schreiben</b>',
     'radio_edit'   => 'Posting <b>editieren</b>',
     'radio_delete' => 'Posting(s) <b>löschen</b>',
     'radio_submit' => 'weiter',
 
-    /**
-     * error
-     */
     'error'           => 'FEHLER',
     'error_perm_text' => 'Ungenügend Rechte',
     'error_perm_link' => 'Andere Aktion auswählen',
     'error_auth_text' => 'Authentifizierung fehlgeschlagen',
     'error_auth_link' => 'Loginvorgang wiederholen',
 
-    /**
-     * misc
-     */
     'misc_name'      => 'Name',
     'misc_mail'      => 'E-Mail',
     'misc_subject'   => 'Überschrift',
@@ -53,23 +58,14 @@ $lang = array (
     'misc_fresh'     => 'aktuelles Posting',
     'misc_old'       => 'altes Posting',
 
-    /**
-     * perform
-     */
     'perform_head'    => 'Artikel verfassen',
     'perform_preview' => 'Vorschau',
     'perform_nl2br'   => '<i>Return</i> (ASCII 10) in &lt;br /&gt; umwandeln',
     
-    /**
-     * preview
-     */
     'preview_head' => 'Vorschau',
     'preview_save' => 'Speichern',
     'preview_edit' => 'Bearbeiten', 
      
-    /**
-     * mail
-     */
     // %s = $lang['misc_article'] or $lang['misc_comment']
     'mail_intro_success' => 'Folgender %s wurde soeben gepostet',
     'mail_intro_error'   => 'Ein Zugangsversuch wurde aufgezeichnet',
@@ -77,10 +73,7 @@ $lang = array (
     'mail_subj_new'      => 'Neues Posting auf '  . $cfg['PageTitle'],
     'mail_ip'            => 'IP Adresse',
     'mail_hostname'      => 'Hostname',
-    
-    /**
-     * emoticons
-     */
+
     'emot_angry'     => 'wütend',
     'emot_dead'      => 'tot',
     'emot_discuss'   => 'diskutierend',
@@ -97,24 +90,16 @@ $lang = array (
     'emot_suprised'  => 'überrascht',
     'emot_uplooking' => 'betend',
 
-    /**
-     * expanded
-     */
     'comment_head'   => 'News kommentieren',
     'comment_send'   => 'Kommentieren',
     'comment_answer' => 'antworten',
     
-    /**
-     * search
-     */
     'search_head'    => 'Postings durchforsten',
     'search_text'    => 'Suche nach',
     'search_in'      => 'in',
     'search_all'     => 'allen Postings',
     'search_comment' => 'Kommentaren',
     'search_news'    => 'News'
-    
 );
 
-/* vim:set encoding=utf-8: */
 ?>

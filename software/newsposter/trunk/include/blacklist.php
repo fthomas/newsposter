@@ -3,6 +3,7 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
 
@@ -24,7 +25,7 @@ class NP_Blacklist {
         if ($cfg['BlacklistTime'] == 0)
             return TRUE;
 
-        $bl_file = $np_dir . '/spool/blacklist.txt';
+        $bl_file = $np_dir . '/var/blacklist.txt';
     
         if (! file_exists($bl_file))
             touch($bl_file);

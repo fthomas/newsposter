@@ -14,15 +14,18 @@ de-DE
 de
 multiple locales in setlocale erst seit 4.3.0!
 */
+
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
 
-require_once('constants.php');
-
 /**
+ * Internationalization class
+ *
  * This class adds internationalization (i18n) and content negotiation
  * to Newsposter.
- * @brief    Internationalization class
+ *
+ * @package Newsposter    
  */
 class NP_I18N {
 
@@ -77,7 +80,7 @@ class NP_I18N {
         // $cfg is needed for some translations
         global $cfg, $np_dir;
         
-        $filename = $np_dir . '/lang/' . $this->pref_lang . '.php';
+        $filename = $np_dir . '/language/' . $this->pref_lang . '.php';
 
         // include language file
         if (is_readable($filename))

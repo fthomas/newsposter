@@ -1,6 +1,5 @@
 <?php
 /* $Id$ */
-require_once('../include/constants.php');
 
 /**
  *  Newsposter Configuration File
@@ -147,7 +146,7 @@ $cfg['permission'][0]   = WRITER + P_DELETE;
 
 // This user has the login name 'admin' and a SSHA hashed password
 // which is also 'insecure'. He's got ADMIN rights minus the permission
-// to edit all postings.
+// to edit all articles.
 $cfg['username'][1]     = 'admin';
 $cfg['password'][1]     = '{SSHA}i2J32p9b+99AVO9MkAoQWz6eBDc0ZTBjMGNjNQ==';
 $cfg['permission'][1]   = ADMIN & ~P_ARTICLES_EDIT;
@@ -212,8 +211,8 @@ $cfg['Theme'] = 'lenz';
 //     Newsposter translation, you have to add it to the $avail_lang
 //     array in include/i18n.php.
 // (string)
-$cfg['IncludeHeader'] = 'themes/lenz/_header.inc.de';
-$cfg['IncludeFooter'] = 'themes/lenz/_footer.inc.de';
+$cfg['IncludeHeader'] = 'themes/lenz/Header.inc.de';
+$cfg['IncludeFooter'] = 'themes/lenz/Footer.inc.de';
 
 // These are used for the depth indicator.
 // (string)

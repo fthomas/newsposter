@@ -25,11 +25,11 @@ switch($_POST['action'])
 	exit(0);
 
     case 'edit':
-	header("Location: {$cfg['IndexURL']}?np_act=posting_sel&edit&$sess_id");
+	header("Location: {$cfg['IndexURL']}?np_act=posting_selection&edit&$sess_id");
 	exit(0);
 	
     case 'delete':
-	header("Location: {$cfg['IndexURL']}?np_act=posting_sel&del&$sess_id");
+	header("Location: {$cfg['IndexURL']}?np_act=posting_selection&del&$sess_id");
 	exit(0);
 
     default:

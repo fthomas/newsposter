@@ -3,8 +3,6 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-require_once('../conf/config.php');
-require_once('../include/misc.php');
 
 // test boolean variable
 function test_bool($component)

@@ -20,9 +20,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
-require_once('constants.php');
 require_once('date.php');
 require_once('store_fs.php');
 
@@ -122,7 +122,9 @@ class NP_Posting2 {
  *		'c_to'    => 'postmaster\@thomas-alfeld.de',
  *		'topic'   => 'default',
  *		'emoticon'=> 'happy',
- *		'body'    => 'hello.<br /> this is the content of the posting'
+ *		'body'    => 'hello.<br /> this is the content of the posting',
+ *              'modified'  => '{unix time stamp}',
+ *              'is_hidden' => false
  *	);
  * 
  * The external posting format (text only):  
@@ -145,6 +147,8 @@ class NP_Posting2 {
  *	X-NP-Stamp: {unix time stamp}
  *	X-NP-Topic: default
  *	X-NP-Emoticon: happy
+ *      X-NP-Modified: {unix time stamp}
+ *      X-NP-IsHidden: false
  *	
  *	hello.<br /> this is the content of the posting
  * </pre>
@@ -193,6 +197,10 @@ class NP_Posting {
 
         if (!empty($_SESSION['NP']['refs']))
             $int_post['refs'] = $_SESSION['NP']['refs'];
+
+        $int_post['is_hidden'] = false;
+        if (isset($_SESSION['NP']['is_hidden']))
+            $int_post['is_hidden'] = $_SESSION['NP']['is_hidden'];            
             
 	$int_post['user']     = $_SESSION['NP']['username'];
 	$int_post['msgid']    = $new_msgid;
@@ -203,7 +211,8 @@ class NP_Posting {
 	$int_post['topic']    = $_SESSION['NP']['topic'];
 	$int_post['emoticon'] = $_SESSION['NP']['emoticon'];
 	$int_post['body']     = $_SESSION['NP']['body'];
-	
+        $int_post['modified'] = time();
+        
 	// determine weather $int_post is a posting or
 	// a comment and has references
 	if ($reference != NULL && is_array($reference))
@@ -319,8 +328,11 @@ class NP_Posting {
 		$int_array['topic'] = $header_value;
 	
 	    else if ($header_field == 'X-NP-Emoticon')
-		$int_array['emoticon'] = $header_value;	
+		$int_array['emoticon'] = $header_value;
 	    
+            else if ($header_field == 'X-NP-Modified')
+                $int_array['modified'] = $header_value;
+                
 	    else if ($header_field == 'References')
 	    {
 		$int_array['refs'] = $header_value;
@@ -335,6 +347,11 @@ class NP_Posting {
 	    $int_array['refs'] .= " " . $msgid;
 	}
 	
+        // if this posting has no modified date, set the creation date as
+        // modified date
+        if (!isset($int_array['modified']))
+            $int_array['modified'] = $int_array['stamp'];
+        
 	$int_array['date'] = stamp2string($int_array['stamp'], $cfg['DateFormat']);
 	$int_array['body'] = implode("\n", array_slice($lines, $body_line + 1));
 	
@@ -385,6 +402,7 @@ class NP_Posting {
 	$ext .= "X-NP-Stamp: {$int_post['stamp']}\n";
 	$ext .= "X-NP-Topic: {$int_post['topic']}\n";
 	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\n";
+        $ext .= "X-NP-Modified: {$int_post['modified']}\n";
 	$ext .= "\n";
 
 	// get internal encoding and encode $body to utf-8

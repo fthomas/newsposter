@@ -3,6 +3,7 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+require_once('include/constants.php');
 require_once('include/misc.php');
 
 require_once('include/auth.php');
@@ -87,8 +88,8 @@ switch($action)
 	$inc = 'search.php';
 	break;
 
-    case 'posting_sel':
-	$inc = 'posting_sel.php';
+    case 'posting_selection':
+	$inc = 'posting_selection.php';
 	break;
     
     case 'delete':

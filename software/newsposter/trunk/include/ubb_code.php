@@ -20,6 +20,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
 

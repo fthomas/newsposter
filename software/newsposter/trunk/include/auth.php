@@ -3,10 +3,9 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
-
-require_once('constants.php');
 require_once('passwd.php');
 
 /**

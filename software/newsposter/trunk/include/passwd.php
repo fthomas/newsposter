@@ -27,7 +27,7 @@ require_once('constants.php');
  *
  * This file defines functions to create and compare hashed passwords.
  * Except for CRYPT the mhash extension for PHP is needed to create
- * the hashes. (http://mhash.sourceforge.net/)
+ * the hashes. ({@link http://mhash.sourceforge.net/})
  *
  * @package Newsposter
  */

@@ -20,9 +20,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+require_once('constants.php');
 require_once('misc.php');
 require_once($np_dir . '/conf/config.php');
-require_once('constants.php');
 require_once('date.php');
 require_once('store_fs.php');
 require_once('ubb_code.php');
@@ -138,16 +138,17 @@ class NP_NewsFeeds {
             $posting['name']    = strip_tags($posting['name']); 
             $posting['mail']    = strip_tags($posting['mail']); 
             $posting['subject'] = strip_tags($posting['subject']);
-                
-            $posting['msgid'] = prep_msgid($posting['msgid']);
+            $posting['msgid']   = prep_msgid($posting['msgid']);
             
             $link_view = $this->post_inst->get_posting_url($posting, VIEW);
             $link_form = $this->post_inst->get_posting_url($posting, FORM);
            
-            $date_iso8601_1 = stamp2string($posting['stamp'], 13);
-            $date_iso8601_2 = substr($date_iso8601_1, 0, 10);
-            $date_rfc822    = stamp2string($posting['stamp'], 8);
-            
+            $date_created_iso8601_1 = stamp2string($posting['stamp'], 13);
+            $date_created_iso8601_2 = substr($date_created_iso8601_1, 0, 10);
+            $date_created_rfc822    = stamp2string($posting['stamp'], 8);
+            $date_modified_iso8601  = stamp2string($posting['modified'], 13);
+            $date_modified_rfc822   = stamp2string($posting['modified'], 8);
+
             /* ---- RSS 1.0 ---- */
             
             $this->feed_items['rss10']['channel']
@@ -157,11 +158,14 @@ class NP_NewsFeeds {
                 .= "  <item rdf:about=\"{$link_view}\">\n"
                  . "    <title>{$posting['subject']}</title>\n"
                  . "    <link>{$link_view}</link>\n"
+                 . "    <annotate:reference rdf:resource=\"{$link_form}\" />\n"
                  . "    <content:encoded>\n"
                  . "      <![CDATA[{$posting['body']}]]>\n"
                  . "    </content:encoded>\n"
                  . "    <dc:creator>{$posting['mail']} ({$posting['name']})</dc:creator>\n"
-                 . "    <dc:date>{$date_iso8601_1}</dc:date>\n"
+                 . "    <dc:date>{$date_created_iso8601_1}</dc:date>\n"
+                 . "    <dcterms:created>{$date_created_iso8601_1}</dcterms:created>\n"
+                 . "    <dcterms:modified>{$date_modified_iso8601}</dcterms:modified>\n"
                  . "  </item>\n"
                  . "\n";
                         
@@ -176,15 +180,14 @@ class NP_NewsFeeds {
                 .  "      </description>\n"
                 .  "      <author>{$posting['mail']} ({$posting['name']})</author>\n"
                 .  "      <comments>{$link_form}</comments>\n"
-                .  "      <pubDate>{$date_rfc822}</pubDate>\n"
+                .  "      <pubDate>{$date_created_rfc822}</pubDate>\n"
+                .  "      <dcterms:created>{$date_created_iso8601_1}</dcterms:created>\n"
+                .  "      <dcterms:modified>{$date_modified_iso8601}</dcterms:modified>\n"
                 .  "      <guid isPermaLink=\"true\">{$link_view}</guid>\n"
                 .  "    </item>\n"
                 .  "\n";
             
             /* ---- Atom 0.3 ----- */
-            //
-            // <id> is changed after the posting was edited
-            // <atom:modified> is not used properly 
             
             $this->feed_items['atom03']['feed']
                 .= "  <entry>\n"
@@ -194,9 +197,9 @@ class NP_NewsFeeds {
                 .  "      <name>{$posting['name']}</name>\n"
                 .  "      <email>{$posting['mail']}</email>\n"
                 .  "    </author>\n"
-                .  "    <id>tag:newsposter.webhop.org,{$date_iso8601_2}:{$posting['msgid']}</id>\n"
-                .  "    <modified>{$date_iso8601_1}</modified>\n"
-                .  "    <issued>{$date_iso8601_1}</issued>\n"
+                .  "    <id>tag:newsposter.webhop.org,{$date_created_iso8601_2}:{$posting['user']}{$posting['stamp']}</id>\n"
+                .  "    <modified>{$date_modified_iso8601}</modified>\n"
+                .  "    <issued>{$date_created_iso8601_1}</issued>\n"
                 .  "    <content type=\"text/html\" mode=\"escaped\">\n"
                 .  "      <![CDATA[{$posting['body']}]]>\n"
                 .  "    </content>\n"
@@ -218,11 +221,13 @@ class NP_NewsFeeds {
         $now_iso8601 = my_date(13);
 
         $content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                 . "<!-- name=\"generator\" content=\"Newsposter\\". VERSION ."\" -->\n"
                  . "<rdf:RDF\n"
                  . "  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
                  . "  xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n"
+                 . "  xmlns:dcterms=\"http://purl.org/dc/terms/\"\n"
                  . "  xmlns:content=\"http://purl.org/rss/1.0/modules/content/\"\n"
+                 . "  xmlns:admin=\"http://webns.net/mvcb/\"\n"
+                 . "  xmlns:annotate=\"http://purl.org/rss/1.0/modules/annotate/\"\n"
                  . "  xmlns=\"http://purl.org/rss/1.0/\">\n"
                  . "\n"
                  . "  <channel rdf:about=\"{$cfg['PageURL']}\">\n"
@@ -230,6 +235,9 @@ class NP_NewsFeeds {
                  . "    <link>{$cfg['PageURL']}</link>\n"
                  . "    <description>{$cfg['Description']}</description>\n"
                  . "    <dc:date>{$now_iso8601}</dc:date>\n"
+                 . "\n"
+                 . "    <!-- name=\"generator\" content=\"Newsposter/". VERSION ."\" -->\n"
+                 . "    <admin:generatorAgent rdf:resource=\"http://newsposter.webhop.org/\" />\n"
                  . "\n"
                  . "    <items>\n"
                  . "      <rdf:Seq>\n"
@@ -262,7 +270,8 @@ class NP_NewsFeeds {
         $now_rfc822  = my_date(8);
         
         $content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                 . "<rss version=\"2.0\">\n"
+                 . "<rss version=\"2.0\"\n"
+                 . "  xmlns:dcterms=\"http://purl.org/dc/terms/\">\n"
                  . "  <channel>\n"
                  . "    <title>{$cfg['PageTitle']}</title>\n"
                  . "    <link>{$cfg['PageURL']}</link>\n"

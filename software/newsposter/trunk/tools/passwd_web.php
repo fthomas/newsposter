@@ -18,7 +18,7 @@ $file = basename($_SERVER['PHP_SELF']);
 
 print <<< HTML
 
-<?xml version="1.0" encoding="iso-8859-15" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "DTD/xhtml1-transitional.dtd">

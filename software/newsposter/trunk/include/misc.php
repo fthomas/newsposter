@@ -15,7 +15,7 @@ if (substr($np_dir, -7) == 'include')
 ini_set('arg_separator.output', '&amp;');
 
 // uncomment this for debugging
-//ini_set('error_log'      , $np_dir . '/spool/php_error.log');
+//ini_set('error_log'      , $np_dir . '/var/php_error.log');
 //ini_set('error_reporting', E_ALL);
 //ini_set('log_errors'     , 1);
 
@@ -24,7 +24,7 @@ ini_set('arg_separator.output', '&amp;');
  */
 function my_trigger_error($error_msg)
 {
-    $error_log = $GLOBALS['np_dir'] . '/spool/error.log';
+    $error_log = $GLOBALS['np_dir'] . '/var/error.log';
 
     if (!file_exists($error_log))
         touch($error_log);
