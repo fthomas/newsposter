@@ -1,10 +1,10 @@
 - LDAP authentication needs admin rights
   -> every LDAP user should use it
 
-- np_act=auth_err sends email on every hit
-  -> write blacklist class like in Newsposter 0.4.x
-
 - if the mhash extension of the installed PHP version is buggy
   the passwords scripts end with "server not found" (PHP then
   segfaults).
   -> document this behaviour
+
+- no handbook yet
+  -> guess what!

@@ -8,7 +8,8 @@ require_once('include/misc.php');
 require_once('include/mail.php');
 require_once('config.php');
 
-if ($cfg['SendMailOnError'] == TRUE)
+if ($cfg['SendMailOnError'] == TRUE &&
+    $_SESSION['NP']['bl_inst']->validate_user() == TRUE)
 {
     $mail_inst = &new NP_Mail;
     $mail_inst->send_mail_error();

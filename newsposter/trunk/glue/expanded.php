@@ -7,7 +7,8 @@
 require_once('include/misc.php');
 
 // write comment, if $_POST is set
-if (isset($_POST['body']) && !empty($_POST['body']) && $cfg['UseComments'])
+if (isset($_POST['body']) && !empty($_POST['body']) && $cfg['UseComments']
+    && $_SESSION['NP']['bl_inst']->validate_user())
 {
     $_SESSION['NP']['name']     = $_POST['name'];
     $_SESSION['NP']['mail']     = $_POST['mail'];
