@@ -321,11 +321,11 @@ class NP_Output {
 	
 	if ($cfg['MarkFresh'] !== 0 && 
 		    ($diff <= $cfg['MarkFresh'] || $fresh_bool))
-	    $mark = sprintf('<img src="%s" alt="%s" border="0" />', $fresh,
+	    $mark = sprintf('<img src="%s" alt="%s" style="border:none" />', $fresh,
             $lang['misc_fresh']);
 
 	if ($cfg['MarkOld'] !== 0 && $diff >= $cfg['MarkOld'] && !$fresh_bool)
-	    $mark = sprintf('<img src="%s" alt="%s" border="0" />', $old,
+	    $mark = sprintf('<img src="%s" alt="%s" style="border:none" />', $old,
             $lang['misc_old']);
 	
 	// strip all slashes?
@@ -513,7 +513,7 @@ class NP_Output {
                     . ' value="%s" />', prep_msgid($posting['msgid']));
 
             // set tr_color
-            $tr_color = ($key % 2 == 0) ? '' : $cfg['EvenLineColor'];
+            $tr_color = ($key % 2 == 0) ? 'transparent' : $cfg['EvenLineColor'];
 
             $replace = array(
                 1 => $posting['name'],    2 => $posting['mail'],

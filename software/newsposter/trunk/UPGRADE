@@ -2,17 +2,17 @@
  Newsposter Upgrade HOWTO
  ========================
 
-Upgrade from 0.5.1 to 0.5.2:
-----------------------------
-  Just copy your spool directory into the new Newsposter
-  directory. You have to adjust the new config, since there
-  are new options and others were renamed. These are:
+ Upgrade from 0.5.1 to 0.5.2:
+ ----------------------------
+ Just copy your spool directory into the new Newsposter
+ directory. You have to adjust the new config, since there
+ are new options and others were renamed. These are:
     
-  New config options:
+ New config options:
     
     $cfg['ContentNegotiation']
     
-  Renamed config options:
+ Renamed config options:
     
     $cfg['RDFCreation']        renamed to $cfg['CreateFeeds']
     
@@ -22,10 +22,10 @@ Upgrade from 0.5.1 to 0.5.2:
      
     $cfg['RDFMaxItems']        renamed to $cfg['MaxFeedItems']
 
-  If you are using a customized translation for Newsposter, you
-  have to rename your language file to xx.php where xx is a
-  ISO-639 two-letter language code. Then open the include/i18n.php
-  file and add xx to the $avail_lang array.
+ If you are using a customized translation for Newsposter, you
+ have to rename your language file to xx.php where xx is a
+ ISO-639 two-letter language code. Then open the include/i18n.php
+ file and add xx to the $avail_lang array.
 
   
 --------------------------------------------------------------------------

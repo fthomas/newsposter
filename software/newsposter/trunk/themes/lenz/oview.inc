@@ -1,6 +1,9 @@
 
-<!-- $Id: oview.inc 49 2003-01-28 19:35:02Z mrfrost $ -->
-<table bgcolor="white" align="center" width="100%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
-ENTRIES
-</table>
-<br /><br />
+<!-- $Id$ -->
+<div class="container">
+  <table style="border:none;width:100%;" border="0" cellspacing="0" cellpadding="4">
+  ENTRIES
+  </table>
+</div>
+<br />
+<br />

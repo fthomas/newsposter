@@ -1,26 +1,20 @@
 
-<a name="MSG_ID"></a>
-<table style="border: solid 1px black" width="100%" align="center" cellspacing="1" cellpadding="3">
-    <tr>
-	<td bgcolor="#dfdfdf">
-	    <table border="0" width="100%" cellspacing="0" cellpadding="0">
-		<tr>
-		    <td valign="middle"><img src="EMOTICON.png" border="0" alt=""/></td>
-		    <td width="50%">&nbsp;SUBJECT</td>
-		    <td width="50%" align="right">
-			<a href="mailto:MAIL">NAME</a>&nbsp;DATE
-		    </td>
-		</tr>
-	    </table>
-	</td>
-    </tr>
-    <tr>
-        <td>
-            BODY
-            <div align="right">
-                <a href="ANSW_URL"><img src="themes/lenz/images/misc/reply.png" border="0" alt="reply" /></a>
-            </div>
-	</td>
-    </tr>
-</table>
-<br /><br />
+<a name="MSG_ID" />
+<div class="comment_container">
+  <div class="comment_header">
+    <table style="width:100%;border:none" border="0">
+      <tr>
+        <td style="text-align:left;width:1px"><img src="EMOTICON.png" style="border:none" alt="emoticon" /></td>
+        <td style="text-align:left"><strong>SUBJECT</strong></td>
+        <td style="text-align:right"><a href="mailto:MAIL">NAME</a> - DATE</td>
+      </tr>
+    </table>
+  </div>
+  <div class="comment_body">
+    BODY
+    <div style="text-align:right">
+      <a href="ANSW_URL"><img src="themes/lenz/images/misc/reply.png" style="border:none" alt="reply" /></a>
+    </div>
+  </div>
+</div>
+<br />

@@ -15,16 +15,16 @@ require_once('include/constants.php');
 // Set this to the name of your homepage. It is used in the login head
 // and in the RSS file.
 // (string)
-$cfg['PageTitle']   = 'www.example.com';
+$cfg['PageTitle']   = 'Newsposter - http://newsposter.webhop.org';
 
 // This should be the URL of your homepage.
 // (string)
-$cfg['PageURL']     = 'http://localhost/';
+$cfg['PageURL']     = 'http://newsposter.webhop.org/';
 
 // This must be the valid URL (including http://) of Newsposter's index
 // file. If it is not set correctly, Newsposter won't work. 
 // (string)
-$cfg['IndexURL']    = 'http://localhost/~mrfrost/newsposter/index.php';
+$cfg['IndexURL']    = 'http://www.thomas-alfeld.de/frank/newsposter/index.php';
 
 // Choose your preferred date format from the list below.
 //    1 =>    24.12.1984 13:43
@@ -145,7 +145,7 @@ $cfg['Locale']   = 'de_DE';
 
 // If FALSE no authentication mechanism is used.
 // (bool)
-$cfg['UseBuiltInAuth']  = TRUE;
+$cfg['UseBuiltInAuth']  = FALSE;
 
 // This user has the login name 'newsposter' and the plain password
 // 'insecure'. He's got SLAVE rights plus the permission to edit all
@@ -269,13 +269,13 @@ $cfg['IncludeFooter'] = 'themes/'. $cfg['Theme'] .'/_footer.inc.en';
 
 // These are used for the depth indicator.
 // (string)
-$cfg['DepthStart']    = '+';
-$cfg['DepthLength']   = '-';
-$cfg['DepthStop']     = '>';
+$cfg['DepthStart']    = '&nbsp;';
+$cfg['DepthLength']   = '&nbsp;&nbsp;&nbsp;';
+$cfg['DepthStop']     = '»';
 
 // This color is used for the search matches.
 // (string)
-$cfg['MatchColor']    = '#ffe100';
+$cfg['MatchColor']    = 'yellow';
 
 // Each even line in the Overview output has this background color.
 // This is only available in the "lenz" theme.

@@ -1,19 +1,20 @@
 
-<!-- $Id: posting_sel.inc 56 2003-02-11 19:43:43Z mrfrost $ -->
-<?php echo create_sess_post(); ?>
-<table align="center" width="60%" style="border: solid 1px black" cellspacing="0" cellpadding="5">
-    <tr>
-        <td bgcolor="#DFDFDF" colspan="2">
-            <?php printf("<b>%s</b>", $lang['misc_selection']); ?>
-        </td>
-    </tr>
-    <tr>
-	<td width="50%" align="right">
-	    <input type="submit" value="<?php echo $submit_text; ?>" />
-	</td>
-	<td width="50%" align="left">
-	    <input type="reset" value="<?php echo $lang['login_reset']; ?>" />
-	</td>
-    </tr>
+<!-- $Id$ -->
+<p style="display:none"><?php echo create_sess_post(); ?></p>
+<table class="container" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td colspan="2" style="background-color:#fafafa">
+      <?php printf("<b>%s</b>", $lang['misc_selection']); ?>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:right;width:50%">
+      <input type="submit" value="<?php echo $submit_text; ?>" />
+    </td>
+    <td style="text-align:left;width:50%">
+      <input type="reset" value="<?php echo $lang['login_reset']; ?>" />
+    </td>
+  </tr>
 </table>
-<br /><br />
+<br />
+<br />
