@@ -155,7 +155,7 @@ $cfg['IncludeFooter']   = '';
 $cfg['RDFCreation']        = TRUE;
 
 // (bool)
-$cfg['RDFIncludeComments'] = FALSE;
+$cfg['RDFIncludeComments'] = TRUE;
 
 // (string)
 $cfg['RDFDescription']  = 'Blue Dwarf - Frank Thomas personal homepage';
@@ -167,7 +167,7 @@ $cfg['RDFPageURL']      = 'http://www.thomas-alfeld.de/frank/';
 $cfg['RDFLink']         = 'http://www.thomas-alfed.de/frank/news/output_news.php';
 
 // (int)
-$cfg['RDFMaxItems']     = 5;
+$cfg['RDFMaxItems']     = 20;
 
 
 /**

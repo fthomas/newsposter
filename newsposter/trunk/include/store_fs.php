@@ -135,7 +135,7 @@ class NP_Storing {
 		    $cond = (!in_array($entry['msgid'], $msgid));    
 		    foreach($msgid as $one_msgid)
 		    {
-			// if an element in $msgid is in $entry['refs'],
+			// if an element of $msgid is in $entry['refs'],
 			// we want to delete this posting	
 			if (in_array($one_msgid, $entry['refs']))
 			{
@@ -206,9 +206,11 @@ class NP_Storing {
 
     /**
      * @access	public
+     * @param	mixed	$offset
+     * @param	mixed	$length
      * @return	array	Array of all postings, internal formatted.
      */
-    function get_all_postings()
+    function get_all_postings($offset = NULL, $length = NULL)
     {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
@@ -224,7 +226,7 @@ class NP_Storing {
 	}
 	
 	fclose($fp);
-	return $posts;
+	return $this->_my_array_slice($posts, $offset, $length);
     }
 
     /**
@@ -234,7 +236,7 @@ class NP_Storing {
      * @return	array	Returns array (or a slice) of all postings,
      *			which have no references.
      */
-    function get_all_news($offset = TRUE, $length = TRUE)
+    function get_all_news($offset = NULL, $length = NULL)
     {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
@@ -253,15 +255,7 @@ class NP_Storing {
 	}
 	
 	fclose($fp);
-	
-	if      ($offset === TRUE && $length === TRUE)
-	    return $posts;      
-	    
-	else if ($offset !== TRUE && $length === TRUE)
-	    return array_slice($posts, $offset);
-	    
-	else if ($offset !== TRUE && $length !== TRUE)
-	    return array_slice($posts, $offset, $length);
+	return $this->_my_array_slice($posts, $offset, $length);	
     }
 
     /**
@@ -597,7 +591,25 @@ class NP_Storing {
 	krsort($oview, SORT_NUMERIC);
 	return $oview;
     }
-        
+    
+    /**
+     * @access	private
+     * @param	array	$posts
+     * @param	int	$offset
+     * @param	int	$length
+     * @return	array
+     */
+    function _my_array_slice($posts, $offset, $length)
+    {
+	if      ($offset === NULL && $length === NULL)
+	    return $posts;      
+	    
+	else if ($offset !== NULL && $length === NULL)
+	    return array_slice($posts, $offset);
+	    
+	else if ($offset !== NULL && $length !== NULL)
+	    return array_slice($posts, $offset, $length);
+    }    
 }
 
 ?>
