@@ -167,8 +167,8 @@ class NP_Posting {
      */    
     function ext2int($ext_post)
     {
-	global $cfg;
-	
+    	global $cfg;
+
 	$ext_post  = str_replace("\r", '', $ext_post);
 	$lines     = explode("\n", $ext_post);
 	$int_array = array();

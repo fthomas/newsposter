@@ -88,13 +88,107 @@ class NP_Storing {
 	return $this->_close_files($fp);
     }
 
-    function remove_posting($msgid){}
+    /**
+     * @access	public
+     * @param	mixed	$msgid		Can be a string or an array.
+     * @param	bool	$rm_childs	Also remove all posting, which have
+     *					$msgid as reference, or not. 
+     * @return	bool
+     */
+    function remove_posting($msgid, $rm_childs = TRUE)
+    {
+    	if (($fp = $this->_open_files()) == FALSE)
+	    return FALSE;
+	
+	$oview = $this->_parse_oview_file();
+	$posts = array();
     
-    function replace_posting($posting, $rep_msgid){}
+	if (is_string($msgid))
+	{
+	    $is_string = TRUE;
+	    $is_array  = FALSE;
+	}
+	
+	else if (is_array($msgid))
+	{
+	    $is_array  = TRUE;
+	    $is_string = FALSE;
+	}
+	
+	// if msgid is not in msgid or refs,
+	// we will save the posting
+	foreach($oview as $key => $entry)
+	{
+	    if ($is_string)
+	    {
+		if ($rm_childs == TRUE)
+		    $cond = ( ($msgid != $entry['msgid']) &&
+			    (!in_array($msgid, $entry['refs'])) );
+		else if ($rm_childs == FALSE)
+		    $cond = ($msgid != $entry['msgid']);
+	    }
+	    
+	    else if ($is_array)
+	    {
+		if ($rm_childs == TRUE)
+		{
+		    $cond = (!in_array($entry['msgid'], $msgid));    
+		    foreach($msgid as $one_msgid)
+		    {
+			// if an element in $msgid is in $entry['refs'],
+			// we want to delete this posting	
+			if (in_array($one_msgid, $entry['refs']))
+			{
+			    $cond = FALSE;
+			    break;
+			}
+		    }
+		}
+		    
+		else if ($rm_childs == FALSE)
+		    $cond = (!in_array($entry['msgid'], $msgid));
+	    }
+	    	
+	    if ($cond)
+		$posts[] = $entry;
+	}
+	
+	$new_mbox = '';
+	foreach($posts as $posting)
+	{
+	    $ext_post = $this->_get_file_selection($fp['mbox'],
+		$posting['start'], $posting['stop']);
+	    
+	    if (!empty($ext_post))
+		$new_mbox .= $ext_post . "\n\n";
+	}
+	
+	// we used _get_file_selection, so we have to rewind 
+	// the file pointer. otherwise ftruncate fills up mbox with
+	// NULLs
+	rewind($fp['mbox']);
+	ftruncate($fp['mbox'], 0);
+	fwrite($fp['mbox'], $new_mbox);
+
+	$this->_create_oview_file($fp);
+	return $this->_close_files($fp);
+    }
+    
+    /**
+     * @access	public
+     * @param	array	$posting
+     * @param	string	$rep_msgid	msgid of the replaced posting
+     * @return	bool
+     */
+    function replace_posting($posting, $rep_msgid)
+    {
+    }
 
     function get_all_postings(){}
 
     function get_all_news(){}
+
+    function get_orphan_postings(){}
 
     function get_posting($msgid){}
 
@@ -188,6 +282,22 @@ class NP_Storing {
     
     /**
      * @access	private
+     * @param	int	$fp
+     * @param	int	$start
+     * @param	int	$end
+     * @return	string
+     */
+    function _get_file_selection($fp, $start, $end)
+    {
+	rewind($fp);
+	fseek($fp, $start, SEEK_SET);
+	$selection = fread($fp, ($end - $start));
+    
+	return $selection;
+    }
+    
+    /**
+     * @access	private
      * @param	array	$int_post
      * @return	string	Postmark line for the mbox format.
      */
@@ -205,16 +315,18 @@ class NP_Storing {
      */
     function _create_oview_file($fp)
     {
+	rewind($fp['mbox']);	
+    
 	// initialize some variables
-	$buffer    = '';
-	$header    = '';
-	$oview_con = '';
+	$oview_con     = '';
 	$fp_pos['cur'] = 0;
 	$filesize      = filesize($this->mbox_file);
 	
 	while ($filesize > $fp_pos['cur'])
 	{
 	    $fp_pos['start'] = ftell($fp['mbox']);
+	    $header = '';
+	    $buffer = '';
 	    
 	    do {
 		$header .= $buffer;
@@ -229,7 +341,7 @@ class NP_Storing {
 	    // if buffer is a newline we reached the end of
 	    // the header
 	    } while($buffer != "\n");
-	
+	    
 	    // now we set the file pointer to the first newline
 	    // included by this class (after storing the posting) 
 	    for($i = 0; $i < $lines; ){
