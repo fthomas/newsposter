@@ -12,7 +12,6 @@ misc:
 dist: misc
 	svn  export . $(DIRNAME)
 	cp   doc/ChangeLog.txt $(DIRNAME)/doc/ChangeLog.txt
-	rm   $(DIRNAME)/Makefile
 	tar  -zcf $(DIRNAME).tar.gz  $(DIRNAME)
 	tar  -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
 	zip  -9 -r $(DIRNAME).zip    $(DIRNAME)
@@ -22,7 +21,8 @@ clean:
 	-rm var/error.log
 	-rm var/feed_atom03.xml
 	-rm var/feed_rss10.xml
-	-rm var/feed_rss20.xml        
+	-rm var/feed_rss20.xml
+	-rm -r doc/phpdoc
 
 phpdoc:
 	-rm -r doc/phpdoc

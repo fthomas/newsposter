@@ -24,7 +24,7 @@
  * Various constants
  *
  * Here is a list of former codenames:
- *  - 1.0.0 ?
+ *  - 0.9.0 ?
  *  - 0.5.2 Resurrection
  *  - 0.5.1 Falling leaves
  *  - 0.5.0 Odyssee
@@ -33,7 +33,7 @@
  */
 
 // misc
-define('VERSION'   , '1.0.0');
+define('VERSION'   , '0.9.0');
 define('CODENAME'  , '?');
 define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
