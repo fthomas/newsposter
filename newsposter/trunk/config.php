@@ -85,7 +85,7 @@ $cfg['TimeVariance']     = 0;
 // of the comment function you can block IPs for a special time
 // period. This value represents seconds. 0 disables this option.
 // (int)
-$cfg['BlacklistTime']    = 300;
+$cfg['BlacklistTime']    = 0;
 
 // If PHP add slashes to " or ' (\" and \'), turn this on to remove
 // them.

@@ -8,3 +8,6 @@
 
 - no handbook yet
   -> guess what!
+
+- if users reload after they posted a comment, it may be posted twice
+  -> prevent this
