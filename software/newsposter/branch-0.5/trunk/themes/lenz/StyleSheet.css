@@ -1,0 +1,158 @@
+/* $Id$ */
+
+body
+{
+    color:black;
+    background-color: white;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:10pt;    
+    margin:3%;
+    margin-left:5%;
+    margin-right:5%;
+}
+
+a:link    { color:#336699; text-decoration:none }
+a:visited { color:#336699; text-decoration:none }
+a:hover   { color:#009BFE; text-decoration:none }
+a:active  { color:#009BFE; text-decoration:none }
+
+.headline
+{
+    background:#f0f0f0;
+    border:1px solid #D3D3D3;
+    color:#A9A9A9;
+    padding:5px;
+    text-align:center;
+}
+
+.address
+{
+    border:1px dashed #D3D3D3;
+    padding:3px;
+}
+
+.link_table
+{
+    border:1px solid #D3D3D3;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    width:100%;
+}
+
+.table
+{
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+}
+
+.img
+{
+    border:none;
+}
+
+
+/**
+ * .news_* format definitions
+ */
+.news_container
+{
+    border:1px solid #aaa;
+    margin-bottom:3px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:3px;
+    width:75%;
+}
+
+.news_header
+{
+    border-bottom:1px solid #aaa;
+}
+
+.news_story
+{
+    background-color:#fafafa;
+    padding:3px;
+    text-align:left;
+}
+
+.news_footer
+{
+    background-color:#fafafa;
+    padding:3px;
+    text-align:right;
+}
+
+/**
+ * .comment_* format definitions
+ */
+.comment_container
+{
+    border:1px solid #ccc;
+    margin-bottom:3px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:3px;
+    width:75%;
+}
+
+.comment_header
+{
+    background-color:#fafafa;
+    border-bottom:1px solid #ccc;
+    padding:3px;
+    text-align:right;
+}
+
+.comment_body
+{
+    padding:3px;
+    text-align:left;
+}
+
+.comment_form
+{
+    border:1px solid #D3D3D3;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
+}
+
+
+/**
+ * .pagination format definitions
+ */
+.pagination
+{
+    text-align:center;
+}
+
+.pagination a
+{
+    color:#6090ff;
+    text-decoration:none;
+}
+
+.pagination a:visited
+{
+    color:#6090ff;
+}
+
+.pagination a:hover
+{
+    text-decoration:none;
+}
+
+/**
+ * global classes definitions
+ */
+.container
+{
+    border:1px solid #D3D3D3;
+    background-color:white;
+    margin-left:auto;
+    margin-right:auto;
+    width:75%;
+}
