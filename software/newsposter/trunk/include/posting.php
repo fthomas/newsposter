@@ -1,5 +1,5 @@
 <?php
-/* $Id: posting.php 241 2004-09-30 20:27:25Z mrfrost $
+/* $Id$
  *
  * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>
@@ -29,6 +29,7 @@ require_once('url.php');
 
 /**
  *
+ * @package Newsposter
  */
 class NP_Posting {
 
@@ -112,58 +113,7 @@ class NP_Posting {
     }
 }
 
-/**
- * The NP_Posting class can create postings and comments.
- * It also transforms the internal to the external posting
- * format and the other way round and there are functions
- * to retrive some meta informations of postings.
- *
- * <pre>
- * The internal posting format (associative array):
- *
- *	array (
- *		'user'    => 'mrfrost {login username}',
- *		'name'    => 'Frank Thomas',
- *		'mail'    => 'frank\@thomas-alfeld.de',
- *		'subject' => 'Announcing Newsposter 0.5.0!',
- *		'msgid'   => '<{unique ID}@{FQDN}>',
- *		'refs'    => '<{msgid}> <{msgid}>',
- *		'ngs'     => 'de.alt.test',
- *		'date'    => '17.11.2002 14:34',
- *		'stamp'   => '{unix time stamp}',
- *		'topic'   => 'default',
- *		'emoticon'=> 'happy',
- *		'body'    => 'hello.<br /> this is the content of the posting',
- *              'modified'  => '{unix time stamp}',
- *              'is_hidden' => false
- *	);
- * 
- * The external posting format (text only):  
- *
- *	From: "Frank Thomas" <frank@thomas-alfeld.de>
- *	Newsgroups: de.alt.test
- *	Subject: Announcing Newsposter 0.5.0!
- *	Message-ID: <{unique ID}@{FQDN}>
- *	References: <{msgid}>
- *	 <{msgid}>
- *	Date: Sun, 17 Nov 2002 14:34:23 +0100
- *	Lines: 1
- *	User-Agent: Newsposter/{version}
- *	Content-Type: text/plain; charset=utf-8
- *	Content-Transfer-Encoding: 8bit
- *	X-NP-Name: Frank Thomas
- *	X-NP-Mail: frank@thomas-alfeld.de
- *	X-NP-User: mrfrost {login username}	
- *	X-NP-Stamp: {unix time stamp}
- *	X-NP-Topic: default
- *	X-NP-Emoticon: happy
- *      X-NP-Modified: {unix time stamp}
- *      X-NP-IsHidden: false
- *	
- *	hello.<br /> this is the content of the posting
- * </pre>
- * @brief	Internal/external format handling of postings
- */
+
 class NP_Posting1 {
 
     /**
@@ -234,152 +184,6 @@ class NP_Posting1 {
 	
 	return $int_post;
     }
-
-    /**
-     * @access	public
-     * @param	string	$ext_post
-     * @return	array
-     */    
-    function ext2int($ext_post)
-    {
-    	global $cfg;
-
-	$ext_post  = str_replace("\r", '', $ext_post);
-	$lines     = explode("\n", $ext_post);
-	$int_array = array();
-	
-	foreach($lines as $key => $line)
-	{
-	    // make sure that we only get header fields,
-	    // no unfolded lines or the message itself 
-	    if (empty($line))
-	    {
-		$body_line = $key;
-		break;
-	    }
-	    
-	    $header_len = strpos($line, ':');
-	    
-	    if ($header_len == FALSE || $line[0] == ' ')
-		continue;
-		
-	    $header_field = substr($line, 0, $header_len); 
-	    $header_value = trim( substr($line, $header_len + 1) );
-	    
-	    // fill up the array 
-	    if ($header_field == 'X-NP-User')
-		$int_array['user'] = $header_value;
-	
-	    else if ($header_field == 'X-NP-Name')
-		$int_array['name'] = $header_value;
-	
-	    else if ($header_field == 'X-NP-Mail')
-		$int_array['mail'] = $header_value;
-		
-	    else if ($header_field == 'Subject')
-		$int_array['subject'] = $header_value;
-	
-	    else if ($header_field == 'Message-ID')
-		$int_array['msgid'] = $header_value;
-
-	    else if ($header_field == 'Newsgroups')
-		$int_array['ngs'] = $header_value;
-	
-	    else if ($header_field == 'X-NP-Stamp')
-		$int_array['stamp'] = $header_value;
-		
-	    else if ($header_field == 'X-NP-Topic')
-		$int_array['topic'] = $header_value;
-	
-	    else if ($header_field == 'X-NP-Emoticon')
-		$int_array['emoticon'] = $header_value;
-	    
-            else if ($header_field == 'X-NP-Modified')
-                $int_array['modified'] = $header_value;
-                
-            else if ($header_field == 'X-NP-IsHidden')
-                $int_array['is_hidden'] = $header_value;
-                
-	    else if ($header_field == 'References')
-	    {
-		$int_array['refs'] = $header_value;
-		$refs_line = $key;
-	    }
-	}
-	
-	// now collect all unfolded references
-	while(isset($refs_line) && ($lines[++$refs_line]['0'] == ' '))
-	{
-	    $msgid = trim($lines[$refs_line]);
-	    $int_array['refs'] .= " " . $msgid;
-	}
-	
-        // if this posting has no modified date, set the creation date as
-        // modified date
-        if (!isset($int_array['modified']))
-            $int_array['modified'] = $int_array['stamp'];
-            
-        if (!isset($int_array['is_hidden']))
-            $int_array['is_hidden'] = FALSE;
-        
-	$int_array['date'] = stamp2string($int_array['stamp'], $cfg['DateFormat']);
-	$int_array['body'] = implode("\n", array_slice($lines, $body_line + 1));
-	
-	return $int_array;
-    }
-
-    /**
-     * @access	public
-     * @param	array	$int_post
-     * @return	string
-     */
-    function int2ext($int_post)
-    {
-	// remove all ASCII control characters from
-	// these headers
-	$name    = remove_cchars($int_post['name']);
-	$mail    = remove_cchars($int_post['mail']);
-	$subject = remove_cchars($int_post['subject']);
-    
-	// now we fill up $ext
-        $ext  = "From: \"$name\" <$mail>\n";
-	$ext .= "Newsgroups: {$int_post['ngs']}\n";
-	$ext .= "Subject: $subject\n";
-	$ext .= "Message-ID: {$int_post['msgid']}\n";
-	
-	if(!empty($int_post['refs']))
-	{
-	    $refs = explode(" ",$int_post['refs']);
-	    $ext .= "References: $refs[0]\n";
-	    
-	    $n = count($refs);
-	    for($i=1; $i < $n; $i++)
-		$ext .= " $refs[$i]\n";
-	}
-	
-	$ext .= 'Date: ' .stamp2string($int_post['stamp'], 8)."\n"; 
-	
-	$lines = substr_count($int_post['body'], "\n") + 1;
-	$ext  .= "Lines: $lines\n";
-	
-	$ext .= USER_AGENT . "\n";
-	$ext .= "Content-Type: text/plain; charset=utf-8\n";
-	$ext .= "Content-Transfer-Encoding: 8bit\n";
-	$ext .= "X-NP-Name: $name\n";
-	$ext .= "X-NP-Mail: $mail\n";
-	$ext .= "X-NP-User: {$int_post['user']}\n";
-	$ext .= "X-NP-Stamp: {$int_post['stamp']}\n";
-	$ext .= "X-NP-Topic: {$int_post['topic']}\n";
-	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\n";
-        $ext .= "X-NP-Modified: {$int_post['modified']}\n";
-        $ext .= "X-NP-IsHidden: {$int_post['is_hidden']}\n";
-	$ext .= "\n";
-	$ext .= $int_post['body'];
-	
-	return $ext;
-    }
-
-
      
     /**
      * @access	private

@@ -1,5 +1,5 @@
 <?php
-/* $Id: storing.php 240 2004-09-30 17:59:03Z mrfrost $
+/* $Id$
  *
  * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank S. Thomas <frank@thomas-alfeld.de>

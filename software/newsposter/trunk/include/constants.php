@@ -1,5 +1,5 @@
 <?php
-/* $Id: constants.php 241 2004-09-30 20:27:25Z mrfrost $
+/* $Id$
  *
  * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
@@ -33,7 +33,7 @@
  */
 
 // misc
-define('VERSION'   , '0.5.3');
+define('VERSION'   , '1.0.0');
 define('CODENAME'  , '?');
 define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
