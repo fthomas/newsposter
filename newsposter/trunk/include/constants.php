@@ -8,7 +8,8 @@
  */
 
 // misc
-define('VERSION', '0.5.0-alpha');
+define('VERSION',  '0.5.0-alpha');
+define('CODENAME', 'Odyssee');
 
 // hashes used by Newsposter's authentication
 define('CRYPT', 1);

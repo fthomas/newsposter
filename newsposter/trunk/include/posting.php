@@ -58,7 +58,6 @@ require_once('constants.php');
 require_once($np_dir . '/config.php');
 require_once($cfg['StoreTypeFile']);
 
-
 class NP_Posting {
 
     /**
@@ -277,7 +276,7 @@ class NP_Posting {
 	$lines = substr_count($int_post['body'], "\n") + 1;
 	$ext  .= "Lines: $lines\r\n";
 	
-	$ext .= 'User-Agent: Newsposter/'.VERSION."\r\n";
+	$ext .= sprintf('User-Agent: Newsposter/%s ("%s")%s', VERSION, CODENAME, "\r\n");
 	$ext .= "Content-Type: text/plain; encoding=utf-8\r\n";
 	$ext .= "Content-Transfer-Encoding: 8bit\r\n";
 	$ext .= "X-Complaints-To: {$int_post['c_to']}\r\n";

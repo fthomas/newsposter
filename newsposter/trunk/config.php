@@ -148,9 +148,7 @@ $cfg['IncludeFooter']   = '';
 
 
 /**
- * RDF
- *
- * See http://www.w3.org/RDF/ for more information.
+ * RDF Site Summary (RSS)
  */
 
 

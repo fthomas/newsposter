@@ -6,12 +6,25 @@ misc:
 	@echo Newsposter Version: $(VERSION)
 	@echo Last Changed Revision: $(REVISION)
 	svn log -v > ChangeLog
-	svn export . $(DIRNAME)
-	cp ChangeLog $(DIRNAME)
 
 dist:
 	make misc
+	make doxygen
+	svn export . $(DIRNAME)
+	cp ChangeLog $(DIRNAME)
+	cp -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
 	tar -zcf $(DIRNAME).tar.gz $(DIRNAME)
 	tar -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
 	zip -9 -r $(DIRNAME).zip $(DIRNAME)
 	rm -r $(DIRNAME)
+
+clean:
+	-rm spool/mbox
+	-rm spool/mbox.bak
+	-rm spool/.overview_fs
+	-rm spool/.overview_fs.bak
+	-rm -r doc/doxygen/html
+
+doxygen:
+	-rm -r doc/doxygen/html
+	doxygen doc/doxygen/Doxyfile

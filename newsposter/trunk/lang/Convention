@@ -6,4 +6,4 @@ convention for translation contributors:
  - replace all the german values, the translator note and save your file
    utf-8 encoded
  - incomplete/deprecated files will be begin with an underscored
-   (e.g. _france.php) 
+   (e.g. _french.php) 

@@ -13,6 +13,7 @@ if (substr($np_dir, -7) == 'include')
 }
 
 ini_set('error_log'      , $np_dir . '/error.log');
+ini_set('log_errors'     , 1);
 ini_set('error_reporting', E_ALL);
 //ini_set('track_errors'   , 1);
 
