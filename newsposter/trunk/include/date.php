@@ -107,7 +107,7 @@ function stamp2string($time_stamp = -1, $format = 0)
 			return $time_string;
 			
 		default:
-			trigger_error("Invalid date format ($format)");
+			my_trigger_error("Invalid date format ($format)");
 			return "01.01.1970";
 	}
 }

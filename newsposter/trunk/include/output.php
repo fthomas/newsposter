@@ -239,12 +239,9 @@ class NP_Output {
 	
 	foreach($emots as $entry)
 	{
-	    $opt_add = '';
-	    if ($selected === $entry)
-		$opt_add = ' selected="selected"';
-	    
-	    $index = 'emot_' . $entry;
-	    $opts .= "\t\t<option value=\"$entry\"$opt_add>{$lang[$index]}</option>\n";
+	    $opt_add = ($selected === $entry) ? (' selected="selected"') : ('');
+	    $index   = 'emot_' . $entry;
+	    $opts   .= "\t\t<option value=\"$entry\"$opt_add>{$lang[$index]}</option>\n";
 	}
 	
 	return $opts;
@@ -268,9 +265,9 @@ class NP_Output {
 	    if ($can_cut)
 	    {
 		$int_post['body'] = substr($int_post['body'], 0, $pos);
-	    	$msg_id           = urlencode($int_post['msgid']); 
+	    	$msg_id           = urlencode(prep_msgid($int_post['msgid'])); 
 		$read_more = sprintf('<a href="index.php?np_act=expanded&amp;'.
-				     'msg_id=%s">%s</a>',$msg_id,
+				     'msg_id=%s">%s</a>', $msg_id,
 				     $lang['misc_more']); 
 	    }
 	    else
@@ -302,7 +299,7 @@ class NP_Output {
 	    
 	    $url = '<a href="index.php?np_act=expanded&amp;msg_id=%s">'
 	         . '%s [ %s ]</a>';
-	    $msg_id  = urlencode($int_post['msgid']);
+	    $msg_id  = urlencode(prep_msgid($int_post['msgid']));
 	    $comment = sprintf($url, $msg_id,
 			    $lang['misc_comments'], $children);
 	}
@@ -350,7 +347,7 @@ class NP_Output {
 	
 	$replace = array(
 	     0 => $int_post['name'],     1 => $int_post['mail'],
-	     2 => $int_post['subject'],  3 => $int_post['msgid'],
+	     2 => $int_post['subject'],  3 => prep_msgid($int_post['msgid']),
 	     4 => $int_post['ngs'],      5 => $int_post['date'],
 	     6 => $int_post['stamp'],    7 => $int_post['topic'],
 	     8 => $emoticon,             9 => $read_more,
@@ -383,8 +380,8 @@ class NP_Output {
 	// create path for emoticon. edit image extension here
 	$emoticon = create_theme_path('images/smile/' . $comment['emoticon']);
 	
-	$parent_msgid = urlencode($parent_msgid);
-	$msgid        = urlencode($comment['msgid']);
+	$parent_msgid = urlencode(prep_msgid($parent_msgid));
+	$msgid        = urlencode(prep_msgid($comment['msgid']));
 	
 	$date   = $this->_calc_date($comment['stamp']);			
 	$answer = sprintf('<a href="index.php?np_act=expanded&amp;'.
@@ -431,7 +428,7 @@ class NP_Output {
 	$replace = array(
 	    0 => $emoticon,        1 => $comment['name'],
 	    2 => $comment['mail'], 3 => $comment['subject'],
-	    4 => $date,            5 => $comment['msgid'],
+	    4 => $date,            5 => prep_msgid($comment['msgid']),
 	    6 => $comment['body'], 7 => $answer
 	);
 	
@@ -476,7 +473,7 @@ class NP_Output {
 	$oview_entries = '';
 	foreach($posts as $posting)
 	{
-	    $msgid    = urlencode($posting['msgid']);
+	    $msgid    = urlencode(prep_msgid($posting['msgid']));
 	    $link     = sprintf('index.php?np_act=output_all#%s', $msgid);
 	    $deep_add = '';
 	
@@ -485,7 +482,7 @@ class NP_Output {
 		$refs = explode(' ', $posting['refs']);		
 		$deep = count($refs);
 		$link = sprintf('index.php?np_act=expanded&amp;msg_id=%s#%s',
-			    urlencode($refs[0]), $msgid);
+			    urlencode(prep_msgid($refs[0])), $msgid);
 		
 		// compose depth indicator
 		$deep_add     .= $cfg['DepthStart'];
@@ -503,11 +500,11 @@ class NP_Output {
 	    $checkbox = '';
 	    if ($with_boxes === TRUE)
 		$checkbox = sprintf('<input type="checkbox" name="cb[]"'
-				  . ' value="%s" />', $posting['msgid']);
+				  . ' value="%s" />', prep_msgid($posting['msgid']));
 	    
 	    $replace = array(
 		1 => $posting['name'],    2 => $posting['mail'],
-		3 => $posting['subject'], 4 => $posting['msgid'],
+		3 => $posting['subject'], 4 => prep_msgid($posting['msgid']),
 		5 => $this->_calc_date($posting['stamp']),
 		6 => $link,               7 => $deep_add,
 		8 => $checkbox
@@ -548,7 +545,7 @@ class NP_Output {
 	// initialize filename variable with default topic
 	$filename  = $topics[0]['filename'];
 	
-	foreach($topics as $key => $entry)
+	foreach($topics as $entry)
 	{
 	    if ($entry['name'] === $topic)
 	    {
@@ -560,7 +557,7 @@ class NP_Output {
 	$filename = create_theme_path('topics/' . $filename);
 	if (!file_exists($filename))
 	{
-	    trigger_error("File $filename does not exists in _control.php.");
+	    my_trigger_error("File $filename does not exists in _control.php.");
 	    return FALSE;
 	}
 

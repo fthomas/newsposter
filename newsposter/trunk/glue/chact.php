@@ -14,8 +14,8 @@ if ($_SESSION['NP']['auth_inst']->check_post() == FALSE)
     $sess_id = create_sess_param();
     if (isset($_POST))
 	$_SESSION['NP']['_POST'] = $_POST;
-    
-    header("Location: {$_SESSION['NP']['auth_inst']->error_page}&auth&$sess_id"); 
+
+    header("Location: {$_SESSION['NP']['auth_inst']->error_page}&auth&$sess_id");     
     exit(0);
 }
 

@@ -9,11 +9,12 @@
     flexibility make Newsposter to a very useful tool, applicable in
     various environments.
     
-    To it's features count: comments, themes and topics, RDF/RSS 1.0,
-    one-way NNTP gateway, multi-user, multilingual, search function,
-    hashed passwords, login per LDAP directory, different user rights,
-    mail protocols, marking of new and old postings, UBB code, data
-    storage in "mbox" format, UTF-8 support, etc.  
+    Newsposter has the following features and functions: comments,
+    themes and topics, RDF/RSS 1.0, one-way NNTP gateway, multi-user,
+    multilingual, search function, hashed passwords, login per LDAP
+    directory, different user rights, mail protocols, marking of new
+    and old postings, UBB code, data storage in "mbox" format, UTF-8
+    support, etc.  
     
 
 >> Where to get it?

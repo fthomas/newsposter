@@ -10,11 +10,13 @@
     <tr>
 	<td align="center">
 	    <form action="index.php?np_act=posting_form" method="post">
+		<?php echo create_sess_post(); ?>
 		<input type="submit" value="<?php echo $lang['preview_edit']; ?>" />
 	    </form>
 	</td>
 	<td align="center">
 	    <form action="index.php?np_act=write" method="post">
+		<?php echo create_sess_post(); ?>
 		<input type="submit" value="<?php echo $lang['preview_save']; ?>" />
 	    </form>
 	</td>

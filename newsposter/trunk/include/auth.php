@@ -66,7 +66,7 @@ class NP_Auth {
         
         if (empty($username) || empty($password))
         {
-            trigger_error('Empty username or password');
+            my_trigger_error('Empty username or password');
             return FALSE;
         }
 
@@ -85,7 +85,7 @@ class NP_Auth {
         }
 
         // user & password not found
-        trigger_error('Invalid credentials');
+        my_trigger_error('Invalid credentials');
         return FALSE;
     }
 
@@ -154,19 +154,19 @@ class NP_Auth {
         
 	if (!function_exists('ldap_connect'))
 	{
-	    trigger_error('LDAP extension not available in this PHP version');
+	    my_trigger_error('LDAP extension not available in this PHP version');
 	    return FALSE;
 	}
 	    
         if (!$ldap_rs = ldap_connect($cfg['LDAPServer'], $cfg['LDAPPort']))
         {
-	    trigger_error('Could not connect to LDAP server');
+	    my_trigger_error('Could not connect to LDAP server');
 	    return FALSE;
 	}
 
         if (!ldap_bind($ldap_rs, $cfg['BindDN'], $cfg['BindPassword']))
         {
-	    trigger_error('Could not bind to LDAP server');
+	    my_trigger_error('Could not bind to LDAP server');
 	    return FALSE;
 	}
 

@@ -15,6 +15,9 @@ if (isset($_POST['cb']))
 {
     foreach($_POST['cb'] as $msgid)
     {
+	// prepare msg_id for normal usage
+	$msgid = prep_msgid($msgid);
+	
 	// create cancel before removing
 	if ($cfg['PostNNTP'])
 	{

@@ -14,7 +14,7 @@ $_SESSION['NP']['auth_inst']->check_perm(array(P_WRITE, P_EDIT, P_EDIT_NEWS));
 
 if (isset($_POST['edit']) && isset($_POST['cb'][0]))
 {
-    $old_post = $_SESSION['NP']['store_inst']->get_posting($_POST['cb'][0]);
+    $old_post = $_SESSION['NP']['store_inst']->get_posting(prep_msgid($_POST['cb'][0]));
     $_SESSION['NP']['replace_msgid'] = $old_post['msgid'];
     
     $_SESSION['NP']['name']     = $old_post['name'];

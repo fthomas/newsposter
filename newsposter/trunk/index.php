@@ -12,6 +12,7 @@ require_once('include/nntp.php');
 require_once('include/mail.php');
 require_once('include/ubb_code.php');
 require_once('include/rdf.php');
+require_once('include/blacklist.php');
 require_once('include/' . $cfg['StoreTypeFile']);
 
 session_start();
@@ -25,6 +26,7 @@ $_SESSION['NP']['nntp_inst']   = &new NP_NNTP;
 $_SESSION['NP']['mail_inst']   = &new NP_Mail;
 $_SESSION['NP']['ubb_inst']    = &new NP_UBB;
 $_SESSION['NP']['rdf_inst']    = &new NP_RDF;
+$_SESSION['NP']['bl_inst']     = &new NP_Blacklist;
 
 // if no np_action is specified we want to show
 // postings

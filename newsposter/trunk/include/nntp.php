@@ -48,7 +48,7 @@ class NP_NNTP {
         if (!$this->news_socket = fsockopen($cfg['NNTPServer'], $cfg['NNTPPort'],
                                   $errno, $errstr))
         {
-            trigger_error("$errstr ($errno)");
+            my_trigger_error("$errstr ($errno)");
             return FALSE;
         }
 
@@ -58,7 +58,7 @@ class NP_NNTP {
 
         if ($status == '201')
         {
-            trigger_error('201 server ready - no posting allowed');
+            my_trigger_error('201 server ready - no posting allowed');
             return FALSE;
         }
 
@@ -116,7 +116,7 @@ class NP_NNTP {
 
         if (in_array($status, $error_codes))
         {
-            trigger_error("$status $text ($string)");
+            my_trigger_error("$status $text ($string)");
             return FALSE;
         }
 

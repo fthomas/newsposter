@@ -1,6 +1,7 @@
 
 <!-- $Id$ -->
 <form action="index.php?np_act=chact_dispatch" method="post">
+<?php echo create_sess_post(); ?>
 <table border="1" width="50%" align="center" cellspacing="1" cellpadding="5">
     <tr>
 	<td colspan="2">

@@ -339,12 +339,12 @@ class NP_Posting {
 	global $cfg;
 	
 	$message = $this->_to_array($message);
-	$msgid   = urlencode($message['msgid']);
+	$msgid   = urlencode(prep_msgid($message['msgid']));
     
 	if (isset($message['refs']) && !empty($message['refs']))
 	{
 	    $parents = explode(' ', $message['refs']);
-	    $parent  = urlencode($parents[0]);
+	    $parent  = urlencode(prep_msgid($parents[0]));
 	    
 	    return sprintf("%s?np_act=expanded&amp;msg_id=%s#%s",
 			$cfg['IndexURL'], $parent, $msgid);

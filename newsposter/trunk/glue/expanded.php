@@ -19,7 +19,7 @@ if (isset($_POST['body']) && !empty($_POST['body']) && $cfg['UseComments'])
     if (!isset($_SESSION['NP']['username']))
 	$_SESSION['NP']['username'] = 'commentator';
     
-    $reference = $_SESSION['NP']['store_inst']->get_posting($_POST['ref']);
+    $reference = $_SESSION['NP']['store_inst']->get_posting(prep_msgid($_POST['ref']));
     $int_post  = $_SESSION['NP']['post_inst']->create_post($reference);
     $ext_post  = $_SESSION['NP']['post_inst']->int2ext($int_post);
     
@@ -38,9 +38,11 @@ if (isset($_POST['body']) && !empty($_POST['body']) && $cfg['UseComments'])
 	$_SESSION['NP']['mail_inst']->send_newsletter($int_post);
 }
 
+$msgid = prep_msgid($_GET['msg_id']);
+
 // get parent and children
-$parent = $_SESSION['NP']['store_inst']->get_posting($_GET['msg_id']);
-$posts  = $_SESSION['NP']['store_inst']->get_thread($_GET['msg_id'], FALSE);
+$parent = $_SESSION['NP']['store_inst']->get_posting($msgid);
+$posts  = $_SESSION['NP']['store_inst']->get_thread($msgid, FALSE);
 
 // exit if parent posting does not exist
 if (empty($parent))
