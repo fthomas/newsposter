@@ -29,6 +29,8 @@
  *       9 =>	11000.1100.11111000000 (binary notation)
  *
  *	10 =>	(seconds since the epoch (01.01.1970))
+ *
+ *	11 =>	19841224
  */
 
 /**
@@ -91,6 +93,10 @@ function stamp2string($time_stamp = -1, $format = 1)
 		
 		case 10:
 			$time_string = date('U', $time_stamp);
+			return $time_string;
+		
+		case 11:
+			$time_string = date('Ymd', $time_stamp);
 			return $time_string;				
 		
 		default:

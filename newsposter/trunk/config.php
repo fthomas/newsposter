@@ -171,7 +171,10 @@ $cfg['NNTPPassword']    = '';
 $cfg['Newsgroup']  = 'de.alt.test';
 
 // (string)
-$cfg['FQDN']       = 'newsposter.org';
+$cfg['FQDN']       = '';
+
+// (string)
+$cfg['Complaints'] ='postmaster@newsposter.org'
 
 
 /**
