@@ -39,8 +39,7 @@
  *	User-Agent: Newsposter/{version}
  *	Content-Type: text/plain; charset=utf-8
  *	Content-Transfer-Encoding: 8bit
- *	X-Complaints-To: postmaster@thomas-alfeld.de
- *	X-NP-Name: Frank Thomas
+ *	X-Complaints-To: postmaster@thomas-alfeld.de *	X-NP-Name: Frank Thomas
  *	X-NP-Mail: frank@thomas-alfeld.de
  *	X-NP-User: mrfrost {login username}	
  *	X-NP-Stamp: {unix time stamp}
@@ -60,6 +59,56 @@ require_once($cfg['StoreTypeFile']);
 
 
 class NP_Posting {
+
+    /**
+     * @param	array	$reference	An internal posting object. 
+     * @access	public
+     * @returns	array	The returned array is an internal formatted posting.
+     */
+    function create_post($reference = NULL)
+    {
+	global $cfg;
+    
+	session_start();
+    
+	$int_post['user']     = $_SESSION['username'];
+	
+	if (!empty(trim($_SESSION['name']))) 
+	    $int_post['name'] = $_SESSION['name'];
+	else
+	    $int_post['name'] = 'unknown';
+	
+	if (!empty(trim($_SESSION['mail'])))
+	    $int_post['mail'] = $_SESSION['mail'];
+	else
+	    $int_post['mail'] = 'unknown';
+    
+	if (!empty(trim($_SESSION['subject'])))
+	    $int_post['subject'] = $_SESSION['subject'];
+	else
+	    $int_post['subject'] = 'unknown'
+	
+	$int_post['msgid']    = $this->_create_msgid();
+	$int_post['ngs']      = $cfg['Newsgroup'];
+	$int_post['date']     = my_date();
+	$int_post['stamp']    = my_date(10);
+	$int_post['c_to']     = $cfg['Complaints'];
+	$int_post['topic']    = $_SESSION['topic'];
+	$int_post['emoticon'] = $_SESSION['emoticon'];
+	$int_post['body']     = $_SESSION['body'];
+	
+	if ($reference != NULL && is_array($reference))
+	{
+	    if (!isset($reference['refs']))
+		$int_post['refs'] = $reference['msgid'];
+	    else
+	    {
+		
+	    }
+	}
+	
+	return $int_post;
+    }
 
     /**
      * @param	string	$ext_post
@@ -196,13 +245,30 @@ class NP_Posting {
 	
 	return $ext;
     }
+
+    /**
+     * @access	public
+     * @param	mixed	$message
+     * @returns	string
+     */
+    function get_msgid($message)
+    {
+	if (is_array($message) && isset($message['msgid']))
+	    return $message['msgid'];
+	
+	else if(is_string($message))
+	{
+	    $message = $this->ext2int($message);
+	    return $message['msgid'];
+	}
+    }
     
     /**
      * @access	private
      * @returns	string
      */
-     function _create_msgid()
-     {
+    function _create_msgid()
+    {
         $store_inst = new NP_Storing;
      
         do
@@ -212,7 +278,7 @@ class NP_Posting {
 	} while ($is_valid == FALSE);
 	
 	return $msgid;
-     }
+    }
      
     /**
      * @access	private
@@ -233,7 +299,7 @@ class NP_Posting {
 	$msgid = sprintf('%s_%s@%s', $uniqid, $dc, $dn);
 	$msgid = str_replace(array('<', '>'), '', $msgid);
 	
-	return $msgid;
+	return sprintf('<%s>', $msgid);
     }
     
 }
