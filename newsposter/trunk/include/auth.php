@@ -15,6 +15,7 @@ require_once($np_dir . '/config.php');
  * text files etc. Look at auth_user and the _search_* functions for
  * more details.
  * @brief	Authentication and permission validation class
+ * @todo	Set new permission, when reading from http stream.
  */
 class NP_Auth {
 

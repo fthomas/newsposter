@@ -3,10 +3,8 @@
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
-/**
- * this should be the newsposter's main dir,
- * not the include dir
- */
+
+/// this should be the newsposter's main dir, not the include dir
 $np_dir = getcwd();
 
 if (substr($np_dir, -7) == 'include')
@@ -23,9 +21,8 @@ ini_set('session.use_trans_sid', 1);
 ini_set('session.use_cookies'  , 0);
 ini_set('arg_separator.output' , '&amp;'); // make it XHTML compatible
 
-/**
- * prints file before newsposter's output
- */
+
+/// prints file before newsposter's output
 function print_header()
 {
     global $cfg;
@@ -33,9 +30,8 @@ function print_header()
         include_once($cfg['IncludeHeader']);
 }
 
-/**
- * prints file after newsposter's output
- */
+
+/// prints file after newsposter's output
 function print_footer()
 {
     global $cfg;
@@ -78,9 +74,8 @@ function remove_cchars($text)
     return $text;
 }
 
-/**
- * only for debug purposes
- */
+
+/// only for debug purposes
 function v_output($var)
 {
     print '<pre>';

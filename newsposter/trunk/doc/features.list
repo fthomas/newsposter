@@ -7,8 +7,8 @@
 - (builtin) topics and themes 
 - (builtin) doxygen documentation for include/*
 
-- (optional) RDF/RSS news feeds
-- (optional) read more function
+- (optional) RSS news feeds
+- (optional) 'read more' function
 - (optional) LDAP authentication
 - (optional) UBB code in news/comments
 - (optional) threaded view at comments

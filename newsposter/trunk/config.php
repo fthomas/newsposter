@@ -14,7 +14,7 @@ require_once('include/constants.php');
  */
 
 // (string)
-$cfg['PageDescription'] = 'My personal homepage!';
+$cfg['PageTitle'] = 'My personal homepage!';
 
 // (string)
 $cfg['Language']    = 'german';
@@ -150,6 +150,24 @@ $cfg['IncludeFooter']   = '';
 /**
  * RDF Site Summary (RSS)
  */
+
+// (bool)
+$cfg['RDFCreation']        = TRUE;
+
+// (bool)
+$cfg['RDFIncludeComments'] = FALSE;
+
+// (string)
+$cfg['RDFDescription']  = 'Blue Dwarf - Frank Thomas personal homepage';
+
+// (string)
+$cfg['RDFPageURL']      = 'http://www.thomas-alfeld.de/frank/';
+
+// (string)
+$cfg['RDFLink']         = 'http://www.thomas-alfed.de/frank/news/output_news.php';
+
+// (int)
+$cfg['RDFMaxItems']     = 5;
 
 
 /**

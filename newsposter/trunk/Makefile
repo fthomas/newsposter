@@ -13,6 +13,8 @@ dist:
 	svn export . $(DIRNAME)
 	cp ChangeLog $(DIRNAME)
 	cp -r doc/doxygen/html $(DIRNAME)/doc/doxygen/html
+	rm $(DIRNAME)/Makefile
+	rm $(DIRNAME)/doc/doxygen/Doxyfile
 	tar -zcf $(DIRNAME).tar.gz $(DIRNAME)
 	tar -jcf $(DIRNAME).tar.bz2 $(DIRNAME)
 	zip -9 -r $(DIRNAME).zip $(DIRNAME)

@@ -229,10 +229,12 @@ class NP_Storing {
 
     /**
      * @access	public
-     * @return	array	Returns array of all postings, which
-     *			have no references.
+     * @param	mixed	$offset
+     * @param	mixed	$length
+     * @return	array	Returns array (or a slice) of all postings,
+     *			which have no references.
      */
-    function get_all_news()
+    function get_all_news($offset = TRUE, $length = TRUE)
     {
 	$oview = $this->_parse_oview_file();
 	$posts = array();
@@ -251,7 +253,15 @@ class NP_Storing {
 	}
 	
 	fclose($fp);
-	return $posts;
+	
+	if      ($offset === TRUE && $length === TRUE)
+	    return $posts;      
+	    
+	else if ($offset !== TRUE && $length === TRUE)
+	    return array_slice($posts, $offset);
+	    
+	else if ($offset !== TRUE && $length !== TRUE)
+	    return array_slice($posts, $offset, $length);
     }
 
     /**
@@ -391,15 +401,11 @@ class NP_Storing {
     function get_latest_date()
     {
 	$oview = $this->_parse_oview_file();
-	$stamp = 0;
 	
-	foreach($oview as $entry)
-	{
-	    if ($entry['stamp'] > $stamp)
-		$stamp = $entry['stamp'];
-	}
+	reset($oview);
+	$key = key($oview);
 	
-	return $stamp;
+	return $oview[$key]['stamp'];
     }
 
     /**
@@ -570,7 +576,8 @@ class NP_Storing {
 	
 	foreach($oview_con as $line)
 	{
-	    $pos = count($oview);
+	    $values = explode("\t", $line);
+	    $pos = $values[2] ." ". count($oview);
 	    
 	    list($oview[$pos]['subject'],
 		 $oview[$pos]['name'],
@@ -578,7 +585,7 @@ class NP_Storing {
 		 $oview[$pos]['start'],
 		 $oview[$pos]['stop'],
 		 $oview[$pos]['msgid'],
-		 $oview[$pos]['refs']) = explode("\t", $line);
+		 $oview[$pos]['refs']) = $values;
 
 	    // clean up the refs
 	    if (empty($oview[$pos]['refs']))
@@ -587,6 +594,7 @@ class NP_Storing {
 		$oview[$pos]['refs'] = explode(" ", $oview[$pos]['refs']);
 	}
 	
+	krsort($oview, SORT_NUMERIC);
 	return $oview;
     }
         
