@@ -1,12 +1,30 @@
 <?php
-/* $Id$ */
-//
-// Authors: Frank Thomas <frank@thomas-alfeld.de>
+/* $Id$
+ *
+ * This file is part of Newsposter
+ * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the
+ * Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 /**
  * Various constants
  *
  * Here is a list of former codenames:
+ *  - 0.5.3 ?
  *  - 0.5.2 Resurrection
  *  - 0.5.1 Falling leaves
  *  - 0.5.0 Odyssee
@@ -15,8 +33,8 @@
  */
 
 // misc
-define('VERSION'   , '0.5.2');
-define('CODENAME'  , 'Resurrection');
+define('VERSION'   , '0.5.3');
+define('CODENAME'  , '?');
 define('COMB_NAME' , 'Newsposter/'.VERSION.' ("'.CODENAME.'")');
 define('USER_AGENT', 'User-Agent: '.COMB_NAME);
 

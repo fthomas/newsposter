@@ -1,4 +1,4 @@
-DO NOT edit the mbox file manually, this can cause
+DO NOT EDIT the mbox file manually, this can cause
 fatal errors! Use Newsposter instead.
 
 If you still want to edit it manually, notice this:
@@ -12,3 +12,13 @@ If you still want to edit it manually, notice this:
       is corrupted and Newsposter won't be able to read it!
 
 If something goes wrong, I have warned you!
+
+It is safe to edit/delete the following files:
+    WARNING.txt
+    blacklist.txt    
+    error.log    
+    feed_atom03.xml
+    feed_rss10.rdf
+    feed_rss20.xml
+    mbox.bak
+    overview_fs.bak

@@ -259,46 +259,6 @@ $cfg['MaxFeedWords']    = -1;
 
 
 /**
- * NNTP Gateway
- */
-
-// Newsposter can post all postings to a NNTP server. It also
-// sends cancel or supersede messages.
-// (bool)
-$cfg['PostNNTP']     = FALSE;
-
-// NNTP server address.
-// (string)
-$cfg['NNTPServer']   = 'localhost';
-
-// NNTP server port.
-// (int)
-$cfg['NNTPPort']     = 119;
-
-// Username for server authentication. Leave blank for
-// no authentication.
-// (string)
-$cfg['NNTPUser']     = '';
-
-// Password for server authentication.
-// (string)
-$cfg['NNTPPassword'] = '';
-
-// All postings are posted to this newsgroup.
-// (string)
-$cfg['Newsgroup']    = 'de.alt.test';
-
-// The FQDN used for your message id.
-// (string)
-$cfg['FQDN']         = 'newsposter.webhop.org';
-
-// This value is used for the additional X-Complaints-To header
-// used in all postings.
-// (string)
-$cfg['Complaints']   = 'postmaster@your-domain.com';
-
-
-/**
  * Mail and Newsletter
  */
 

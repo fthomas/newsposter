@@ -25,7 +25,7 @@ class NP_Blacklist {
         if ($cfg['BlacklistTime'] == 0)
             return TRUE;
 
-        $bl_file = $np_dir . '/var/blacklist.txt';
+        $bl_file = $np_dir . '/var/blacklist.log';
     
         if (! file_exists($bl_file))
             touch($bl_file);
@@ -51,7 +51,7 @@ class NP_Blacklist {
         $ip_addr  = $_SERVER['REMOTE_ADDR'];
         $hostname = gethostbyaddr($ip_addr );
         
-        $new_cont = sprintf("%s:%s:%s\n", time(), $ip_addr, $hostname);
+        $new_cont = sprintf("%s;%s;%s\n", time(), $ip_addr, $hostname);
         $bool     = TRUE;
 
         foreach ($cont as $line)
@@ -59,7 +59,7 @@ class NP_Blacklist {
             if (empty($line))
                 continue;
 
-            $values = explode(':', $line);
+            $values = explode(';', $line);
             $diff   = time() - (int) $values[0];
             
             if ($diff >= $cfg['BlacklistTime'])
@@ -72,7 +72,7 @@ class NP_Blacklist {
             }
 
             if ($diff < $cfg['BlacklistTime'])
-                $new_cont .= sprintf("%s:%s:%s\n", time(), $ip_addr, $hostname);
+                $new_cont .= sprintf("%s;%s;%s\n", time(), $ip_addr, $hostname);
         }
 
         ftruncate($bl_fp, 0);

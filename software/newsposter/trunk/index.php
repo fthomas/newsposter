@@ -5,13 +5,11 @@
 
 require_once('include/constants.php');
 require_once('include/misc.php');
-
 require_once('include/auth.php');
 require_once('include/blacklist.php');
 require_once('include/i18n.php');
 require_once('include/mail.php');
 require_once('include/news_feeds.php');
-require_once('include/nntp.php');
 require_once('include/output.php');
 require_once('include/posting.php');
 require_once('include/store_fs.php');
@@ -26,7 +24,6 @@ $_SESSION['NP']['output_inst'] = &new NP_Output;
 $_SESSION['NP']['auth_inst']   = &new NP_Auth;
 $_SESSION['NP']['post_inst']   = &new NP_Posting;
 $_SESSION['NP']['store_inst']  = &new NP_Storing;
-$_SESSION['NP']['nntp_inst']   = &new NP_NNTP;
 $_SESSION['NP']['mail_inst']   = &new NP_Mail;
 $_SESSION['NP']['ubb_inst']    = &new NP_UBB;
 $_SESSION['NP']['feeds_inst']  = &new NP_NewsFeeds;

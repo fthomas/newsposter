@@ -1,7 +1,7 @@
 <?php
 /* $Id$
  *
- * This file is part of 'Newsposter - A versatile weblog'
+ * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>
  *
  * This program is free software; you can redistribute it and/or modify

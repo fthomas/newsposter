@@ -202,29 +202,13 @@ class NP_Storing {
      * @access	public
      * @param	array	$posting
      * @param	string	$rep_msgid	msgid of the replaced posting
-     * @return	bool
      */
     function replace_posting($posting, $rep_msgid)
     {
-	$old_messages = $this->get_thread($rep_msgid, FALSE);
-	$new_messages = array($posting);
-	
-	foreach($old_messages as $entry)
-	{
-	    // replace the old msgid
-	    $entry['refs']  = str_replace($rep_msgid, $posting['msgid'],
-				    $entry['refs']);
-	    $new_messages[] = $entry;
-	}
-
-	// delete the replaced posting and $old_messages
-	$this->remove_posting($rep_msgid, TRUE);
+        $this->remove_posting($rep_msgid, FALSE);
     
-	// add now $new_messages
-	foreach($new_messages as $entry)
-	{
-	    $this->store_posting($entry);
-	}
+        $posting['msgid'] = $rep_msgid;
+        $this->store_posting($posting);
     }
 
     /**

@@ -19,3 +19,5 @@
 - prüfe, ob cookies erlaubt sind und benutze dann keine PHP sessid als GET param
 
 - var dir sollte config option sein 
+
+- parsed DATE im subject

@@ -21,7 +21,7 @@
 
  There are two software packages needed by Newsposter.
    - Web Server which interprets PHP
-   - PHP >= 4.2.0 (developed with PHP >= 4.2.3)
+   - PHP >= 4.2.0
      - compiled with session support
      - for hashed passwords PHP's mhash extension is needed
 

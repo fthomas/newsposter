@@ -18,15 +18,6 @@ if (isset($_POST['cb']))
 	// prepare msg_id for normal usage
 	$msgid = prep_msgid($msgid);
 	
-	// create cancel before removing
-	if ($cfg['PostNNTP'])
-	{
-	    $int_post = $_SESSION['NP']['store_inst']->get_posting($msgid);
-	    $cancel   = $_SESSION['NP']['post_inst']->create_cancel($int_post); 
-	    
-	    $_SESSION['NP']['nntp_inst']->post($cancel);
-	}
-	
 	$_SESSION['NP']['store_inst']->remove_posting($msgid, TRUE);
     }
     

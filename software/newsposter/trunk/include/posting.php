@@ -59,16 +59,14 @@ class NP_Posting2 {
     
     function get_author(){}
     
-    function get_date_created()
+    function get_date_created($format)
     {
-        global $cfg;
-        return stamp2string($this->created, $cfg['DateFormat']);
+        return stamp2string($this->created, $format);
     }
     
-    function get_date_modified()
+    function get_date_modified($format)
     {
-        global $cfg;
-        return stamp2string($this->modified, $cfg['DateFormat']);
+        return stamp2string($this->modified, $format);
     }    
     
     function is_posting_array($array){}
@@ -119,7 +117,6 @@ class NP_Posting2 {
  *		'ngs'     => 'de.alt.test',
  *		'date'    => '17.11.2002 14:34',
  *		'stamp'   => '{unix time stamp}',
- *		'c_to'    => 'postmaster\@thomas-alfeld.de',
  *		'topic'   => 'default',
  *		'emoticon'=> 'happy',
  *		'body'    => 'hello.<br /> this is the content of the posting',
@@ -140,7 +137,6 @@ class NP_Posting2 {
  *	User-Agent: Newsposter/{version}
  *	Content-Type: text/plain; charset=utf-8
  *	Content-Transfer-Encoding: 8bit
- *	X-Complaints-To: postmaster@thomas-alfeld.de 
  *	X-NP-Name: Frank Thomas
  *	X-NP-Mail: frank@thomas-alfeld.de
  *	X-NP-User: mrfrost {login username}	
@@ -207,7 +203,6 @@ class NP_Posting {
 	$int_post['ngs']      = $cfg['Newsgroup'];
 	$int_post['date']     = stamp2string($new_stamp, $cfg['DateFormat']);
 	$int_post['stamp']    = $new_stamp;
-	$int_post['c_to']     = $cfg['Complaints'];
 	$int_post['topic']    = $_SESSION['NP']['topic'];
 	$int_post['emoticon'] = $_SESSION['NP']['emoticon'];
 	$int_post['body']     = $_SESSION['NP']['body'];
@@ -224,48 +219,6 @@ class NP_Posting {
 	}
 	
 	return $int_post;
-    }
-
-    /**
-     * @access	public
-     * @param	array	$int_post
-     * @return	string
-     */
-    function create_supersede($int_post, $msgid)
-    {
-	$ext_post  = $this->int2ext($int_post);
-	$ext_post = "Supersedes: $msgid\n" . $ext_post;
-    
-	return $ext_post;
-    }
-    
-    /**
-     * @access	public
-     * @param	array	$int_post
-     * @return	string
-     */
-    function create_cancel($int_post)
-    {
-	$msgid = $int_post['msgid'];
-	$body  = "cancel by original author\n";
-	
-	$int_post['subject'] = "cancel of " . $int_post['msgid']; 
-	// this is necessary for counting lines
-	$int_post['body']    = $body;
-	$int_post['msgid']   = $this->_suggest_msgid();
-
-	unset($int_post['refs']);
-    
-	$ext_post  = $this->int2ext($int_post);
-	$ext_post  = "Control: cancel $msgid\n" . $ext_post;
-	
-	// remove all X-NP-* header; the position of
-	// these should be fixed after removing all references
-	$ext_post  = explode("\n", $ext_post);
-	$ext_post  = implode("\n", array_slice($ext_post, 0, 10));	
-	$ext_post .= "\n\n" . $body;
-	
-	return $ext_post;
     }
 
     /**
@@ -320,9 +273,6 @@ class NP_Posting {
 	
 	    else if ($header_field == 'X-NP-Stamp')
 		$int_array['stamp'] = $header_value;
-	
-	    else if ($header_field == 'X-Complaints-To')
-		$int_array['c_to'] = $header_value;
 		
 	    else if ($header_field == 'X-NP-Topic')
 		$int_array['topic'] = $header_value;
@@ -332,6 +282,9 @@ class NP_Posting {
 	    
             else if ($header_field == 'X-NP-Modified')
                 $int_array['modified'] = $header_value;
+                
+            else if ($header_field == 'X-NP-IsHidden')
+                $int_array['is_hidden'] = $header_value;
                 
 	    else if ($header_field == 'References')
 	    {
@@ -351,6 +304,9 @@ class NP_Posting {
         // modified date
         if (!isset($int_array['modified']))
             $int_array['modified'] = $int_array['stamp'];
+            
+        if (!isset($int_array['is_hidden']))
+            $int_array['is_hidden'] = FALSE;
         
 	$int_array['date'] = stamp2string($int_array['stamp'], $cfg['DateFormat']);
 	$int_array['body'] = implode("\n", array_slice($lines, $body_line + 1));
@@ -395,7 +351,6 @@ class NP_Posting {
 	$ext .= USER_AGENT . "\n";
 	$ext .= "Content-Type: text/plain; charset=utf-8\n";
 	$ext .= "Content-Transfer-Encoding: 8bit\n";
-	$ext .= "X-Complaints-To: {$int_post['c_to']}\n";
 	$ext .= "X-NP-Name: $name\n";
 	$ext .= "X-NP-Mail: $mail\n";
 	$ext .= "X-NP-User: {$int_post['user']}\n";
@@ -403,14 +358,9 @@ class NP_Posting {
 	$ext .= "X-NP-Topic: {$int_post['topic']}\n";
 	$ext .= "X-NP-Emoticon: {$int_post['emoticon']}\n";
         $ext .= "X-NP-Modified: {$int_post['modified']}\n";
+        $ext .= "X-NP-IsHidden: {$int_post['is_hidden']}\n";
 	$ext .= "\n";
-
-	// get internal encoding and encode $body to utf-8
-	//$int_enc = iconv_get_encoding('internal_encoding');	
-	//$body    = iconv($int_enc, 'UTF-8', $int_post['body']);
-	
-	$body      = $int_post['body'];
-	$ext      .= $body;
+	$ext .= $int_post['body'];
 	
 	return $ext;
     }
@@ -506,27 +456,17 @@ class NP_Posting {
     }
      
     /**
-     * @access	private
-     * @return	string
+     * @access  private
+     * @return  string
      */
     function _suggest_msgid()
     {
-	global $cfg;
-    
-	if (empty($cfg['FQDN']))
-	    $dn = 'newsposter.org';
-	else
-	    $dn = $cfg['FQDN']; 
-	
-	$uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 10);
+        $uniqid = substr(md5(uniqid(rand(), TRUE)), 0, 4);
+        $host   = $_SERVER['HTTP_HOST'];
+        $date   = my_date(11);
+        $msgid  = sprintf('%s.%s@%s', $uniqid, $date, $host);
 
-	// date component
-	$dc = my_date(11);
-
-	$msgid = sprintf('%s.%s@%s', $uniqid, $dc, $dn);
-	$msgid = str_replace(array('<', '>'), '', $msgid);
-	
-	return sprintf('<%s>', $msgid);
+        return sprintf('<%s>', $msgid);
     }
     
     /**

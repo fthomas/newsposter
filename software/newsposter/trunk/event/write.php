@@ -18,17 +18,11 @@ if (isset($_SESSION['NP']['internal_posting']))
     
     if (isset($_SESSION['NP']['replace_msgid']))
     {
-	$supersede = $_SESSION['NP']['post_inst']->create_supersede(
-		$int_post, $_SESSION['NP']['replace_msgid']);
-	
 	$_SESSION['NP']['store_inst']->replace_posting(
 		$int_post, $_SESSION['NP']['replace_msgid']);
 	
 	if ($cfg['CreateFeeds'])
 	    $_SESSION['NP']['feeds_inst']->create_all();
-
-	if ($cfg['PostNNTP'])
-	    $_SESSION['NP']['nntp_inst']->post($supersede);
 
 	if ($cfg['SendMailOnSuccess'])
     	    $_SESSION['NP']['mail_inst']->send_mail_success($int_post);
@@ -40,9 +34,6 @@ if (isset($_SESSION['NP']['internal_posting']))
 
 	if ($cfg['CreateFeeds'])
 	    $_SESSION['NP']['feeds_inst']->create_all();
-
-	if ($cfg['PostNNTP'])
-	    $_SESSION['NP']['nntp_inst']->post($ext_post);
 
 	if ($cfg['SendMailOnSuccess'])
     	    $_SESSION['NP']['mail_inst']->send_mail_success($int_post);
