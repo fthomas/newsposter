@@ -1,5 +1,5 @@
 <?php
-/* $Id: _control.php 49 2003-01-28 19:35:02Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
