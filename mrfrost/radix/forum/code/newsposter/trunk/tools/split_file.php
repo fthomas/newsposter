@@ -1,6 +1,6 @@
 #!/usr/bin/php4 -q
 <?php
-/* $Id: split_file.php 221 2004-09-15 21:35:23Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 

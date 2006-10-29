@@ -106,4 +106,4 @@
 |    Newsposter includes PHP, freely available from                      |
 |    <http://www.php.net/>.                                              |
 --------------------------------------------------------------------------
-$Id: INSTALL.txt 241 2004-09-30 20:27:25Z mrfrost $
+$Id$

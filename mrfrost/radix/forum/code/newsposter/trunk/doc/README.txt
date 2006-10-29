@@ -85,4 +85,4 @@
 |    Newsposter includes PHP, freely available from                      |
 |    <http://www.php.net/>.                                              |
 --------------------------------------------------------------------------
-$Id: README.txt 238 2004-09-27 17:00:52Z mrfrost $
+$Id$

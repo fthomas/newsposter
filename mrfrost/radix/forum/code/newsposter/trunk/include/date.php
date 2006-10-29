@@ -1,5 +1,5 @@
 <?php
-/* $Id: date.php 241 2004-09-30 20:27:25Z mrfrost $
+/* $Id$
  *
  * This file is part of Newsposter
  * Copyright (C) 2001-2004 by Frank Thomas <frank@thomas-alfeld.de>

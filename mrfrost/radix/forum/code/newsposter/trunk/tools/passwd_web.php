@@ -1,5 +1,5 @@
 <?php
-/* $Id: passwd_web.php 239 2004-09-30 17:47:03Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 

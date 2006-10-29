@@ -1,5 +1,5 @@
 <?php
-/* $Id: update_data.php 218 2004-09-14 23:10:00Z mrfrost $ */
+/* $Id$ */
 //
 // Authors: Frank Thomas <frank@thomas-alfeld.de>
 
